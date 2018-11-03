@@ -17,4 +17,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::get('/run/{id}', 'RunController@run');
+
+Route::get('/event/', 'EventController@index');
+Route::get('/event/{id}', 'EventController@event');
+
+Route::get('/platform/', 'PlatformController@index');
+Route::get('/platform/{id}', 'PlatformController@platform');
+
+Route::get('/runner/{id}', 'RunnerController@runner');
+
+Route::get('/category/', 'CategoryController@index');
+Route::get('/category/{id}', 'CategoryController@category');
+
+Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
