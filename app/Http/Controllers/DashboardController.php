@@ -144,5 +144,28 @@ class DashboardController extends Controller
 		return response()->json(['platforms' => Platform::all()]);
 	}
 
+	// Games
+	public static function addGame(Request $request) {
+		$game = Game::firstOrCreate([
+			'name' => $request['game'],
+			'slug' => $request['slug'],
+			'description' => $request['description']
+		]);
+		$game->save();
+		return self::getGames();
+	}
+
+	public static function editGame(Request $request) {
+		$game = Game::findOrFail($request['id']);
+		$game->name = $request['name'];
+		$game->slug = $request['slug'];
+		$game->description = $request['description'];
+		$game->save();
+		return self::getGames();
+	}
+
+	public static function getGames() {
+		return response()->json(['games' => Game::all()]);
+	}
 
 }

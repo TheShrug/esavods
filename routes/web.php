@@ -54,5 +54,10 @@ Route::post('/dashboard/platform', 'DashboardController@addPlatform')->middlewar
 Route::post('/dashboard/platform/edit', 'DashboardController@editPlatform')->middleware('auth');
 Route::get('/dashboard/platform', 'DashboardController@getPlatforms')->middleware('auth');
 
+// Games
+Route::post('/dashboard/game', 'DashboardController@addGame')->middleware('auth');
+Route::post('/dashboard/game/edit', 'DashboardController@editGame')->middleware('auth');
+Route::get('/dashboard/game', 'DashboardController@getGames')->middleware('auth');
+
 
 

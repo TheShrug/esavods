@@ -98250,7 +98250,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.el-col[data-v-0f0e62e6] {padding: 0 15px;margin-bottom: 15px;\n}\n", ""]);
 
 // exports
 
@@ -98261,13 +98261,153 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Games"
+    name: "Games",
+    mounted: function mounted() {
+        this.getAllJson();
+    },
+    data: function data() {
+        return {
+            game: '',
+            description: '',
+            slug: '',
+            editedGame: {},
+            games: [],
+            dialogVisible: false
+        };
+    },
+    methods: {
+        addNewGame: function addNewGame() {
+            var $this = this;
+            var params = {};
+            params.game = this.game;
+            params.description = this.description;
+            params.slug = this.slug;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/game', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.clearForm();
+            });
+        },
+        getAllJson: function getAllJson() {
+            var $this = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/dashboard/game', {}).then(function (response) {
+                $this.setFromJson(response.data);
+            });
+        },
+        setFromJson: function setFromJson(data) {
+            this.games = data.games;
+        },
+        clearForm: function clearForm() {
+            this.game = '';
+            this.slug = '';
+            this.description = '';
+        },
+        edit: function edit(index, row) {
+            this.dialogVisible = true;
+            this.editedGame = row;
+        },
+        save: function save() {
+            var $this = this;
+            var params = this.editedGame;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/game/edit', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.dialogVisible = false;
+                $this.editedGame = {};
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -98278,7 +98418,274 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("New Game")]),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("el-input", {
+                      attrs: { placeholder: "Game Name" },
+                      model: {
+                        value: _vm.game,
+                        callback: function($$v) {
+                          _vm.game = $$v
+                        },
+                        expression: "game"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("el-input", {
+                      attrs: { placeholder: "Slug" },
+                      model: {
+                        value: _vm.slug,
+                        callback: function($$v) {
+                          _vm.slug = $$v
+                        },
+                        expression: "slug"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 24 } },
+                  [
+                    _c("el-input", {
+                      attrs: {
+                        type: "textarea",
+                        rows: 4,
+                        placeholder: "Description"
+                      },
+                      model: {
+                        value: _vm.description,
+                        callback: function($$v) {
+                          _vm.description = $$v
+                        },
+                        expression: "description"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c("el-col", { attrs: { span: 12 } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.addNewGame }
+                    },
+                    [_vm._v("Add")]
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          staticStyle: { width: "100%" },
+          attrs: { data: _vm.games, size: "small" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "name", label: "Game", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "slug", label: "Slug", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "description", label: "Description", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              fixed: "right",
+              label: "Operations",
+              width: "120",
+              prop: "id"
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.edit(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { title: "Edit", visible: _vm.dialogVisible, width: "30%" },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialogVisible = $event
+            }
+          }
+        },
+        [
+          _c(
+            "span",
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "Game Name" },
+                        model: {
+                          value: _vm.editedGame.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedGame, "name", $$v)
+                          },
+                          expression: "editedGame.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "Slug" },
+                        model: {
+                          value: _vm.editedGame.slug,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedGame, "slug", $$v)
+                          },
+                          expression: "editedGame.slug"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c("el-input", {
+                        attrs: {
+                          type: "textarea",
+                          rows: 2,
+                          placeholder: "Description"
+                        },
+                        model: {
+                          value: _vm.editedGame.description,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedGame, "description", $$v)
+                          },
+                          expression: "editedGame.description"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.dialogVisible = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Confirm")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
