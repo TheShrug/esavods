@@ -33,3 +33,4 @@ Route::get('/category/', 'CategoryController@index');
 Route::get('/category/{id}', 'CategoryController@category');
 
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
+Route::post('/dashboard/run', 'DashboardController@addRun')->middleware('auth');

@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Event
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Run[] $runs
+ * @mixin \Eloquent
+ */
 class Event extends Model
 {
 
@@ -15,5 +21,7 @@ class Event extends Model
     public function runs() {
     	return $this->hasMany('App\Run');
     }
+
+	protected $fillable = ['name'];
 
 }

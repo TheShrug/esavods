@@ -4,6 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Run
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Category[] $categories
+ * @property-read \App\Event $event
+ * @property-read \App\Game $game
+ * @property-read \App\Platform $platform
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Runner[] $runners
+ * @mixin \Eloquent
+ */
 class Run extends Model
 {
 
@@ -51,5 +61,7 @@ class Run extends Model
 	public function game() {
 		return $this->belongsTo('App\Game');
 	}
+
+	protected $fillable = ['time', 'twitch_vod_id', 'youtube_vod_id', 'event_id', 'platform_id', 'game_id'];
 
 }

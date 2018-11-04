@@ -4,6 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Runner
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Run[] $runs
+ * @mixin \Eloquent
+ */
 class Runner extends Model
 {
 
