@@ -89,7 +89,7 @@
 <script>
     import Axios from 'axios'
     export default {
-        name: "Runs",
+        name: "Categories",
         mounted: function() {
             this.getAllJson();
         },
