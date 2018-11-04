@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereTwitter($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereYoutube($value)
+ * @property string|null $slug
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereSlug($value)
  */
 class Runner extends Model
 {
@@ -36,5 +38,5 @@ class Runner extends Model
     	return $this->belongsToMany('App\Run');
     }
 
-	protected $fillable = ['name', 'twitch', 'twitter', 'youtube'];
+	protected $fillable = ['name', 'twitch', 'twitter', 'youtube', 'slug'];
 }

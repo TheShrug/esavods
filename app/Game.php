@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Game whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Game whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Game whereUpdatedAt($value)
+ * @property string|null $slug
+ * @property string|null $description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Game whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Game whereSlug($value)
  */
 class Game extends Model
 {

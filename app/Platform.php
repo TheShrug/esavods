@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Platform whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Platform whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Platform whereUpdatedAt($value)
+ * @property string|null $slug
+ * @property string|null $description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Platform whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Platform whereSlug($value)
  */
 class Platform extends Model
 {

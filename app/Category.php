@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereUpdatedAt($value)
+ * @property string|null $slug
+ * @property string|null $description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Category whereSlug($value)
  */
 class Category extends Model
 {

@@ -17,6 +17,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereUpdatedAt($value)
+ * @property string|null $slug
+ * @property string|null $description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Event whereSlug($value)
  */
 class Event extends Model
 {
