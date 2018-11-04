@@ -24,7 +24,6 @@
                         <span>Youtube</span>
                         <el-input placeholder="Youtube" v-model="youtube"></el-input>
                     </el-col>
-
                 </el-row>
                 <el-row>
                     <el-col :span="12">

@@ -122,34 +122,34 @@
                 style="width: 100%"
                 size="small">
             <el-table-column
-                    prop="categories.length"
-                    label="Categories"
-                    width="">
-            </el-table-column>
-            <el-table-column
-                    prop="runners.length"
-                    label="Runners"
-                    width="">
+                    prop="id"
+                    label="ID"
+                    width=""
+                    sortable>
             </el-table-column>
             <el-table-column
                     prop="game.name"
                     label="Game"
-                    width="">
+                    width=""
+                    sortable>
             </el-table-column>
             <el-table-column
                     prop="platform.name"
                     label="Platform"
-                    width="">
+                    width=""
+                    sortable>
             </el-table-column>
             <el-table-column
                     prop="event.name"
                     label="Event"
-                    width="">
+                    width=""
+                    sortable>
             </el-table-column>
             <el-table-column
                     prop="time"
                     label="Time"
-                    width="">
+                    width=""
+                    sortable>
             </el-table-column>
             <el-table-column
                     prop="twitch_vod_id"
@@ -166,7 +166,6 @@
                     label="Category"
                     width="">
             </el-table-column>
-
             <el-table-column
                     fixed="right"
                     label="Edit"

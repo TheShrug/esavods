@@ -95733,7 +95733,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "dashboard-container row" }, [
-    _c("div", { staticClass: "col-md-3" }, [
+    _c("div", { staticClass: "col-md-2" }, [
       _c(
         "div",
         { staticClass: "list-group" },
@@ -95755,7 +95755,7 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-md-9" }, [
+    _c("div", { staticClass: "col-md-10" }, [
       _c(
         "div",
         { staticClass: "dashboard bg-secondary" },
@@ -95886,7 +95886,6 @@ exports.push([module.i, "\n.el-col[data-v-555fab9a] {padding: 0 15px;margin-bott
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
 //
 //
 //
@@ -96605,27 +96604,33 @@ var render = function() {
         },
         [
           _c("el-table-column", {
-            attrs: { prop: "categories.length", label: "Categories", width: "" }
+            attrs: { prop: "id", label: "ID", width: "", sortable: "" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "runners.length", label: "Runners", width: "" }
+            attrs: { prop: "game.name", label: "Game", width: "", sortable: "" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "game.name", label: "Game", width: "" }
+            attrs: {
+              prop: "platform.name",
+              label: "Platform",
+              width: "",
+              sortable: ""
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "platform.name", label: "Platform", width: "" }
+            attrs: {
+              prop: "event.name",
+              label: "Event",
+              width: "",
+              sortable: ""
+            }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "event.name", label: "Event", width: "" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
-            attrs: { prop: "time", label: "Time", width: "" }
+            attrs: { prop: "time", label: "Time", width: "", sortable: "" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
@@ -98210,7 +98215,6 @@ exports.push([module.i, "\n.el-col[data-v-6a2e51b0] {padding: 0 15px;margin-bott
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-//
 //
 //
 //
