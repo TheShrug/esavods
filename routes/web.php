@@ -32,6 +32,10 @@ Route::get('/runner/{id}', 'RunnerController@runner');
 Route::get('/category/', 'CategoryController@index');
 Route::get('/category/{id}', 'CategoryController@category');
 
+Route::get('/game/', 'GameControler@index');
+Route::get('/game/{slug}', 'GameController@game')->name('game.show');
+
+
 // Dashboard
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
 Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
