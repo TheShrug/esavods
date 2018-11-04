@@ -10474,8 +10474,28 @@ a:hover {
   color: #8D700D;
 }
 
+.table {
+  width: 100% !important;
+}
+
 .expand-row-button {
-  font-family: monospace;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.expand-row-button:before {
+  content: "\F067";
+}
+
+.parent .expand-row-button:before {
+  content: "\F068";
 }
 
 .navbar {

@@ -6,6 +6,8 @@
  */
 
 require('./bootstrap');
+require('datatables.net-bs4');
+require('datatables.net-responsive-bs4');
 
 import Vue from 'vue';
 import ElementUI from 'element-ui';
@@ -36,3 +38,27 @@ if(dashboardExists) {
     });
 }
 
+var table = $('.mainDataTable').DataTable({
+    responsive: {
+        details: {
+            type: 'inline',
+            display: $.fn.dataTable.Responsive.display.childRowImmediate
+        }
+    },
+    order: [],
+    columns: [
+        { orderable: false, searchable: false },
+        { orderable: true },
+        { orderable: true },
+        { orderable: true },
+        { orderable: true },
+        { orderable: true },
+        { orderable: true },
+        { orderable: false, searchable: false },
+    ]
+});
+
+$('.testButton').on('click', function() {
+    table.responsive.recalc();
+
+})

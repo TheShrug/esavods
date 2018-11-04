@@ -7,9 +7,10 @@
     <section class="main">
         <div class="container">
             <div class="row justify-content-center">
+                <button class="testButton">button</button>
                 <div class="col-md-12">
                     @if($runs)
-                        <table class="table table-sm table-light">
+                        <table class="table table-sm table-light mainDataTable">
                             <thead>
                             <tr>
                                 <th></th>
@@ -26,7 +27,7 @@
                                 @foreach($runs as $run)
                                     <tr data-id="{{ $run->id }}">
                                         <td class="">
-                                            <a href="#" class="btn btn-sm btn-primary expand-row-button">+</a>
+                                            <a href="#" class="btn btn-sm btn-primary expand-row-button"></a>
                                         </td>
                                         <td>
                                             @if(isset($run->game) && isset($run->game->slug))
@@ -54,11 +55,7 @@
                                         <td>{{ $run->time }}</td>
                                         <td><i class="fa fa-play"></i></td>
                                     </tr>
-                                    <tr data-id="{{ $run->id }}" class="expandable-row">
-                                        <td colspan="8">
 
-                                        </td>
-                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
