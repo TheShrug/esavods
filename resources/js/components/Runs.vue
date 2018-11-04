@@ -5,6 +5,7 @@
                 <h3 class="card-title">New Run</h3>
                 <el-row>
                     <el-col :span="12">
+                        <span>Categories</span>
                         <el-select
                                 v-model="categories"
                                 multiple
@@ -22,6 +23,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
+                        <span>Runners</span>
                         <el-select
                                 v-model="runners"
                                 multiple
@@ -39,6 +41,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
+                        <span>Game</span>
                         <el-select
                                 v-model="game"
                                 filterable
@@ -55,6 +58,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
+                        <span>Platform</span>
                         <el-select
                                 v-model="platform"
                                 filterable
@@ -71,6 +75,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
+                        <span>Event</span>
                         <el-select
                                 v-model="event"
                                 filterable
@@ -87,17 +92,21 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
+                        <span>Time</span>
                         <el-input v-model="time" :controls="false">
                             <template slot="prepend">Run time</template>
                         </el-input>
                     </el-col>
                     <el-col :span="12">
+                        <span>Twitch Vod ID</span>
                         <el-input placeholder="Twitch Id" v-model="twitchId"></el-input>
                     </el-col>
                     <el-col :span="12">
+                        <span>Youtube Vod ID</span>
                         <el-input placeholder="Youtube Id" v-model="youtubeId" ></el-input>
                     </el-col>
                     <el-col :span="12">
+                        <span>Category</span>
                         <el-input placeholder="Category" v-model="runCategory" ></el-input>
                     </el-col>
                 </el-row>

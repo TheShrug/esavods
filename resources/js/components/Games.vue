@@ -5,12 +5,15 @@
                 <h3 class="card-title">New Game</h3>
                 <el-row>
                     <el-col :span="12">
+                        <span>Game Name</span>
                         <el-input placeholder="Game Name" v-model="game"></el-input>
                     </el-col>
                     <el-col :span="12">
+                        <span>Slug</span>
                         <el-input placeholder="Slug" v-model="slug"></el-input>
                     </el-col>
                     <el-col :span="24">
+                        <span>Description</span>
                         <el-input
                                 type="textarea"
                                 :rows="4"
@@ -63,12 +66,15 @@
             <span>
                 <el-row>
                     <el-col :span="12">
+                        <span>Game Name</span>
                         <el-input placeholder="Game Name" v-model="editedGame.name"></el-input>
                     </el-col>
                     <el-col :span="12">
+                        <span>Slug</span>
                         <el-input placeholder="Slug" v-model="editedGame.slug"></el-input>
                     </el-col>
                     <el-col :span="24">
+                        <span>Description</span>
                         <el-input
                                 type="textarea"
                                 :rows="2"

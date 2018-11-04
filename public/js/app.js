@@ -96023,6 +96023,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -96121,6 +96130,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Categories")]),
+                    _vm._v(" "),
                     _c(
                       "el-select",
                       {
@@ -96154,6 +96165,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Runners")]),
+                    _vm._v(" "),
                     _c(
                       "el-select",
                       {
@@ -96187,6 +96200,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Game")]),
+                    _vm._v(" "),
                     _c(
                       "el-select",
                       {
@@ -96219,6 +96234,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Platform")]),
+                    _vm._v(" "),
                     _c(
                       "el-select",
                       {
@@ -96251,6 +96268,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Event")]),
+                    _vm._v(" "),
                     _c(
                       "el-select",
                       {
@@ -96283,6 +96302,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Time")]),
+                    _vm._v(" "),
                     _c(
                       "el-input",
                       {
@@ -96310,6 +96331,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Twitch Vod ID")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Twitch Id" },
                       model: {
@@ -96328,6 +96351,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Youtube Vod ID")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Youtube Id" },
                       model: {
@@ -96346,6 +96371,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Category")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Category" },
                       model: {
@@ -96626,6 +96653,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -96710,6 +96743,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Category Name")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Category Name" },
                       model: {
@@ -96728,6 +96763,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Slug")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Slug" },
                       model: {
@@ -96746,6 +96783,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 24 } },
                   [
+                    _c("span", [_vm._v("Description")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: {
                         type: "textarea",
@@ -96861,6 +96900,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Category Name")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Category Name" },
                         model: {
@@ -96879,6 +96920,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Slug")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Slug" },
                         model: {
@@ -96897,6 +96940,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 24 } },
                     [
+                      _c("span", [_vm._v("Description")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: {
                           type: "textarea",
@@ -97159,6 +97204,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -97243,6 +97294,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Event Name")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Event Name" },
                       model: {
@@ -97261,6 +97314,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Slug")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Slug" },
                       model: {
@@ -97279,6 +97334,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 24 } },
                   [
+                    _c("span", [_vm._v("Description")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: {
                         type: "textarea",
@@ -97394,6 +97451,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Event Name")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Event Name" },
                         model: {
@@ -97412,6 +97471,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Slug")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Slug" },
                         model: {
@@ -97430,6 +97491,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 24 } },
                     [
+                      _c("span", [_vm._v("Description")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: {
                           type: "textarea",
@@ -98346,6 +98409,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -98430,6 +98499,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Platform Name")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Platform Name" },
                       model: {
@@ -98448,6 +98519,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Slug")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Slug" },
                       model: {
@@ -98466,6 +98539,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 24 } },
                   [
+                    _c("span", [_vm._v("Description")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: {
                         type: "textarea",
@@ -98581,6 +98656,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Platform Name")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Platform Name" },
                         model: {
@@ -98599,6 +98676,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Slug")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Slug" },
                         model: {
@@ -98617,6 +98696,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 24 } },
                     [
+                      _c("span", [_vm._v("Description")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: {
                           type: "textarea",
@@ -98879,6 +98960,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -98963,6 +99050,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Game Name")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Game Name" },
                       model: {
@@ -98981,6 +99070,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
+                    _c("span", [_vm._v("Slug")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: { placeholder: "Slug" },
                       model: {
@@ -98999,6 +99090,8 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 24 } },
                   [
+                    _c("span", [_vm._v("Description")]),
+                    _vm._v(" "),
                     _c("el-input", {
                       attrs: {
                         type: "textarea",
@@ -99114,6 +99207,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Game Name")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Game Name" },
                         model: {
@@ -99132,6 +99227,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 12 } },
                     [
+                      _c("span", [_vm._v("Slug")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: { placeholder: "Slug" },
                         model: {
@@ -99150,6 +99247,8 @@ var render = function() {
                     "el-col",
                     { attrs: { span: 24 } },
                     [
+                      _c("span", [_vm._v("Description")]),
+                      _vm._v(" "),
                       _c("el-input", {
                         attrs: {
                           type: "textarea",
