@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);/*!
+@import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://use.fontawesome.com/releases/v5.5.0/css/all.css);@import url(https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css);/*!
  * Bootstrap v4.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10464,6 +10464,18 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+}
+
+a {
+  color: #ffbd17;
+}
+
+a:hover {
+  color: #8D700D;
+}
+
+.expand-row-button {
+  font-family: monospace;
 }
 
 .navbar {

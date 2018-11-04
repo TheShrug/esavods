@@ -2,6 +2,7 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
+@import url('https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css');
 
 // Variables
 @import 'variables';
@@ -9,7 +10,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+a {
+  color:$link;
+  &:hover {
+    color:$link-hover;
+  }
+}
 
+.expand-row-button {font-family:monospace;}
 
 .navbar {
   background-color:$primary;
