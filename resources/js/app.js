@@ -14,8 +14,6 @@ import locale from 'element-ui/lib/locale/lang/en'
 
 Vue.use(ElementUI, { locale })
 
-
-
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30,6 +28,11 @@ Vue.component('runners', require('./components/Runners'));
 Vue.component('platforms', require('./components/Platforms'));
 Vue.component('games', require('./components/Games'));
 
-const app = new Vue({
-    el: '#dashboard'
-});
+let dashboardExists = document.getElementById('dashboard');
+
+if(dashboardExists) {
+    const app = new Vue({
+        el: '#dashboard'
+    });
+}
+

@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Run;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-    }
 
     /**
      * Show the application dashboard.
@@ -23,6 +15,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+	    $runs = Run::with('categories', 'game', 'platform', 'runners', 'event')->get();
+
+        return view('home', ['runs' => $runs]);
     }
 }
