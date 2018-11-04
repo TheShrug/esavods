@@ -59,5 +59,9 @@ Route::post('/dashboard/game', 'DashboardController@addGame')->middleware('auth'
 Route::post('/dashboard/game/edit', 'DashboardController@editGame')->middleware('auth');
 Route::get('/dashboard/game', 'DashboardController@getGames')->middleware('auth');
 
+// Runners
+Route::post('/dashboard/runner', 'DashboardController@addRunner')->middleware('auth');
+Route::post('/dashboard/runner/edit', 'DashboardController@editRunner')->middleware('auth');
+Route::get('/dashboard/runner', 'DashboardController@getRunners')->middleware('auth');
 
 

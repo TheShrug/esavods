@@ -168,4 +168,32 @@ class DashboardController extends Controller
 		return response()->json(['games' => Game::all()]);
 	}
 
+	// Runners
+	public static function addRunner(Request $request) {
+		$runner = Runner::firstOrCreate([
+			'name' => $request['runner'],
+			'slug' => $request['slug'],
+			'twitch' => $request['twitch'],
+			'twitter' => $request['twitter'],
+			'youtube' => $request['youtube']
+		]);
+		$runner->save();
+		return self::getRunners();
+	}
+
+	public static function editRunner(Request $request) {
+		$runner = Runner::findOrFail($request['id']);
+		$runner->name = $request['name'];
+		$runner->slug = $request['slug'];
+		$runner->twitch = $request['twitch'];
+		$runner->twitter = $request['twitter'];
+		$runner->youtube = $request['youtube'];
+		$runner->save();
+		return self::getRunners();
+	}
+
+	public static function getRunners() {
+		return response()->json(['runners' => Runner::all()]);
+	}
+
 }

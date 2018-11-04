@@ -97591,7 +97591,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.el-col[data-v-6a2e51b0] {padding: 0 15px;margin-bottom: 15px;\n}\n", ""]);
 
 // exports
 
@@ -97602,13 +97602,182 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Runners"
+    name: "Runners",
+    mounted: function mounted() {
+        this.getAllJson();
+    },
+    data: function data() {
+        return {
+            runner: '',
+            slug: '',
+            twitch: '',
+            twitter: '',
+            youtube: '',
+            editedRunner: {},
+            runners: [],
+            dialogVisible: false
+        };
+    },
+    methods: {
+        addNewRunner: function addNewRunner() {
+            var $this = this;
+            var params = {};
+            params.runner = this.runner;
+            params.twitch = this.twitch;
+            params.twitter = this.twitter;
+            params.youtube = this.youtube;
+            params.slug = this.slug;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/runner', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.clearForm();
+            });
+        },
+        getAllJson: function getAllJson() {
+            var $this = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/dashboard/runner', {}).then(function (response) {
+                $this.setFromJson(response.data);
+            });
+        },
+        setFromJson: function setFromJson(data) {
+            this.runners = data.runners;
+        },
+        clearForm: function clearForm() {
+            this.runner = '';
+            this.slug = '';
+            this.twitch = '';
+            this.twitter = '';
+            this.youtube = '';
+        },
+        edit: function edit(index, row) {
+            this.dialogVisible = true;
+            this.editedRunner = row;
+        },
+        save: function save() {
+            var $this = this;
+            var params = this.editedRunner;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/runner/edit', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.dialogVisible = false;
+                $this.editedRunner = {};
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -97619,7 +97788,366 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("New Runner")]),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Runner Name")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Runner Name" },
+                      model: {
+                        value: _vm.runner,
+                        callback: function($$v) {
+                          _vm.runner = $$v
+                        },
+                        expression: "runner"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Slug")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Slug" },
+                      model: {
+                        value: _vm.slug,
+                        callback: function($$v) {
+                          _vm.slug = $$v
+                        },
+                        expression: "slug"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Twitch")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Twitch" },
+                      model: {
+                        value: _vm.twitch,
+                        callback: function($$v) {
+                          _vm.twitch = $$v
+                        },
+                        expression: "twitch"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Twitter")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Twitter" },
+                      model: {
+                        value: _vm.twitter,
+                        callback: function($$v) {
+                          _vm.twitter = $$v
+                        },
+                        expression: "twitter"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Youtube")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Youtube" },
+                      model: {
+                        value: _vm.youtube,
+                        callback: function($$v) {
+                          _vm.youtube = $$v
+                        },
+                        expression: "youtube"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c("el-col", { attrs: { span: 12 } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.addNewRunner }
+                    },
+                    [_vm._v("Add")]
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          staticStyle: { width: "100%" },
+          attrs: { data: _vm.runners, size: "small" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "name", label: "Runner", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "slug", label: "Slug", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "twitch", label: "Twitch", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "twitter", label: "Twitter", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "youtube", label: "Youtube", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              fixed: "right",
+              label: "Operations",
+              width: "120",
+              prop: "id"
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.edit(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { title: "Edit", visible: _vm.dialogVisible, width: "30%" },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialogVisible = $event
+            }
+          }
+        },
+        [
+          _c(
+            "span",
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Runner Name")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Runner Name" },
+                        model: {
+                          value: _vm.editedRunner.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRunner, "name", $$v)
+                          },
+                          expression: "editedRunner.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Slug")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Slug", label: "test" },
+                        model: {
+                          value: _vm.editedRunner.slug,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRunner, "slug", $$v)
+                          },
+                          expression: "editedRunner.slug"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Twitch")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Twitch" },
+                        model: {
+                          value: _vm.editedRunner.twitch,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRunner, "twitch", $$v)
+                          },
+                          expression: "editedRunner.twitch"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Twitter")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Twitter" },
+                        model: {
+                          value: _vm.editedRunner.twitter,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRunner, "twitter", $$v)
+                          },
+                          expression: "editedRunner.twitter"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Youtube")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Youtube" },
+                        model: {
+                          value: _vm.editedRunner.youtube,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRunner, "youtube", $$v)
+                          },
+                          expression: "editedRunner.youtube"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.dialogVisible = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Confirm")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
