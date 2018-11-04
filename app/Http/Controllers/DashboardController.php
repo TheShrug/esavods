@@ -72,6 +72,7 @@ class DashboardController extends Controller
     	return response()->json(self::formatForJson());
     }
 
+    // Categories
     public static function addCategory(Request $request) {
     	$category = Category::firstOrCreate([
 			'name' => $request['category'],
@@ -95,6 +96,7 @@ class DashboardController extends Controller
     	return response()->json(['categories' => Category::all()]);
     }
 
+    // Events
 	public static function addEvent(Request $request) {
 		$event = Event::firstOrCreate([
 			'name' => $request['event'],
@@ -116,6 +118,30 @@ class DashboardController extends Controller
 
 	public static function getEvents() {
 		return response()->json(['events' => Event::all()]);
+	}
+
+	// Platforms
+	public static function addPlatform(Request $request) {
+		$platform = Platform::firstOrCreate([
+			'name' => $request['platform'],
+			'slug' => $request['slug'],
+			'description' => $request['description']
+		]);
+		$platform->save();
+		return self::getPlatforms();
+	}
+
+	public static function editPlatform(Request $request) {
+		$platform = Platform::findOrFail($request['id']);
+		$platform->name = $request['name'];
+		$platform->slug = $request['slug'];
+		$platform->description = $request['description'];
+		$platform->save();
+		return self::getPlatforms();
+	}
+
+	public static function getPlatforms() {
+		return response()->json(['platforms' => Platform::all()]);
 	}
 
 

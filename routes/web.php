@@ -47,7 +47,12 @@ Route::get('/dashboard/category', 'DashboardController@getCategories')->middlewa
 // Events
 Route::post('/dashboard/event', 'DashboardController@addEvent')->middleware('auth');
 Route::post('/dashboard/event/edit', 'DashboardController@editEvent')->middleware('auth');
-Route::get('/dashboard/event', 'DashboardController@getevents')->middleware('auth');
+Route::get('/dashboard/event', 'DashboardController@getEvents')->middleware('auth');
+
+// Platforms
+Route::post('/dashboard/platform', 'DashboardController@addPlatform')->middleware('auth');
+Route::post('/dashboard/platform/edit', 'DashboardController@editPlatform')->middleware('auth');
+Route::get('/dashboard/platform', 'DashboardController@getPlatforms')->middleware('auth');
 
 
 
