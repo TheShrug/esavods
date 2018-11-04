@@ -57,14 +57,60 @@ class DashboardController extends Controller
 
     }
 
+    public function editRun(Request $request) {
+
+	    $run = Run::findOrFail($request['id']);
+
+	    $run->platform()->dissociate();
+	    if($request['platform']) {
+		    $platform = Platform::firstOrCreate(['name' => $request['platform']]);
+		    $run->platform()->associate($platform);
+	    }
+
+	    $run->event()->dissociate();
+	    if($request['event']) {
+		    $event = Event::firstOrCreate(['name' => $request['event']]);
+		    $run->event()->associate($event);
+	    }
+
+	    $run->game()->dissociate();
+	    if($request['game']) {
+		    $game = Game::firstOrCreate(['name' => $request['game']]);
+		    $run->game()->associate($game);
+	    }
+
+	    $run->youtube_vod_id = $request['youtubeId'];
+	    $run->twitch_vod_id = $request['twitchId'];
+	    $run->time = $request->get('time');
+	    $run->category = $request->get('runCategory');
+	    $run->categories()->detach();
+	    $run->runners()->detach();
+	    $run->save();
+
+	    // Create the many-to-many models and attach
+	    $categories = $request['categories'];
+	    foreach($categories as $category) {
+		    $categoryModel = Category::FirstOrCreate(['name' => $category]);
+		    $run->categories()->attach($categoryModel);
+	    }
+
+	    $runners = $request['runners'];
+	    foreach($runners as $runner) {
+		    $runnerModel = Runner::FirstOrCreate(['name' => $runner]);
+		    $run->runners()->attach($runnerModel);
+	    }
+
+	    return response()->json(self::formatForJson());
+    }
+
     public static function formatForJson() {
     	$json = [];
-    	$json['runs'] = Run::all();
-    	$json['categories'] = Category::all();
-    	$json['games'] = Game::all();
-    	$json['platforms'] = Platform::all();
-    	$json['events'] = Event::all();
-    	$json['runners'] = Runner::all();
+	    $json['categories'] = Category::all();
+	    $json['games'] = Game::all();
+	    $json['platforms'] = Platform::all();
+	    $json['events'] = Event::all();
+	    $json['runners'] = Runner::all();
+	    $json['runs'] = Run::with('categories', 'game', 'platform', 'runners', 'event')->get();
 		return $json;
     }
 

@@ -96032,6 +96032,160 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -96055,7 +96209,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             time: null,
             twitchId: '',
             youtubeId: '',
-            runs: []
+            runs: [],
+            dialogVisible: false,
+            editedRun: {}
         };
     },
     methods: {
@@ -96101,6 +96257,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.youtubeId = '';
             this.time = '';
             this.runCategory = '';
+        },
+        edit: function edit(index, row) {
+            var $this = this;
+            this.dialogVisible = true;
+            this.editedRun = {
+                id: row.id,
+                categories: [],
+                runCategory: row.category,
+                runners: [],
+                game: row.game.name,
+                platform: row.platform.name,
+                event: row.event.name,
+                time: row.time,
+                twitchId: row.twitch_vod_id,
+                youtubeId: row.youtube_vod_id
+            };
+            row.categories.forEach(function (category) {
+                $this.editedRun.categories.push(category.name);
+            });
+            row.runners.forEach(function (runner) {
+                $this.editedRun.runners.push(runner.name);
+            });
+        },
+        save: function save() {
+            var $this = this;
+            var params = this.editedRun;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/run/edit', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.dialogVisible = false;
+            });
         }
     }
 });
@@ -96419,15 +96605,43 @@ var render = function() {
         },
         [
           _c("el-table-column", {
-            attrs: { prop: "address", label: "Address", width: "" }
+            attrs: { prop: "categories.length", label: "Categories", width: "" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "zip", label: "Zip", width: "" }
+            attrs: { prop: "runners.length", label: "Runners", width: "" }
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { fixed: "right", label: "Operations", width: "120" },
+            attrs: { prop: "game.name", label: "Game", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "platform.name", label: "Platform", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "event.name", label: "Event", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "time", label: "Time", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "twitch_vod_id", label: "Twitch Vod", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "youtube_vod_id", label: "Youtube Vod", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "category", label: "Category", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { fixed: "right", label: "Edit", width: "80" },
             scopedSlots: _vm._u([
               {
                 key: "default",
@@ -96435,13 +96649,14 @@ var render = function() {
                   return [
                     _c(
                       "el-button",
-                      { attrs: { type: "text", size: "small" } },
-                      [_vm._v("Detail")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-button",
-                      { attrs: { type: "text", size: "small" } },
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.edit(scope.$index, scope.row)
+                          }
+                        }
+                      },
                       [_vm._v("Edit")]
                     )
                   ]
@@ -96451,6 +96666,334 @@ var render = function() {
           })
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { title: "Edit", visible: _vm.dialogVisible, width: "30%" },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialogVisible = $event
+            }
+          }
+        },
+        [
+          _c(
+            "span",
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("div", [_vm._v("Categories")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-select",
+                        {
+                          attrs: {
+                            multiple: "",
+                            filterable: "",
+                            "allow-create": "",
+                            "default-first-option": "",
+                            placeholder: "Choose categories"
+                          },
+                          model: {
+                            value: _vm.editedRun.categories,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "categories", $$v)
+                            },
+                            expression: "editedRun.categories"
+                          }
+                        },
+                        _vm._l(_vm.categoryOptions, function(category) {
+                          return _c("el-option", {
+                            key: category.id,
+                            attrs: {
+                              label: category.name,
+                              value: category.name
+                            }
+                          })
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("div", [_vm._v("Runners")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-select",
+                        {
+                          attrs: {
+                            multiple: "",
+                            filterable: "",
+                            "allow-create": "",
+                            "default-first-option": "",
+                            placeholder: "Choose runners"
+                          },
+                          model: {
+                            value: _vm.editedRun.runners,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "runners", $$v)
+                            },
+                            expression: "editedRun.runners"
+                          }
+                        },
+                        _vm._l(_vm.runnerOptions, function(runner) {
+                          return _c("el-option", {
+                            key: runner.id,
+                            attrs: { label: runner.name, value: runner.name }
+                          })
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("div", [_vm._v("Game")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-select",
+                        {
+                          attrs: {
+                            filterable: "",
+                            "allow-create": "",
+                            "default-first-option": "",
+                            placeholder: "Choose game"
+                          },
+                          model: {
+                            value: _vm.editedRun.game,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "game", $$v)
+                            },
+                            expression: "editedRun.game"
+                          }
+                        },
+                        _vm._l(_vm.gameOptions, function(game) {
+                          return _c("el-option", {
+                            key: game.id,
+                            attrs: { label: game.name, value: game.name }
+                          })
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("div", [_vm._v("Platform")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-select",
+                        {
+                          attrs: {
+                            filterable: "",
+                            "allow-create": "",
+                            "default-first-option": "",
+                            placeholder: "Choose platform"
+                          },
+                          model: {
+                            value: _vm.editedRun.platform,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "platform", $$v)
+                            },
+                            expression: "editedRun.platform"
+                          }
+                        },
+                        _vm._l(_vm.platformOptions, function(platform) {
+                          return _c("el-option", {
+                            key: platform.id,
+                            attrs: {
+                              label: platform.name,
+                              value: platform.name
+                            }
+                          })
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("div", [_vm._v("Event")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-select",
+                        {
+                          attrs: {
+                            filterable: "",
+                            "allow-create": "",
+                            "default-first-option": "",
+                            placeholder: "Choose Event"
+                          },
+                          model: {
+                            value: _vm.editedRun.event,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "event", $$v)
+                            },
+                            expression: "editedRun.event"
+                          }
+                        },
+                        _vm._l(_vm.eventOptions, function(event) {
+                          return _c("el-option", {
+                            key: event.id,
+                            attrs: { label: event.name, value: event.name }
+                          })
+                        })
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Time")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-input",
+                        {
+                          attrs: { controls: false },
+                          model: {
+                            value: _vm.editedRun.time,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "time", $$v)
+                            },
+                            expression: "editedRun.time"
+                          }
+                        },
+                        [
+                          _c("template", { slot: "prepend" }, [
+                            _vm._v("Run time")
+                          ])
+                        ],
+                        2
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Twitch Vod ID")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Twitch Id" },
+                        model: {
+                          value: _vm.editedRun.twitchId,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRun, "twitchId", $$v)
+                          },
+                          expression: "editedRun.twitchId"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Youtube Vod ID")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Youtube Id" },
+                        model: {
+                          value: _vm.editedRun.youtubeId,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRun, "youtubeId", $$v)
+                          },
+                          expression: "editedRun.youtubeId"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Category")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Category" },
+                        model: {
+                          value: _vm.editedRun.runCategory,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRun, "runCategory", $$v)
+                          },
+                          expression: "editedRun.runCategory"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.dialogVisible = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Confirm")]
+              )
+            ],
+            1
+          )
+        ]
       )
     ],
     1
@@ -98414,7 +98957,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -98603,12 +99145,7 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: {
-              fixed: "right",
-              label: "Operations",
-              width: "120",
-              prop: "id"
-            },
+            attrs: { fixed: "right", label: "Operations", width: "120" },
             scopedSlots: _vm._u([
               {
                 key: "default",

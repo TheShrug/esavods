@@ -51,8 +51,7 @@
             <el-table-column
                     fixed="right"
                     label="Operations"
-                    width="120"
-                    prop="id">
+                    width="120">
                 <template slot-scope="scope">
                     <el-button @click="edit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
                 </template>

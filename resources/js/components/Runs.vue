@@ -122,25 +122,179 @@
                 style="width: 100%"
                 size="small">
             <el-table-column
-                    prop="address"
-                    label="Address"
+                    prop="categories.length"
+                    label="Categories"
                     width="">
             </el-table-column>
             <el-table-column
-                    prop="zip"
-                    label="Zip"
+                    prop="runners.length"
+                    label="Runners"
                     width="">
             </el-table-column>
+            <el-table-column
+                    prop="game.name"
+                    label="Game"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="platform.name"
+                    label="Platform"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="event.name"
+                    label="Event"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="time"
+                    label="Time"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="twitch_vod_id"
+                    label="Twitch Vod"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                prop="youtube_vod_id"
+                label="Youtube Vod"
+                width="">
+            </el-table-column>
+            <el-table-column
+                    prop="category"
+                    label="Category"
+                    width="">
+            </el-table-column>
+
             <el-table-column
                     fixed="right"
-                    label="Operations"
-                    width="120">
+                    label="Edit"
+                    width="80">
                 <template slot-scope="scope">
-                    <el-button type="text" size="small">Detail</el-button>
-                    <el-button type="text" size="small">Edit</el-button>
+                    <el-button @click="edit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
                 </template>
             </el-table-column>
         </el-table>
+        <el-dialog
+                title="Edit"
+                :visible.sync="dialogVisible"
+                width="30%"
+        >
+            <span>
+                <el-row>
+                    <el-col :span="12">
+                        <div>Categories</div>
+                        <el-select
+                                v-model="editedRun.categories"
+                                multiple
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose categories"
+                        >
+                            <el-option
+                                    v-for="category in categoryOptions"
+                                    :key="category.id"
+                                    :label="category.name"
+                                    :value="category.name">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                        <div>Runners</div>
+                        <el-select
+                                v-model="editedRun.runners"
+                                multiple
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose runners"
+                        >
+                            <el-option
+                                    v-for="runner in runnerOptions"
+                                    :key="runner.id"
+                                    :label="runner.name"
+                                    :value="runner.name">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                        <div>Game</div>
+                        <el-select
+                                v-model="editedRun.game"
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose game"
+                        >
+                            <el-option
+                                    v-for="game in gameOptions"
+                                    :key="game.id"
+                                    :label="game.name"
+                                    :value="game.name">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                        <div>Platform</div>
+                        <el-select
+                                v-model="editedRun.platform"
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose platform"
+                        >
+                            <el-option
+                                    v-for="platform in platformOptions"
+                                    :key="platform.id"
+                                    :label="platform.name"
+                                    :value="platform.name">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                        <div>Event</div>
+                        <el-select
+                                v-model="editedRun.event"
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose Event"
+                        >
+                            <el-option
+                                    v-for="event in eventOptions"
+                                    :key="event.id"
+                                    :label="event.name"
+                                    :value="event.name">
+                            </el-option>
+                        </el-select>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>Time</span>
+                        <el-input v-model="editedRun.time" :controls="false">
+                            <template slot="prepend">Run time</template>
+                        </el-input>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>Twitch Vod ID</span>
+                        <el-input placeholder="Twitch Id" v-model="editedRun.twitchId"></el-input>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>Youtube Vod ID</span>
+                        <el-input placeholder="Youtube Id" v-model="editedRun.youtubeId" ></el-input>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>Category</span>
+                        <el-input placeholder="Category" v-model="editedRun.runCategory" ></el-input>
+                    </el-col>
+                </el-row>
+            </span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="save()">Confirm</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -167,7 +321,9 @@
                 time: null,
                 twitchId:'',
                 youtubeId:'',
-                runs: []
+                runs: [],
+                dialogVisible: false,
+                editedRun: {}
             }
         },
         methods: {
@@ -215,6 +371,37 @@
                 this.youtubeId = '';
                 this.time = '';
                 this.runCategory = '';
+            },
+            edit(index, row) {
+                let $this = this;
+                this.dialogVisible = true;
+                this.editedRun = {
+                    id: row.id,
+                    categories: [],
+                    runCategory: row.category,
+                    runners: [],
+                    game: row.game.name,
+                    platform: row.platform.name,
+                    event: row.event.name,
+                    time: row.time,
+                    twitchId: row.twitch_vod_id,
+                    youtubeId: row.youtube_vod_id,
+                };
+                row.categories.forEach(function(category) {
+                    $this.editedRun.categories.push(category.name)
+                });
+                row.runners.forEach(function(runner) {
+                    $this.editedRun.runners.push(runner.name)
+                });
+            },
+            save() {
+                let $this = this;
+                let params = this.editedRun;
+                Axios.post('/dashboard/run/edit', params)
+                    .then(function(response){
+                        $this.setFromJson(response.data);
+                        $this.dialogVisible = false;
+                    });
             }
         }
     }
