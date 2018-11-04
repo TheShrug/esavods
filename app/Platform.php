@@ -30,6 +30,6 @@ class Platform extends Model
     	return $this->hasMany('App\Run');
     }
 
-	protected $fillable = ['name'];
+	protected $fillable = ['name', 'slug', 'description'];
 
 }
