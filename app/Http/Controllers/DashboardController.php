@@ -95,4 +95,28 @@ class DashboardController extends Controller
     	return response()->json(['categories' => Category::all()]);
     }
 
+	public static function addEvent(Request $request) {
+		$event = Event::firstOrCreate([
+			'name' => $request['event'],
+			'slug' => $request['slug'],
+			'description' => $request['description']
+		]);
+		$event->save();
+		return self::getEvents();
+	}
+
+	public static function editEvent(Request $request) {
+		$event = Event::findOrFail($request['id']);
+		$event->name = $request['name'];
+		$event->slug = $request['slug'];
+		$event->description = $request['description'];
+		$event->save();
+		return self::getEvents();
+	}
+
+	public static function getEvents() {
+		return response()->json(['events' => Event::all()]);
+	}
+
+
 }

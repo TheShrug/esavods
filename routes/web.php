@@ -32,13 +32,22 @@ Route::get('/runner/{id}', 'RunnerController@runner');
 Route::get('/category/', 'CategoryController@index');
 Route::get('/category/{id}', 'CategoryController@category');
 
+// Dashboard
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
+Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
+
+// Runs
 Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
 
+// Categories
 Route::post('/dashboard/category', 'DashboardController@addCategory')->middleware('auth');
 Route::post('/dashboard/category/edit', 'DashboardController@editCategory')->middleware('auth');
 Route::get('/dashboard/category', 'DashboardController@getCategories')->middleware('auth');
 
+// Events
+Route::post('/dashboard/event', 'DashboardController@addEvent')->middleware('auth');
+Route::post('/dashboard/event/edit', 'DashboardController@editEvent')->middleware('auth');
+Route::get('/dashboard/event', 'DashboardController@getevents')->middleware('auth');
 
 
-Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
+
