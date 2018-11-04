@@ -9,6 +9,20 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Run[] $runs
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property string|null $twitch
+ * @property string|null $twitter
+ * @property string|null $youtube
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereTwitch($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereTwitter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Runner whereYoutube($value)
  */
 class Runner extends Model
 {

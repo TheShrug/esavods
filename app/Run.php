@@ -13,6 +13,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \App\Platform $platform
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Runner[] $runners
  * @mixin \Eloquent
+ * @property int $id
+ * @property float $time
+ * @property string|null $twitch_vod_id
+ * @property string|null $youtube_vod_id
+ * @property int|null $event_id
+ * @property int|null $platform_id
+ * @property int|null $game_id
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereEventId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereGameId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run wherePlatformId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereTwitchVodId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereYoutubeVodId($value)
  */
 class Run extends Model
 {
