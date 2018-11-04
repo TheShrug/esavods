@@ -96130,7 +96130,7 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
-                    _c("span", [_vm._v("Categories")]),
+                    _c("div", [_vm._v("Categories")]),
                     _vm._v(" "),
                     _c(
                       "el-select",
@@ -96165,7 +96165,7 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
-                    _c("span", [_vm._v("Runners")]),
+                    _c("div", [_vm._v("Runners")]),
                     _vm._v(" "),
                     _c(
                       "el-select",
@@ -96200,7 +96200,7 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
-                    _c("span", [_vm._v("Game")]),
+                    _c("div", [_vm._v("Game")]),
                     _vm._v(" "),
                     _c(
                       "el-select",
@@ -96234,7 +96234,7 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
-                    _c("span", [_vm._v("Platform")]),
+                    _c("div", [_vm._v("Platform")]),
                     _vm._v(" "),
                     _c(
                       "el-select",
@@ -96268,7 +96268,7 @@ var render = function() {
                   "el-col",
                   { attrs: { span: 12 } },
                   [
-                    _c("span", [_vm._v("Event")]),
+                    _c("div", [_vm._v("Event")]),
                     _vm._v(" "),
                     _c(
                       "el-select",

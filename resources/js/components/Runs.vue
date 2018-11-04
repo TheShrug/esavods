@@ -5,7 +5,7 @@
                 <h3 class="card-title">New Run</h3>
                 <el-row>
                     <el-col :span="12">
-                        <span>Categories</span>
+                        <div>Categories</div>
                         <el-select
                                 v-model="categories"
                                 multiple
@@ -23,7 +23,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
-                        <span>Runners</span>
+                        <div>Runners</div>
                         <el-select
                                 v-model="runners"
                                 multiple
@@ -41,7 +41,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
-                        <span>Game</span>
+                        <div>Game</div>
                         <el-select
                                 v-model="game"
                                 filterable
@@ -58,7 +58,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
-                        <span>Platform</span>
+                        <div>Platform</div>
                         <el-select
                                 v-model="platform"
                                 filterable
@@ -75,7 +75,7 @@
                         </el-select>
                     </el-col>
                     <el-col :span="12">
-                        <span>Event</span>
+                        <div>Event</div>
                         <el-select
                                 v-model="event"
                                 filterable
