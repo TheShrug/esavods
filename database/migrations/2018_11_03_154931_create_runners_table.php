@@ -16,6 +16,7 @@ class CreateRunnersTable extends Migration
         Schema::create('runners', function (Blueprint $table) {
             $table->increments('id');
 	        $table->string('name');
+	        $table->string('slug')->nullable();
 	        $table->string('twitch')->nullable();
 	        $table->string('twitter')->nullable();
 	        $table->string('youtube')->nullable();
