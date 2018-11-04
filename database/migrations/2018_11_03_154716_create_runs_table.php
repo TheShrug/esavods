@@ -16,6 +16,7 @@ class CreateRunsTable extends Migration
         Schema::create('runs', function (Blueprint $table) {
             $table->increments('id');
 	        $table->float('time',12,3);
+	        $table->string('category')->nullable();
 	        $table->string('twitch_vod_id')->nullable();
 	        $table->string('youtube_vod_id')->nullable();
 	        $table->integer('event_id')->nullable();

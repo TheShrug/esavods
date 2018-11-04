@@ -8,6 +8,7 @@ use App\Game;
 use App\Category;
 use App\Platform;
 use App\Event;
+use App\Runner;
 
 class DashboardController extends Controller
 {
@@ -15,25 +16,70 @@ class DashboardController extends Controller
     	return view('dashboard');
     }
 
-    public function addRun(Request $request) {
+    public function addOrUpdateRun(Request $request) {
 	    $run = new Run;
 
-	    $run->platform(Platform::firstOrCreate(['name' => $request['platform']]));
-	    $run->event(Event::firstOrCreate(['name' => $request['platform']]));
+	    if($request['platform']) {
+		    $platform = Platform::firstOrCreate(['name' => $request['platform']]);
+			$run->platform()->associate($platform);
+	    }
+
+	    if($request['event']) {
+		    $event = Event::firstOrCreate(['name' => $request['event']]);
+		    $run->event()->associate($event);
+	    }
+
+	    if($request['game']) {
+		    $game = Game::firstOrCreate(['name' => $request['game']]);
+		    $run->game()->associate($game);
+	    }
+
 	    $run->youtube_vod_id = $request['youtubeId'];
 	    $run->twitch_vod_id = $request['twitchId'];
 	    $run->time = $request->get('time');
-	    $run->game(Game::FirstOrCreate(['name' => $request['game']]));
+	    $run->category = $request->get('runCategory');
 	    $run->save();
 
+	    // Create the many-to-many models and attach
 	    $categories = $request['categories'];
 	    foreach($categories as $category) {
 	        $categoryModel = Category::FirstOrCreate(['name' => $category]);
 	        $run->categories()->attach($categoryModel);
 	    }
 
+	    $runners = $request['runners'];
+	    foreach($runners as $runner) {
+		    $runnerModel = Runner::FirstOrCreate(['name' => $runner]);
+		    $run->runners()->attach($runnerModel);
+	    }
 
+		return response()->json(self::formatForJson());
 
-		return json_encode(['request'=> 'test']);
     }
+
+    public static function formatForJson() {
+    	$json = [];
+    	$json['runs'] = Run::all();
+    	$json['categories'] = Category::all();
+    	$json['games'] = Game::all();
+    	$json['platforms'] = Platform::all();
+    	$json['events'] = Event::all();
+    	$json['runners'] = Runner::all();
+		return $json;
+    }
+
+    public static function getJson() {
+    	return response()->json(self::formatForJson());
+    }
+
+    public static function addCategory(Request $request) {
+    	$category = Category::firstOrCreate(['name' => $request['category']]);
+    	$category->save();
+    	return self::getCategories();
+    }
+
+    public static function getCategories() {
+    	return response()->json(['categories' => Category::all()]);
+    }
+
 }

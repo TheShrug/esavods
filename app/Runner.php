@@ -35,4 +35,6 @@ class Runner extends Model
     public function runs() {
     	return $this->belongsToMany('App\Run');
     }
+
+	protected $fillable = ['name', 'twitch', 'twitter', 'youtube'];
 }

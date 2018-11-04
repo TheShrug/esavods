@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereTwitchVodId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereYoutubeVodId($value)
+ * @property string|null $category
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereCategory($value)
  */
 class Run extends Model
 {

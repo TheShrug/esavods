@@ -33,4 +33,11 @@ Route::get('/category/', 'CategoryController@index');
 Route::get('/category/{id}', 'CategoryController@category');
 
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
-Route::post('/dashboard/run', 'DashboardController@addRun')->middleware('auth');
+Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
+
+Route::post('/dashboard/category', 'DashboardController@addCategory')->middleware('auth');
+Route::get('/dashboard/category', 'DashboardController@getCategories')->middleware('auth');
+
+
+
+Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
