@@ -374,18 +374,20 @@
             edit(index, row) {
                 let $this = this;
                 this.dialogVisible = true;
+
                 this.editedRun = {
-                    id: row.id,
+                    id: _.get(row, 'id', ''),
                     categories: [],
-                    runCategory: row.category,
+                    runCategory: _.get(row, 'category', ''),
                     runners: [],
-                    game: row.game.name,
-                    platform: row.platform.name,
-                    event: row.event.name,
-                    time: row.time,
-                    twitchId: row.twitch_vod_id,
-                    youtubeId: row.youtube_vod_id,
+                    game: _.get(row, 'game.name', ''),
+                    platform: _.get(row, 'platform.name', ''),
+                    event: _.get(row, 'event.name', ''),
+                    time: _.get(row, 'time', ''),
+                    twitchId: _.get(row, 'twitch_vod_id', ''),
+                    youtubeId: _.get(row, 'youtube_vod_id', ''),
                 };
+
                 row.categories.forEach(function(category) {
                     $this.editedRun.categories.push(category.name)
                 });
