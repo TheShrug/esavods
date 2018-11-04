@@ -30,6 +30,6 @@ class Category extends Model
     	return $this->belongsToMany('App\Run');
     }
 
-	protected $fillable = ['name'];
+	protected $fillable = ['name', 'slug', 'description'];
 
 }

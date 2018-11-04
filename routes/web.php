@@ -36,6 +36,7 @@ Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
 Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
 
 Route::post('/dashboard/category', 'DashboardController@addCategory')->middleware('auth');
+Route::post('/dashboard/category/edit', 'DashboardController@editCategory')->middleware('auth');
 Route::get('/dashboard/category', 'DashboardController@getCategories')->middleware('auth');
 
 

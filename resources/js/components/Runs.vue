@@ -98,7 +98,7 @@
                         <el-input placeholder="Youtube Id" v-model="youtubeId" ></el-input>
                     </el-col>
                     <el-col :span="12">
-                        <el-input placeholder="Youtube Id" v-model="runCategory" ></el-input>
+                        <el-input placeholder="Category" v-model="runCategory" ></el-input>
                     </el-col>
                 </el-row>
                 <el-row>

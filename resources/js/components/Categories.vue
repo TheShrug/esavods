@@ -7,6 +7,17 @@
                     <el-col :span="12">
                         <el-input placeholder="Category Name" v-model="category"></el-input>
                     </el-col>
+                    <el-col :span="12">
+                        <el-input placeholder="Slug" v-model="slug"></el-input>
+                    </el-col>
+                    <el-col :span="24">
+                        <el-input
+                                type="textarea"
+                                :rows="4"
+                                placeholder="Description"
+                                v-model="description">
+                        </el-input>
+                    </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
@@ -25,15 +36,53 @@
                     width="">
             </el-table-column>
             <el-table-column
+                    prop="slug"
+                    label="Slug"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="description"
+                    label="Description"
+                    width="">
+            </el-table-column>
+            <el-table-column
                     fixed="right"
                     label="Operations"
-                    width="120">
+                    width="120"
+                    prop="id">
                 <template slot-scope="scope">
-                    <el-button type="text" size="small">Detail</el-button>
-                    <el-button type="text" size="small">Edit</el-button>
+                    <el-button @click="edit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
                 </template>
             </el-table-column>
         </el-table>
+        <el-dialog
+                title="Edit"
+                :visible.sync="dialogVisible"
+                width="30%"
+                >
+            <span>
+                <el-row>
+                    <el-col :span="12">
+                        <el-input placeholder="Category Name" v-model="editedCategory.name"></el-input>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-input placeholder="Slug" v-model="editedCategory.slug"></el-input>
+                    </el-col>
+                    <el-col :span="24">
+                        <el-input
+                                type="textarea"
+                                :rows="2"
+                                placeholder="Description"
+                                v-model="editedCategory.description">
+                        </el-input>
+                    </el-col>
+                </el-row>
+            </span>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">Cancel</el-button>
+                <el-button type="primary" @click="save()">Confirm</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -47,7 +96,11 @@
         data: function() {
             return {
                 category: '',
-                categories: []
+                description: '',
+                slug: '',
+                editedCategory: {},
+                categories: [],
+                dialogVisible: false
             }
         },
         methods: {
@@ -55,6 +108,8 @@
                 let $this = this;
                 let params = {};
                 params.category = this.category;
+                params.description = this.description;
+                params.slug = this.slug;
                 Axios.post('/dashboard/category', params)
                     .then(function(response){
                         $this.setFromJson(response.data);
@@ -65,7 +120,6 @@
                 let $this = this;
                 Axios.get('/dashboard/category', {})
                     .then(function(response){
-                        console.log(response);
                         $this.setFromJson(response.data);
                     });
             },
@@ -74,7 +128,22 @@
             },
             clearForm() {
                 this.category = '';
-
+                this.slug = '';
+                this.description = '';
+            },
+            edit(index, row) {
+                this.dialogVisible = true;
+                this.editedCategory = row;
+            },
+            save() {
+                let $this = this;
+                let params = this.editedCategory;
+                Axios.post('/dashboard/category/edit', params)
+                    .then(function(response){
+                        $this.setFromJson(response.data);
+                        $this.dialogVisible = false;
+                        $this.editedCategory = {};
+                    });
             }
         }
     }

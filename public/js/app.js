@@ -96347,7 +96347,7 @@ var render = function() {
                   { attrs: { span: 12 } },
                   [
                     _c("el-input", {
-                      attrs: { placeholder: "Youtube Id" },
+                      attrs: { placeholder: "Category" },
                       model: {
                         value: _vm.runCategory,
                         callback: function($$v) {
@@ -96577,6 +96577,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -96587,7 +96636,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             category: '',
-            categories: []
+            description: '',
+            slug: '',
+            editedCategory: {},
+            categories: [],
+            dialogVisible: false
         };
     },
     methods: {
@@ -96595,6 +96648,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var $this = this;
             var params = {};
             params.category = this.category;
+            params.description = this.description;
+            params.slug = this.slug;
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/category', params).then(function (response) {
                 $this.setFromJson(response.data);
                 $this.clearForm();
@@ -96603,7 +96658,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getAllJson: function getAllJson() {
             var $this = this;
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/dashboard/category', {}).then(function (response) {
-                console.log(response);
                 $this.setFromJson(response.data);
             });
         },
@@ -96612,6 +96666,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         clearForm: function clearForm() {
             this.category = '';
+            this.slug = '';
+            this.description = '';
+        },
+        edit: function edit(index, row) {
+            this.dialogVisible = true;
+            this.editedCategory = row;
+        },
+        save: function save() {
+            var $this = this;
+            var params = this.editedCategory;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/category/edit', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.dialogVisible = false;
+                $this.editedCategory = {};
+            });
         }
     }
 });
@@ -96649,6 +96718,46 @@ var render = function() {
                           _vm.category = $$v
                         },
                         expression: "category"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("el-input", {
+                      attrs: { placeholder: "Slug" },
+                      model: {
+                        value: _vm.slug,
+                        callback: function($$v) {
+                          _vm.slug = $$v
+                        },
+                        expression: "slug"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 24 } },
+                  [
+                    _c("el-input", {
+                      attrs: {
+                        type: "textarea",
+                        rows: 4,
+                        placeholder: "Description"
+                      },
+                      model: {
+                        value: _vm.description,
+                        callback: function($$v) {
+                          _vm.description = $$v
+                        },
+                        expression: "description"
                       }
                     })
                   ],
@@ -96691,7 +96800,20 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { fixed: "right", label: "Operations", width: "120" },
+            attrs: { prop: "slug", label: "Slug", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "description", label: "Description", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              fixed: "right",
+              label: "Operations",
+              width: "120",
+              prop: "id"
+            },
             scopedSlots: _vm._u([
               {
                 key: "default",
@@ -96699,13 +96821,14 @@ var render = function() {
                   return [
                     _c(
                       "el-button",
-                      { attrs: { type: "text", size: "small" } },
-                      [_vm._v("Detail")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "el-button",
-                      { attrs: { type: "text", size: "small" } },
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.edit(scope.$index, scope.row)
+                          }
+                        }
+                      },
                       [_vm._v("Edit")]
                     )
                   ]
@@ -96715,6 +96838,125 @@ var render = function() {
           })
         ],
         1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { title: "Edit", visible: _vm.dialogVisible, width: "30%" },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialogVisible = $event
+            }
+          }
+        },
+        [
+          _c(
+            "span",
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "Category Name" },
+                        model: {
+                          value: _vm.editedCategory.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedCategory, "name", $$v)
+                          },
+                          expression: "editedCategory.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("el-input", {
+                        attrs: { placeholder: "Slug" },
+                        model: {
+                          value: _vm.editedCategory.slug,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedCategory, "slug", $$v)
+                          },
+                          expression: "editedCategory.slug"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c("el-input", {
+                        attrs: {
+                          type: "textarea",
+                          rows: 2,
+                          placeholder: "Description"
+                        },
+                        model: {
+                          value: _vm.editedCategory.description,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedCategory, "description", $$v)
+                          },
+                          expression: "editedCategory.description"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.dialogVisible = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Confirm")]
+              )
+            ],
+            1
+          )
+        ]
       )
     ],
     1

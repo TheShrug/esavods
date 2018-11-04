@@ -73,9 +73,22 @@ class DashboardController extends Controller
     }
 
     public static function addCategory(Request $request) {
-    	$category = Category::firstOrCreate(['name' => $request['category']]);
+    	$category = Category::firstOrCreate([
+			'name' => $request['category'],
+			'slug' => $request['slug'],
+			'description' => $request['description']
+	    ]);
     	$category->save();
     	return self::getCategories();
+    }
+
+    public static function editCategory(Request $request) {
+    	$category = Category::findOrFail($request['id']);
+    	$category->name = $request['name'];
+    	$category->slug = $request['slug'];
+    	$category->description = $request['description'];
+    	$category->save();
+	    return self::getCategories();
     }
 
     public static function getCategories() {
