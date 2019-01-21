@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\FirstOrCreateUniqueSlugTrait;
 
 /**
  * App\Platform
@@ -24,7 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Platform extends Model
 {
-
+	use FirstOrCreateUniqueSlugTrait;
 	/**
 	 * Define Run one-to-many relationship.
 	 *

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\FirstOrCreateUniqueSlugTrait;
 
 /**
  * App\Game
@@ -24,6 +25,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Game extends Model
 {
+	use FirstOrCreateUniqueSlugTrait;
 
 	/**
 	 * Define Run one-to-many relationship.

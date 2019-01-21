@@ -26,7 +26,6 @@
                             <tbody>
                                 @foreach($runs as $run)
                                     <tr data-id="{{ $run->id }}">
-
                                         <td>
                                             @if(isset($run->game) && isset($run->game->slug))
                                                 <a href="{{ route('game.show', $run->game->slug) }}" title="{{ $run->game->name }}">{{ $run->game->name }}</a>
