@@ -111,6 +111,7 @@
                                 v-model="datetime"
                                 type="datetime"
                                 placeholder="Select date and time"
+                                value-format="yyyy-MM-dd HH:mm:ss"
                         >
                         </el-date-picker>
                     </el-col>
@@ -301,7 +302,8 @@
                         <el-date-picker
                                 v-model="editedRun.datetime"
                                 type="datetime"
-                                placeholder="Select date and time">
+                                placeholder="Select date and time"
+                                value-format="yyyy-MM-dd HH:mm:ss">
                         </el-date-picker>
                     </el-col>
                 </el-row>
@@ -356,6 +358,7 @@
                 params.twitchId = this.twitchId;
                 params.youtubeId = this.youtubeId;
                 params.runCategory = this.runCategory;
+                params.datetime = this.datetime;
 
                 Axios.post('/dashboard/run', params)
                     .then(function(response){

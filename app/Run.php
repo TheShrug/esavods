@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereYoutubeVodId($value)
  * @property string|null $category
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereCategory($value)
+ * @property string|null $run_date
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereRunDate($value)
  */
 class Run extends Model
 {

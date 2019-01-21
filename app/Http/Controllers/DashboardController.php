@@ -37,6 +37,7 @@ class DashboardController extends Controller
 	    $run->youtube_vod_id = $request['youtubeId'];
 	    $run->twitch_vod_id = $request['twitchId'];
 	    $run->time = $request->get('time');
+	    $run->run_date = $request->get('datetime');
 	    $run->category = $request->get('runCategory');
 	    $run->save();
 
