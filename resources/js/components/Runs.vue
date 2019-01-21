@@ -4,25 +4,28 @@
             <div class="card-body">
                 <h3 class="card-title">New Run</h3>
                 <el-row>
-                    <el-col :span="12">
-                        <div>Categories</div>
+                    <el-col :span="6">
+                        <div>Game</div>
                         <el-select
-                                v-model="categories"
-                                multiple
+                                v-model="game"
                                 filterable
                                 allow-create
                                 default-first-option
-                                placeholder="Choose categories"
-                                >
+                                placeholder="Choose game"
+                        >
                             <el-option
-                                    v-for="category in categoryOptions"
-                                    :key="category.id"
-                                    :label="category.name"
-                                    :value="category.name">
+                                    v-for="game in gameOptions"
+                                    :key="game.id"
+                                    :label="game.name"
+                                    :value="game.name">
                             </el-option>
                         </el-select>
                     </el-col>
-                    <el-col :span="12">
+                    <el-col :span="6">
+                        <span>Category</span>
+                        <el-input placeholder="Category" v-model="runCategory" ></el-input>
+                    </el-col>
+                    <el-col :span="6">
                         <div>Runners</div>
                         <el-select
                                 v-model="runners"
@@ -40,24 +43,7 @@
                             </el-option>
                         </el-select>
                     </el-col>
-                    <el-col :span="12">
-                        <div>Game</div>
-                        <el-select
-                                v-model="game"
-                                filterable
-                                allow-create
-                                default-first-option
-                                placeholder="Choose game"
-                                >
-                            <el-option
-                                    v-for="game in gameOptions"
-                                    :key="game.id"
-                                    :label="game.name"
-                                    :value="game.name">
-                            </el-option>
-                        </el-select>
-                    </el-col>
-                    <el-col :span="12">
+                    <el-col :span="6">
                         <div>Platform</div>
                         <el-select
                                 v-model="platform"
@@ -74,7 +60,9 @@
                             </el-option>
                         </el-select>
                     </el-col>
-                    <el-col :span="12">
+                </el-row>
+                <el-row>
+                    <el-col :span="6">
                         <div>Event</div>
                         <el-select
                                 v-model="event"
@@ -91,21 +79,23 @@
                             </el-option>
                         </el-select>
                     </el-col>
-                    <el-col :span="12">
+                    <el-col :span="6">
                         <span>Time</span>
                         <el-input v-model="time" :controls="false">
                             <template slot="prepend">Run time</template>
                         </el-input>
                     </el-col>
-                    <el-col :span="12">
+                    <el-col :span="6">
                         <span>Twitch Vod ID</span>
                         <el-input placeholder="Twitch Id" v-model="twitchId"></el-input>
                     </el-col>
-                    <el-col :span="12">
+                    <el-col :span="6">
                         <span>Youtube Vod ID</span>
                         <el-input placeholder="Youtube Id" v-model="youtubeId" ></el-input>
                     </el-col>
-                    <el-col :span="12">
+                </el-row>
+                <el-row>
+                    <el-col :span="6">
                         <span>Date</span>
                         <el-date-picker
                                 v-model="datetime"
@@ -115,9 +105,23 @@
                         >
                         </el-date-picker>
                     </el-col>
-                    <el-col :span="12">
-                        <span>Category</span>
-                        <el-input placeholder="Category" v-model="runCategory" ></el-input>
+                    <el-col :span="6">
+                        <div>Categories</div>
+                        <el-select
+                                v-model="categories"
+                                multiple
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose categories"
+                        >
+                            <el-option
+                                    v-for="category in categoryOptions"
+                                    :key="category.id"
+                                    :label="category.name"
+                                    :value="category.name">
+                            </el-option>
+                        </el-select>
                     </el-col>
                 </el-row>
                 <el-row>
