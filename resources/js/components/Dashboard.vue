@@ -13,6 +13,7 @@
                 <runners v-if="selectedSection === 'Runners'"></runners>
                 <platforms v-if="selectedSection === 'Platforms'"></platforms>
                 <games v-if="selectedSection === 'Games'"></games>
+                <genres v-if="selectedSection === 'Genres'"></genres>
             </div>
         </div>
     </div>
@@ -22,7 +23,7 @@
         name: "dashboard",
         data: function() {
             return {
-                sections:  ['Runs', 'Categories', 'Events', 'Runners', 'Platforms', 'Games'],
+                sections:  ['Runs', 'Categories', 'Events', 'Runners', 'Platforms', 'Games', 'Genres'],
                 selectedSection: 'Runs'
             }
         },

@@ -17588,7 +17588,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_element_ui___default.a, { locale: __WEBPACK_IMPORTED_MODULE_3_element_ui_lib_locale_lang_en___default.a });
 
 /**
@@ -17604,6 +17603,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('events', __webpack_requir
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('runners', __webpack_require__(223));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('platforms', __webpack_require__(228));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('games', __webpack_require__(233));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('genres', __webpack_require__(239));
 
 var dashboardExists = document.getElementById('dashboard');
 
@@ -61650,12 +61650,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "dashboard",
     data: function data() {
         return {
-            sections: ['Runs', 'Categories', 'Events', 'Runners', 'Platforms', 'Games'],
+            sections: ['Runs', 'Categories', 'Events', 'Runners', 'Platforms', 'Games', 'Genres'],
             selectedSection: 'Runs'
         };
     },
@@ -61712,7 +61713,9 @@ var render = function() {
           _vm._v(" "),
           _vm.selectedSection === "Platforms" ? _c("platforms") : _vm._e(),
           _vm._v(" "),
-          _vm.selectedSection === "Games" ? _c("games") : _vm._e()
+          _vm.selectedSection === "Games" ? _c("games") : _vm._e(),
+          _vm._v(" "),
+          _vm.selectedSection === "Genres" ? _c("genres") : _vm._e()
         ],
         1
       )
@@ -61828,6 +61831,54 @@ exports.push([module.i, "\n.el-col[data-v-555fab9a] {padding: 0 15px;margin-bott
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62185,7 +62236,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             datetime: '',
             runs: [],
             dialogVisible: false,
-            editedRun: {}
+            editedRun: {},
+            genres: '',
+            genreOptions: []
         };
     },
     methods: {
@@ -62193,6 +62246,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var $this = this;
             var params = {};
             params.categories = this.categories;
+            params.genres = this.genres;
             params.runners = this.runners;
             params.game = this.game;
             params.platform = this.platform;
@@ -62220,6 +62274,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.eventOptions = data.events;
             this.gameOptions = data.games;
             this.platformOptions = data.platforms;
+            this.genreOptions = data.genres;
             this.runs = data.runs;
         },
         clearForm: function clearForm() {
@@ -62231,30 +62286,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.youtubeId = '';
             this.time = '';
             this.runCategory = '';
+            this.genre = '';
         },
         edit: function edit(index, row) {
+            var _editedRun;
+
             var $this = this;
             this.dialogVisible = true;
 
-            this.editedRun = {
+            this.editedRun = (_editedRun = {
                 id: _.get(row, 'id', ''),
                 categories: [],
+                genres: [],
                 runCategory: _.get(row, 'category', ''),
-                runners: [],
-                game: _.get(row, 'game.name', ''),
-                platform: _.get(row, 'platform.name', ''),
-                event: _.get(row, 'event.name', ''),
-                time: _.get(row, 'time', ''),
-                twitchId: _.get(row, 'twitch_vod_id', ''),
-                youtubeId: _.get(row, 'youtube_vod_id', ''),
-                datetime: _.get(row, 'run_date', '')
-            };
+                runners: []
+            }, _defineProperty(_editedRun, 'genres', []), _defineProperty(_editedRun, 'game', _.get(row, 'game.name', '')), _defineProperty(_editedRun, 'platform', _.get(row, 'platform.name', '')), _defineProperty(_editedRun, 'event', _.get(row, 'event.name', '')), _defineProperty(_editedRun, 'time', _.get(row, 'time', '')), _defineProperty(_editedRun, 'twitchId', _.get(row, 'twitch_vod_id', '')), _defineProperty(_editedRun, 'youtubeId', _.get(row, 'youtube_vod_id', '')), _defineProperty(_editedRun, 'datetime', _.get(row, 'run_date', '')), _editedRun);
 
             row.categories.forEach(function (category) {
                 $this.editedRun.categories.push(category.name);
             });
             row.runners.forEach(function (runner) {
                 $this.editedRun.runners.push(runner.name);
+            });
+            row.genres.forEach(function (genre) {
+                $this.editedRun.genres.push(genre.name);
             });
         },
         deleteRun: function deleteRun(index, row) {
@@ -62593,6 +62648,41 @@ var render = function() {
                     )
                   ],
                   1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 6 } },
+                  [
+                    _c("div", [_vm._v("Genres")]),
+                    _vm._v(" "),
+                    _c(
+                      "el-select",
+                      {
+                        attrs: {
+                          multiple: "",
+                          filterable: "",
+                          "allow-create": "",
+                          "default-first-option": "",
+                          placeholder: "Choose genres"
+                        },
+                        model: {
+                          value: _vm.genres,
+                          callback: function($$v) {
+                            _vm.genres = $$v
+                          },
+                          expression: "genres"
+                        }
+                      },
+                      _vm._l(_vm.genreOptions, function(genre) {
+                        return _c("el-option", {
+                          key: genre.id,
+                          attrs: { label: genre.name, value: genre.name }
+                        })
+                      })
+                    )
+                  ],
+                  1
                 )
               ],
               1
@@ -62801,8 +62891,14 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
                   _c(
                     "el-col",
                     { attrs: { span: 12 } },
@@ -62872,8 +62968,14 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
                   _c(
                     "el-col",
                     { attrs: { span: 12 } },
@@ -62935,8 +63037,14 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
                   _c(
                     "el-col",
                     { attrs: { span: 12 } },
@@ -62975,8 +63083,14 @@ var render = function() {
                       })
                     ],
                     1
-                  ),
-                  _vm._v(" "),
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
                   _c(
                     "el-col",
                     { attrs: { span: 12 } },
@@ -63017,6 +63131,47 @@ var render = function() {
                           expression: "editedRun.datetime"
                         }
                       })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("div", [_vm._v("Genres")]),
+                      _vm._v(" "),
+                      _c(
+                        "el-select",
+                        {
+                          attrs: {
+                            multiple: "",
+                            filterable: "",
+                            "allow-create": "",
+                            "default-first-option": "",
+                            placeholder: "Choose genres"
+                          },
+                          model: {
+                            value: _vm.editedRun.genres,
+                            callback: function($$v) {
+                              _vm.$set(_vm.editedRun, "genres", $$v)
+                            },
+                            expression: "editedRun.genres"
+                          }
+                        },
+                        _vm._l(_vm.genreOptions, function(genre) {
+                          return _c("el-option", {
+                            key: genre.id,
+                            attrs: { label: genre.name, value: genre.name }
+                          })
+                        })
+                      )
                     ],
                     1
                   )
@@ -66041,6 +66196,581 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-0f0e62e6", module.exports)
+  }
+}
+
+/***/ }),
+/* 238 */,
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(240)
+}
+var normalizeComponent = __webpack_require__(13)
+/* script */
+var __vue_script__ = __webpack_require__(242)
+/* template */
+var __vue_template__ = __webpack_require__(243)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-2729ad7b"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Genres.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2729ad7b", Component.options)
+  } else {
+    hotAPI.reload("data-v-2729ad7b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(241);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(12)("6109caae", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2729ad7b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Genres.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-2729ad7b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Genres.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.el-col[data-v-2729ad7b] {padding: 0 15px;margin-bottom: 15px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 242 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: "Genres",
+    mounted: function mounted() {
+        this.getAllJson();
+    },
+    data: function data() {
+        return {
+            genre: '',
+            description: '',
+            slug: '',
+            editedGenre: {},
+            genres: [],
+            dialogVisible: false
+        };
+    },
+    methods: {
+        addNewGenre: function addNewGenre() {
+            var $this = this;
+            var params = {};
+            params.genre = this.genre;
+            params.description = this.description;
+            params.slug = this.slug;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/genre', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.clearForm();
+            });
+        },
+        getAllJson: function getAllJson() {
+            var $this = this;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/dashboard/genre', {}).then(function (response) {
+                $this.setFromJson(response.data);
+            });
+        },
+        setFromJson: function setFromJson(data) {
+            this.genres = data.genres;
+        },
+        clearForm: function clearForm() {
+            this.genre = '';
+            this.slug = '';
+            this.description = '';
+        },
+        edit: function edit(index, row) {
+            this.dialogVisible = true;
+            this.editedGenre = row;
+        },
+        deleteGenre: function deleteGenre(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/genre/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
+        },
+        save: function save() {
+            var $this = this;
+            var params = this.editedGenre;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/genre/edit', params).then(function (response) {
+                $this.setFromJson(response.data);
+                $this.dialogVisible = false;
+                $this.editedGenre = {};
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("div", { staticClass: "card" }, [
+        _c(
+          "div",
+          { staticClass: "card-body" },
+          [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("New Genre")]),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Genre Name")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Genre Name" },
+                      model: {
+                        value: _vm.genre,
+                        callback: function($$v) {
+                          _vm.genre = $$v
+                        },
+                        expression: "genre"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Slug")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Slug" },
+                      model: {
+                        value: _vm.slug,
+                        callback: function($$v) {
+                          _vm.slug = $$v
+                        },
+                        expression: "slug"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 24 } },
+                  [
+                    _c("span", [_vm._v("Description")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: {
+                        type: "textarea",
+                        rows: 4,
+                        placeholder: "Description"
+                      },
+                      model: {
+                        value: _vm.description,
+                        callback: function($$v) {
+                          _vm.description = $$v
+                        },
+                        expression: "description"
+                      }
+                    })
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
+                _c("el-col", { attrs: { span: 12 } }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      on: { click: _vm.addNewGenre }
+                    },
+                    [_vm._v("Add")]
+                  )
+                ])
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "el-table",
+        {
+          staticStyle: { width: "100%" },
+          attrs: { data: _vm.genres, size: "small" }
+        },
+        [
+          _c("el-table-column", {
+            attrs: { prop: "name", label: "Genre", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "slug", label: "Slug", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: { prop: "description", label: "Description", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
+            attrs: {
+              fixed: "right",
+              label: "Operations",
+              width: "120",
+              prop: "id"
+            },
+            scopedSlots: _vm._u([
+              {
+                key: "default",
+                fn: function(scope) {
+                  return [
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.edit(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteGenre(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
+                    )
+                  ]
+                }
+              }
+            ])
+          })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "el-dialog",
+        {
+          attrs: { title: "Edit", visible: _vm.dialogVisible, width: "30%" },
+          on: {
+            "update:visible": function($event) {
+              _vm.dialogVisible = $event
+            }
+          }
+        },
+        [
+          _c(
+            "span",
+            [
+              _c(
+                "el-row",
+                [
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Genre Name")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Genre Name" },
+                        model: {
+                          value: _vm.editedGenre.name,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedGenre, "name", $$v)
+                          },
+                          expression: "editedGenre.name"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Slug")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Slug" },
+                        model: {
+                          value: _vm.editedGenre.slug,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedGenre, "slug", $$v)
+                          },
+                          expression: "editedGenre.slug"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 24 } },
+                    [
+                      _c("span", [_vm._v("Description")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: {
+                          type: "textarea",
+                          rows: 2,
+                          placeholder: "Description"
+                        },
+                        model: {
+                          value: _vm.editedGenre.description,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedGenre, "description", $$v)
+                          },
+                          expression: "editedGenre.description"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "dialog-footer",
+              attrs: { slot: "footer" },
+              slot: "footer"
+            },
+            [
+              _c(
+                "el-button",
+                {
+                  on: {
+                    click: function($event) {
+                      _vm.dialogVisible = false
+                    }
+                  }
+                },
+                [_vm._v("Cancel")]
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  attrs: { type: "primary" },
+                  on: {
+                    click: function($event) {
+                      _vm.save()
+                    }
+                  }
+                },
+                [_vm._v("Confirm")]
+              )
+            ],
+            1
+          )
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2729ad7b", module.exports)
   }
 }
 

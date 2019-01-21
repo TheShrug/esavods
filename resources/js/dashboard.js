@@ -1,4 +1,3 @@
-
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -19,6 +18,7 @@ Vue.component('events', require('./components/Events'));
 Vue.component('runners', require('./components/Runners'));
 Vue.component('platforms', require('./components/Platforms'));
 Vue.component('games', require('./components/Games'));
+Vue.component('genres', require('./components/Genres'));
 
 let dashboardExists = document.getElementById('dashboard');
 

@@ -9,6 +9,7 @@ use App\Category;
 use App\Platform;
 use App\Event;
 use App\Runner;
+use App\Genre;
 
 class DashboardController extends Controller
 {
@@ -20,17 +21,17 @@ class DashboardController extends Controller
 	    $run = new Run;
 
 	    if($request['platform']) {
-		    $platform = Platform::firstOrCreate(['name' => $request['platform']]);
+		    $platform = Platform::FirstOrCreateUniqueSlug(['name' => $request['platform']]);
 			$run->platform()->associate($platform);
 	    }
 
 	    if($request['event']) {
-		    $event = Event::firstOrCreate(['name' => $request['event']]);
+		    $event = Event::FirstOrCreateUniqueSlug(['name' => $request['event']]);
 		    $run->event()->associate($event);
 	    }
 
 	    if($request['game']) {
-		    $game = Game::firstOrCreate(['name' => $request['game']]);
+		    $game = Game::FirstOrCreateUniqueSlug(['name' => $request['game']]);
 		    $run->game()->associate($game);
 	    }
 
@@ -46,6 +47,9 @@ class DashboardController extends Controller
 
 	    $runners = $request['runners'];
 	    $run->addRunners($runners);
+
+	    $genres = $request['genres'];
+	    $run->addGenres($genres);
 
 
 		return response()->json(self::formatForJson());
@@ -58,19 +62,19 @@ class DashboardController extends Controller
 
 	    $run->platform()->dissociate();
 	    if($request['platform']) {
-		    $platform = Platform::firstOrCreate(['name' => $request['platform']]);
+		    $platform = Platform::FirstOrCreateUniqueSlug(['name' => $request['platform']]);
 		    $run->platform()->associate($platform);
 	    }
 
 	    $run->event()->dissociate();
 	    if($request['event']) {
-		    $event = Event::firstOrCreate(['name' => $request['event']]);
+		    $event = Event::FirstOrCreateUniqueSlug(['name' => $request['event']]);
 		    $run->event()->associate($event);
 	    }
 
 	    $run->game()->dissociate();
 	    if($request['game']) {
-		    $game = Game::firstOrCreate(['name' => $request['game']]);
+		    $game = Game::FirstOrCreateUniqueSlug(['name' => $request['game']]);
 		    $run->game()->associate($game);
 	    }
 
@@ -80,6 +84,7 @@ class DashboardController extends Controller
 	    $run->run_date = $request->get('datetime');
 	    $run->category = $request->get('runCategory');
 	    $run->categories()->detach();
+	    $run->genres()->detach();
 	    $run->runners()->detach();
 	    $run->save();
 
@@ -88,6 +93,9 @@ class DashboardController extends Controller
 
 	    $runners = $request['runners'];
 	    $run->addRunners($runners);
+
+	    $genres = $request['genres'];
+	    $run->addGenres($genres);
 
 	    return response()->json(self::formatForJson());
     }
@@ -127,6 +135,12 @@ class DashboardController extends Controller
 		return response()->json(self::formatForJson());
 	}
 
+	public function deleteGenre(Request $request) {
+		$genre = Genre::findOrFail($request['id']);
+		$genre->delete();
+		return response()->json(self::formatForJson());
+	}
+
     public static function formatForJson() {
     	$json = [];
 	    $json['categories'] = Category::all();
@@ -134,7 +148,8 @@ class DashboardController extends Controller
 	    $json['platforms'] = Platform::all();
 	    $json['events'] = Event::all();
 	    $json['runners'] = Runner::all();
-	    $json['runs'] = Run::with('categories', 'game', 'platform', 'runners', 'event')->get();
+	    $json['genres'] = Genre::all();
+	    $json['runs'] = Run::with('categories', 'genres', 'game', 'platform', 'runners', 'event')->get();
 		return $json;
     }
 
@@ -165,6 +180,30 @@ class DashboardController extends Controller
     public static function getCategories() {
     	return response()->json(['categories' => Category::all()]);
     }
+
+	// Genres
+	public static function addGenre(Request $request) {
+		$genre = Genre::firstOrCreate([
+			'name' => $request['genre'],
+			'slug' => $request['slug'],
+			'description' => $request['description']
+		]);
+		$genre->save();
+		return self::getGenres();
+	}
+
+	public static function editGenre(Request $request) {
+		$genre = Genre::findOrFail($request['id']);
+		$genre->name = $request['name'];
+		$genre->slug = $request['slug'];
+		$genre->description = $request['description'];
+		$genre->save();
+		return self::getGenres();
+	}
+
+	public static function getGenres() {
+		return response()->json(['genres' => Genre::all()]);
+	}
 
     // Events
 	public static function addEvent(Request $request) {

@@ -35,11 +35,6 @@ Route::get('/category/{slug}', 'CategoryController@category')->name('category.sh
 Route::get('/game/', 'GameControler@index');
 Route::get('/game/{slug}', 'GameController@game')->name('game.show');
 
-
-
-
-
-
 // Dashboard
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
 Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
@@ -54,6 +49,12 @@ Route::post('/dashboard/category', 'DashboardController@addCategory')->middlewar
 Route::post('/dashboard/category/edit', 'DashboardController@editCategory')->middleware('auth');
 Route::get('/dashboard/category', 'DashboardController@getCategories')->middleware('auth');
 Route::delete('/dashboard/category/{id}', 'DashboardController@deleteCategory')->middleware('auth');
+
+// Genres
+Route::post('/dashboard/genre', 'DashboardController@addGenre')->middleware('auth');
+Route::post('/dashboard/genre/edit', 'DashboardController@editGenre')->middleware('auth');
+Route::get('/dashboard/genre', 'DashboardController@getGenres')->middleware('auth');
+Route::delete('/dashboard/genre/{id}', 'DashboardController@deleteGenre')->middleware('auth');
 
 // Events
 Route::post('/dashboard/event', 'DashboardController@addEvent')->middleware('auth');

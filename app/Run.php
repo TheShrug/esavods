@@ -60,6 +60,15 @@ class Run extends Model
 		}
 	}
 
+	public function addGenres(array $genres) {
+		if($genres) {
+			foreach($genres as $genre) {
+				$genreModel = Genre::FirstOrCreateUniqueSlug(['name' => $genre]);
+				$this->genres()->attach($genreModel);
+			}
+		}
+	}
+
 	/**
 	 * Define Runner many-to-many relationship.
 	 *
@@ -76,6 +85,15 @@ class Run extends Model
 	 */
 	public function categories() {
 		return $this->belongsToMany('App\Category');
+	}
+
+	/**
+	 * Define Genre many-to-many relationship.
+	 *
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+	 */
+	public function genres() {
+		return $this->belongsToMany('App\Genre');
 	}
 
 	/**

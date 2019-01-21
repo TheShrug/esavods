@@ -123,6 +123,24 @@
                             </el-option>
                         </el-select>
                     </el-col>
+                    <el-col :span="6">
+                        <div>Genres</div>
+                        <el-select
+                                v-model="genres"
+                                multiple
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose genres"
+                        >
+                            <el-option
+                                    v-for="genre in genreOptions"
+                                    :key="genre.id"
+                                    :label="genre.name"
+                                    :value="genre.name">
+                            </el-option>
+                        </el-select>
+                    </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
@@ -241,6 +259,8 @@
                             </el-option>
                         </el-select>
                     </el-col>
+                </el-row>
+                <el-row>
                     <el-col :span="12">
                         <div>Game</div>
                         <el-select
@@ -275,6 +295,8 @@
                             </el-option>
                         </el-select>
                     </el-col>
+                </el-row>
+                <el-row>
                     <el-col :span="12">
                         <div>Event</div>
                         <el-select
@@ -298,6 +320,8 @@
                             <template slot="prepend">Run time</template>
                         </el-input>
                     </el-col>
+                </el-row>
+                <el-row>
                     <el-col :span="12">
                         <span>Twitch Vod ID</span>
                         <el-input placeholder="Twitch Id" v-model="editedRun.twitchId"></el-input>
@@ -306,6 +330,8 @@
                         <span>Youtube Vod ID</span>
                         <el-input placeholder="Youtube Id" v-model="editedRun.youtubeId" ></el-input>
                     </el-col>
+                </el-row>
+                <el-row>
                     <el-col :span="12">
                         <span>Category</span>
                         <el-input placeholder="Category" v-model="editedRun.runCategory" ></el-input>
@@ -318,6 +344,26 @@
                                 placeholder="Select date and time"
                                 value-format="yyyy-MM-dd HH:mm:ss">
                         </el-date-picker>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <div>Genres</div>
+                        <el-select
+                                v-model="editedRun.genres"
+                                multiple
+                                filterable
+                                allow-create
+                                default-first-option
+                                placeholder="Choose genres"
+                        >
+                            <el-option
+                                    v-for="genre in genreOptions"
+                                    :key="genre.id"
+                                    :label="genre.name"
+                                    :value="genre.name">
+                            </el-option>
+                        </el-select>
                     </el-col>
                 </el-row>
             </span>
@@ -355,7 +401,9 @@
                 datetime: '',
                 runs: [],
                 dialogVisible: false,
-                editedRun: {}
+                editedRun: {},
+                genres: '',
+                genreOptions: []
             }
         },
         methods: {
@@ -363,6 +411,7 @@
                 let $this = this;
                 let params = {};
                 params.categories = this.categories;
+                params.genres = this.genres;
                 params.runners = this.runners;
                 params.game = this.game;
                 params.platform = this.platform;
@@ -392,6 +441,7 @@
                 this.eventOptions = data.events;
                 this.gameOptions = data.games;
                 this.platformOptions = data.platforms;
+                this.genreOptions = data.genres;
                 this.runs = data.runs;
             },
             clearForm() {
@@ -403,6 +453,7 @@
                 this.youtubeId = '';
                 this.time = '';
                 this.runCategory = '';
+                this.genre = '';
             },
             edit(index, row) {
                 let $this = this;
@@ -411,8 +462,10 @@
                 this.editedRun = {
                     id: _.get(row, 'id', ''),
                     categories: [],
+                    genres: [],
                     runCategory: _.get(row, 'category', ''),
                     runners: [],
+                    genres: [],
                     game: _.get(row, 'game.name', ''),
                     platform: _.get(row, 'platform.name', ''),
                     event: _.get(row, 'event.name', ''),
@@ -427,6 +480,9 @@
                 });
                 row.runners.forEach(function(runner) {
                     $this.editedRun.runners.push(runner.name)
+                });
+                row.genres.forEach(function(genre) {
+                    $this.editedRun.genres.push(genre.name)
                 });
             },
             deleteRun(index, row) {
