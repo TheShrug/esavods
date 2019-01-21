@@ -62122,7 +62122,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62582,10 +62581,6 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("el-table-column", {
-            attrs: { prop: "category", label: "Category", width: "" }
-          }),
-          _vm._v(" "),
-          _c("el-table-column", {
             attrs: { fixed: "right", label: "Edit", width: "80" },
             scopedSlots: _vm._u([
               {
@@ -62871,6 +62866,26 @@ var render = function() {
                             _vm.$set(_vm.editedRun, "youtubeId", $$v)
                           },
                           expression: "editedRun.youtubeId"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Category")]),
+                      _vm._v(" "),
+                      _c("el-input", {
+                        attrs: { placeholder: "Category" },
+                        model: {
+                          value: _vm.editedRun.runCategory,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRun, "runCategory", $$v)
+                          },
+                          expression: "editedRun.runCategory"
                         }
                       })
                     ],
