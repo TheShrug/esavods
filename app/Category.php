@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\FirstOrCreateUniqueSlugTrait;
 
 /**
  * App\Category
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
+
+	use FirstOrCreateUniqueSlugTrait;
 
 	/**
 	 * Define Run many-to-many relationship.

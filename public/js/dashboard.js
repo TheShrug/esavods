@@ -62221,12 +62221,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         clearForm: function clearForm() {
             this.categories = [];
             this.runners = [];
-            this.event = '';
             this.game = '';
             this.platform = '';
             this.twitchId = '';
             this.youtubeId = '';
-            this.datetime = '';
             this.time = '';
             this.runCategory = '';
         },

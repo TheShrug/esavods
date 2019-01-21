@@ -40,6 +40,27 @@ class Run extends Model
 {
 
 	/**
+	 * @param array $runners
+	 */
+	public function addRunners(array $runners) {
+		if($runners) {
+			foreach($runners as $runner) {
+				$runnerModel = Runner::FirstOrCreateUniqueSlug(['name' => $runner]);
+				$this->runners()->attach($runnerModel);
+			}
+		}
+	}
+
+	public function addCategories(array $categories) {
+		if($categories) {
+			foreach($categories as $category) {
+				$categoryModel = Category::FirstOrCreateUniqueSlug(['name' => $category]);
+				$this->categories()->attach($categoryModel);
+			}
+		}
+	}
+
+	/**
 	 * Define Runner many-to-many relationship.
 	 *
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

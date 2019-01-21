@@ -41,18 +41,12 @@ class DashboardController extends Controller
 	    $run->category = $request->get('runCategory');
 	    $run->save();
 
-	    // Create the many-to-many models and attach
 	    $categories = $request['categories'];
-	    foreach($categories as $category) {
-	        $categoryModel = Category::FirstOrCreate(['name' => $category]);
-	        $run->categories()->attach($categoryModel);
-	    }
+	    $run->addCategories($categories);
 
 	    $runners = $request['runners'];
-	    foreach($runners as $runner) {
-		    $runnerModel = Runner::FirstOrCreate(['name' => $runner]);
-		    $run->runners()->attach($runnerModel);
-	    }
+	    $run->addRunners($runners);
+
 
 		return response()->json(self::formatForJson());
 
@@ -89,18 +83,11 @@ class DashboardController extends Controller
 	    $run->runners()->detach();
 	    $run->save();
 
-	    // Create the many-to-many models and attach
 	    $categories = $request['categories'];
-	    foreach($categories as $category) {
-		    $categoryModel = Category::FirstOrCreate(['name' => $category]);
-		    $run->categories()->attach($categoryModel);
-	    }
+	    $run->addCategories($categories);
 
 	    $runners = $request['runners'];
-	    foreach($runners as $runner) {
-		    $runnerModel = Runner::FirstOrCreate(['name' => $runner]);
-		    $run->runners()->attach($runnerModel);
-	    }
+	    $run->addRunners($runners);
 
 	    return response()->json(self::formatForJson());
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\FirstOrCreateUniqueSlugTrait;
 
 /**
  * App\Runner
@@ -28,6 +29,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Runner extends Model
 {
+
+	use FirstOrCreateUniqueSlugTrait;
 
 	/**
 	 * Define Run many-to-many relationship.
