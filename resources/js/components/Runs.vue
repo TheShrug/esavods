@@ -138,6 +138,12 @@
                     sortable>
             </el-table-column>
             <el-table-column
+                    prop="run_date"
+                    label="Date"
+                    width=""
+                    sortable>
+            </el-table-column>
+            <el-table-column
                     prop="game.name"
                     label="Game"
                     width=""
@@ -182,7 +188,10 @@
                     width="80">
                 <template slot-scope="scope">
                     <el-button @click="edit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
+                    <el-button @click="deleteRun(scope.$index, scope.row)" type="text" size="small"><i class="fa fa-trash"></i></el-button>
                 </template>
+
+
             </el-table-column>
         </el-table>
         <el-dialog
@@ -408,7 +417,7 @@
                     time: _.get(row, 'time', ''),
                     twitchId: _.get(row, 'twitch_vod_id', ''),
                     youtubeId: _.get(row, 'youtube_vod_id', ''),
-                    datetime: _.get(row, 'datetime', ''),
+                    datetime: _.get(row, 'run_date', ''),
                 };
 
                 row.categories.forEach(function(category) {
@@ -417,6 +426,18 @@
                 row.runners.forEach(function(runner) {
                     $this.editedRun.runners.push(runner.name)
                 });
+            },
+            deleteRun(index, row) {
+                let $this = this;
+                let params = {
+                    id: _.get(row, 'id', '')
+                };
+                if(confirm('are you sure?')) {
+                    Axios.post('/dashboard/run/delete', params)
+                        .then(function(response){
+                            $this.setFromJson(response.data);
+                        });
+                }
             },
             save() {
                 let $this = this;

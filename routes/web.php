@@ -47,6 +47,7 @@ Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
 // Runs
 Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
 Route::post('/dashboard/run/edit', 'DashboardController@editRun')->middleware('auth');
+Route::post('/dashboard/run/delete', 'DashboardController@deleteRun')->middleware('auth');
 
 // Categories
 Route::post('/dashboard/category', 'DashboardController@addCategory')->middleware('auth');

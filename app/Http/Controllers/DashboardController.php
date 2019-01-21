@@ -83,6 +83,7 @@ class DashboardController extends Controller
 	    $run->youtube_vod_id = $request['youtubeId'];
 	    $run->twitch_vod_id = $request['twitchId'];
 	    $run->time = $request->get('time');
+	    $run->run_date = $request->get('datetime');
 	    $run->category = $request->get('runCategory');
 	    $run->categories()->detach();
 	    $run->runners()->detach();
@@ -101,6 +102,12 @@ class DashboardController extends Controller
 		    $run->runners()->attach($runnerModel);
 	    }
 
+	    return response()->json(self::formatForJson());
+    }
+
+    public function deleteRun(Request $request) {
+	    $run = Run::findOrFail($request['id']);
+	    $run->delete();
 	    return response()->json(self::formatForJson());
     }
 
