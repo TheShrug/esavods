@@ -65,18 +65,18 @@ Route::delete('/dashboard/event/{id}', 'DashboardController@deleteEvent')->middl
 Route::post('/dashboard/platform', 'DashboardController@addPlatform')->middleware('auth');
 Route::post('/dashboard/platform/edit', 'DashboardController@editPlatform')->middleware('auth');
 Route::get('/dashboard/platform', 'DashboardController@getPlatforms')->middleware('auth');
-Route::delete('/dashboard/platform/{id}', 'DashboardController@getPlatforms')->middleware('auth');
+Route::delete('/dashboard/platform/{id}', 'DashboardController@deletePlatform')->middleware('auth');
 
 // Games
 Route::post('/dashboard/game', 'DashboardController@addGame')->middleware('auth');
 Route::post('/dashboard/game/edit', 'DashboardController@editGame')->middleware('auth');
 Route::get('/dashboard/game', 'DashboardController@getGames')->middleware('auth');
-Route::delete('/dashboard/game/{id}', 'DashboardController@getGames')->middleware('auth');
+Route::delete('/dashboard/game/{id}', 'DashboardController@deleteGame')->middleware('auth');
 
 // Runners
 Route::post('/dashboard/runner', 'DashboardController@addRunner')->middleware('auth');
 Route::post('/dashboard/runner/edit', 'DashboardController@editRunner')->middleware('auth');
 Route::get('/dashboard/runner', 'DashboardController@getRunners')->middleware('auth');
-Route::delete('/dashboard/runner/{id}', 'DashboardController@getRunners')->middleware('auth');
+Route::delete('/dashboard/runner/{id}', 'DashboardController@deleteRunner')->middleware('auth');
 
 
