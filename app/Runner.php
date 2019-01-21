@@ -41,5 +41,17 @@ class Runner extends Model
     	return $this->belongsToMany('App\Run');
     }
 
+	/**
+	 * Override model delete to detatch runs from runner when the runner is deleted
+	 *
+	 * @return bool|null
+	 * @throws \Exception
+	 */
+    public function delete() {
+    	$this->runs()->detach();
+
+    	return parent::delete();
+    }
+
 	protected $fillable = ['name', 'twitch', 'twitter', 'youtube', 'slug'];
 }

@@ -62155,6 +62155,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62296,32 +62300,31 @@ var render = function() {
               [
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
-                    _c("div", [_vm._v("Categories")]),
+                    _c("div", [_vm._v("Game")]),
                     _vm._v(" "),
                     _c(
                       "el-select",
                       {
                         attrs: {
-                          multiple: "",
                           filterable: "",
                           "allow-create": "",
                           "default-first-option": "",
-                          placeholder: "Choose categories"
+                          placeholder: "Choose game"
                         },
                         model: {
-                          value: _vm.categories,
+                          value: _vm.game,
                           callback: function($$v) {
-                            _vm.categories = $$v
+                            _vm.game = $$v
                           },
-                          expression: "categories"
+                          expression: "game"
                         }
                       },
-                      _vm._l(_vm.categoryOptions, function(category) {
+                      _vm._l(_vm.gameOptions, function(game) {
                         return _c("el-option", {
-                          key: category.id,
-                          attrs: { label: category.name, value: category.name }
+                          key: game.id,
+                          attrs: { label: game.name, value: game.name }
                         })
                       })
                     )
@@ -62331,7 +62334,27 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
+                  [
+                    _c("span", [_vm._v("Category")]),
+                    _vm._v(" "),
+                    _c("el-input", {
+                      attrs: { placeholder: "Category" },
+                      model: {
+                        value: _vm.runCategory,
+                        callback: function($$v) {
+                          _vm.runCategory = $$v
+                        },
+                        expression: "runCategory"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 6 } },
                   [
                     _c("div", [_vm._v("Runners")]),
                     _vm._v(" "),
@@ -62366,41 +62389,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
-                  [
-                    _c("div", [_vm._v("Game")]),
-                    _vm._v(" "),
-                    _c(
-                      "el-select",
-                      {
-                        attrs: {
-                          filterable: "",
-                          "allow-create": "",
-                          "default-first-option": "",
-                          placeholder: "Choose game"
-                        },
-                        model: {
-                          value: _vm.game,
-                          callback: function($$v) {
-                            _vm.game = $$v
-                          },
-                          expression: "game"
-                        }
-                      },
-                      _vm._l(_vm.gameOptions, function(game) {
-                        return _c("el-option", {
-                          key: game.id,
-                          attrs: { label: game.name, value: game.name }
-                        })
-                      })
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
                     _c("div", [_vm._v("Platform")]),
                     _vm._v(" "),
@@ -62430,11 +62419,17 @@ var render = function() {
                     )
                   ],
                   1
-                ),
-                _vm._v(" "),
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
                     _c("div", [_vm._v("Event")]),
                     _vm._v(" "),
@@ -62468,7 +62463,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
                     _c("span", [_vm._v("Time")]),
                     _vm._v(" "),
@@ -62497,7 +62492,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
                     _c("span", [_vm._v("Twitch Vod ID")]),
                     _vm._v(" "),
@@ -62517,7 +62512,7 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
                     _c("span", [_vm._v("Youtube Vod ID")]),
                     _vm._v(" "),
@@ -62533,11 +62528,17 @@ var render = function() {
                     })
                   ],
                   1
-                ),
-                _vm._v(" "),
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "el-row",
+              [
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
                     _c("span", [_vm._v("Date")]),
                     _vm._v(" "),
@@ -62561,20 +62562,35 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "el-col",
-                  { attrs: { span: 12 } },
+                  { attrs: { span: 6 } },
                   [
-                    _c("span", [_vm._v("Category")]),
+                    _c("div", [_vm._v("Categories")]),
                     _vm._v(" "),
-                    _c("el-input", {
-                      attrs: { placeholder: "Category" },
-                      model: {
-                        value: _vm.runCategory,
-                        callback: function($$v) {
-                          _vm.runCategory = $$v
+                    _c(
+                      "el-select",
+                      {
+                        attrs: {
+                          multiple: "",
+                          filterable: "",
+                          "allow-create": "",
+                          "default-first-option": "",
+                          placeholder: "Choose categories"
                         },
-                        expression: "runCategory"
-                      }
-                    })
+                        model: {
+                          value: _vm.categories,
+                          callback: function($$v) {
+                            _vm.categories = $$v
+                          },
+                          expression: "categories"
+                        }
+                      },
+                      _vm._l(_vm.categoryOptions, function(category) {
+                        return _c("el-option", {
+                          key: category.id,
+                          attrs: { label: category.name, value: category.name }
+                        })
+                      })
+                    )
                   ],
                   1
                 )

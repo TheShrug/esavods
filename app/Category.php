@@ -37,6 +37,18 @@ class Category extends Model
     	return $this->belongsToMany('App\Run');
     }
 
+	/**
+	 * Override model method to make sure we detatch run if the category is deleted
+	 *
+	 * @return bool|null
+	 * @throws \Exception
+	 */
+    public function delete() {
+    	$this->runs()->detach();
+
+    	return parent::delete();
+    }
+
 	protected $fillable = ['name', 'slug', 'description'];
 
 }

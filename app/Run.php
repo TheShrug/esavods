@@ -105,6 +105,20 @@ class Run extends Model
 		return $this->belongsTo('App\Game');
 	}
 
+	/**
+	 * Override to make sure to detatch categories and runners
+	 * so we don't end up with orphaned rows
+	 *
+	 * @return bool|null
+	 * @throws \Exception
+	 */
+	public function delete() {
+		$this->categories()->detach();
+		$this->runners()->detach();
+
+		return parent::delete();
+	}
+
 	protected $fillable = ['time', 'twitch_vod_id', 'youtube_vod_id', 'event_id', 'platform_id', 'game_id'];
 
 }
