@@ -22,6 +22,7 @@ class CreateRunsTable extends Migration
 	        $table->integer('event_id')->nullable();
 	        $table->integer('platform_id')->nullable();
 	        $table->integer('game_id')->nullable();
+	        $table->dateTime('run_date')->nullable();
             $table->timestamps();
         });
     }

@@ -105,6 +105,15 @@
                         <span>Youtube Vod ID</span>
                         <el-input placeholder="Youtube Id" v-model="youtubeId" ></el-input>
                     </el-col>
+                    <el-col :span="12">
+                        <span>Date</span>
+                        <el-date-picker
+                                v-model="datetime"
+                                type="datetime"
+                                placeholder="Select date and time"
+                        >
+                        </el-date-picker>
+                    </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
@@ -278,6 +287,14 @@
                         <span>Category</span>
                         <el-input placeholder="Category" v-model="editedRun.runCategory" ></el-input>
                     </el-col>
+                      <el-col :span="12">
+                        <span>Date</span>
+                        <el-date-picker
+                                v-model="editedRun.datetime"
+                                type="datetime"
+                                placeholder="Select date and time">
+                        </el-date-picker>
+                    </el-col>
                 </el-row>
             </span>
             <span slot="footer" class="dialog-footer">
@@ -311,6 +328,7 @@
                 time: null,
                 twitchId:'',
                 youtubeId:'',
+                datetime: '',
                 runs: [],
                 dialogVisible: false,
                 editedRun: {}
@@ -359,6 +377,7 @@
                 this.platform = '';
                 this.twitchId = '';
                 this.youtubeId = '';
+                this.datetime = '';
                 this.time = '';
                 this.runCategory = '';
             },
@@ -377,6 +396,7 @@
                     time: _.get(row, 'time', ''),
                     twitchId: _.get(row, 'twitch_vod_id', ''),
                     youtubeId: _.get(row, 'youtube_vod_id', ''),
+                    datetime: _.get(row, 'datetime', ''),
                 };
 
                 row.categories.forEach(function(category) {
@@ -401,4 +421,5 @@
 
 <style scoped>
  .el-col {padding: 0 15px;margin-bottom: 15px;}
+    .card-body span {display: block;}
 </style>
