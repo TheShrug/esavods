@@ -13,7 +13,7 @@ use App\Runner;
 class DashboardController extends Controller
 {
     public function index() {
-    	return view('dashboard');
+    	return view('dashboard', array('dashboard' => true));
     }
 
     public function addOrUpdateRun(Request $request) {
