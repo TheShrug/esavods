@@ -171,6 +171,11 @@
                 width="">
             </el-table-column>
             <el-table-column
+                    prop="category"
+                    label="Category"
+                    width="">
+            </el-table-column>
+            <el-table-column
                     fixed="right"
                     label="Edit"
                     width="80">
