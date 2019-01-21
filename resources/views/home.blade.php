@@ -13,7 +13,7 @@
                         <table class="table table-sm table-light mainDataTable">
                             <thead>
                             <tr>
-                                <th></th>
+
                                 <th>Game</th>
                                 <th>Platform</th>
                                 <th>Category</th>
@@ -26,9 +26,7 @@
                             <tbody>
                                 @foreach($runs as $run)
                                     <tr data-id="{{ $run->id }}">
-                                        <td class="">
-                                            <a href="#" class="btn btn-sm btn-primary expand-row-button"></a>
-                                        </td>
+
                                         <td>
                                             @if(isset($run->game) && isset($run->game->slug))
                                                 <a href="{{ route('game.show', $run->game->slug) }}" title="{{ $run->game->name }}">{{ $run->game->name }}</a>

@@ -61815,7 +61815,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.el-col[data-v-555fab9a] {padding: 0 15px;margin-bottom: 15px;\n}\n", ""]);
+exports.push([module.i, "\n.el-col[data-v-555fab9a] {padding: 0 15px;margin-bottom: 15px;\n}\n.card-body span[data-v-555fab9a] {display: block;\n}\n", ""]);
 
 // exports
 
@@ -61828,6 +61828,23 @@ exports.push([module.i, "\n.el-col[data-v-555fab9a] {padding: 0 15px;margin-bott
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -62145,6 +62162,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             time: null,
             twitchId: '',
             youtubeId: '',
+            datetime: '',
             runs: [],
             dialogVisible: false,
             editedRun: {}
@@ -62191,6 +62209,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.platform = '';
             this.twitchId = '';
             this.youtubeId = '';
+            this.datetime = '';
             this.time = '';
             this.runCategory = '';
         },
@@ -62208,7 +62227,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 event: _.get(row, 'event.name', ''),
                 time: _.get(row, 'time', ''),
                 twitchId: _.get(row, 'twitch_vod_id', ''),
-                youtubeId: _.get(row, 'youtube_vod_id', '')
+                youtubeId: _.get(row, 'youtube_vod_id', ''),
+                datetime: _.get(row, 'datetime', '')
             };
 
             row.categories.forEach(function (category) {
@@ -62485,6 +62505,29 @@ var render = function() {
                           _vm.youtubeId = $$v
                         },
                         expression: "youtubeId"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "el-col",
+                  { attrs: { span: 12 } },
+                  [
+                    _c("span", [_vm._v("Date")]),
+                    _vm._v(" "),
+                    _c("el-date-picker", {
+                      attrs: {
+                        type: "datetime",
+                        placeholder: "Select date and time"
+                      },
+                      model: {
+                        value: _vm.datetime,
+                        callback: function($$v) {
+                          _vm.datetime = $$v
+                        },
+                        expression: "datetime"
                       }
                     })
                   ],
@@ -62886,6 +62929,29 @@ var render = function() {
                             _vm.$set(_vm.editedRun, "runCategory", $$v)
                           },
                           expression: "editedRun.runCategory"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "el-col",
+                    { attrs: { span: 12 } },
+                    [
+                      _c("span", [_vm._v("Date")]),
+                      _vm._v(" "),
+                      _c("el-date-picker", {
+                        attrs: {
+                          type: "datetime",
+                          placeholder: "Select date and time"
+                        },
+                        model: {
+                          value: _vm.editedRun.datetime,
+                          callback: function($$v) {
+                            _vm.$set(_vm.editedRun, "datetime", $$v)
+                          },
+                          expression: "editedRun.datetime"
                         }
                       })
                     ],

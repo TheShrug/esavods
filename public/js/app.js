@@ -30348,6 +30348,7 @@ __webpack_require__(77);
 __webpack_require__(106);
 
 var table = $('.mainDataTable').DataTable({
+    paging: false,
     responsive: {
         details: {
             type: 'inline',
@@ -30355,8 +30356,30 @@ var table = $('.mainDataTable').DataTable({
         }
     },
     order: [],
-    columns: [{ orderable: false, searchable: false }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: false, searchable: false }]
+    columns: [{ orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: false, searchable: false }]
 });
+
+$(document).on('click', '.expand-row-button', function () {
+    var tr = $(this).closest('tr');
+    var row = table.row(tr);
+
+    if (row.child.isShown()) {
+        // This row is already open - close it
+        row.child.hide();
+        tr.removeClass('shown');
+    } else {
+        // Open this row
+        row.child(format(row.data())).show();
+        tr.addClass('shown');
+    }
+});
+
+/* Formatting function for row details - modify as you need */
+function format(d) {
+    console.log(d);
+    // `d` is the original data object for the row
+    return '<td colspan="' + d.length + '">' + '</td>';
+}
 
 $('.testButton').on('click', function () {
     table.responsive.recalc();

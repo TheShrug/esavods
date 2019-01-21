@@ -114,6 +114,10 @@
                         >
                         </el-date-picker>
                     </el-col>
+                    <el-col :span="12">
+                        <span>Category</span>
+                        <el-input placeholder="Category" v-model="runCategory" ></el-input>
+                    </el-col>
                 </el-row>
                 <el-row>
                     <el-col :span="12">
