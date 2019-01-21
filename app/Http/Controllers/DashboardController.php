@@ -110,6 +110,35 @@ class DashboardController extends Controller
 	    $run->delete();
 	    return response()->json(self::formatForJson());
     }
+	public function deleteGame(Request $request) {
+		$game = Game::findOrFail($request['id']);
+		$game->delete();
+		return response()->json(self::formatForJson());
+	}
+
+	public function deleteRunner(Request $request) {
+		$runner = Runner::findOrFail($request['id']);
+		$runner->delete();
+		return response()->json(self::formatForJson());
+	}
+
+	public function deleteEvent(Request $request) {
+		$event = Event::findOrFail($request['id']);
+		$event->delete();
+		return response()->json(self::formatForJson());
+	}
+
+	public function deleteCategory(Request $request) {
+		$category = Category::findOrFail($request['id']);
+		$category->delete();
+		return response()->json(self::formatForJson());
+	}
+
+	public function deletePlatform(Request $request) {
+		$platform = Platform::findOrFail($request['id']);
+		$platform->delete();
+		return response()->json(self::formatForJson());
+	}
 
     public static function formatForJson() {
     	$json = [];

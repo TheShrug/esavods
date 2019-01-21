@@ -429,11 +429,9 @@
             },
             deleteRun(index, row) {
                 let $this = this;
-                let params = {
-                    id: _.get(row, 'id', '')
-                };
+                let id = _.get(row, 'id', '');
                 if(confirm('are you sure?')) {
-                    Axios.post('/dashboard/run/delete', params)
+                    Axios.delete('/dashboard/run/' + id)
                         .then(function(response){
                             $this.setFromJson(response.data);
                         });

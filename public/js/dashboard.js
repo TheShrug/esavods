@@ -62139,6 +62139,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -62181,6 +62197,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             params.twitchId = this.twitchId;
             params.youtubeId = this.youtubeId;
             params.runCategory = this.runCategory;
+            params.datetime = this.datetime;
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/dashboard/run', params).then(function (response) {
                 $this.setFromJson(response.data);
@@ -62228,7 +62245,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 time: _.get(row, 'time', ''),
                 twitchId: _.get(row, 'twitch_vod_id', ''),
                 youtubeId: _.get(row, 'youtube_vod_id', ''),
-                datetime: _.get(row, 'datetime', '')
+                datetime: _.get(row, 'run_date', '')
             };
 
             row.categories.forEach(function (category) {
@@ -62237,6 +62254,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             row.runners.forEach(function (runner) {
                 $this.editedRun.runners.push(runner.name);
             });
+        },
+        deleteRun: function deleteRun(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/run/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
         },
         save: function save() {
             var $this = this;
@@ -62520,7 +62546,8 @@ var render = function() {
                     _c("el-date-picker", {
                       attrs: {
                         type: "datetime",
-                        placeholder: "Select date and time"
+                        placeholder: "Select date and time",
+                        "value-format": "yyyy-MM-dd HH:mm:ss"
                       },
                       model: {
                         value: _vm.datetime,
@@ -62590,6 +62617,10 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("el-table-column", {
+            attrs: { prop: "run_date", label: "Date", width: "", sortable: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
             attrs: { prop: "game.name", label: "Game", width: "", sortable: "" }
           }),
           _vm._v(" "),
@@ -62624,6 +62655,10 @@ var render = function() {
           }),
           _vm._v(" "),
           _c("el-table-column", {
+            attrs: { prop: "category", label: "Category", width: "" }
+          }),
+          _vm._v(" "),
+          _c("el-table-column", {
             attrs: { fixed: "right", label: "Edit", width: "80" },
             scopedSlots: _vm._u([
               {
@@ -62641,6 +62676,19 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteRun(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
                     )
                   ]
                 }
@@ -62944,7 +62992,8 @@ var render = function() {
                       _c("el-date-picker", {
                         attrs: {
                           type: "datetime",
-                          placeholder: "Select date and time"
+                          placeholder: "Select date and time",
+                          "value-format": "yyyy-MM-dd HH:mm:ss"
                         },
                         model: {
                           value: _vm.editedRun.datetime,
@@ -63208,6 +63257,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63254,6 +63304,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         edit: function edit(index, row) {
             this.dialogVisible = true;
             this.editedCategory = row;
+        },
+        deleteCategory: function deleteCategory(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/category/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
         },
         save: function save() {
             var $this = this;
@@ -63418,6 +63477,19 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteCategory(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
                     )
                   ]
                 }
@@ -63759,6 +63831,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -63805,6 +63878,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         edit: function edit(index, row) {
             this.dialogVisible = true;
             this.editedEvent = row;
+        },
+        deleteEvent: function deleteEvent(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/event/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
         },
         save: function save() {
             var $this = this;
@@ -63969,6 +64051,19 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteEvent(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
                     )
                   ]
                 }
@@ -64326,6 +64421,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64378,6 +64474,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         edit: function edit(index, row) {
             this.dialogVisible = true;
             this.editedRunner = row;
+        },
+        deleteRunner: function deleteRunner(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/runner/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
         },
         save: function save() {
             var $this = this;
@@ -64586,6 +64691,19 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteRunner(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
                     )
                   ]
                 }
@@ -64962,6 +65080,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -65008,6 +65127,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         edit: function edit(index, row) {
             this.dialogVisible = true;
             this.editedPlatform = row;
+        },
+        deletePlatform: function deletePlatform(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/platform/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
         },
         save: function save() {
             var $this = this;
@@ -65167,6 +65295,19 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deletePlatform(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
                     )
                   ]
                 }
@@ -65508,6 +65649,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -65554,6 +65696,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         edit: function edit(index, row) {
             this.dialogVisible = true;
             this.editedGame = row;
+        },
+        deleteGame: function deleteGame(index, row) {
+            var $this = this;
+            var id = _.get(row, 'id', '');
+            if (confirm('are you sure?')) {
+                __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('/dashboard/game/' + id).then(function (response) {
+                    $this.setFromJson(response.data);
+                });
+            }
         },
         save: function save() {
             var $this = this;
@@ -65718,6 +65869,19 @@ var render = function() {
                         }
                       },
                       [_vm._v("Edit")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "el-button",
+                      {
+                        attrs: { type: "text", size: "small" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteGame(scope.$index, scope.row)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "fa fa-trash" })]
                     )
                   ]
                 }

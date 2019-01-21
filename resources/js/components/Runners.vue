@@ -68,6 +68,7 @@
                     prop="id">
                 <template slot-scope="scope">
                     <el-button @click="edit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
+                    <el-button @click="deleteRunner(scope.$index, scope.row)" type="text" size="small"><i class="fa fa-trash"></i></el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -162,6 +163,16 @@
             edit(index, row) {
                 this.dialogVisible = true;
                 this.editedRunner = row;
+            },
+            deleteRunner(index, row) {
+                let $this = this;
+                let id = _.get(row, 'id', '');
+                if(confirm('are you sure?')) {
+                    Axios.delete('/dashboard/runner/' + id)
+                        .then(function(response){
+                            $this.setFromJson(response.data);
+                        });
+                }
             },
             save() {
                 let $this = this;
