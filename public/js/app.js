@@ -386,7 +386,9 @@ module.exports = __webpack_require__(37);
 /* 5 */,
 /* 6 */,
 /* 7 */,
-/* 8 */
+/* 8 */,
+/* 9 */,
+/* 10 */
 /***/ (function(module, exports) {
 
 var g;
@@ -413,7 +415,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -517,8 +519,6 @@ module.exports = defaults;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(29)))
 
 /***/ }),
-/* 10 */,
-/* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */
@@ -11375,7 +11375,7 @@ process.umask = function() { return 0; };
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(21);
 var Axios = __webpack_require__(39);
-var defaults = __webpack_require__(9);
+var defaults = __webpack_require__(11);
 
 /**
  * Create an instance of Axios
@@ -11458,7 +11458,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(9);
+var defaults = __webpack_require__(11);
 var utils = __webpack_require__(0);
 var InterceptorManager = __webpack_require__(48);
 var dispatchRequest = __webpack_require__(49);
@@ -11997,7 +11997,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(50);
 var isCancel = __webpack_require__(24);
-var defaults = __webpack_require__(9);
+var defaults = __webpack_require__(11);
 var isAbsoluteURL = __webpack_require__(51);
 var combineURLs = __webpack_require__(52);
 
@@ -14807,7 +14807,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(10)))
 
 /***/ }),
 /* 77 */
@@ -30347,20 +30347,18 @@ __webpack_require__(102);
 __webpack_require__(77);
 __webpack_require__(106);
 
-var table = $('.mainDataTable').DataTable({
+var table = $('#mainTable').DataTable({
     paging: false,
-    responsive: {
-        details: {
-            type: 'inline',
-            display: $.fn.dataTable.Responsive.display.childRowImmediate
-        }
-    },
+    responsive: true,
     order: [],
     columns: [{ orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: true }, { orderable: false, searchable: false }]
 });
 
-$(document).on('click', '.expand-row-button', function () {
+$(document).on('click', '.video-links a', function (e) {
+    e.preventDefault();
     var tr = $(this).closest('tr');
+    var vodSite = $(this).data('vod-site');
+    var vod = $(this).data('vod');
     var row = table.row(tr);
 
     if (row.child.isShown()) {
@@ -30369,21 +30367,79 @@ $(document).on('click', '.expand-row-button', function () {
         tr.removeClass('shown');
     } else {
         // Open this row
-        row.child(format(row.data())).show();
+        row.child(format(row.data(), vodSite)).show();
         tr.addClass('shown');
+
+        if (vodSite === 'youtube') {
+            initializeYoutubeVideo(vod);
+        } else if (vodSite === 'twitch') {
+            initializeTwitchVideo(vod);
+        }
     }
 });
 
-/* Formatting function for row details - modify as you need */
-function format(d) {
-    console.log(d);
-    // `d` is the original data object for the row
-    return '<td colspan="' + d.length + '">' + '</td>';
+function initializeYoutubeVideo(vod) {
+    var time = vod.slice(vod.indexOf('?t=') + 3);
+    var player = new YT.Player('videoPlayer', {
+        height: '360',
+        width: '640',
+        videoId: vod,
+        playerVars: {
+            start: time
+        },
+        events: {
+            'onReady': function onReady(event) {
+                event.target.seekTo(time);
+                event.target.playVideo();
+            }
+        }
+    });
 }
 
-$('.testButton').on('click', function () {
-    table.responsive.recalc();
-});
+function initializeTwitchVideo(vod) {
+    var time = twitchTimeStringToSeconds(vod.slice(vod.indexOf('?t=') + 3));
+    var videoId = vod.slice(0, vod.indexOf('?t='));
+    var twitchOptions = {
+        height: 360,
+        width: 640,
+        video: videoId
+    };
+
+    var player = new Twitch.Player('videoPlayer', twitchOptions);
+    player.addEventListener(Twitch.Player.READY, function () {
+        /**
+         * this is really unfortunate, even though the player should be ready
+         * to take commands, we still have to wait a period of time to tell
+         * the player to seek to a time
+         */
+        setTimeout(function () {
+            player.seek(time);
+        }, 5000);
+    });
+}
+
+function twitchTimeStringToSeconds(time) {
+    var hours = time.indexOf('h') !== -1 ? parseInt(time.slice(0, time.indexOf('h'))) : 0;
+    var minutes = time.indexOf('m') !== -1 ? parseInt(time.slice(time.indexOf('m') - 2, time.indexOf('m'))) : 0;
+    var seconds = time.indexOf('s') !== -1 ? parseInt(time.slice(time.indexOf('s') - 2, time.indexOf('s'))) : 0;
+
+    return hours * 60 * 60 + minutes * 60 + seconds;
+}
+
+/* Formatting function for row details */
+function format(d, vodSite) {
+    var format = '';
+
+    if (vodSite === 'youtube') {
+        format = '<div class="embed-responsive embed-responsive-16by9">' + '<div id="videoPlayer"></div>' + '</div>';
+    } else if (vodSite === 'twitch') {
+        format = '<div id="videoPlayer" class="embed-responsive embed-responsive-16by9"></div>';
+    } else {
+        format = '<div id="videoPlayer"></div>';
+    }
+
+    return format;
+}
 
 /***/ }),
 /* 102 */
@@ -47559,7 +47615,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8), __webpack_require__(104)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(104)(module)))
 
 /***/ }),
 /* 104 */

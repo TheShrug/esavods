@@ -9,12 +9,6 @@
 
     <title>@yield('title') - ESA Vods</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    @if(isset($dashboard) && $dashboard == true)
-        <script src="{{ asset('js/dashboard.js') }}" defer></script>
-    @endif
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -22,10 +16,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-primary">
+<body class="bg-secondary">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="container">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -84,10 +78,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
-        <footer class="py-4">
+        <footer>
             <div class="container">
                 <div class="row justify-content-center">
                     <p>Copyright</p>
@@ -95,5 +89,12 @@
             </div>
         </footer>
     </div>
+    <!-- Scripts -->
+    <script src='https://www.youtube.com/iframe_api'></script>
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    @if(isset($dashboard) && $dashboard == true)
+        <script src="{{ asset('js/dashboard.js') }}" defer></script>
+    @endif
 </body>
 </html>

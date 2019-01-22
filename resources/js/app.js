@@ -9,14 +9,9 @@ require('./bootstrap');
 require('datatables.net-bs4');
 require('datatables.net-responsive-bs4');
 
-var table = $('.mainDataTable').DataTable({
+var table = $('#mainTable').DataTable({
     paging: false,
-    responsive: {
-        details: {
-            type: 'inline',
-            display: $.fn.dataTable.Responsive.display.childRowImmediate
-        }
-    },
+    responsive: true,
     order: [],
     columns: [
 
@@ -30,9 +25,13 @@ var table = $('.mainDataTable').DataTable({
     ]
 });
 
-$(document).on('click', '.expand-row-button', function () {
-    var tr = $(this).closest('tr');
-    var row = table.row( tr );
+$(document).on('click', '.video-links a', function (e) {
+    e.preventDefault();
+    let tr = $(this).closest('tr');
+    let vodSite = $(this).data('vod-site');
+    let vod = $(this).data('vod');
+    let row = table.row( tr );
+
 
     if ( row.child.isShown() ) {
         // This row is already open - close it
@@ -41,20 +40,80 @@ $(document).on('click', '.expand-row-button', function () {
     }
     else {
         // Open this row
-        row.child( format(row.data()) ).show();
+        row.child( format(row.data(), vodSite) ).show();
         tr.addClass('shown');
+
+        if(vodSite === 'youtube') {
+            initializeYoutubeVideo(vod)
+        } else if(vodSite === 'twitch') {
+            initializeTwitchVideo(vod)
+        }
+
     }
 } );
 
-/* Formatting function for row details - modify as you need */
-function format ( d ) {
-    console.log(d);
-    // `d` is the original data object for the row
-    return '<td colspan="' + d.length +'">'+
-        '</td>';
+
+function initializeYoutubeVideo(vod) {
+    let time = vod.slice(vod.indexOf('?t=') + 3)
+    let player = new YT.Player('videoPlayer', {
+        height: '360',
+        width: '640',
+        videoId: vod,
+        playerVars: {
+            start: time
+        },
+        events: {
+            'onReady': function(event) {
+                event.target.seekTo(time);
+                event.target.playVideo();
+            }
+        }
+    });
 }
 
+function initializeTwitchVideo(vod) {
+    let time = twitchTimeStringToSeconds(vod.slice(vod.indexOf('?t=') + 3));
+    let videoId = vod.slice(0, vod.indexOf('?t='));
+    let twitchOptions = {
+        height: 360,
+        width: 640,
+        video: videoId
+    }
 
-$('.testButton').on('click', function() {
-    table.responsive.recalc();
-})
+    let player = new Twitch.Player('videoPlayer', twitchOptions);
+    player.addEventListener(Twitch.Player.READY, () => {
+        /**
+         * this is really unfortunate, even though the player should be ready
+         * to take commands, we still have to wait a period of time to tell
+         * the player to seek to a time
+         */
+        setTimeout(function(){
+            player.seek(time);
+        }, 5000);
+    });
+}
+
+function twitchTimeStringToSeconds(time) {
+    let hours = (time.indexOf('h') !== -1) ? parseInt(time.slice(0, time.indexOf('h'))) : 0;
+    let minutes = (time.indexOf('m') !== -1) ? parseInt(time.slice(time.indexOf('m') - 2, time.indexOf('m'))) : 0;
+    let seconds = (time.indexOf('s') !== -1) ? parseInt(time.slice(time.indexOf('s') - 2, time.indexOf('s'))) : 0;
+
+    return (hours * 60 * 60) + (minutes * 60) + seconds;
+}
+
+/* Formatting function for row details */
+function format (d, vodSite) {
+    let format = '';
+
+    if(vodSite === 'youtube') {
+        format = '<div class="embed-responsive embed-responsive-16by9">'+
+            '<div id="videoPlayer"></div>'+
+            '</div>';
+    } else if (vodSite === 'twitch') {
+        format = '<div id="videoPlayer" class="embed-responsive embed-responsive-16by9"></div>';
+    } else {
+        format = '<div id="videoPlayer"></div>';
+    }
+
+    return format;
+}

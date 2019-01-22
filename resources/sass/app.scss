@@ -1,6 +1,6 @@
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 @import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
 @import url('https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css');
 
@@ -17,13 +17,50 @@ a {
   }
 }
 
-.table {width:100% !important;}
+.navbar {background-color:$primary;}
 
-.expand-row-button {font-family:"Font Awesome 5 Free";font-weight: 900; -moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;display: inline-block;font-style: normal;font-variant: normal;text-rendering: auto;line-height: 1;}
-.expand-row-button:before {content: "\f067";}
-.parent .expand-row-button:before {content: "\f068";}
-.navbar {
-  background-color:$primary;
+main  {background-color: $secondary;}
+
+.esa-table {
+  width: 100% !important;
+  background-color: $primary;
+  color:#fff;
+  border-radius:5px;
+  thead {
+    tr {
+
+      th {
+        padding: 10px 15px;
+        border-bottom:1px solid #fff;
+      }
+    }
+  }
+
+  td {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
 }
 
-main  {background-color: $primary;}
+.video-links {
+  a {
+    .fab {
+      padding: 3px;
+      font-size: 18px;
+      border-radius: 3px;
+      background:#ffffffa3;
+      -webkit-transition: all .2s;-moz-transition: all .2s;-ms-transition: all .2s;-o-transition: all .2s;transition: all .2s;
+      &:hover {
+        background:#fff;
+      }
+    }
+    .fa-twitch {
+      color: $twitch;
+    }
+    .fa-youtube {
+      color: $youtube;
+    }
+
+  }
+}
+
