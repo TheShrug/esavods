@@ -35,6 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereCategory($value)
  * @property string|null $run_date
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Run whereRunDate($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Genre[] $genres
  */
 class Run extends Model
 {

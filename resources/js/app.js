@@ -9,21 +9,26 @@ require('./bootstrap');
 require('datatables.net-bs4');
 require('datatables.net-responsive-bs4');
 
-var table = $('#mainTable').DataTable({
-    paging: false,
-    responsive: true,
-    order: [],
-    columns: [
-
-        { orderable: true },
-        { orderable: true },
-        { orderable: true },
-        { orderable: true },
-        { orderable: true },
-        { orderable: true },
-        { orderable: false, searchable: false },
-    ]
+$(document).ready(function() {
+    initializeDataTable();
 });
+
+var table;
+
+function initializeDataTable() {
+    table = $('#mainTable').DataTable({
+        paging: false,
+        responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                type: ''
+            }
+        },
+        order: [],
+    });
+}
+
+
 
 $(document).on('click', '.video-links a', function (e) {
     e.preventDefault();
@@ -33,13 +38,22 @@ $(document).on('click', '.video-links a', function (e) {
     let row = table.row( tr );
 
 
-    if ( row.child.isShown() ) {
-        // This row is already open - close it
+    if ( row.child.isShown() && tr.hasClass('shown') ) {
         row.child.hide();
         tr.removeClass('shown');
+        table.destroy();
+        initializeDataTable();
+    }
+    else if(row.child.isShown() && !tr.hasClass('shown')) {
+        $(row.child()).find('td').append(format(row.data(), vodSite));
+        tr.addClass('shown');
+        if(vodSite === 'youtube') {
+            initializeYoutubeVideo(vod)
+        } else if(vodSite === 'twitch') {
+            initializeTwitchVideo(vod)
+        }
     }
     else {
-        // Open this row
         row.child( format(row.data(), vodSite) ).show();
         tr.addClass('shown');
 

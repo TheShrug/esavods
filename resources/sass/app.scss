@@ -10,6 +10,10 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+body {
+  color: #fff;
+}
+
 a {
   color:$link;
   &:hover {
@@ -40,10 +44,18 @@ main  {background-color: $secondary;}
     padding: 5px 10px;
     font-size: 14px;
   }
+  td.child{
+    ul {
+      list-style:none;
+      padding: 0;
+      margin: 0;
+    }
+  }
 }
 
 .video-links {
   a {
+    display: inline-block;
     .fab {
       padding: 3px;
       font-size: 18px;

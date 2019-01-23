@@ -11,24 +11,30 @@
                     @if($runs)
                         <table class="esa-table" id="mainTable">
                             <thead>
-                            <tr>
-                                <th>Event</th>
-                                <th>Category</th>
-                                <th>Runners</th>
-                                <th>Time</th>
-                                <th data-sortable="false" data-priority="1">Play</th>
-                            </tr>
+                                <tr>
+                                    <th>Game</th>
+                                    <th>Category</th>
+                                    <th>Event</th>
+                                    <th>Runners</th>
+                                    <th>Time</th>
+                                    <th data-sortable="false" data-priority="1">Play</th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($runs as $run)
 	                            <?php /* @var $run \App\Run */ ?>
                                 <tr data-id="{{ $run->id }}">
                                     <td>
+                                        @if(isset($run->platform->name) && isset($run->platform->slug))
+                                            <a href="{{ route('platform.show', $run->platform->slug) }}" title="View all {{ $run->platform->name }} runs at ESA">{{ $run->platform->name }}</a>
+                                        @endif
+                                    </td>
+                                    <td>{{ $run->category }}</td>
+                                    <td>
                                         @if(isset($run->event->name) && isset($run->event->slug))
                                             <a href="{{ route('event.show', $run->event->slug) }}" title="View all {{ $run->event->name }} runs">{{ $run->event->name }}</a>
                                         @endif
                                     </td>
-                                    <td>{{ $run->category }}</td>
                                     <td>
                                         @foreach($run->runners as $key => $runner)
                                             @if(isset($runner->name) && isset($runner->slug))

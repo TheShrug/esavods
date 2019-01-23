@@ -32,6 +32,9 @@ Route::get('/runner/{slug}', 'RunnerController@runner')->name('runner.show');
 Route::get('/category/', 'CategoryController@index');
 Route::get('/category/{slug}', 'CategoryController@category')->name('category.show');
 
+Route::get('/genre/', 'GenreController@index');
+Route::get('/genre/{slug}', 'GenreController@genre')->name('genre.show');
+
 Route::get('/game/', 'GameControler@index');
 Route::get('/game/{slug}', 'GameController@game')->name('game.show');
 

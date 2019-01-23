@@ -10466,6 +10466,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  color: #fff;
+}
+
 a {
   color: #ffbd17;
 }
@@ -10497,6 +10501,16 @@ main {
 .esa-table td {
   padding: 5px 10px;
   font-size: 14px;
+}
+
+.esa-table td.child ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.video-links a {
+  display: inline-block;
 }
 
 .video-links a .fab {

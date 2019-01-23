@@ -5,6 +5,24 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\FirstOrCreateUniqueSlugTrait;
 
+/**
+ * App\Genre
+ *
+ * @property int $id
+ * @property string $name
+ * @property string|null $slug
+ * @property string|null $description
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Run[] $runs
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Genre whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Genre extends Model
 {
 	use FirstOrCreateUniqueSlugTrait;

@@ -18,7 +18,8 @@
                                 <th>Event</th>
                                 <th>Runners</th>
                                 <th>Time</th>
-                                <th>Play</th>
+                                <th>Genres</th>
+                                <th data-sortable="false" data-priority="1">Play</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -49,7 +50,14 @@
                                             @endforeach
                                         </td>
                                         <td>{{ gmdate('H:i:s', $run->time) }}</td>
-                                        <td class="video-links">
+                                        <td>
+                                            @foreach($run->genres as $key => $genre)
+                                                @if(isset($genre->name) && isset($genre->slug))
+                                                    <a href="{{ route('genre.show', $genre->slug) }}" title="View more games in the {{ $genre->name }} genre">{{ $genre->name }}</a>
+                                                @endif
+                                            @endforeach
+                                        </td>
+                                        <td class="video-links" nowrap>
                                             @if(isset($run->youtube_vod_id))
                                                 <a href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>
                                             @endif
@@ -62,7 +70,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    @endif;
+                    @endif
                 </div>
                 <div class="col-md-6"></div>
             </div>
