@@ -10495,12 +10495,20 @@ main {
 
 .esa-table thead tr th {
   padding: 10px 15px;
-  border-bottom: 1px solid #fff;
+}
+
+.esa-table tr.odd {
+  background: #354365;
+}
+
+.esa-table tr.odd + tr.child {
+  background: #354365;
 }
 
 .esa-table td {
-  padding: 5px 10px;
+  padding: 10px 15px;
   font-size: 14px;
+  line-height: 1.2;
 }
 
 .esa-table td.child ul {
@@ -10509,28 +10517,65 @@ main {
   margin: 0;
 }
 
-.video-links a {
-  display: inline-block;
+.esa-table td.child ul li span.dtr-title {
+  font-weight: 700;
 }
 
-.video-links a .fab {
+.esa-table td.child ul + * {
+  margin-top: 1rem;
+}
+
+.esa-table td.video-links {
+  padding: 0;
+}
+
+.esa-table td.video-links a {
+  width: 50%;
+  text-align: center;
+}
+
+.esa-table td.video-links a .fab,
+.esa-table td.video-links a .fas {
   padding: 3px;
-  font-size: 18px;
+  font-size: 20px;
   border-radius: 3px;
-  background: #ffffffa3;
+  width: 100%;
   -webkit-transition: all .2s;
   transition: all .2s;
 }
 
-.video-links a .fab:hover {
-  background: #fff;
+.esa-table td.video-links a .fab:hover,
+.esa-table td.video-links a .fas:hover {
+  background: #00000045;
 }
 
-.video-links a .fa-twitch {
+.esa-table td.video-links a .fa-twitch {
   color: #6441A4;
 }
 
-.video-links a .fa-youtube {
+.esa-table td.video-links a .fa-youtube {
   color: #db2828;
+}
+
+.esa-table td.video-links a.twitch {
+  float: right;
+}
+
+.esa-table td.video-links a.youtube {
+  float: left;
+}
+
+.esa-table td.video-links a.close-vod {
+  float: right;
+  display: none;
+}
+
+.esa-table tr.shown td.video-links a.close-vod {
+  display: block;
+}
+
+.esa-table tr.shown td.video-links a.youtube,
+.esa-table tr.shown td.video-links a.twitch {
+  display: none;
 }
 

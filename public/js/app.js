@@ -30336,13 +30336,6 @@ module.exports = __webpack_require__(108);
 /* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 __webpack_require__(102);
 __webpack_require__(77);
 __webpack_require__(106);
@@ -30356,13 +30349,17 @@ var table;
 function initializeDataTable() {
     table = $('#mainTable').DataTable({
         paging: false,
+        info: false,
         responsive: {
             details: {
                 display: $.fn.dataTable.Responsive.display.childRowImmediate,
                 type: ''
             }
         },
-        order: []
+        order: [],
+        language: {
+            search: "Search records:"
+        }
     });
 }
 
@@ -30372,13 +30369,18 @@ $(document).on('click', '.video-links a', function (e) {
     var vodSite = $(this).data('vod-site');
     var vod = $(this).data('vod');
     var row = table.row(tr);
+    var tbody = $(this).closest('tbody');
+    var trs = tbody.find('tr');
 
     if (row.child.isShown() && tr.hasClass('shown')) {
         row.child.hide();
         tr.removeClass('shown');
-        table.destroy();
-        initializeDataTable();
+        table.draw();
     } else if (row.child.isShown() && !tr.hasClass('shown')) {
+        trs.each(function () {
+            $(this).removeClass('shown');
+        });
+        table.draw();
         $(row.child()).find('td').append(format(row.data(), vodSite));
         tr.addClass('shown');
         if (vodSite === 'youtube') {
@@ -30387,9 +30389,13 @@ $(document).on('click', '.video-links a', function (e) {
             initializeTwitchVideo(vod);
         }
     } else {
+        trs.each(function () {
+            $(this).removeClass('shown');
+        });
+        table.draw();
         row.child(format(row.data(), vodSite)).show();
+        $(row.child()).addClass('child');
         tr.addClass('shown');
-
         if (vodSite === 'youtube') {
             initializeYoutubeVideo(vod);
         } else if (vodSite === 'twitch') {
@@ -30417,8 +30423,20 @@ function initializeYoutubeVideo(vod) {
 }
 
 function initializeTwitchVideo(vod) {
-    var time = twitchTimeStringToSeconds(vod.slice(vod.indexOf('?t=') + 3));
-    var videoId = vod.slice(0, vod.indexOf('?t='));
+    vod = vod.toString();
+    var time = 0;
+    var videoId = vod;
+    var hasTime = false;
+
+    if (vod.indexOf('?t=') > -1) {
+        hasTime = true;
+    }
+
+    if (hasTime) {
+        time = twitchTimeStringToSeconds(vod.slice(vod.indexOf('?t=') + 3));
+        videoId = vod.slice(0, vod.indexOf('?t='));
+    }
+
     var twitchOptions = {
         height: 360,
         width: 640,
@@ -30432,9 +30450,11 @@ function initializeTwitchVideo(vod) {
          * to take commands, we still have to wait a period of time to tell
          * the player to seek to a time
          */
-        setTimeout(function () {
-            player.seek(time);
-        }, 5000);
+        if (hasTime) {
+            setTimeout(function () {
+                player.seek(time);
+            }, 5000);
+        }
     });
 }
 

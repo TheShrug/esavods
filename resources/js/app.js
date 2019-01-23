@@ -1,10 +1,3 @@
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 require('datatables.net-bs4');
 require('datatables.net-responsive-bs4');
@@ -18,6 +11,7 @@ var table;
 function initializeDataTable() {
     table = $('#mainTable').DataTable({
         paging: false,
+        info: false,
         responsive: {
             details: {
                 display: $.fn.dataTable.Responsive.display.childRowImmediate,
@@ -25,9 +19,11 @@ function initializeDataTable() {
             }
         },
         order: [],
+        language: {
+            search: "Search records:"
+        }
     });
 }
-
 
 
 $(document).on('click', '.video-links a', function (e) {
@@ -36,15 +32,19 @@ $(document).on('click', '.video-links a', function (e) {
     let vodSite = $(this).data('vod-site');
     let vod = $(this).data('vod');
     let row = table.row( tr );
+    let tbody = $(this).closest('tbody');
+    let trs = tbody.find('tr');
 
-
-    if ( row.child.isShown() && tr.hasClass('shown') ) {
+    if (row.child.isShown() && tr.hasClass('shown')) {
         row.child.hide();
         tr.removeClass('shown');
-        table.destroy();
-        initializeDataTable();
+        table.draw();
     }
     else if(row.child.isShown() && !tr.hasClass('shown')) {
+        trs.each(function() {
+           $(this).removeClass('shown');
+        });
+        table.draw();
         $(row.child()).find('td').append(format(row.data(), vodSite));
         tr.addClass('shown');
         if(vodSite === 'youtube') {
@@ -54,15 +54,18 @@ $(document).on('click', '.video-links a', function (e) {
         }
     }
     else {
+        trs.each(function() {
+            $(this).removeClass('shown');
+        });
+        table.draw();
         row.child( format(row.data(), vodSite) ).show();
+        $(row.child()).addClass('child');
         tr.addClass('shown');
-
         if(vodSite === 'youtube') {
             initializeYoutubeVideo(vod)
         } else if(vodSite === 'twitch') {
             initializeTwitchVideo(vod)
         }
-
     }
 } );
 
@@ -86,13 +89,25 @@ function initializeYoutubeVideo(vod) {
 }
 
 function initializeTwitchVideo(vod) {
-    let time = twitchTimeStringToSeconds(vod.slice(vod.indexOf('?t=') + 3));
-    let videoId = vod.slice(0, vod.indexOf('?t='));
+    vod = vod.toString();
+    let time = 0;
+    let videoId = vod;
+    let hasTime = false;
+
+    if(vod.indexOf('?t=') > -1) {
+        hasTime = true;
+    }
+
+    if(hasTime) {
+        time = twitchTimeStringToSeconds(vod.slice(vod.indexOf('?t=') + 3));
+        videoId = vod.slice(0, vod.indexOf('?t='));
+    }
+
     let twitchOptions = {
         height: 360,
         width: 640,
         video: videoId
-    }
+    };
 
     let player = new Twitch.Player('videoPlayer', twitchOptions);
     player.addEventListener(Twitch.Player.READY, () => {
@@ -101,9 +116,11 @@ function initializeTwitchVideo(vod) {
          * to take commands, we still have to wait a period of time to tell
          * the player to seek to a time
          */
-        setTimeout(function(){
-            player.seek(time);
-        }, 5000);
+        if(hasTime) {
+            setTimeout(function(){
+                player.seek(time);
+            }, 5000);
+        }
     });
 }
 

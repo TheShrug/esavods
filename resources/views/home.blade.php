@@ -59,12 +59,12 @@
                                         </td>
                                         <td class="video-links" nowrap>
                                             @if(isset($run->youtube_vod_id))
-                                                <a href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>
+                                                <a class="youtube" href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>
                                             @endif
                                             @if(isset($run->twitch_vod_id))
-                                                <a href="https://www.twitch.tv/videos/{{ $run->twitch_vod_id }}" title="Twitch Link" data-vod-site="twitch" data-vod="{{ $run->twitch_vod_id }}"><i class="fab fa-twitch"></i></a>
+                                                <a class="twitch" href="https://www.twitch.tv/videos/{{ $run->twitch_vod_id }}" title="Twitch Link" data-vod-site="twitch" data-vod="{{ $run->twitch_vod_id }}"><i class="fab fa-twitch"></i></a>
                                             @endif
-
+                                                <a href="#" class="close-vod"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
