@@ -30340,11 +30340,17 @@ __webpack_require__(102);
 __webpack_require__(77);
 __webpack_require__(106);
 
+var table = void 0;
+
 $(document).ready(function () {
     initializeDataTable();
+    $('#mainTable').on('order.dt', function () {
+        table.rows().eq(0).each(function (index) {
+            var row = table.row(index).node();
+            $(row).removeClass('shown');
+        });
+    });
 });
-
-var table;
 
 function initializeDataTable() {
     table = $('#mainTable').DataTable({
@@ -30356,7 +30362,6 @@ function initializeDataTable() {
                 type: ''
             }
         },
-        order: [],
         language: {
             search: "Search records:"
         }

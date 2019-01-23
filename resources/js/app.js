@@ -2,11 +2,18 @@ require('./bootstrap');
 require('datatables.net-bs4');
 require('datatables.net-responsive-bs4');
 
+let table;
+
 $(document).ready(function() {
     initializeDataTable();
-});
+    $('#mainTable').on('order.dt', function() {
+        table.rows().eq(0).each(function(index) {
+           let row = table.row(index).node();
+           $(row).removeClass('shown');
+        });
 
-var table;
+    });
+});
 
 function initializeDataTable() {
     table = $('#mainTable').DataTable({
@@ -18,13 +25,11 @@ function initializeDataTable() {
                 type: ''
             }
         },
-        order: [],
         language: {
             search: "Search records:"
         }
     });
 }
-
 
 $(document).on('click', '.video-links a', function (e) {
     e.preventDefault();
@@ -68,7 +73,6 @@ $(document).on('click', '.video-links a', function (e) {
         }
     }
 } );
-
 
 function initializeYoutubeVideo(vod) {
     let time = vod.slice(vod.indexOf('?t=') + 3)
