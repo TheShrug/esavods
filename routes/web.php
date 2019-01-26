@@ -22,21 +22,21 @@ Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/run/{id}', 'RunController@run');
 
-Route::get('/event/', 'EventController@index');
+Route::get('/event/', 'EventController@index')->name('events');
 Route::get('/event/{slug}', 'EventController@event')->name('event.show');
 
-Route::get('/platform/', 'PlatformController@index');
+Route::get('/platform/', 'PlatformController@index')->name('platforms');
 Route::get('/platform/{slug}', 'PlatformController@platform')->name('platform.show');
 
 Route::get('/runner/{slug}', 'RunnerController@runner')->name('runner.show');
 
-Route::get('/category/', 'CategoryController@index');
+Route::get('/category/', 'CategoryController@index')->name('categories');
 Route::get('/category/{slug}', 'CategoryController@category')->name('category.show');
 
-Route::get('/genre/', 'GenreController@index');
+Route::get('/genre/', 'GenreController@index')->name('genres');
 Route::get('/genre/{slug}', 'GenreController@genre')->name('genre.show');
 
-Route::get('/game/', 'GameControler@index');
+Route::get('/game/', 'GameControler@index')->name('games');
 Route::get('/game/{slug}', 'GameController@game')->name('game.show');
 
 // Dashboard

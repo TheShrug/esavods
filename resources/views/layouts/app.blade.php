@@ -31,45 +31,62 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Events <span class="caret"></span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="">
-                                    ESA 2018
-                                </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6><a href="{{ route('events') }}" class="dropdown-item dropdown-header">All Events</a></h6>
+                                @if(isset($menu['events']))
+                                    @foreach($menu['events'] as $event)
+                                        <a class="dropdown-item" href="{{ route('event.show', $event->slug) }}">
+                                            {{ $event->name }}
+                                        </a>
+                                    @endforeach
+                                @endif
                             </div>
                         </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                @if (Route::has('register'))
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Platforms <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6><a href="{{ route('platforms') }}" class="dropdown-item dropdown-header">All Platforms</a></h6>
+                                @if(isset($menu['platforms']))
+                                    @foreach($menu['platforms'] as $platform)
+                                        <a class="dropdown-item" href="{{ route('platform.show', $platform->slug) }}">
+                                            {{ $platform->name }}
+                                        </a>
+                                    @endforeach
                                 @endif
-                            </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Genres <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6><a href="{{ route('genres') }}" class="dropdown-item dropdown-header">All Genres</a></h6>
+                                @if(isset($menu['genres']))
+                                    @foreach($menu['genres'] as $genre)
+                                        <a class="dropdown-item" href="{{ route('genre.show', $genre->slug) }}">
+                                            {{ $genre->name }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Categories <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h6><a href="{{ route('categories') }}" class="dropdown-item dropdown-header">All Categories</a></h6>
+                                @if(isset($menu['categories']))
+                                    @foreach($menu['categories'] as $category)
+                                        <a class="dropdown-item" href="{{ route('category.show', $category->slug) }}">
+                                            {{ $category->name }}
+                                        </a>
+                                    @endforeach
+                                @endif
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
