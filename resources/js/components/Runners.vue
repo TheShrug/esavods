@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card">
+        <div class="card bg-primary">
             <div class="card-body">
                 <h3 class="card-title">New Runner</h3>
                 <el-row>

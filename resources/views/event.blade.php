@@ -4,14 +4,14 @@
 @section('description', 'Description')
 
 @section('content')
-
     <section class="main">
         <div class="container">
             <div class="row justify-content-center">
 	            <?php /* @var $event App\Event */ ?>
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary">
-                        <h2>{{ $event->name }}</h2>
+                    <div class="jumbotron bg-primary py-5">
+                        <h1>{{ $event->name }}</h1>
+                        <hr class="my-4">
                         <p class="lead"><?= $event->description ?></p>
                     </div>
                 </div>
@@ -73,7 +73,6 @@
                             </tbody>
                         </table>
                     @endif
-
                 </div>
             </div>
         </div>

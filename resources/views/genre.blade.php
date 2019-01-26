@@ -7,10 +7,11 @@
     <section class="main">
         <div class="container">
             <div class="row justify-content-center">
-	            <?php /* @var $event App\Genre */ ?>
+		        <?php /* @var $event App\Genre */ ?>
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary">
-                        <h2>{{ $genre->name }}</h2>
+                    <div class="jumbotron bg-primary py-5">
+                        <h1>{{ $genre->name }}</h1>
+                        <hr class="my-4">
                         <p class="lead"><?= $genre->description ?></p>
                     </div>
                 </div>

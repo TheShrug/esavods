@@ -1,12 +1,12 @@
 <template>
     <div class="dashboard-container row">
         <div class="col-md-2">
-            <div class="list-group">
-                <a href="#" v-for="item in sections" class="list-group-item" @click="changeSection(item)">{{ item }}</a>
+            <div class="list-group ">
+                <a href="#" v-for="item in sections" class="list-group-item bg-primary" @click="changeSection(item)">{{ item }}</a>
             </div>
         </div>
         <div class="col-md-10">
-            <div class="dashboard bg-secondary">
+            <div class="dashboard">
                 <runs v-if="selectedSection === 'Runs'"></runs>
                 <categories v-if="selectedSection === 'Categories'"></categories>
                 <events v-if="selectedSection === 'Events'"></events>

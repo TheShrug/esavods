@@ -10,7 +10,8 @@
 	            <?php /* @var $event App\Platform */ ?>
                 <div class="col-md-12">
                     <div class="jumbotron bg-primary">
-                        <h2>{{ $platform->name }}</h2>
+                        <h1>{{ $platform->name }}</h1>
+                        <hr class="py-4">
                         <p class="lead"><?= $platform->description ?></p>
                     </div>
                 </div>

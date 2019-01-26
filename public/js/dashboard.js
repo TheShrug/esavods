@@ -61679,12 +61679,12 @@ var render = function() {
     _c("div", { staticClass: "col-md-2" }, [
       _c(
         "div",
-        { staticClass: "list-group" },
+        { staticClass: "list-group " },
         _vm._l(_vm.sections, function(item) {
           return _c(
             "a",
             {
-              staticClass: "list-group-item",
+              staticClass: "list-group-item bg-primary",
               attrs: { href: "#" },
               on: {
                 click: function($event) {
@@ -61701,7 +61701,7 @@ var render = function() {
     _c("div", { staticClass: "col-md-10" }, [
       _c(
         "div",
-        { staticClass: "dashboard bg-secondary" },
+        { staticClass: "dashboard" },
         [
           _vm.selectedSection === "Runs" ? _c("runs") : _vm._e(),
           _vm._v(" "),
@@ -62343,7 +62343,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -63506,7 +63506,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -64080,7 +64080,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -64676,7 +64676,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -65329,7 +65329,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -65898,7 +65898,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -66472,7 +66472,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card" }, [
+      _c("div", { staticClass: "card bg-primary" }, [
         _c(
           "div",
           { staticClass: "card-body" },
