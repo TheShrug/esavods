@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 
 Route::get('/run/{id}', 'RunController@run');
+Route::post('/run/{id}', 'RunController@watchedRun');
 
 Route::get('/event/', 'EventController@index')->name('events');
 Route::get('/event/{slug}', 'EventController@event')->name('event.show');

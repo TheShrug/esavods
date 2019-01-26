@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class RunController extends Controller
 {
-    //
+    public function watchedRun($id) {
+
+    }
 }
