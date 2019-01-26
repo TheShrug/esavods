@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Language" content="en">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -94,7 +95,6 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="/dashboard">
                                         {{ __('Dashboard') }}
@@ -122,7 +122,7 @@
                 <div class="row justify-content-center">
                     <p class="py-3 m-0">Copyright {{ Date('Y') }} ESA Vods</p>
                     <ul class="py-3">
-                        <li><a href="#">Made with <i class="fas fa-heart"></i></a></li>
+                        {{--<li><a href="#">Made with <i class="fas fa-heart"></i></a></li>--}}
                         <li><a href="{{ route('about') }}">About</a></li>
                         <li><a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
                     </ul>

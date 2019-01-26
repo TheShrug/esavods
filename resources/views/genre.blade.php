@@ -1,15 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Title')
-@section('description', 'Description')
+@section('title', (isset($title)) ? $title : '')
+@section('description', (isset($description)) ? $description : '')
 
 @section('content')
+	<?php /* @var $event App\Genre */ ?>
     <section class="main">
         <div class="container">
-            <div class="row justify-content-center">
-		        <?php /* @var $event App\Genre */ ?>
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary py-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-secondary py-0 px-0">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('genres') }}">Genres</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $genre->name }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>{{ $genre->name }}</h1>
                         <hr class="my-4">
                         <p class="lead"><?= $genre->description ?></p>
@@ -23,6 +34,7 @@
                             <thead>
                                 <tr>
                                     <th>Game</th>
+                                    <th>Platform</th>
                                     <th>Category</th>
                                     <th>Event</th>
                                     <th>Runners</th>
@@ -34,6 +46,11 @@
                             @foreach($runs as $run)
 	                            <?php /* @var $run \App\Run */ ?>
                                 <tr data-id="{{ $run->id }}">
+                                    <td>
+                                        @if(isset($run->game) && isset($run->game->slug))
+                                            <a href="{{ route('game.show', $run->game->slug) }}" title="View all {{ $run->game->name }} runs at ESA">{{ $run->game->name }}</a>
+                                        @endif
+                                    </td>
                                     <td>
                                         @if(isset($run->platform->name) && isset($run->platform->slug))
                                             <a href="{{ route('platform.show', $run->platform->slug) }}" title="View all {{ $run->platform->name }} runs at ESA">{{ $run->platform->name }}</a>

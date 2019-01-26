@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Title')
-@section('description', 'Description')
+@section('title', (isset($title)) ? $title : '')
+@section('description', (isset($description)) ? $description : '')
 
 @section('content')
     <section class="main">
@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
 		        <?php /* @var $event App\Platform */ ?>
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary">
+                    <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>{{ $runner->name }}</h1>
                         <hr class="my-4">
                         <p class="lead"><?= $runner->description ?></p>

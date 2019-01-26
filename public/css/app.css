@@ -10544,56 +10544,62 @@ hr {
   margin-left: 10px;
 }
 
-.esa-table {
+div.dataTables_wrapper div.dataTables_filter label {
+  margin-bottom: 1rem;
+}
+
+table.esa-table {
   width: 100% !important;
   background-color: #273453;
   color: #fff;
   border-radius: 5px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
 }
 
-.esa-table thead tr th {
+table.esa-table thead tr th {
   padding: 10px 15px;
 }
 
-.esa-table tr.odd {
+table.esa-table tr.odd {
   background: #354365;
 }
 
-.esa-table tr.odd + tr.child {
+table.esa-table tr.odd + tr.child {
   background: #354365;
 }
 
-.esa-table td {
+table.esa-table td {
   padding: 10px 15px;
   font-size: 14px;
   line-height: 1.2;
 }
 
-.esa-table td.child ul {
+table.esa-table td.child ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.esa-table td.child ul li span.dtr-title {
+table.esa-table td.child ul li span.dtr-title {
   font-weight: 700;
 }
 
-.esa-table td.child ul + * {
+table.esa-table td.child ul + * {
   margin-top: 1rem;
 }
 
-.esa-table td.video-links {
+table.esa-table td.video-links {
   padding: 0 15px 0 0;
 }
 
-.esa-table td.video-links a {
+table.esa-table td.video-links a {
   width: 50%;
   text-align: center;
 }
 
-.esa-table td.video-links a .fab,
-.esa-table td.video-links a .fas {
+table.esa-table td.video-links a .fab,
+table.esa-table td.video-links a .fas {
   padding: 3px;
   font-size: 20px;
   border-radius: 3px;
@@ -10602,38 +10608,38 @@ hr {
   transition: all .2s;
 }
 
-.esa-table td.video-links a .fab:hover,
-.esa-table td.video-links a .fas:hover {
+table.esa-table td.video-links a .fab:hover,
+table.esa-table td.video-links a .fas:hover {
   background: #00000045;
 }
 
-.esa-table td.video-links a .fa-twitch {
+table.esa-table td.video-links a .fa-twitch {
   color: #6441A4;
 }
 
-.esa-table td.video-links a .fa-youtube {
+table.esa-table td.video-links a .fa-youtube {
   color: #db2828;
 }
 
-.esa-table td.video-links a.twitch {
+table.esa-table td.video-links a.twitch {
   float: right;
 }
 
-.esa-table td.video-links a.youtube {
+table.esa-table td.video-links a.youtube {
   float: left;
 }
 
-.esa-table td.video-links a.close-vod {
+table.esa-table td.video-links a.close-vod {
   float: right;
   display: none;
 }
 
-.esa-table tr.shown td.video-links a.close-vod {
+table.esa-table tr.shown td.video-links a.close-vod {
   display: block;
 }
 
-.esa-table tr.shown td.video-links a.youtube,
-.esa-table tr.shown td.video-links a.twitch {
+table.esa-table tr.shown td.video-links a.youtube,
+table.esa-table tr.shown td.video-links a.twitch {
   display: none;
 }
 

@@ -11,33 +11,33 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb bg-secondary py-0 px-0">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Events</li>
+                            <li class="breadcrumb-item active" aria-current="page">Platforms</li>
                         </ol>
                     </nav>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    @if($events)
+                    @if($platforms)
                         <table class="esa-table" id="mainTable" data-order="[[0,&quot;asc&quot;]]">
                             <thead>
                                 <tr>
-                                    <th>Event</th>
+                                    <th>Platform</th>
                                     <th data-orderable="false">Description</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($events as $event)
-	                            <?php /* @var $event \App\Event */ ?>
-                                <tr data-id="{{ $event->id }}">
+                            @foreach($platforms as $platform)
+	                            <?php /* @var $platform \App\Platform */ ?>
+                                <tr data-id="{{ $platform->id }}">
                                     <td nowrap>
-                                        @if(isset($event->name) && isset($event->slug))
-                                            <a href="{{ route('event.show', $event->slug) }}">{{ $event->name }}</a>
+                                        @if(isset($platform->name) && isset($platform->slug))
+                                            <a href="{{ route('platform.show', $platform->slug) }}">{{ $platform->name }}</a>
                                         @endif
                                     </td>
                                     <td>
-                                        @if(isset($event->description))
-                                            {!! $event->description !!}
+                                        @if(isset($platform->description))
+                                            {!! $platform->description !!}
                                         @endif
                                     </td>
                                 </tr>

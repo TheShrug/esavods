@@ -9,7 +9,7 @@
             <div class="row justify-content-center">
 		        <?php /* @var $event App\Platform */ ?>
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary py-5">
+                    <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>Welcome to ESA VODs</h1>
                         <p class="lead">Navigate all speedrunning VODs of the <a href="https://esamarathon.com/" target="_blank">European Speedrunner Assembly</a> marathon online. This site contains an archive of all known speedruns at the European Speedrunner Assembly Marathon. All credit belongs to ESA and the speedrunners involved. The table below displays the top 100 most watched runs and resets at the conclusion of each marathon.</p>
                         <hr class="my-4">

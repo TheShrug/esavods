@@ -1,15 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Title')
-@section('description', 'Description')
+@section('title', (isset($title)) ? $title : '')
+@section('description', (isset($description)) ? $description : '')
 
 @section('content')
+	<?php /* @var $event App\Platform */ ?>
     <section class="main">
         <div class="container">
-            <div class="row justify-content-center">
-	            <?php /* @var $event App\Platform */ ?>
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-secondary py-0 px-0">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('platforms') }}">Platforms</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $platform->name }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>{{ $platform->name }}</h1>
                         <hr class="my-4">
                         <p class="lead"><?= $platform->description ?></p>
@@ -35,8 +46,8 @@
 	                            <?php /* @var $run \App\Run */ ?>
                                 <tr data-id="{{ $run->id }}">
                                     <td>
-                                        @if(isset($run->platform->name) && isset($run->platform->slug))
-                                            <a href="{{ route('platform.show', $run->platform->slug) }}" title="View all {{ $run->platform->name }} runs at ESA">{{ $run->platform->name }}</a>
+                                        @if(isset($run->game) && isset($run->game->slug))
+                                            <a href="{{ route('game.show', $run->game->slug) }}" title="View all {{ $run->game->name }} runs at ESA">{{ $run->game->name }}</a>
                                         @endif
                                     </td>
                                     <td>{{ $run->category }}</td>

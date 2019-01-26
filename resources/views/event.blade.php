@@ -1,15 +1,26 @@
 @extends('layouts.app')
 
-@section('title', 'Title')
-@section('description', 'Description')
+@section('title', (isset($title)) ? $title : '')
+@section('description', (isset($description)) ? $description : '')
 
 @section('content')
+	<?php /* @var $event App\Event */ ?>
     <section class="main">
         <div class="container">
-            <div class="row justify-content-center">
-	            <?php /* @var $event App\Event */ ?>
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="jumbotron bg-primary py-5">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb bg-secondary py-0 px-0">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('events') }}">Events</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ $event->name }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>{{ $event->name }}</h1>
                         <hr class="my-4">
                         <p class="lead"><?= $event->description ?></p>
