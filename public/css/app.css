@@ -10486,6 +10486,64 @@ main {
   background-color: #080D1B;
 }
 
+.main {
+  padding: 2rem 0;
+}
+
+hr {
+  border-top: 1px solid #354365;
+}
+
+.jumbotron {
+  overflow: hidden;
+}
+
+.jumbotron .jumbo-links {
+  display: block;
+}
+
+.jumbotron .jumbo-links ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.jumbotron .jumbo-links ul li {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.jumbotron .jumbo-links ul li .fas,
+.jumbotron .jumbo-links ul li .fab {
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.jumbotron .jumbo-links ul li + li {
+  margin-left: 10px;
+}
+
 .esa-table {
   width: 100% !important;
   background-color: #273453;
@@ -10526,7 +10584,7 @@ main {
 }
 
 .esa-table td.video-links {
-  padding: 0;
+  padding: 0 15px 0 0;
 }
 
 .esa-table td.video-links a {
@@ -10577,5 +10635,30 @@ main {
 .esa-table tr.shown td.video-links a.youtube,
 .esa-table tr.shown td.video-links a.twitch {
   display: none;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer ul li {
+  display: inline-block;
+  margin-left: 20px;
+  position: relative;
+}
+
+footer ul li + li:before {
+  content: '\2022';
+  position: absolute;
+  left: -15px;
 }
 

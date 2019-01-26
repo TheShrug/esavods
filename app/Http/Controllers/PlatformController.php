@@ -11,6 +11,6 @@ class PlatformController extends Controller
 	public function platform($slug) {
 		$platform = Platform::where('slug', '=', $slug)->firstOrFail();
 		$runs = $platform->runs;
-		return view('platform', ['runs' => $runs]);
+		return view('platform', ['runs' => $runs, 'platform' => $platform]);
 	}
 }

@@ -26,7 +26,7 @@ function initializeDataTable() {
             }
         },
         language: {
-            search: "Search records:"
+            search: "Search table:"
         }
     });
 }

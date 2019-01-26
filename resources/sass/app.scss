@@ -25,6 +25,38 @@ a {
 
 main {background-color: $secondary;}
 
+.main {padding: 2rem 0;}
+
+hr {border-top:1px solid rgb(53, 67, 101);}
+
+.jumbotron {
+  overflow: hidden;
+
+  .jumbo-links {
+    display: block;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style:none;
+      display: flex;
+      flex-direction: row;
+      li {
+        margin: 0;
+        padding: 0;
+        display: inline-block;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .fas, .fab {font-size: 25px; margin-right: 10px;}
+      }
+      li + li {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
 .esa-table {
   width: 100% !important;
   background-color: $primary;
@@ -65,7 +97,7 @@ main {background-color: $secondary;}
     }
   }
   td.video-links {
-    padding: 0;
+    padding: 0 15px 0 0;
     a {
       width: 50%;
       text-align: center;
@@ -110,5 +142,25 @@ main {background-color: $secondary;}
   }
 }
 
-
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  ul {
+    list-style:none;
+    padding: 0;
+    margin: 0;
+    li {
+      display: inline-block;
+      margin-left: 20px;
+      position: relative;
+    }
+    li + li:before {
+      content:'\2022';
+      position: absolute;
+      left: -15px;
+    }
+  }
+}
 

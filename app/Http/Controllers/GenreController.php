@@ -11,6 +11,6 @@ class GenreController extends Controller
 	public function genre($slug) {
 		$genre = Genre::where('slug', '=', $slug)->firstOrFail();
 		$runs = $genre->runs;
-		return view('genre', ['runs' => $runs]);
+		return view('genre', ['runs' => $runs, 'genre' => $genre]);
 	}
 }

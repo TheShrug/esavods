@@ -8,10 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title') - ESA Vods</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <meta name="description" content="@yield('description')">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -77,14 +74,18 @@
                 </div>
             </div>
         </nav>
-
         <main>
             @yield('content')
         </main>
-        <footer>
+        <footer class="bg-primary">
             <div class="container">
                 <div class="row justify-content-center">
-                    <p>Copyright</p>
+                    <p class="py-3 m-0">Copyright {{ Date('Y') }} ESA Vods</p>
+                    <ul class="py-3">
+                        <li><a href="#">Made with <i class="fas fa-heart"></i></a></li>
+                        <li><a href="{{ route('about') }}">About</a></li>
+                        <li><a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
+                    </ul>
                 </div>
             </div>
         </footer>

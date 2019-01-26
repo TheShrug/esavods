@@ -7,6 +7,15 @@
     <section class="main">
         <div class="container">
             <div class="row justify-content-center">
+	            <?php /* @var $event App\Genre */ ?>
+                <div class="col-md-12">
+                    <div class="jumbotron bg-primary">
+                        <h2>{{ $genre->name }}</h2>
+                        <p class="lead"><?= $genre->description ?></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
                 <div class="col-md-12">
                     @if($runs)
                         <table class="esa-table" id="mainTable">
