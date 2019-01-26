@@ -11,11 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
@@ -36,7 +32,7 @@ Route::get('/category/{slug}', 'CategoryController@category')->name('category.sh
 Route::get('/genre/', 'GenreController@index')->name('genres');
 Route::get('/genre/{slug}', 'GenreController@genre')->name('genre.show');
 
-Route::get('/game/', 'GameControler@index')->name('games');
+Route::get('/game/', 'GameController@index')->name('games');
 Route::get('/game/{slug}', 'GameController@game')->name('game.show');
 
 // Dashboard

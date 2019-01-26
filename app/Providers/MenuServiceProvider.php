@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+
 use App\Event;
 use App\Platform;
 use App\Category;
 use App\Genre;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\ServiceProvider;
 
 class MenuServiceProvider extends ServiceProvider
@@ -17,11 +19,31 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	$menu = [];
-    	$menu['events'] = Event::orderBy('name', 'asc')->get();
-    	$menu['platforms'] = Platform::orderBy('name', 'asc')->get();
-    	$menu['genres'] = Genre::orderBy('name', 'asc')->get();
-    	$menu['categories'] = Category::orderBy('name', 'asc')->get();
+
+	    Event::saved(function() {
+	    	Cache::forget('menu');
+	    });
+	    Platform::saved(function() {
+		    Cache::forget('menu');
+	    });
+	    Category::saved(function() {
+		    Cache::forget('menu');
+	    });
+	    Genre::saved(function() {
+		    Cache::forget('menu');
+	    });
+
+
+    	$menu = Cache::get('menu', function() {
+    		$menuArray = [];
+		    $menuArray['events'] = Event::orderBy('name', 'asc')->get();
+	        $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
+	        $menuArray['genres'] = Genre::orderBy('name', 'asc')->get();
+	        $menuArray['categories'] = Category::orderBy('name', 'asc')->get();
+	        Cache::put('menu', $menuArray, 60 * 24 );
+	        return $menuArray;
+	    });
+
         view()->share('menu', $menu);
     }
 }

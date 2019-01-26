@@ -11,7 +11,7 @@
                 <div class="col-md-12">
                     <div class="jumbotron bg-primary">
                         <h1>{{ $platform->name }}</h1>
-                        <hr class="py-4">
+                        <hr class="my-4">
                         <p class="lead"><?= $platform->description ?></p>
                     </div>
                 </div>
