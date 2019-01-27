@@ -7,6 +7,7 @@ use App\Category;
 use App\Event;
 use App\Platform;
 use App\Runner;
+use App\Game;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,27 +45,97 @@ class ImportCsvs extends Command
     public function handle()
     {
     	$files = Storage::disk('local')->allFiles('csv');
+
     	foreach($files as $file) {
     		$this->importCsvFile($file);
-    		break;
 	    }
-
-//	    var_dump(date('U', strtotime('Fri 23 Nov 2018 12:00:00 +0100')));
-
     }
 
     private function importCsvFile($file) {
 
-    	$csv = str_getcsv(Storage::disk('local')->get($file), ';');
+    	$csvFile = file(storage_path('app/' .$file));
+	    $csv = array_map(function($v) { return str_getcsv($v, ';'); }, $csvFile);
+	    array_walk($csv, function(&$a) use ($csv) {
+		    $a = array_combine($csv[0], $a);
+	    });
+	    array_shift($csv); # remove column header
 
-	    var_dump(storage_path($file));
+	    foreach($csv as $runRow) {
 
-	    fopen($file, 'r');
+	    	preg_match('#\[(.*?)\]#', $runRow['Game'], $nameMatches);
 
-//		$test = fopen(storage_path($file));
+		    $runGame = (isset($nameMatches[1])) ? $nameMatches[1] : $runRow['Game'];
+			$runDate = ($runRow['Scheduled']) ? Date('Y:m:d H:i:s', strtotime($runRow['Scheduled'])) : null;
+			$runPlatform = ($runRow['Platform']) ? $runRow['Platform'] : null;
+			$runEvent = ($runRow['Event']) ? $runRow['Event'] : null;
+			$runCategory = ($runRow['Category']) ? $runRow['Category'] : null;
+			$runCategoriesExplode = ($runRow['Categories']) ? explode('|', $runRow['Categories']) : null;
+			$runPlayersExplode = ($runRow['Players']) ? explode('|', $runRow['Players']) : null;
+		    $runTwitch = ($runRow['Twitch']) ? $runRow['Twitch'] : null;
+
+		    $runTimeExplode = explode(':', $runRow['Time']);
+		    $runSeconds = 0;
+		    $runSeconds += (int) $runTimeExplode[0] * 60 * 60;
+		    $runSeconds += (int) $runTimeExplode[1] * 60;
+		    $runSeconds += (int) $runTimeExplode[2];
+
+		    $runPlayers = [];
+			foreach($runPlayersExplode as $runPlayer) {
+				$runner = [];
+				preg_match('#\((.*?)\)#', $runPlayer, $playerUrlMatches);
+				preg_match('#\[(.*?)\]#', $runPlayer, $playerNameMatches);
+				$runner['name'] = $playerNameMatches[1];
+				$runner['twitch'] = $playerUrlMatches[1];
+				array_push($runPlayers, $runner);
+			}
+
+		    $runCategories = [];
+			if($runCategoriesExplode) {
+				foreach($runCategoriesExplode as $runCategory) {
+					array_push($runCategories, $runCategory);
+				}
+			}
+
+		    $game = Game::FirstOrCreateUniqueSlug(['name' => $runGame]);
+
+		    $run = Run::firstOrNew(['game_id' => $game->id, 'category' => $runCategory]);
+			$run->game()->associate($game);
 
 
-//    	var_dump($csv);
+		    if($runPlatform) {
+			    $platform = Platform::FirstOrCreateUniqueSlug(['name' => $runPlatform]);
+			    $run->platform()->associate($platform);
+		    }
+
+		    if($runEvent) {
+			    $event = Event::FirstOrCreateUniqueSlug(['name' => $runEvent]);
+			    $run->event()->associate($event);
+		    }
+
+
+
+		    $run->twitch_vod_id = $runTwitch;
+		    $run->time = $runSeconds;
+		    $run->run_date = $runDate;
+		    $run->category = $runCategory;
+		    $run->save();
+
+		    $categories = $runCategories;
+		    $run->addCategories($categories);
+
+		    foreach($runPlayers as $runPlayer) {
+			    $runnerModel = Runner::FirstOrCreateUniqueSlug(['name' => $runPlayer['name']]);
+			    $runnerModel->twitch = $runPlayer['twitch'];
+			    $runnerModel->save();
+			    $run->runners()->attach($runnerModel);
+		    }
+
+		    $run->save();
+
+
+	    }
+
+
     }
 
 }

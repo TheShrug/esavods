@@ -1,4 +1,4 @@
-Scheduled;Game;Player(s);Platform;Category;Categories;Twitch;Time;Event
+Scheduled;Game;Players;Platform;Category;Categories;Twitch;Time;Event
 Fri 23 Nov 2018 12:00:00 +0100;[Yoshi's Story](https://www.speedrun.com/Yoshis_Story#All_Melons_1-Lap);[LoveBot](https://www.twitch.tv/LoveBot);Wii VC;All Melons 1-Lap;;339579620;0:25:54;ESA 2018 - Movember
 Fri 23 Nov 2018 12:33:00 +0100;[Risk of Rain](https://www.speedrun.com/ror);[Mekarazium](https://www.twitch.tv/mekarazium);PC;Any%;;339584493;0:14:16;ESA 2018 - Movember
 Fri 23 Nov 2018 12:55:00 +0100;[Pokemon Randomizer](https://www.youtube.com/watch?v=0TXQGaiDaS4);[360Chrism](https://www.twitch.tv/360Chrism);PC;Any% Glitchless;;339613072;1:20:28;ESA 2018 - Movember
@@ -16,32 +16,32 @@ Fri 23 Nov 2018 23:18:00 +0100;[Dead Rising](https://www.speedrun.com/dr1#TimeSk
 Sat 24 Nov 2018 00:05:00 +0100;[Jade Empire](https://www.speedrun.com/Jade_Empire);[English_Ben](https://www.twitch.tv/english_ben);PC;Any% Special Edition;;339871968;2:06:39;ESA 2018 - Movember
 Sat 24 Nov 2018 02:22:00 +0100;[Animal Crossing](https://www.speedrun.com/ac);[Shape___](https://www.twitch.tv/shape___);GCN;All debts;;339892966;0:48:09;ESA 2018 - Movember
 Sat 24 Nov 2018 03:29:00 +0100;[Splatoon](https://www.speedrun.com/splatoon1);[PeekingBoo](https://www.twitch.tv/peekingboo);Wii U;DancePad Any%;;339932978;1:19:53;ESA 2018 - Movember
-Sat 24 Nov 2018 05:16:00 +0100;[Sonic the Hedgehog](https://www.speedrun.com/sonic1#Beat_the_Game);[SuperSonic71087](https://www.twitch.tv/SuperSonic71087);Genesis;Beat the Game - Glitchless;;339932978?t=01h27m31s;0:18:48;ESA 2018 - Movember
-Sat 24 Nov 2018 05:53:00 +0100;[Sonic CD 2011](https://www.speedrun.com/Sonic_CD_2011#Tails_Beat_the_game);[Mathew10Wilson](https://www.twitch.tv/Mathew10Wilson);PC;Tails: Beat the Game;;339942611;0:22:34;ESA 2018 - Movember
-Sat 24 Nov 2018 06:25:00 +0100;[BattleBlock Theater](https://www.speedrun.com/BattleBlock_Theater#All_Levels);[Paulister](https://www.twitch.tv/Paulister);PC;All Levels;;339956210;0:23:49;ESA 2018 - Movember
-Sat 24 Nov 2018 08:42:00 +0100;[Kirby 64: The Crystal Shards](https://www.speedrun.com/k64#Any1);[Mr_Shasta](https://www.twitch.tv/mr_shasta);N64;Any%;;339987243;2:06:15;ESA 2018 - Movember
-Sat 24 Nov 2018 09:54:00 +0100;[Donut County](https://www.speedrun.com/donutcounty);[GreenSnowDog](https://www.twitch.tv/greensnowdog);PC;Any%;;340000513;1:02:58;ESA 2018 - Movember
-Sat 24 Nov 2018 10:41:00 +0100;[Warcraft Adventures: Lord of the Clans](https://www.speedrun.com/warcraftadventures);[The_Handsome_Historian](https://www.twitch.tv/the_handsome_historian);PC;Lore%;;340010007;0:37:48;ESA 2018 - Movember
-Sat 24 Nov 2018 11:28:00 +0100;[Hearthstone: Curse of Naxxramas](https://www.speedrun.com/naxxramas#Heroic);[srd_27](https://www.twitch.tv/srd_27);PC;Heroic;;340019895;0:40:04;ESA 2018 - Movember
-Sat 24 Nov 2018 12:50:00 +0100;[Dark Souls Remastered](https://www.speedrun.com/darksoulsremastered);[Hivemind_](https://www.twitch.tv/hivemind_);PC;Any%;;340038699;1:02:57;ESA 2018 - Movember
-Sat 24 Nov 2018 13:52:00 +0100;[S.T.A.L.K.E.R.: Shadow of Chernobyl](https://www.speedrun.com/shoc);[TheStalkerVal](https://www.twitch.tv/thestalkerval);PC;Any%;;340052726;0:46:39;ESA 2018 - Movember
-Sat 24 Nov 2018 14:29:00 +0100;[Kreed](https://www.speedrun.com/Kreed);[Kelnin](https://www.twitch.tv/kelnin);PC;Any%;;340060882;0:16:21;ESA 2018 - Movember
-Sat 24 Nov 2018 16:16:00 +0100;[The Messenger](https://www.speedrun.com/The_Messenger#8-Bit);[Hivemind_](https://www.twitch.tv/hivemind_);PC;8-bit no oob;;340091349;1:20:10;ESA 2018 - Movember
-Sat 24 Nov 2018 17:13:00 +0100;[Final Fantasy III](https://www.speedrun.com/ff3#Any_No_Glitched_Jobs1);[Metako](https://www.twitch.tv/Metako);NES;Any% No Glitched Jobs;;340108219;0:41:27;ESA 2018 - Movember
-Sat 24 Nov 2018 19:20:00 +0100;[Panic Restaurant](https://www.speedrun.com/Panic_Restaurant#Any_Japanese_Version);[Sidetrakkd](https://www.twitch.tv/sidetrakkd);NES;Any% JP;;340166027;2:03:16;ESA 2018 - Movember
-Sat 24 Nov 2018 19:43:00 +0100;[Jackie Chan's Action Kung Fu](https://www.speedrun.com/Jackie_Chans_Action_Kung_Fu);[Sidetrakkd](https://www.twitch.tv/sidetrakkd);NES;Any%;;340174319;0:14:03;ESA 2018 - Movember
-Sat 24 Nov 2018 20:10:00 +0100;[Mega Man 2](http://www.megamanleaderboards.net/index.php?game=2);[coolkid](https://www.twitch.tv/coolkid);NES;Any% (difficult);;340186413;0:17:37;ESA 2018 - Movember
-Sat 24 Nov 2018 20:49:00 +0100;[Super Mario Bros.](https://www.speedrun.com/smb1#Warpless);[SuperSonic71087](https://www.twitch.tv/SuperSonic71087);NES;Warpless;;340202346;0:27:56;ESA 2018 - Movember
-Sat 24 Nov 2018 21:21:00 +0100;[Super Mario 64](https://www.speedrun.com/sm64);[cheese](https://www.twitch.tv/cheese);N64;120 star;;340216520;0:19:50;ESA 2018 - Movember
-Sat 24 Nov 2018 23:18:00 +0100;[Pokémon FireRed/LeafGreen](https://www.speedrun.com/pkmnfrlg);[PulseEffects](https://www.twitch.tv/PulseEffects);DS;Any%;;340267628;1:43:20;ESA 2018 - Movember
-Sun 25 Nov 2018 01:40:00 +0100;[Astro Boy: Omega Factor](https://www.speedrun.com/abof);[Drakodan](https://www.twitch.tv/Drakodan);GBA;Birth;;340326136;2:15:32;ESA 2018 - Movember
-Sun 25 Nov 2018 02:17:00 +0100;[Mighty Morphin Power Rangers: The Movie](https://www.speedrun.com/Mighty_Morphin_Power_Rangers_The_Movie_GB);[tokko_tomcat](https://www.twitch.tv/tokko_tomcat);GB;Any% Normal;;340339951;0:27:21;ESA 2018 - Movember
-Sun 25 Nov 2018 02:59:00 +0100;[Silent Hill 2](https://www.speedrun.com/sh2#New_Game);[Punchi](https://www.twitch.tv/Punchi);PC;New Game (Any Difficulty);;340353904;0:23:26;ESA 2018 - Movember
-Sun 25 Nov 2018 03:56:00 +0100;[Resident Evil 2](https://www.speedrun.com/re2#PC);[abomination1212](https://www.twitch.tv/abomination1212);PC;Leon B Any%;;340380139;0:48:54;ESA 2018 - Movember
-Sun 25 Nov 2018 05:01:00 +0100;[True Crime: New York City](https://www.speedrun.com/tc_nyc);[pmcTRILOGY](https://www.twitch.tv/pmctrilogy);PC;Any%;;340403409;0:57:25;ESA 2018 - Movember
-Sun 25 Nov 2018 06:16:00 +0100;[Thief: The Dark Project](https://www.speedrun.com/thief1);[TheAmorphousGamer](https://www.twitch.tv/theamorphousgamer);PC;Any% Normal - Old Dark;;340424644;0:57:54;ESA 2018 - Movember
-Sun 25 Nov 2018 06:53:00 +0100;[Grand Theft Auto: Vice City Stories](https://www.speedrun.com/gtavcs);[Joshimuz](https://www.twitch.tv/joshimuz);PSP;Any%;;340439956;0:13:50;ESA 2018 - Movember
-Sun 25 Nov 2018 10:53:00 +0100;[Sonic the Hedgehog 2](https://www.speedrun.com/sonic2);[Mathew10Wilson](https://www.twitch.tv/Mathew10Wilson);Genesis;Tails: Beat the Game;;340489495;3:57:00;ESA 2018 - Movember
+Sat 24 Nov 2018 03:29:00 +0100;[Celeste];[PeekingBoo](https://www.twitch.tv/peekingboo);PC;DancePad Any%;;339932978?t=01h27m31s;0:18:48;ESA 2018 - Movember
+Sat 24 Nov 2018 05:16:00 +0100;[Sonic the Hedgehog](https://www.speedrun.com/sonic1#Beat_the_Game);[SuperSonic71087](https://www.twitch.tv/SuperSonic71087);Genesis;Beat the Game - Glitchless;;339942611;0:22:34;ESA 2018 - Movember
+Sat 24 Nov 2018 05:53:00 +0100;[Sonic CD 2011](https://www.speedrun.com/Sonic_CD_2011#Tails_Beat_the_game);[Mathew10Wilson](https://www.twitch.tv/Mathew10Wilson);PC;Tails: Beat the Game;;339956210;0:23:49;ESA 2018 - Movember
+Sat 24 Nov 2018 06:25:00 +0100;[BattleBlock Theater](https://www.speedrun.com/BattleBlock_Theater#All_Levels);[Paulister](https://www.twitch.tv/Paulister);PC;All Levels;;339987243;2:06:15;ESA 2018 - Movember
+Sat 24 Nov 2018 08:42:00 +0100;[Kirby 64: The Crystal Shards](https://www.speedrun.com/k64#Any1);[Mr_Shasta](https://www.twitch.tv/mr_shasta);N64;Any%;;340000513;1:02:58;ESA 2018 - Movember
+Sat 24 Nov 2018 09:54:00 +0100;[Donut County](https://www.speedrun.com/donutcounty);[GreenSnowDog](https://www.twitch.tv/greensnowdog);PC;Any%;;340010007;0:37:48;ESA 2018 - Movember
+Sat 24 Nov 2018 10:41:00 +0100;[Warcraft Adventures: Lord of the Clans](https://www.speedrun.com/warcraftadventures);[The_Handsome_Historian](https://www.twitch.tv/the_handsome_historian);PC;Lore%;;340019895;0:40:04;ESA 2018 - Movember
+Sat 24 Nov 2018 11:28:00 +0100;[Hearthstone: Curse of Naxxramas](https://www.speedrun.com/naxxramas#Heroic);[srd_27](https://www.twitch.tv/srd_27);PC;Heroic;;340038699;1:02:57;ESA 2018 - Movember
+Sat 24 Nov 2018 12:50:00 +0100;[Dark Souls Remastered](https://www.speedrun.com/darksoulsremastered);[Hivemind_](https://www.twitch.tv/hivemind_);PC;Any%;;340052726;0:46:39;ESA 2018 - Movember
+Sat 24 Nov 2018 13:52:00 +0100;[S.T.A.L.K.E.R.: Shadow of Chernobyl](https://www.speedrun.com/shoc);[TheStalkerVal](https://www.twitch.tv/thestalkerval);PC;Any%;;340060882;0:16:21;ESA 2018 - Movember
+Sat 24 Nov 2018 14:29:00 +0100;[Kreed](https://www.speedrun.com/Kreed);[Kelnin](https://www.twitch.tv/kelnin);PC;Any%;;340091349;1:20:10;ESA 2018 - Movember
+Sat 24 Nov 2018 16:16:00 +0100;[The Messenger](https://www.speedrun.com/The_Messenger#8-Bit);[Hivemind_](https://www.twitch.tv/hivemind_);PC;8-bit no oob;;340108219;0:41:27;ESA 2018 - Movember
+Sat 24 Nov 2018 17:13:00 +0100;[Final Fantasy III](https://www.speedrun.com/ff3#Any_No_Glitched_Jobs1);[Metako](https://www.twitch.tv/Metako);NES;Any% No Glitched Jobs;;340166027;2:03:16;ESA 2018 - Movember
+Sat 24 Nov 2018 19:20:00 +0100;[Panic Restaurant](https://www.speedrun.com/Panic_Restaurant#Any_Japanese_Version);[Sidetrakkd](https://www.twitch.tv/sidetrakkd);NES;Any% JP;;340174319;0:14:03;ESA 2018 - Movember
+Sat 24 Nov 2018 19:43:00 +0100;[Jackie Chan's Action Kung Fu](https://www.speedrun.com/Jackie_Chans_Action_Kung_Fu);[Sidetrakkd](https://www.twitch.tv/sidetrakkd);NES;Any%;;340186413;0:17:37;ESA 2018 - Movember
+Sat 24 Nov 2018 20:10:00 +0100;[Mega Man 2](http://www.megamanleaderboards.net/index.php?game=2);[coolkid](https://www.twitch.tv/coolkid);NES;Any% (difficult);;340202346;0:27:56;ESA 2018 - Movember
+Sat 24 Nov 2018 20:49:00 +0100;[Super Mario Bros.](https://www.speedrun.com/smb1#Warpless);[SuperSonic71087](https://www.twitch.tv/SuperSonic71087);NES;Warpless;;340216520;0:19:50;ESA 2018 - Movember
+Sat 24 Nov 2018 21:21:00 +0100;[Super Mario 64](https://www.speedrun.com/sm64);[cheese](https://www.twitch.tv/cheese);N64;120 star;;340267628;1:43:20;ESA 2018 - Movember
+Sat 24 Nov 2018 23:18:00 +0100;[Pokémon FireRed/LeafGreen](https://www.speedrun.com/pkmnfrlg);[PulseEffects](https://www.twitch.tv/PulseEffects);DS;Any%;;340326136;2:15:32;ESA 2018 - Movember
+Sun 25 Nov 2018 01:40:00 +0100;[Astro Boy: Omega Factor](https://www.speedrun.com/abof);[Drakodan](https://www.twitch.tv/Drakodan);GBA;Birth;;340339951;0:27:21;ESA 2018 - Movember
+Sun 25 Nov 2018 02:17:00 +0100;[Mighty Morphin Power Rangers: The Movie](https://www.speedrun.com/Mighty_Morphin_Power_Rangers_The_Movie_GB);[tokko_tomcat](https://www.twitch.tv/tokko_tomcat);GB;Any% Normal;;340353904;0:23:26;ESA 2018 - Movember
+Sun 25 Nov 2018 02:59:00 +0100;[Silent Hill 2](https://www.speedrun.com/sh2#New_Game);[Punchi](https://www.twitch.tv/Punchi);PC;New Game (Any Difficulty);;340380139;0:48:54;ESA 2018 - Movember
+Sun 25 Nov 2018 03:56:00 +0100;[Resident Evil 2](https://www.speedrun.com/re2#PC);[abomination1212](https://www.twitch.tv/abomination1212);PC;Leon B Any%;;340403409;0:57:25;ESA 2018 - Movember
+Sun 25 Nov 2018 05:01:00 +0100;[True Crime: New York City](https://www.speedrun.com/tc_nyc);[pmcTRILOGY](https://www.twitch.tv/pmctrilogy);PC;Any%;;340424644;0:57:54;ESA 2018 - Movember
+Sun 25 Nov 2018 06:16:00 +0100;[Thief: The Dark Project](https://www.speedrun.com/thief1);[TheAmorphousGamer](https://www.twitch.tv/theamorphousgamer);PC;Any% Normal - Old Dark;;340439956;0:13:50;ESA 2018 - Movember
+Sun 25 Nov 2018 06:53:00 +0100;[Grand Theft Auto: Vice City Stories](https://www.speedrun.com/gtavcs);[Joshimuz](https://www.twitch.tv/joshimuz);PSP;Any%;;340489495;3:57:00;ESA 2018 - Movember
 Sun 25 Nov 2018 11:30:00 +0100;[The Slater](https://www.speedrun.com/The_Slater);[TheKotti](https://www.twitch.tv/thekotti);PC;Any%;;340504984;0:17:30;ESA 2018 - Movember
 Sun 25 Nov 2018 12:02:00 +0100;[Valley](https://www.speedrun.com/Valley/full_game);[TheRedSock](https://www.twitch.tv/theredsock);PC;Any%;;340511172;0:14:38;ESA 2018 - Movember
 Sun 25 Nov 2018 12:29:00 +0100;[ChromaGun](https://www.speedrun.com/chromagun);[Truljin](https://www.twitch.tv/truljin);PC;All Levels;;340521369;0:32:49;ESA 2018 - Movember
@@ -57,4 +57,4 @@ Sun 25 Nov 2018 22:21:00 +0100;[Super Mario Odyssey](https://www.speedrun.com/sm
 Sun 25 Nov 2018 23:43:00 +0100;[Star Fox 64](https://www.speedrun.com/sf64#Red_Line);[Pottoww](https://www.twitch.tv/Pottoww);N64;Red Line;;340776107;0:33:26;ESA 2018 - Movember
 Mon 26 Nov 2018 00:23:30 +0100;[Yoshi's Island DS](https://www.speedrun.com/yids);[RDVvsTheWorld](https://www.twitch.tv/RDVvsTheWorld);DS;Any%;;340818593;1:48:37;ESA 2018 - Movember
 Mon 26 Nov 2018 02:38:30 +0100;[Yooka-Laylee](https://www.speedrun.com/yl);[ninpalk](https://www.twitch.tv/ninpalk);Switch;Any%;;340834703;0:37:40;ESA 2018 - Movember
-Mon 26 Nov 2018 03:18:30 +0100;[ABZ�](https://www.speedrun.com/abzu#Blue_Suit_Glitchless_Any);[PsychoBunny](https://www.twitch.tv/PsychoBunny);PC;Blue Suit Glitchless Any%;;341346103;0:36:15;ESA 2018 - Movember
+Mon 26 Nov 2018 03:18:30 +0100;[ABZU](https://www.speedrun.com/abzu#Blue_Suit_Glitchless_Any);[PsychoBunny](https://www.twitch.tv/PsychoBunny);PC;Blue Suit Glitchless Any%;;340579618?t=11h06m17s;0:36:15;ESA 2018 - Movember
