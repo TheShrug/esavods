@@ -46,7 +46,7 @@
                             @foreach($runs as $run)
 	                            <?php /* @var $run \App\Run */ ?>
                                 <tr data-id="{{ $run->id }}">
-                                    <td data-order="{{{ isset($run->run_date) ? $run->run_date : '' }}}">
+                                    <td data-order="{{{ isset($run->run_date) ? $run->run_date : '' }}}" nowrap>
                                         @if(isset($run->run_date))
                                             {{ Date('D M jS, h:ia', strtotime($run->run_date)) }}
                                         @endif
