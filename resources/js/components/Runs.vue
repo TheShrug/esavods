@@ -81,7 +81,7 @@
                     </el-col>
                     <el-col :span="6">
                         <span>Time</span>
-                        <el-input v-model="time" :controls="false">
+                        <el-input v-model="time" :controls="false" v-on:blur="calculateSeconds">
                             <template slot="prepend">Run time</template>
                         </el-input>
                     </el-col>
@@ -503,6 +503,18 @@
                         $this.setFromJson(response.data);
                         $this.dialogVisible = false;
                     });
+            },
+            calculateSeconds() {
+                let timeSegments = this.time.split(':');
+                let seconds = 0;
+                if(timeSegments.length === 3) {
+                    seconds += parseInt(timeSegments[0]) * 60 * 60;
+                    seconds += parseInt(timeSegments[1]) * 60;
+                    seconds += parseInt(timeSegments[2]);
+                } else {
+                    seconds = this.time;
+                }
+                this.time = seconds;
             }
         }
     }
