@@ -20,7 +20,7 @@ $(trs).each(function() {
 
 console.log(JSON.stringify(runs))
 
-
+// youtube
 javascript: (function(e, s) {
     e.src = s;
     e.onload = function() {
@@ -45,3 +45,36 @@ jQuery(rows).each(function() {
 });
 
 console.log(JSON.stringify(list))
+
+// esa 2015
+let trs = $('.usertext-body.may-blank-within.md-container table tbody tr');
+let runs = [];
+
+$(trs).each(function() {
+    let tds = $(this).find('td');
+    let timeLink = $(tds[2]).find('a')[0];
+    let time = $(timeLink).text();
+    let name = $(tds[0]).text();
+    let players = $(tds[1]).find('a');
+    console.log(players);
+
+    let playersString = '';
+
+    $(players).each(function() {
+        if($(this).attr('href')) {
+            if(playersString !== '') {
+                playersString += '|';
+            }
+            playersString += '[' + $(this).text() +']('+ $(this).attr('href') +')';
+        }
+    })
+
+    runs.push({
+        name: name,
+        players: playersString,
+        time: time,
+    })
+
+});
+
+console.log(JSON.stringify(runs))
