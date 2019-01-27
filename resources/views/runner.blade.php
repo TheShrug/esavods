@@ -7,12 +7,27 @@
     <section class="main">
         <div class="container">
             <div class="row justify-content-center">
-		        <?php /* @var $event App\Platform */ ?>
+		        <?php /* @var $runner App\Runner */ ?>
                 <div class="col-md-12">
                     <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>{{ $runner->name }}</h1>
                         <hr class="my-4">
-                        <p class="lead"><?= $runner->description ?></p>
+                        <p class="lead">View all the runs by {{ $runner->name }} at ESA and make sure to give them some love by following their profiles</p>
+                        @if(!empty($runner->twitch) || !empty($runner->youtube) || !empty($runner->twitter))
+                            <div class="jumbo-links float-left">
+                                <ul>
+                                    @if(!empty($runner->twitch))
+                                        <li><a title="{{ $runner->name }}'s Twitch Profile" target="_blank" href="{{ $runner->twitch }}"><i class="fab fa-twitch"></i> Twitch</a></li>
+                                    @endif
+                                    @if(!empty($runner->twitter))
+                                        <li><a title="{{ $runner->twitter }}'s Twitter Profile" target="_blank" href="{{ $runner->twitter }}"><i class="fab fa-twitter"></i> Twitter</a></li>
+                                    @endif
+                                    @if(!empty($runner->youtube))
+                                        <li><a title="{{ $runner->name }}'s Youtube Page" target="_blank" href="{{ $runner->youtube }}"><i class="fab fa-youtube"></i> Youtube</a></li>
+                                    @endif
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
