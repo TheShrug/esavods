@@ -2,6 +2,12 @@ require('./bootstrap');
 require('datatables.net-bs4');
 require('datatables.net-responsive-bs4');
 
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 let table;
 
 $(document).ready(function() {
@@ -39,6 +45,8 @@ $(document).on('click', '.video-links a', function (e) {
     let row = table.row( tr );
     let tbody = $(this).closest('tbody');
     let trs = tbody.find('tr');
+
+    watchedRun($(tr).data('id'));
 
     if (row.child.isShown() && tr.hasClass('shown')) {
         row.child.hide();
@@ -151,4 +159,11 @@ function format (d, vodSite) {
     }
 
     return format;
+}
+
+function watchedRun(id){
+    $.ajax({
+        type: "POST",
+        url: /run/ + id
+    });
 }

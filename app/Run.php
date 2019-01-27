@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -41,6 +42,15 @@ class Run extends Model
 {
 
 	/**
+	 * @param array $ids
+	 *
+	 * @return Run[]|\Illuminate\Database\Eloquent\Collection
+	 */
+	public static function getRunsByIdArray(array $ids) {
+		return Run::whereIn('id', $ids)->get();
+	}
+
+	/**
 	 * @param array $runners
 	 */
 	public function addRunners(array $runners) {
@@ -52,6 +62,9 @@ class Run extends Model
 		}
 	}
 
+	/**
+	 * @param array $categories
+	 */
 	public function addCategories(array $categories) {
 		if($categories) {
 			foreach($categories as $category) {
@@ -61,6 +74,9 @@ class Run extends Model
 		}
 	}
 
+	/**
+	 * @param array $genres
+	 */
 	public function addGenres(array $genres) {
 		if($genres) {
 			foreach($genres as $genre) {
