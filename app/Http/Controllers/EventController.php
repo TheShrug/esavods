@@ -8,12 +8,26 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+	/**
+	 * Return the view for the runs for the event by the slug provided
+	 *
+	 * @param $slug
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
 	public function event($slug) {
 		$event = Event::where('slug', '=', $slug)->firstOrFail();
 		$runs = $event->runs;
-		return view('event', ['runs' => $runs, 'event' => $event]);
+		$title = $event->name . ' VODs - Commentated Speedrun Videos';
+		$description = $event->name . ' speedrun VODs. Archive of all the commentated speedrun videos for the ' . $event->name . ' event. ' . $event->description;
+		return view('event', ['runs' => $runs, 'event' => $event, 'title' => $title, 'description' => $description]);
 	}
 
+	/**
+	 * Returns the view for the Event index
+	 *
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
 	public function index() {
 		$events = Event::get();
 		return view('eventIndex', [
@@ -22,4 +36,5 @@ class EventController extends Controller
 			'description' => "Navigate through all European Speedrunner Assembly's events and select VODs to watch."
 		]);
 	}
+
 }
