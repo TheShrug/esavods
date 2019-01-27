@@ -402,7 +402,7 @@
                 runs: [],
                 dialogVisible: false,
                 editedRun: {},
-                genres: '',
+                genres: [],
                 genreOptions: []
             }
         },
@@ -453,7 +453,7 @@
                 this.youtubeId = '';
                 this.time = '';
                 this.runCategory = '';
-                this.genre = '';
+                this.genres = [];
             },
             edit(index, row) {
                 let $this = this;
