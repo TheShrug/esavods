@@ -57,7 +57,7 @@ class Run extends Model
 		if($runners) {
 			foreach($runners as $runner) {
 				$runnerModel = Runner::FirstOrCreateUniqueSlug(['name' => $runner]);
-				$this->runners()->attach($runnerModel);
+				$this->runners()->syncWithoutDetaching($runnerModel);
 			}
 		}
 	}
@@ -69,7 +69,7 @@ class Run extends Model
 		if($categories) {
 			foreach($categories as $category) {
 				$categoryModel = Category::FirstOrCreateUniqueSlug(['name' => $category]);
-				$this->categories()->attach($categoryModel);
+				$this->categories()->syncWithoutDetaching($categoryModel);
 			}
 		}
 	}
@@ -81,7 +81,7 @@ class Run extends Model
 		if($genres) {
 			foreach($genres as $genre) {
 				$genreModel = Genre::FirstOrCreateUniqueSlug(['name' => $genre]);
-				$this->genres()->attach($genreModel);
+				$this->genres()->syncWithoutDetaching($genreModel);
 			}
 		}
 	}

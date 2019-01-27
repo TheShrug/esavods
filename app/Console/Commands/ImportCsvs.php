@@ -52,7 +52,6 @@ class ImportCsvs extends Command
     }
 
     private function importCsvFile($file) {
-
     	$csvFile = file(storage_path('app/' .$file));
 	    $csv = array_map(function($v) { return str_getcsv($v, ';'); }, $csvFile);
 	    array_walk($csv, function(&$a) use ($csv) {
@@ -97,22 +96,19 @@ class ImportCsvs extends Command
 			}
 
 		    $game = Game::FirstOrCreateUniqueSlug(['name' => $runGame]);
-
 		    $run = Run::firstOrNew(['game_id' => $game->id, 'category' => $runCategory]);
-			$run->game()->associate($game);
-
+		    $run->game()->associate($game);
 
 		    if($runPlatform) {
 			    $platform = Platform::FirstOrCreateUniqueSlug(['name' => $runPlatform]);
 			    $run->platform()->associate($platform);
+
 		    }
 
 		    if($runEvent) {
 			    $event = Event::FirstOrCreateUniqueSlug(['name' => $runEvent]);
 			    $run->event()->associate($event);
 		    }
-
-
 
 		    $run->twitch_vod_id = $runTwitch;
 		    $run->time = $runSeconds;
@@ -127,15 +123,11 @@ class ImportCsvs extends Command
 			    $runnerModel = Runner::FirstOrCreateUniqueSlug(['name' => $runPlayer['name']]);
 			    $runnerModel->twitch = $runPlayer['twitch'];
 			    $runnerModel->save();
-			    $run->runners()->attach($runnerModel);
+			    $run->runners()->syncWithoutDetaching($runnerModel);
 		    }
 
 		    $run->save();
-
-
 	    }
-
-
     }
 
 }
