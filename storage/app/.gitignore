@@ -1,4 +1,4 @@
 *
-!csv/
-!public/
+!/csv
+!/public
 !.gitignore
