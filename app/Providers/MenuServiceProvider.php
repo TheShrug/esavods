@@ -20,30 +20,30 @@ class MenuServiceProvider extends ServiceProvider
     public function boot()
     {
 
-	    Event::saved(function() {
-	    	Cache::forget('menu');
-	    });
-	    Platform::saved(function() {
-		    Cache::forget('menu');
-	    });
-	    Category::saved(function() {
-		    Cache::forget('menu');
-	    });
-	    Genre::saved(function() {
-		    Cache::forget('menu');
-	    });
-
-
-    	$menu = Cache::get('menu', function() {
-    		$menuArray = [];
-		    $menuArray['events'] = Event::orderBy('name', 'asc')->get();
-	        $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
-	        $menuArray['genres'] = Genre::orderBy('name', 'asc')->get();
-	        $menuArray['categories'] = Category::orderBy('name', 'asc')->get();
-	        Cache::put('menu', $menuArray, 60 * 24 );
-	        return $menuArray;
-	    });
-
-        view()->share('menu', $menu);
+//	    Event::saved(function() {
+//	    	Cache::forget('menu');
+//	    });
+//	    Platform::saved(function() {
+//		    Cache::forget('menu');
+//	    });
+//	    Category::saved(function() {
+//		    Cache::forget('menu');
+//	    });
+//	    Genre::saved(function() {
+//		    Cache::forget('menu');
+//	    });
+//
+//
+//    	$menu = Cache::get('menu', function() {
+//    		$menuArray = [];
+//		    $menuArray['events'] = Event::orderBy('name', 'asc')->get();
+//	        $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
+//	        $menuArray['genres'] = Genre::orderBy('name', 'asc')->get();
+//	        $menuArray['categories'] = Category::orderBy('name', 'asc')->get();
+//	        Cache::put('menu', $menuArray, 60 * 24 );
+//	        return $menuArray;
+//	    });
+//
+//        view()->share('menu', $menu);
     }
 }
