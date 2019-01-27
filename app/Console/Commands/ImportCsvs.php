@@ -71,7 +71,7 @@ class ImportCsvs extends Command
 			$runCategoriesExplode = ($runRow['Categories']) ? explode('|', $runRow['Categories']) : null;
 			$runPlayersExplode = ($runRow['Players']) ? explode('|', $runRow['Players']) : null;
 		    $runTwitch = ($runRow['Twitch']) ? $runRow['Twitch'] : null;
-		    $runYoutube = (isset($runRow['Youtube'])) ? $runRow['Youtube'] : null;
+		    $runYoutube = (isset($runRow['Youtube']) && !empty($runRow['Youtube'])) ? $runRow['Youtube'] : null;
 
 		    $runTimeExplode = explode(':', $runRow['Time']);
 		    $runSeconds = 0;
