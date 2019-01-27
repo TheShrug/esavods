@@ -61587,7 +61587,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n.dashboard-container[data-v-040e2ab9] {\n    width: 100%;\n}\n.dashboard[data-v-040e2ab9] {\n    border-radius:.25rem;\n}\n", ""]);
+exports.push([module.i, "\n.dashboard-container[data-v-040e2ab9] {\n    width: 100%;\n}\n.dashboard[data-v-040e2ab9] {\n    border-radius:.25rem;\n    color: #606266;\n}\n", ""]);
 
 // exports
 
@@ -62343,7 +62343,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -63506,7 +63506,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -64080,7 +64080,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -64676,7 +64676,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -65329,7 +65329,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -65898,7 +65898,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },
@@ -66472,7 +66472,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("div", { staticClass: "card bg-primary" }, [
+      _c("div", { staticClass: "card" }, [
         _c(
           "div",
           { staticClass: "card-body" },

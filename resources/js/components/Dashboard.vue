@@ -40,5 +40,6 @@
     }
     .dashboard {
         border-radius:.25rem;
+        color: #606266;
     }
 </style>

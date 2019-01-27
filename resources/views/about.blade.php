@@ -12,7 +12,8 @@
                     <div class="jumbotron bg-primary py-5">
                         <h2>About ESA VODs</h2>
                         <p>This site contains an archive of all known speedruns at the <a href="https://esamarathon.com/" target="_blank">European Speedrunner Assembly</a> Marathon. All credit belongs to ESA and the speedrunners involved. </p>
-                        <p>Thank you to the creator of <a href="http://gdqvods.com/">gdqvods.com</a> for the inspiration to build this website. If you have any questions or concerns about the website, feel free to reach out and contact me.</p>
+                        <p>I couldn't fine</p>
+                        <p>Thanks to <a href="http://gdqvods.com/">gdqvods.com</a> for the inspiration to build this website. If you have any questions or concerns about the website, feel free to reach out and contact me.</p>
                         <hr class="my-4">
                         <div class="jumbo-links float-left">
                             <h5>ESA</h5>
@@ -29,7 +30,6 @@
                             <h5>Contact</h5>
                             <ul>
                                 <li><a href="mailto:esavods@gmail.com"><i class="fas fa-envelope"></i></a> <a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
-                                <li><i class="fab fa-discord"></i> Shrug#6348</li>
                             </ul>
                         </div>
                     </div>

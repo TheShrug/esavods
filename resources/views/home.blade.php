@@ -28,7 +28,6 @@
                             <h5>Contact</h5>
                             <ul>
                                 <li><a href="mailto:esavods@gmail.com"><i class="fas fa-envelope"></i></a> <a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
-                                <li><i class="fab fa-discord"></i> Shrug#6348</li>
                             </ul>
                         </div>
                     </div>
