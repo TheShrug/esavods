@@ -25,9 +25,9 @@
                             </ul>
                         </div>
                         <div class="jumbo-links float-right">
-                            <h5>Contact</h5>
+                            <h5 class="text-right">Contact</h5>
                             <ul>
-                                <li><a href="mailto:esavods@gmail.com"><i class="fas fa-envelope"></i></a> <a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
+                                <li><a href="mailto:esavods@gmail.com"><a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
                             </ul>
                         </div>
                     </div>

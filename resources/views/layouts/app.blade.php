@@ -17,7 +17,7 @@
 <body class="bg-primary">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="container-fluid">
+            <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -120,12 +120,14 @@
         <footer class="bg-primary">
             <div class="container">
                 <div class="row justify-content-center">
-                    <p class="py-3 m-0">Copyright {{ Date('Y') }} ESA Vods</p>
-                    <ul class="py-3">
+                    <div class="col-md-12">
+                    <p class="py-3 m-0 d-inline-block">Copyright {{ Date('Y') }} ESA Vods</p>
+                    <ul class="py-3 d-inline-block">
                         {{--<li><a href="#">Made with <i class="fas fa-heart"></i></a></li>--}}
                         <li><a href="{{ route('about') }}">About</a></li>
                         <li><a href="mailto:esavods@gmail.com">esavods@gmail.com</a></li>
                     </ul>
+                    </div>
                 </div>
             </div>
         </footer>

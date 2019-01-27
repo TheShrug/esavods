@@ -10643,6 +10643,10 @@ table.esa-table tr.shown td.video-links a.twitch {
   display: none;
 }
 
+footer {
+  text-align: left;
+}
+
 footer ul {
   list-style: none;
   padding: 0;
