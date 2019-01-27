@@ -71,6 +71,7 @@ class ImportCsvs extends Command
 			$runCategoriesExplode = ($runRow['Categories']) ? explode('|', $runRow['Categories']) : null;
 			$runPlayersExplode = ($runRow['Players']) ? explode('|', $runRow['Players']) : null;
 		    $runTwitch = ($runRow['Twitch']) ? $runRow['Twitch'] : null;
+		    $runYoutube = (isset($runRow['Youtube'])) ? $runRow['Youtube'] : null;
 
 		    $runTimeExplode = explode(':', $runRow['Time']);
 		    $runSeconds = 0;
@@ -79,19 +80,21 @@ class ImportCsvs extends Command
 		    $runSeconds += (int) $runTimeExplode[2];
 
 		    $runPlayers = [];
-			foreach($runPlayersExplode as $runPlayer) {
-				$runner = [];
-				preg_match('#\((.*?)\)#', $runPlayer, $playerUrlMatches);
-				preg_match('#\[(.*?)\]#', $runPlayer, $playerNameMatches);
-				$runner['name'] = $playerNameMatches[1];
-				$runner['twitch'] = $playerUrlMatches[1];
-				array_push($runPlayers, $runner);
-			}
+		    if($runPlayersExplode) {
+			    foreach($runPlayersExplode as $runPlayer) {
+				    $runner = [];
+				    preg_match('#\((.*?)\)#', $runPlayer, $playerUrlMatches);
+				    preg_match('#\[(.*?)\]#', $runPlayer, $playerNameMatches);
+				    if(isset($playerNameMatches[1])) $runner['name'] = $playerNameMatches[1];
+				    if(isset($playerUrlMatches[1])) $runner['twitch'] = $playerUrlMatches[1];
+				    array_push($runPlayers, $runner);
+			    }
+		    }
 
 		    $runCategories = [];
 			if($runCategoriesExplode) {
-				foreach($runCategoriesExplode as $runCategory) {
-					array_push($runCategories, $runCategory);
+				foreach($runCategoriesExplode as $runCategoriesCategory) {
+					array_push($runCategories, $runCategoriesCategory);
 				}
 			}
 
@@ -102,7 +105,6 @@ class ImportCsvs extends Command
 		    if($runPlatform) {
 			    $platform = Platform::FirstOrCreateUniqueSlug(['name' => $runPlatform]);
 			    $run->platform()->associate($platform);
-
 		    }
 
 		    if($runEvent) {
@@ -111,6 +113,7 @@ class ImportCsvs extends Command
 		    }
 
 		    $run->twitch_vod_id = $runTwitch;
+		    $run->youtube_vod_id = $runYoutube;
 		    $run->time = $runSeconds;
 		    $run->run_date = $runDate;
 		    $run->category = $runCategory;
@@ -121,7 +124,7 @@ class ImportCsvs extends Command
 
 		    foreach($runPlayers as $runPlayer) {
 			    $runnerModel = Runner::FirstOrCreateUniqueSlug(['name' => $runPlayer['name']]);
-			    $runnerModel->twitch = $runPlayer['twitch'];
+			    if(isset($runPlayer['twitch'])) $runnerModel->twitch = $runPlayer['twitch'];
 			    $runnerModel->save();
 			    $run->runners()->syncWithoutDetaching($runnerModel);
 		    }
