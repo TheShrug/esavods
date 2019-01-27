@@ -48,7 +48,7 @@
                                 <tr data-id="{{ $run->id }}">
                                     <td data-order="{{{ isset($run->run_date) ? $run->run_date : '' }}}">
                                         @if(isset($run->run_date))
-                                            {{ Date('D M jS, h:ia') }}
+                                            {{ Date('D M jS, h:ia', $run->run_date) }}
                                         @endif
                                     </td>
                                     <td>
