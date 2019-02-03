@@ -39,20 +39,20 @@ class ImportCsvs extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return mixed
      */
     public function handle()
     {
     	$files = Storage::disk('local')->allFiles('csv');
 
-    	foreach($files as $file) {
+    	foreach($files as $key => $file) {
     		$this->importCsvFile($file);
 	    }
     }
 
     private function importCsvFile($file) {
+
     	$csvFile = file(storage_path('app/' .$file));
+
 	    $csv = array_map(function($v) { return str_getcsv($v, ';'); }, $csvFile);
 	    array_walk($csv, function(&$a) use ($csv) {
 		    $a = array_combine($csv[0], $a);
@@ -102,17 +102,14 @@ class ImportCsvs extends Command
 			}
 
 		    $game = Game::FirstOrCreateUniqueSlug(['name' => $runGame]);
-		    $run = Run::firstOrNew(['game_id' => $game->id, 'category' => $runCategory]);
+		    $event = Event::FirstOrCreateUniqueSlug(['name' => $runEvent]);
+		    $run = Run::firstOrNew(['game_id' => $game->id, 'category' => $runCategory, 'event_id' => $event->id, 'time' => $runSeconds]);
 		    $run->game()->associate($game);
+		    $run->event()->associate($event);
 
 		    if($runPlatform) {
 			    $platform = Platform::FirstOrCreateUniqueSlug(['name' => $runPlatform]);
 			    $run->platform()->associate($platform);
-		    }
-
-		    if($runEvent) {
-			    $event = Event::FirstOrCreateUniqueSlug(['name' => $runEvent]);
-			    $run->event()->associate($event);
 		    }
 
 		    $run->twitch_vod_id = $runTwitch;
