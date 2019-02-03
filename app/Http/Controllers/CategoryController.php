@@ -33,7 +33,7 @@ class CategoryController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index() {
-		$categories = Category::get();
+		$categories = Category::withCount('runs')->get();
 		return view('categoryIndex', [
 			'categories' => $categories,
 			'title' => 'Categories - All categories of speedruns at ESA Marathon Events',

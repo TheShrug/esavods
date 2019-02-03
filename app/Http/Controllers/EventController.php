@@ -29,7 +29,7 @@ class EventController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index() {
-		$events = Event::get();
+		$events = Event::withCount('runs')->get();
 		return view('eventIndex', [
 			'events' => $events,
 			'title' => 'Events - All ESA Marathon Events',

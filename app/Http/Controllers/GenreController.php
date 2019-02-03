@@ -29,7 +29,7 @@ class GenreController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index() {
-		$genres = Genre::get();
+		$genres = Genre::withCount('runs')->get();
 		return view('genreIndex', [
 			'genres' => $genres,
 			'title' => 'Genres - All Game Genres at ESA Marathon Events',

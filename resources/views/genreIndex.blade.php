@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th>Genre</th>
-                                    <th data-orderable="false">Description</th>
+                                    <th>Number of Runs</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,8 +36,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if(isset($genre->description))
-                                            {!! $genre->description !!}
+                                        @if(isset($genre->runs_count))
+                                            {{ $genre->runs_count }}
                                         @endif
                                     </td>
                                 </tr>

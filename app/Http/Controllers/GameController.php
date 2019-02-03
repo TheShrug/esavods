@@ -27,7 +27,7 @@ class GameController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
     public function index() {
-		$games = Game::get();
+		$games = Game::withCount('runs')->get();
 	    return view('gameIndex', [
 		    'games' => $games,
 		    'title' => 'Games - All Games at ESA Marathon Events',

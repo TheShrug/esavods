@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th>Platform</th>
-                                    <th data-orderable="false">Description</th>
+                                    <th>Number of Runs</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,8 +36,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if(isset($platform->description))
-                                            {!! $platform->description !!}
+                                        @if(isset($platform->runs_count))
+                                            {{ $platform->runs_count }}
                                         @endif
                                     </td>
                                 </tr>

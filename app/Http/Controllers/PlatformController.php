@@ -35,7 +35,7 @@ class PlatformController extends Controller
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
 	public function index() {
-		$platforms = Platform::get();
+		$platforms = Platform::withCount('runs')->get();
 		return view('platformIndex', [
 			'platforms' => $platforms,
 			'title' => 'Platforms - All Platforms at ESA Marathon Events',

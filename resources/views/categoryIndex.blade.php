@@ -24,6 +24,7 @@
                         <tr>
                             <th>Category</th>
                             <th data-orderable="false">Description</th>
+                            <th>Number of Runs</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,11 @@
                                 <td>
                                     @if(isset($category->description))
                                         {!! $category->description !!}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if(isset($category->runs_count))
+                                        {{ $category->runs_count }}
                                     @endif
                                 </td>
                             </tr>

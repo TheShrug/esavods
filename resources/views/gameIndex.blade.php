@@ -23,7 +23,7 @@
                             <thead>
                                 <tr>
                                     <th>Game</th>
-                                    <th data-orderable="false">Description</th>
+                                    <th>Number of Runs</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -36,9 +36,9 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if(isset($game->description))
-                                            {!! $game->description !!}
-                                        @endif
+                                       @if(isset($game->runs_count))
+                                           {{ $game->runs_count }}
+                                       @endif
                                     </td>
                                 </tr>
                             @endforeach

@@ -24,6 +24,7 @@
                                 <tr>
                                     <th>Event</th>
                                     <th data-orderable="false">Description</th>
+                                    <th data-orderable="false">Number of Runs</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -38,6 +39,11 @@
                                     <td>
                                         @if(isset($event->description))
                                             {!! $event->description !!}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if(isset($event->runs_count))
+                                            {{ $event->runs_count }}
                                         @endif
                                     </td>
                                 </tr>
