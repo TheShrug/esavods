@@ -75,6 +75,7 @@ class ImportCsvs extends Command
 
 		    var_dump($runGame);
 
+		    $runRow['Time'] = str_replace('"', '', $runRow['Time']);
 		    $runTimeExplode = explode(':', $runRow['Time']);
 		    $runSeconds = 0;
 		    $runSeconds += (int) $runTimeExplode[0] * 60 * 60;
