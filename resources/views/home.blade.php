@@ -36,7 +36,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     @if($runs)
-                        <table class="esa-table" id="mainTable">
+                        <table class="esa-table" id="mainTable" data-order="[]">
                             <thead>
                             <tr>
                                 <th>Game</th>
@@ -45,7 +45,7 @@
                                 <th>Category</th>
                                 <th>Runners</th>
                                 <th>Time</th>
-                                <th>Genres</th>
+                                {{--<th>Genres</th>--}}
                                 <th data-sortable="false" data-priority="1">Play</th>
                             </tr>
                             </thead>
@@ -77,13 +77,13 @@
                                             @endforeach
                                         </td>
                                         <td>{{ gmdate('H:i:s', $run->time) }}</td>
-                                        <td>
-                                            @foreach($run->genres as $key => $genre)
-                                                @if(isset($genre->name) && isset($genre->slug))
-                                                    <a href="{{ route('genre.show', $genre->slug) }}" title="View more games in the {{ $genre->name }} genre">{{ $genre->name }}</a>
-                                                @endif
-                                            @endforeach
-                                        </td>
+                                        {{--<td>--}}
+                                            {{--@foreach($run->genres as $key => $genre)--}}
+                                                {{--@if(isset($genre->name) && isset($genre->slug))--}}
+                                                    {{--<a href="{{ route('genre.show', $genre->slug) }}" title="View more games in the {{ $genre->name }} genre">{{ $genre->name }}</a>--}}
+                                                {{--@endif--}}
+                                            {{--@endforeach--}}
+                                        {{--</td>--}}
                                         <td class="video-links" nowrap>
                                             @if(isset($run->youtube_vod_id))
                                                 <a class="youtube" href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>

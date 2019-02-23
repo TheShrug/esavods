@@ -66,21 +66,21 @@
                                 @endif
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Genres <span class="caret"></span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <h6><a href="{{ route('genres') }}" class="dropdown-item dropdown-header">All Genres</a></h6>
-                                @if(isset($menu['genres']))
-                                    @foreach($menu['genres'] as $genre)
-                                        <a class="dropdown-item" href="{{ route('genre.show', $genre->slug) }}">
-                                            {{ $genre->name }}
-                                        </a>
-                                    @endforeach
-                                @endif
-                            </div>
-                        </li>
+                        {{--<li class="nav-item dropdown">--}}
+                            {{--<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>--}}
+                                {{--Genres <span class="caret"></span>--}}
+                            {{--</a>--}}
+                            {{--<div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+                                {{--<h6><a href="{{ route('genres') }}" class="dropdown-item dropdown-header">All Genres</a></h6>--}}
+                                {{--@if(isset($menu['genres']))--}}
+                                    {{--@foreach($menu['genres'] as $genre)--}}
+                                        {{--<a class="dropdown-item" href="{{ route('genre.show', $genre->slug) }}">--}}
+                                            {{--{{ $genre->name }}--}}
+                                        {{--</a>--}}
+                                    {{--@endforeach--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Categories <span class="caret"></span>
