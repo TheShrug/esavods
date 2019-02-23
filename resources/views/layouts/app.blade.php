@@ -34,36 +34,53 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Events <span class="caret"></span>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu double" aria-labelledby="navbarDropdown">
                                 <h6><a href="{{ route('events') }}" class="dropdown-item dropdown-header">All Events</a></h6>
-                                @if(isset($menu['events']))
-                                    @foreach($menu['events'] as $event)
-                                        <a class="dropdown-item" href="{{ route('event.show', $event->slug) }}">
-                                            {{ $event->name }}
-                                        </a>
-                                    @endforeach
-                                @endif
+                                <?php $chunks = $menu['events']->chunk(ceil(count($menu['events']) / 2)); ?>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        @foreach($chunks as $chunk)
+                                            <div class="col-6 px-0">
+                                                @foreach($chunk as $event)
+                                                    <a class="dropdown-item" href="{{ route('event.show', $event->slug) }}">
+                                                        {{ $event->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Platforms <span class="caret"></span>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu triple" aria-labelledby="navbarDropdown">
                                 <h6><a href="{{ route('platforms') }}" class="dropdown-item dropdown-header">All Platforms</a></h6>
-                                @if(isset($menu['platforms']))
-                                    @foreach($menu['platforms'] as $platform)
-                                        <a class="dropdown-item" href="{{ route('platform.show', $platform->slug) }}">
-                                            {{ $platform->name }}
-                                        </a>
-                                    @endforeach
-                                @endif
+
+	                            <?php $chunks = $menu['platforms']->chunk(ceil(count($menu['platforms']) / 3)); ?>
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        @foreach($chunks as $chunk)
+                                            <div class="col-4 px-0">
+                                                @foreach($chunk as $platform)
+                                                    <a class="dropdown-item" href="{{ route('platform.show', $platform->slug) }}">
+                                                        {{ $platform->name }}
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+
+
                             </div>
                         </li>
                         {{--<li class="nav-item dropdown">--}}
