@@ -30,7 +30,7 @@ javascript: (function(e, s) {
     document.head.appendChild(e);
 })(document.createElement('script'), '//code.jquery.com/jquery-latest.min.js')
 
-let rows = jQuery('.yt-simple-endpoint');
+let rows = jQuery('.ytd-playlist-video-list-renderer .yt-simple-endpoint');
 
 let list = []
 jQuery(rows).each(function() {

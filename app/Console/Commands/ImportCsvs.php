@@ -88,7 +88,11 @@ class ImportCsvs extends Command
 				    $runner = [];
 				    preg_match('#\((.*?)\)#', $runPlayer, $playerUrlMatches);
 				    preg_match('#\[(.*?)\]#', $runPlayer, $playerNameMatches);
-				    if(isset($playerNameMatches[1])) $runner['name'] = $playerNameMatches[1];
+				    if(isset($playerNameMatches[1])) {
+					    $runner['name'] = $playerNameMatches[1];
+				    } else {
+				    	$runner['name'] = $runPlayer;
+				    }
 				    if(isset($playerUrlMatches[1])) $runner['twitch'] = $playerUrlMatches[1];
 				    array_push($runPlayers, $runner);
 			    }
