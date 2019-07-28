@@ -141,7 +141,7 @@ class DashboardController extends Controller
 		return response()->json(self::formatForJson());
 	}
 
-    public static function formatForJson() {
+    public static function formatForJson($page = 1) {
     	$json = [];
 	    $json['categories'] = Category::all();
 	    $json['games'] = Game::all();
@@ -149,12 +149,21 @@ class DashboardController extends Controller
 	    $json['events'] = Event::all();
 	    $json['runners'] = Runner::all();
 	    $json['genres'] = Genre::all();
-	    $json['runs'] = Run::with('categories', 'genres', 'game', 'platform', 'runners', 'event')->get();
+	    $json['runs'] = Run::with('categories', 'genres', 'game', 'platform', 'runners', 'event')->orderBy('id', 'DESC')->paginate(20, null, 'page', $page);
 		return $json;
     }
 
     public static function getJson() {
     	return response()->json(self::formatForJson());
+    }
+
+    public static function getRunsPaginated($page) {
+    	return Run::orderBy('id', 'DESC')->paginate(20, null, 'page', $page);
+    }
+
+    public static function getRunsJson(Request $request) {
+    	$page = $request['page'];
+    	return response()->json(self::getRunsPaginated($page));
     }
 
     // Categories

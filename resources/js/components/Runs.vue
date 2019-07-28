@@ -149,6 +149,13 @@
                 </el-row>
             </div>
         </div>
+        <el-pagination
+                layout="prev, pager, next"
+                :total="pagination.total"
+                :current-page="pagination.current_page"
+                :page-size="pagination.per_page"
+                @current-change="changedPage($event)">
+        </el-pagination>
         <el-table
                 :data="runs"
                 style="width: 100%"
@@ -216,6 +223,13 @@
 
             </el-table-column>
         </el-table>
+        <el-pagination
+                layout="prev, pager, next"
+                :total="pagination.total"
+                :current-page="pagination.current_page"
+                :page-size="pagination.per_page"
+                @current-change="changedPage($event)">
+        </el-pagination>
         <el-dialog
                 title="Edit"
                 :visible.sync="dialogVisible"
@@ -403,10 +417,33 @@
                 dialogVisible: false,
                 editedRun: {},
                 genres: [],
-                genreOptions: []
+                genreOptions: [],
+                pagination:  {
+                    current_page: 1,
+                    last_page: 0,
+                    per_page: 0,
+                    total: 0
+                }
             }
         },
         methods: {
+            changedPage(newPage) {
+                let $this = this;
+                $this.pagination.current_page = newPage;
+                $this.getPaginatedRuns();
+            },
+            getPaginatedRuns() {
+                let $this = this;
+                Axios.get('/dashboard/runs', {
+                    params: {page: $this.pagination.current_page}
+                }).then(function(response){
+                        $this.setRuns(response.data);
+                });
+            },
+            setRuns(data) {
+                let $this = this;
+                $this.runs = data.data;
+            },
             addNewRun() {
                 let $this = this;
                 let params = {};
@@ -442,7 +479,11 @@
                 this.gameOptions = data.games;
                 this.platformOptions = data.platforms;
                 this.genreOptions = data.genres;
-                this.runs = data.runs;
+                this.runs = data.runs.data;
+                this.pagination.current_page = data.runs.current_page;
+                this.pagination.last_page = data.runs.last_page;
+                this.pagination.total = data.runs.total;
+                this.pagination.per_page = data.runs.per_page;
             },
             clearForm() {
                 this.categories = [];

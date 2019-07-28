@@ -39,6 +39,7 @@ Route::get('/game/{slug}', 'GameController@game')->name('game.show');
 // Dashboard
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
 Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
+Route::get('/dashboard/runs', 'DashboardController@getRunsJson')->middleware('auth');
 
 // Runs
 Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
