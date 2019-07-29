@@ -31,6 +31,7 @@ class WatchedRun extends Model
 	public static function getTopWatchedRunIds() {
 		$topRunIds = DB::table('watched_runs')
 		               ->select(DB::raw('run_id, count(*) as count'))
+			           ->where('old', '=', 0)
 		               ->groupBy('run_id')
 		               ->orderBy('count')
 		               ->limit(100)->get();
