@@ -12,8 +12,8 @@ trait FirstOrCreateUniqueSlugTrait
 	 *
 	 * @return mixed
 	 */
-	public static function FirstOrCreateUniqueSlug(array $firstOrCreateArray) {
-		$model = self::FirstOrCreate($firstOrCreateArray);
+	public static function FirstOrCreateUniqueSlug(array $firstOrCreateArray, array $fieldsToAdd = []) {
+		$model = self::FirstOrCreate($firstOrCreateArray, $fieldsToAdd);
 		if(empty($model->slug)) {
 			$model->slug = Slug::createSlug($model['name'], $model);
 			$model->save();

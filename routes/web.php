@@ -44,6 +44,7 @@ Route::get('/dashboard/runs', 'DashboardController@getRunsJson')->middleware('au
 // Runs
 Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
 Route::post('/dashboard/run/edit', 'DashboardController@editRun')->middleware('auth');
+Route::post('/dashboard/runs/upload', 'DashboardController@uploadCsv')->middleware('auth');
 Route::delete('/dashboard/run/{id}', 'DashboardController@deleteRun')->middleware('auth');
 
 // Categories

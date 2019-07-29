@@ -62,6 +62,18 @@ class Run extends Model
 		}
 	}
 
+	public function addRunnersImport(array $runners) {
+
+		if($runners) {
+			foreach($runners as $runner) {
+				$runnerModel = Runner::FirstOrCreateUniqueSlug(['name' => $runner['name']], ['twitch' => $runner['twitch']]);
+				$this->runners()->syncWithoutDetaching($runnerModel);
+			}
+
+		}
+
+	}
+
 	/**
 	 * @param array $categories
 	 */

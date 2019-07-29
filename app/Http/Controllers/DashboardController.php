@@ -10,11 +10,66 @@ use App\Platform;
 use App\Event;
 use App\Runner;
 use App\Genre;
+use Storage;
+use League\Csv\Reader;
 
 class DashboardController extends Controller
 {
     public function index() {
     	return view('dashboard', array('dashboard' => true));
+    }
+
+    public function uploadCsv(Request $request) {
+		$path = $request->file('file')->store('uploads');
+
+		$file = Storage::get($path);
+
+
+		$csv = Reader::createFromString($file);
+		$csv->setHeaderOffset(0);
+		$csv->setDelimiter(';');
+
+		$records = $csv->getRecords();
+
+		foreach($records as $record) {
+
+			$platform = Platform::FirstOrCreateUniqueSlug(['name' => $record['Platform']]);
+			$event = Event::FirstOrCreateUniqueSlug(['name' => $record['Event']]);
+			$game = Game::FirstOrCreateUniqueSlug(['name' => $record['Game']]);
+
+			$run = Run::firstOrNew(['game_id' => $game->id, 'category' => $record['Category'], 'run_date' => date("Y-m-d H:i:s", strtotime($record['Schedule']))]);
+
+			$run->platform()->associate($platform);
+			$run->event()->associate($event);
+			$run->game()->associate($game);
+
+			if($record['Twitch']) {
+				$run->twitch_vod_id = $record['Twitch'];
+			}
+			if($record['Youtube']) {
+				$run->youtube_vod_id = $record['Youtube'];
+			}
+			$run->time = $record['Time'];
+			$run->run_date = date("Y-m-d H:i:s", strtotime($record['Schedule']));
+			$run->category = $record['Category'];
+			$run->save();
+
+			$categories = array($record['Extra']);
+			$run->addCategories($categories);
+
+			preg_match_all('/\[(.*?)\]\((.*?)\)/', $record['Runners'], $runnersRegexOutput);
+
+			$runnersArray = [];
+			if(!empty($runnersRegexOutput)) {
+				foreach($runnersRegexOutput[1] as $key => $name) {
+					$runnersArray[] = ['name' => $name, 'twitch' => $runnersRegexOutput[2][$key]];
+				}
+			}
+
+			$run->addRunnersImport($runnersArray);
+
+		}
+
     }
 
     public function addOrUpdateRun(Request $request) {

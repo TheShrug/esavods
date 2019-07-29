@@ -2,6 +2,16 @@
     <div>
         <div class="card">
             <div class="card-body">
+                <el-upload
+                        class="upload-demo"
+                        ref="upload"
+                        action="/dashboard/runs/upload"
+                        :headers="uploadHeaders"
+                        :auto-upload="false">
+                    <el-button slot="trigger" size="small" type="primary">select file</el-button>
+                    <el-button style="margin-left: 10px;" size="small" type="success" @click="uploadFile">upload to server</el-button>
+                    <div class="el-upload__tip" slot="tip">jpg/png files with a size less than 500kb</div>
+                </el-upload>
                 <h3 class="card-title">New Run</h3>
                 <el-row>
                     <el-col :span="6">
@@ -394,6 +404,8 @@
     export default {
         name: "Runs",
         mounted: function() {
+            this.getXsrf();
+
            this.getAllJson();
         },
         data: function() {
@@ -423,10 +435,20 @@
                     last_page: 0,
                     per_page: 0,
                     total: 0
-                }
+                },
+                uploadHeaders : {
+                    "X-CSRF-TOKEN": ''
+                },
             }
         },
         methods: {
+            getXsrf() {
+              let token = document.head.querySelector("meta[name=csrf-token]").content;
+              this.uploadHeaders["X-CSRF-TOKEN"] = token;
+            },
+            uploadFile() {
+              this.$refs.upload.submit();
+            },
             changedPage(newPage) {
                 let $this = this;
                 $this.pagination.current_page = newPage;
