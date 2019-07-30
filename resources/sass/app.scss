@@ -30,6 +30,11 @@ main {background-color: $secondary;}
 hr {border-top:1px solid rgb(53, 67, 101);}
 
 .navbar {
+  hr {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-top:1px solid #d2d2d2;
+  }
   .dropdown-menu.double {
     min-width: 400px;
   }

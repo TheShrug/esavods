@@ -24,6 +24,16 @@
                 </el-row>
                 <el-row>
                     <el-col :span="12">
+                        <span>Year</span>
+                        <el-input placeholder="Year" v-model="year"></el-input>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>Order</span>
+                        <el-input placeholder="Order" v-model="order"></el-input>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
                         <button @click="addNewEvent" class="btn btn-primary">Add</button>
                     </el-col>
                 </el-row>
@@ -46,6 +56,16 @@
             <el-table-column
                     prop="description"
                     label="Description"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="year"
+                    label="Year"
+                    width="">
+            </el-table-column>
+            <el-table-column
+                    prop="order"
+                    label="Order"
                     width="">
             </el-table-column>
             <el-table-column
@@ -83,6 +103,14 @@
                                 v-model="editedEvent.description">
                         </el-input>
                     </el-col>
+                    <el-col :span="12">
+                        <span>Year</span>
+                        <el-input placeholder="Year" v-model="editedEvent.year"></el-input>
+                    </el-col>
+                    <el-col :span="12">
+                        <span>Order</span>
+                        <el-input placeholder="Order" v-model="editedEvent.order"></el-input>
+                    </el-col>
                 </el-row>
             </span>
             <span slot="footer" class="dialog-footer">
@@ -105,6 +133,8 @@
                 event: '',
                 description: '',
                 slug: '',
+                year: '',
+                order: '',
                 editedEvent: {},
                 events: [],
                 dialogVisible: false
@@ -117,6 +147,8 @@
                 params.event = this.event;
                 params.description = this.description;
                 params.slug = this.slug;
+                params.year = this.year;
+                params.order = this.order;
                 Axios.post('/dashboard/event', params)
                     .then(function(response){
                         $this.setFromJson(response.data);
@@ -137,6 +169,8 @@
                 this.event = '';
                 this.slug = '';
                 this.description = '';
+                this.year = '';
+                this.order = '';
             },
             edit(index, row) {
                 this.dialogVisible = true;

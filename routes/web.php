@@ -13,6 +13,14 @@
 
 Auth::routes(['register' => false]);
 
+// 301 redirects on top
+Route::get('/event/esa-2019-one', function() {
+	return redirect('/event/esa-2019-summer-one', 301);
+});
+Route::get('/event/esa-2019-two', function() {
+	return redirect('/event/esa-2019-summer-two', 301);
+});
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 
@@ -35,6 +43,9 @@ Route::get('/genre/{slug}', 'GenreController@genre')->name('genre.show');
 
 Route::get('/game/', 'GameController@index')->name('games');
 Route::get('/game/{slug}', 'GameController@game')->name('game.show');
+
+
+
 
 // Dashboard
 Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');

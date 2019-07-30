@@ -20,6 +20,8 @@ class MenuServiceProvider extends ServiceProvider
     public function boot()
     {
 
+	    Cache::forget('menu');
+
 	    Event::saved(function() {
 	    	Cache::forget('menu');
 	    });
@@ -36,7 +38,7 @@ class MenuServiceProvider extends ServiceProvider
 
     	$menu = Cache::get('menu', function() {
     		$menuArray = [];
-		    $menuArray['events'] = Event::orderBy('name', 'asc')->get();
+		    $menuArray['events'] = Event::orderBy('year', 'desc')->orderBy('order', 'asc')->get()->sortByDesc('year')->groupBy('year');
 	        $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
 	        $menuArray['genres'] = Genre::orderBy('name', 'asc')->get();
 	        $menuArray['categories'] = Category::orderBy('name', 'asc')->get();

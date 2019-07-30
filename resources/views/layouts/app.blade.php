@@ -58,21 +58,31 @@
                                 Events <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu double" aria-labelledby="navbarDropdown">
-                                <h6><a href="{{ route('events') }}" class="dropdown-item dropdown-header">All Events</a></h6>
-                                <?php $chunks = $menu['events']->chunk(ceil(count($menu['events']) / 2)); ?>
-                                <div class="container-fluid">
-                                    <div class="row">
-                                        @foreach($chunks as $chunk)
-                                            <div class="col-6 px-0">
-                                                @foreach($chunk as $event)
-                                                    <a class="dropdown-item" href="{{ route('event.show', $event->slug) }}">
-                                                        {{ $event->name }}
-                                                    </a>
+
+
+                                <?php //var_dump($menu['events']); ?>
+                                    <h6><a href="{{ route('events') }}" class="dropdown-item dropdown-header" title="All Events">All Events</a></h6>
+                                @foreach($menu['events'] as $key => $event)
+                                        <hr>
+		                            <?php $chunks = $event->chunk(2); ?>
+                                    @foreach($chunks as $chunk)
+
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                @foreach($chunk as $actualEvent)
+                                                        <div class="col-6 px-0">
+                                                            <a class="dropdown-item" href="{{ route('event.show', $actualEvent->slug) }}" title="{{ $actualEvent->name }}">
+                                                            {{ $actualEvent->name }}
+                                                            </a>
+                                                        </div>
                                                 @endforeach
+                                                </div>
                                             </div>
-                                        @endforeach
-                                    </div>
-                                </div>
+                                    @endforeach
+
+                                @endforeach
+
+
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -80,7 +90,7 @@
                                 Platforms <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu triple" aria-labelledby="navbarDropdown">
-                                <h6><a href="{{ route('platforms') }}" class="dropdown-item dropdown-header">All Platforms</a></h6>
+                                <h6><a href="{{ route('platforms') }}" class="dropdown-item dropdown-header" title="All Platforms">All Platforms</a></h6>
 
 	                            <?php $chunks = $menu['platforms']->chunk(ceil(count($menu['platforms']) / 3)); ?>
                                 <div class="container-fluid">
@@ -121,7 +131,7 @@
                                 Categories <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <h6><a href="{{ route('categories') }}" class="dropdown-item dropdown-header">All Categories</a></h6>
+                                <h6><a href="{{ route('categories') }}" class="dropdown-item dropdown-header" title="All Categories">All Categories</a></h6>
                                 @if(isset($menu['categories']))
                                     @foreach($menu['categories'] as $category)
                                         <a class="dropdown-item" href="{{ route('category.show', $category->slug) }}">

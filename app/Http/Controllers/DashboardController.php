@@ -274,7 +274,9 @@ class DashboardController extends Controller
 		$event = Event::firstOrCreate([
 			'name' => $request['event'],
 			'slug' => $request['slug'],
-			'description' => $request['description']
+			'description' => $request['description'],
+			'year' => $request['year'],
+			'order' => $request['order']
 		]);
 		$event->save();
 		return self::getEvents();
@@ -285,6 +287,8 @@ class DashboardController extends Controller
 		$event->name = $request['name'];
 		$event->slug = $request['slug'];
 		$event->description = $request['description'];
+		$event->year = $request['year'];
+		$event->order = $request['order'];
 		$event->save();
 		return self::getEvents();
 	}
