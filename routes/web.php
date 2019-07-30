@@ -21,6 +21,13 @@ Route::get('/event/esa-2019-two', function() {
 	return redirect('/event/esa-2019-summer-two', 301);
 });
 
+Route::get('/event/esa-2018-one', function() {
+	return redirect('/event/esa-2018-summer-one', 301);
+});
+Route::get('/event/esa-2018-two', function() {
+	return redirect('/event/esa-2018-summer-two', 301);
+});
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 
