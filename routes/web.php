@@ -28,6 +28,40 @@ Route::get('/event/esa-2018-two', function() {
 	return redirect('/event/esa-2018-summer-two', 301);
 });
 
+Route::get('/platform/gp-player', function() {
+	return redirect('/platform/game-boy', 301);
+});
+Route::get('/platform/gb', function() {
+	return redirect('/platform/game-boy', 301);
+});
+
+Route::get('/platform/gameboy-player', function() {
+	return redirect('/platform/game-boy', 301);
+});
+Route::get('/platform/gpp', function() {
+	return redirect('/platform/game-boy', 301);
+});
+Route::get('/platform/gc', function() {
+	return redirect('/platform/gamecube', 301);
+});
+Route::get('/platform/gcn', function() {
+	return redirect('/platform/gamecube', 301);
+});
+
+Route::get('/platform/gba', function() {
+	return redirect('/platform/game-boy-advance', 301);
+});
+Route::get('/platform/gba-emu', function() {
+	return redirect('/platform/game-boy-advance', 301);
+});
+Route::get('/platform/gbs-emu', function() {
+	return redirect('/platform/game-boy-advance', 301);
+});
+
+
+
+
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 
