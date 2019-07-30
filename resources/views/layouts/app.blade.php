@@ -60,8 +60,8 @@
                             <div class="dropdown-menu double" aria-labelledby="navbarDropdown">
 
 
-                                <?php //var_dump($menu['events']); ?>
-                                    <h6><a href="{{ route('events') }}" class="dropdown-item dropdown-header" title="All Events">All Events</a></h6>
+
+                                <h6><a href="{{ route('events') }}" class="dropdown-item dropdown-header" title="All Events">All Events</a></h6>
                                 @foreach($menu['events'] as $key => $event)
                                         <hr>
 		                            <?php $chunks = $event->chunk(2); ?>

@@ -19,7 +19,8 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	
+	    Cache::forget('menu');
+
 	    Event::saved(function() {
 	    	Cache::forget('menu');
 	    });
