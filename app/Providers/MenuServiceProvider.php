@@ -19,8 +19,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-	    Cache::forget('menu');
-
+	   
 	    Event::saved(function() {
 	    	Cache::forget('menu');
 	    });
@@ -33,7 +32,6 @@ class MenuServiceProvider extends ServiceProvider
 	    Genre::saved(function() {
 		    Cache::forget('menu');
 	    });
-
 
     	$menu = Cache::get('menu', function() {
     		$menuArray = [];
