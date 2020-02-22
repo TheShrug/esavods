@@ -12,8 +12,7 @@
                     <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>Welcome to ESA VODs</h1>
                         <p>Navigate all speedrunning VODs of the <a href="https://esamarathon.com/" target="_blank">European Speedrunner Assembly</a> marathon online. This site contains an archive of all known speedruns at the European Speedrunner Assembly Marathon. All credit belongs to ESA and the speedrunners involved. The table below displays the top 100 most watched runs and resets at the conclusion of each marathon.</p>
-                        <p class="lead">Thank you <a href="https://esamarathon.com/" target="_blank">ESA</a> & <a href="https://dreamhack.com/" target="_blank">Dreamhack</a> for this most recent event! The latest vods for ESA Dreamhack Winter 2019 can be found here:
-                            <a href="https://esavods.com/event/esa-dreamhack-winter-2019" title="ESA Vods for Dreamhack 2019 Winter">Dreamhack 2019 Winter</a></p>
+                        <p class="lead">Thank you <a href="https://esamarathon.com/" target="_blank">ESA</a> for this most recent event! As soon as I get back in town I'll work on getting the latest runs up on the website, I promise!</p>
                         <hr class="my-4">
                         <div class="jumbo-links float-left">
                             <h5>ESA</h5>
