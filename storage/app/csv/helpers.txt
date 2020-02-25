@@ -1,0 +1,7 @@
+Regex to help replace links with pattern appropriate for import:
+find: <a href="(.*?)">(.*?)<\/a>
+replace: [$2]($1)
+
+regex to replace time pattern with appropriate for import:
+find: <time datetime="(.*?)" class="time-only">.*<\/time>
+replace: $1
