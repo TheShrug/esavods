@@ -19,30 +19,32 @@ class MenuServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // all of this should probably be different, but there is no time!
+        if(\Schema::hasTable('migrations')) {
+            Event::saved(function() {
+                Cache::forget('menu');
+            });
+            Platform::saved(function() {
+                Cache::forget('menu');
+            });
+            Category::saved(function() {
+                Cache::forget('menu');
+            });
+            Genre::saved(function() {
+                Cache::forget('menu');
+            });
 
-	    Event::saved(function() {
-	    	Cache::forget('menu');
-	    });
-	    Platform::saved(function() {
-		    Cache::forget('menu');
-	    });
-	    Category::saved(function() {
-		    Cache::forget('menu');
-	    });
-	    Genre::saved(function() {
-		    Cache::forget('menu');
-	    });
+            $menu = Cache::get('menu', function() {
+                $menuArray = [];
+                $menuArray['events'] = Event::orderBy('year', 'desc')->orderBy('order', 'asc')->get()->sortByDesc('year')->groupBy('year');
+                $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
+                $menuArray['genres'] = Genre::orderBy('name', 'asc')->get();
+                $menuArray['categories'] = Category::orderBy('name', 'asc')->get();
+                Cache::put('menu', $menuArray, 60 * 24 );
+                return $menuArray;
+            });
 
-    	$menu = Cache::get('menu', function() {
-    		$menuArray = [];
-		    $menuArray['events'] = Event::orderBy('year', 'desc')->orderBy('order', 'asc')->get()->sortByDesc('year')->groupBy('year');
-	        $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
-	        $menuArray['genres'] = Genre::orderBy('name', 'asc')->get();
-	        $menuArray['categories'] = Category::orderBy('name', 'asc')->get();
-	        Cache::put('menu', $menuArray, 60 * 24 );
-	        return $menuArray;
-	    });
-
-        view()->share('menu', $menu);
+            view()->share('menu', $menu);
+        }
     }
 }
