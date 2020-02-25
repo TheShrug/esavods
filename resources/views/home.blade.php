@@ -12,7 +12,6 @@
                     <div class="jumbotron bg-primary py-5 mb-3">
                         <h1>Welcome to ESA VODs</h1>
                         <p>Navigate all speedrunning VODs of the <a href="https://esamarathon.com/" target="_blank">European Speedrunner Assembly</a> marathon online. This site contains an archive of all known speedruns at the European Speedrunner Assembly Marathon. All credit belongs to ESA and the speedrunners involved. The table below displays the top 100 most watched runs and resets at the conclusion of each marathon.</p>
-                        <p class="lead">Thank you <a href="https://esamarathon.com/" target="_blank">ESA</a> for this most recent event! As soon as I get back in town I'll work on getting the latest runs up on the website, I promise!</p>
                         <p class="lead">Thank you <a href="https://esamarathon.com/" target="_blank">ESA</a> for another amazing event! The latest vods for ESA Winter 2020 can be found here:
                             <a href="https://esavods.com/event/esa-2020-winter-one" title="ESA Winter 2020 Vods Stream One">ESA 2020 Winter (One)</a> and <a href="https://esavods.com/event/esa-2020-winter-two" title="ESA Winter 2020 Vods Stream Two">ESA 2020 Winter (Two)</a></p>
                         <hr class="my-4">
