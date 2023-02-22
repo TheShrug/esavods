@@ -378,7 +378,6 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'TheShrug','stewart.m.gordon@gmail.com',NULL,'$2y$10$UMu2sM.624SKuQnVWrBWB.XnGQy1JNisTpBluq8ohvQO5CynL6abi',NULL,'2019-03-05 14:03:57','2019-03-05 14:03:57');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

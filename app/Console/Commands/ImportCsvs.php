@@ -61,15 +61,18 @@ class ImportCsvs extends Command
 
 	    foreach($csv as $runRow) {
 
+				if(!array_key_exists('Game', $runRow)) {
+					break;
+				}
 	    	preg_match('#\[(.*?)\]#', $runRow['Game'], $nameMatches);
 
 		    $runGame = (isset($nameMatches[1])) ? $nameMatches[1] : $runRow['Game'];
-			$runDate = ($runRow['Scheduled']) ? Date('Y:m:d H:i:s', strtotime($runRow['Scheduled'])) : null;
-			$runPlatform = ($runRow['Platform']) ? $runRow['Platform'] : null;
-			$runEvent = ($runRow['Event']) ? $runRow['Event'] : null;
-			$runCategory = ($runRow['Category']) ? $runRow['Category'] : null;
-			$runCategoriesExplode = ($runRow['Categories']) ? explode('|', $runRow['Categories']) : null;
-			$runPlayersExplode = ($runRow['Players']) ? explode('|', $runRow['Players']) : null;
+				$runDate = ($runRow['Scheduled']) ? Date('Y:m:d H:i:s', strtotime($runRow['Scheduled'])) : null;
+				$runPlatform = ($runRow['Platform']) ? $runRow['Platform'] : null;
+				$runEvent = ($runRow['Event']) ? $runRow['Event'] : null;
+				$runCategory = ($runRow['Category']) ? $runRow['Category'] : null;
+				$runCategoriesExplode = ($runRow['Categories']) ? explode('|', $runRow['Categories']) : null;
+				$runPlayersExplode = ($runRow['Players']) ? explode('|', $runRow['Players']) : null;
 		    $runTwitch = ($runRow['Twitch']) ? $runRow['Twitch'] : null;
 		    $runYoutube = (isset($runRow['Youtube']) && !empty($runRow['Youtube'])) ? $runRow['Youtube'] : null;
 
