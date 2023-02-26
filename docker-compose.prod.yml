@@ -49,7 +49,7 @@ services:
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx/prod:/etc/nginx/user_conf.d
-      - nginx_secrets:/etc/letsencrypt
+      - ./nginx_secrets:/etc/letsencrypt
     networks:
       - esavods
       
