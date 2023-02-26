@@ -10,9 +10,9 @@ services:
     image: esavods
     container_name: esavods-app
     restart: unless-stopped
-    working_dir: /var/www/
+    working_dir: /var/www/esavods
     volumes:
-      - ./:/var/www
+      - ./:/var/www/esavods
     networks:
       - esavods
   
@@ -47,7 +47,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      # - ./:/var/www
+      - ./:/var/www/esavods
       - ./docker-compose/nginx/prod:/etc/nginx/user_conf.d
       - ./nginx_secrets:/etc/letsencrypt
     networks:
