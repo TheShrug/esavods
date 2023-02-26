@@ -48,7 +48,7 @@ services:
       - 443:443
     volumes:
       - ./:/var/www
-      - ./docker-compose/nginx/prod:/etc/nginx/conf.d
+      - ./docker-compose/nginx/prod:/etc/nginx/user_conf.d
       - nginx_secrets:/etc/letsencrypt
     networks:
       - esavods
