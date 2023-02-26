@@ -3,7 +3,7 @@ services:
   app:
     build:
       args:
-        user: root
+        user: sammy
         uid: 1000
       context: ./
       dockerfile: Dockerfile
