@@ -41,8 +41,6 @@ services:
     restart: unless-stopped
     environment:
       CERTBOT_EMAIL: stewart.m.gordon@gmail.com
-      STAGING: 1
-      DEBUG: 1
     ports:
       - 80:80
       - 443:443
