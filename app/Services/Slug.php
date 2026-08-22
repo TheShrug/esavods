@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Slug
 {
@@ -14,7 +15,7 @@ class Slug
 	 * @return string
 	 */
 	public static function createSlug($title, Model $model) {
-		$slug = str_slug($title);
+		$slug = Str::slug($title);
 		$similarSlugs = self::findSimilarSlugs($slug, $model);
 
 		if (!$similarSlugs->contains('slug', $slug)){

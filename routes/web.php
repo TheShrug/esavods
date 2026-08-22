@@ -1,5 +1,17 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\GameController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PlatformController;
+use App\Http\Controllers\RunController;
+use App\Http\Controllers\RunnerController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,77 +74,77 @@ Route::get('/platform/gbs-emu', function() {
 
 
 
-Route::get('/', 'HomeController@index')->name('home');
-Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/run/{id}', 'RunController@run');
-Route::post('/run/{id}', 'RunController@watchedRun');
+Route::get('/run/{id}', [RunController::class, 'run']);
+Route::post('/run/{id}', [RunController::class, 'watchedRun']);
 
-Route::get('/event/', 'EventController@index')->name('events');
-Route::get('/event/{slug}', 'EventController@event')->name('event.show');
+Route::get('/event/', [EventController::class, 'index'])->name('events');
+Route::get('/event/{slug}', [EventController::class, 'event'])->name('event.show');
 
-Route::get('/platform/', 'PlatformController@index')->name('platforms');
-Route::get('/platform/{slug}', 'PlatformController@platform')->name('platform.show');
+Route::get('/platform/', [PlatformController::class, 'index'])->name('platforms');
+Route::get('/platform/{slug}', [PlatformController::class, 'platform'])->name('platform.show');
 
-Route::get('/runner/{slug}', 'RunnerController@runner')->name('runner.show');
+Route::get('/runner/{slug}', [RunnerController::class, 'runner'])->name('runner.show');
 
-Route::get('/category/', 'CategoryController@index')->name('categories');
-Route::get('/category/{slug}', 'CategoryController@category')->name('category.show');
+Route::get('/category/', [CategoryController::class, 'index'])->name('categories');
+Route::get('/category/{slug}', [CategoryController::class, 'category'])->name('category.show');
 
-Route::get('/genre/', 'GenreController@index')->name('genres');
-Route::get('/genre/{slug}', 'GenreController@genre')->name('genre.show');
+Route::get('/genre/', [GenreController::class, 'index'])->name('genres');
+Route::get('/genre/{slug}', [GenreController::class, 'genre'])->name('genre.show');
 
-Route::get('/game/', 'GameController@index')->name('games');
-Route::get('/game/{slug}', 'GameController@game')->name('game.show');
+Route::get('/game/', [GameController::class, 'index'])->name('games');
+Route::get('/game/{slug}', [GameController::class, 'game'])->name('game.show');
 
 
 
 
 // Dashboard
-Route::get('/dashboard/', 'DashboardController@index')->middleware('auth');
-Route::get('/dashboard/all', 'DashboardController@getJson')->middleware('auth');
-Route::get('/dashboard/runs', 'DashboardController@getRunsJson')->middleware('auth');
+Route::get('/dashboard/', [DashboardController::class, 'index'])->middleware('auth');
+Route::get('/dashboard/all', [DashboardController::class, 'getJson'])->middleware('auth');
+Route::get('/dashboard/runs', [DashboardController::class, 'getRunsJson'])->middleware('auth');
 
 // Runs
-Route::post('/dashboard/run', 'DashboardController@addOrUpdateRun')->middleware('auth');
-Route::post('/dashboard/run/edit', 'DashboardController@editRun')->middleware('auth');
-Route::post('/dashboard/runs/upload', 'DashboardController@uploadCsv')->middleware('auth');
-Route::delete('/dashboard/run/{id}', 'DashboardController@deleteRun')->middleware('auth');
+Route::post('/dashboard/run', [DashboardController::class, 'addOrUpdateRun'])->middleware('auth');
+Route::post('/dashboard/run/edit', [DashboardController::class, 'editRun'])->middleware('auth');
+Route::post('/dashboard/runs/upload', [DashboardController::class, 'uploadCsv'])->middleware('auth');
+Route::delete('/dashboard/run/{id}', [DashboardController::class, 'deleteRun'])->middleware('auth');
 
 // Categories
-Route::post('/dashboard/category', 'DashboardController@addCategory')->middleware('auth');
-Route::post('/dashboard/category/edit', 'DashboardController@editCategory')->middleware('auth');
-Route::get('/dashboard/category', 'DashboardController@getCategories')->middleware('auth');
-Route::delete('/dashboard/category/{id}', 'DashboardController@deleteCategory')->middleware('auth');
+Route::post('/dashboard/category', [DashboardController::class, 'addCategory'])->middleware('auth');
+Route::post('/dashboard/category/edit', [DashboardController::class, 'editCategory'])->middleware('auth');
+Route::get('/dashboard/category', [DashboardController::class, 'getCategories'])->middleware('auth');
+Route::delete('/dashboard/category/{id}', [DashboardController::class, 'deleteCategory'])->middleware('auth');
 
 // Genres
-Route::post('/dashboard/genre', 'DashboardController@addGenre')->middleware('auth');
-Route::post('/dashboard/genre/edit', 'DashboardController@editGenre')->middleware('auth');
-Route::get('/dashboard/genre', 'DashboardController@getGenres')->middleware('auth');
-Route::delete('/dashboard/genre/{id}', 'DashboardController@deleteGenre')->middleware('auth');
+Route::post('/dashboard/genre', [DashboardController::class, 'addGenre'])->middleware('auth');
+Route::post('/dashboard/genre/edit', [DashboardController::class, 'editGenre'])->middleware('auth');
+Route::get('/dashboard/genre', [DashboardController::class, 'getGenres'])->middleware('auth');
+Route::delete('/dashboard/genre/{id}', [DashboardController::class, 'deleteGenre'])->middleware('auth');
 
 // Events
-Route::post('/dashboard/event', 'DashboardController@addEvent')->middleware('auth');
-Route::post('/dashboard/event/edit', 'DashboardController@editEvent')->middleware('auth');
-Route::get('/dashboard/event', 'DashboardController@getEvents')->middleware('auth');
-Route::delete('/dashboard/event/{id}', 'DashboardController@deleteEvent')->middleware('auth');
+Route::post('/dashboard/event', [DashboardController::class, 'addEvent'])->middleware('auth');
+Route::post('/dashboard/event/edit', [DashboardController::class, 'editEvent'])->middleware('auth');
+Route::get('/dashboard/event', [DashboardController::class, 'getEvents'])->middleware('auth');
+Route::delete('/dashboard/event/{id}', [DashboardController::class, 'deleteEvent'])->middleware('auth');
 
 // Platforms
-Route::post('/dashboard/platform', 'DashboardController@addPlatform')->middleware('auth');
-Route::post('/dashboard/platform/edit', 'DashboardController@editPlatform')->middleware('auth');
-Route::get('/dashboard/platform', 'DashboardController@getPlatforms')->middleware('auth');
-Route::delete('/dashboard/platform/{id}', 'DashboardController@deletePlatform')->middleware('auth');
+Route::post('/dashboard/platform', [DashboardController::class, 'addPlatform'])->middleware('auth');
+Route::post('/dashboard/platform/edit', [DashboardController::class, 'editPlatform'])->middleware('auth');
+Route::get('/dashboard/platform', [DashboardController::class, 'getPlatforms'])->middleware('auth');
+Route::delete('/dashboard/platform/{id}', [DashboardController::class, 'deletePlatform'])->middleware('auth');
 
 // Games
-Route::post('/dashboard/game', 'DashboardController@addGame')->middleware('auth');
-Route::post('/dashboard/game/edit', 'DashboardController@editGame')->middleware('auth');
-Route::get('/dashboard/game', 'DashboardController@getGames')->middleware('auth');
-Route::delete('/dashboard/game/{id}', 'DashboardController@deleteGame')->middleware('auth');
+Route::post('/dashboard/game', [DashboardController::class, 'addGame'])->middleware('auth');
+Route::post('/dashboard/game/edit', [DashboardController::class, 'editGame'])->middleware('auth');
+Route::get('/dashboard/game', [DashboardController::class, 'getGames'])->middleware('auth');
+Route::delete('/dashboard/game/{id}', [DashboardController::class, 'deleteGame'])->middleware('auth');
 
 // Runners
-Route::post('/dashboard/runner', 'DashboardController@addRunner')->middleware('auth');
-Route::post('/dashboard/runner/edit', 'DashboardController@editRunner')->middleware('auth');
-Route::get('/dashboard/runner', 'DashboardController@getRunners')->middleware('auth');
-Route::delete('/dashboard/runner/{id}', 'DashboardController@deleteRunner')->middleware('auth');
+Route::post('/dashboard/runner', [DashboardController::class, 'addRunner'])->middleware('auth');
+Route::post('/dashboard/runner/edit', [DashboardController::class, 'editRunner'])->middleware('auth');
+Route::get('/dashboard/runner', [DashboardController::class, 'getRunners'])->middleware('auth');
+Route::delete('/dashboard/runner/{id}', [DashboardController::class, 'deleteRunner'])->middleware('auth');
 
 
