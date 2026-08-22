@@ -1,34 +1,100 @@
-FROM php:7.4-fpm
+# syntax=docker/dockerfile:1
 
-# Arguments defined in docker-compose.yml
-ARG user
-ARG uid
+########################################################################
+# base — PHP 8.3 + nginx + the extensions this app needs. Shared by dev
+# and the production build so the two never drift apart. Both stages
+# serve HTTP, so nginx and postgresql-client (for the entrypoints'
+# pg_isready wait) live here, not in either leaf stage.
+########################################################################
+FROM php:8.3-fpm-alpine AS base
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip
+RUN apk add --no-cache \
+        nginx \
+        postgresql-client \
+        icu-libs \
+        libpq \
+        libzip \
+        libpng \
+        libjpeg-turbo \
+        freetype \
+    && apk add --no-cache --virtual .build-deps \
+        $PHPIZE_DEPS \
+        icu-dev \
+        postgresql-dev \
+        libzip-dev \
+        libpng-dev \
+        libjpeg-turbo-dev \
+        freetype-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j"$(nproc)" \
+        pdo_pgsql \
+        intl \
+        zip \
+        bcmath \
+        exif \
+        pcntl \
+        gd \
+    && apk del .build-deps \
+    # Image default is one worker per host CPU core, which on a shared,
+    # memory-constrained box counts cores this container isn't budgeted for.
+    && sed -i 's/^worker_processes auto;/worker_processes 2;/' /etc/nginx/nginx.conf
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+COPY docker/php/opcache.ini /usr/local/etc/php/conf.d/zz-opcache.ini
+COPY docker/nginx/default.conf /etc/nginx/http.d/default.conf
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+WORKDIR /var/www/html
 
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+########################################################################
+# dev — the verification toolchain. PHP + Composer + dev dependencies,
+# source bind-mounted by docker-compose.yml so edits are live, serving
+# over the same nginx+php-fpm shape as production so the pages the
+# database tickets need checked by hand are actually browsable. Never
+# copied into, and shares nothing with, the production stage below.
+########################################################################
+FROM base AS dev
 
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+RUN apk add --no-cache git unzip bash
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Set working directory
-WORKDIR /var/www/esavods
+COPY docker/entrypoint-dev.sh /usr/local/bin/entrypoint-dev.sh
+RUN chmod +x /usr/local/bin/entrypoint-dev.sh
 
-USER $user
+EXPOSE 80
+
+ENTRYPOINT ["/usr/local/bin/entrypoint-dev.sh"]
+
+########################################################################
+# vendor — build-only stage. --no-scripts because package:discover can't
+# run meaningfully here (no runtime env, and it would run against every
+# COPY layer if not disabled); the production stage bakes the discovery
+# manifest itself once vendor/ is actually in place.
+########################################################################
+FROM base AS vendor
+
+RUN apk add --no-cache git unzip
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+COPY . .
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-progress --no-scripts
+
+########################################################################
+# production — nginx + php-fpm serving the app. No Composer binary, no
+# dev dependencies, no mounted source.
+########################################################################
+FROM base AS production
+
+COPY --chown=www-data:www-data . .
+COPY --from=vendor --chown=www-data:www-data /var/www/html/vendor ./vendor
+
+COPY docker/php-fpm/www.conf /usr/local/etc/php-fpm.d/www.conf
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh \
+    && php artisan package:discover --ansi \
+    && chown -R www-data:www-data storage bootstrap/cache
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=20s \
+    CMD wget -qO- http://127.0.0.1/up || exit 1
+
+EXPOSE 80
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
