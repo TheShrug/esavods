@@ -5,26 +5,30 @@ Docker. From a cold checkout:
 
 ```sh
 cp .env.example .env
-docker compose build app
-docker compose up -d
-docker compose exec app composer install
+docker compose up -d --build
 docker compose exec app php artisan key:generate
-docker compose exec app php artisan migrate
 ```
 
-The app is then served at `http://localhost:8080` (nginx + php-fpm, same shape
-as production). `docker compose exec app php artisan ...` and
-`docker compose exec app composer ...` both run against the live, bind-mounted
-source — no rebuild needed for a code change.
+The `dev` target's entrypoint waits for Postgres, runs `composer install`
+itself the first time (whenever `vendor/` doesn't already exist), runs
+`artisan migrate --force`, then serves the app the same way production does
+(nginx + php-fpm in the one container). `key:generate` is the only manual
+step, and only on a fresh `.env` — encrypted cookies fail without it, so run
+it once and refresh. After that the app is at `http://localhost:8080`.
+
+`docker compose exec app php artisan ...` and `docker compose exec app
+composer ...` both run against the live, bind-mounted source — no rebuild
+needed for a code change. `docker compose run --rm app <cmd>` works the same
+way for a one-off that shouldn't attach to the running container.
 
 The `db` service is Postgres 16; `DB_HOST` in `.env.example` is already set to
 `db`, the compose service name, not `localhost`.
 
 Production builds from the same `Dockerfile`'s `production` target
 (`docker build --target production -t esavods .`) — nginx and php-fpm in one
-image, no Composer binary, no dev dependencies, no mounted source. It expects
-`artisan migrate --force` to run at container start, which the image's
-entrypoint already does.
+image, no Composer binary, no dev dependencies, no mounted source. Its
+entrypoint waits for Postgres, warms the config/route/view caches, then runs
+`artisan migrate --force` before serving.
 
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 

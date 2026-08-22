@@ -7,11 +7,19 @@ if [ "$#" -gt 0 ]; then
     exec "$@"
 fi
 
-# Config cache is built here, not at image build time: it freezes whatever
-# env() returns at cache time, and the real DB/session credentials only exist
-# once Coolify injects them at container start.
+# The shared Postgres (homelab#29) can be slower to accept connections than
+# this container is to start; a fixed sleep would race it occasionally.
+until pg_isready -h "$DB_HOST" -p "${DB_PORT:-5432}" -U "$DB_USERNAME" -d "$DB_DATABASE" >/dev/null 2>&1; do
+    echo "Waiting for Postgres at $DB_HOST:${DB_PORT:-5432}..."
+    sleep 1
+done
+
+# config:cache first so everything after it reads one consistent config;
+# migrate last so a schema failure kills the container before it serves.
 php artisan config:cache
+php artisan route:cache
+php artisan view:cache
 php artisan migrate --force
 
 php-fpm -D
-exec nginx -g 'daemon off;'
+exec nginx -g "daemon off;"
