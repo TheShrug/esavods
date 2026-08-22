@@ -1,3 +1,31 @@
+## Local development
+
+There is no PHP or Composer requirement on the host — everything runs through
+Docker. From a cold checkout:
+
+```sh
+cp .env.example .env
+docker compose build app
+docker compose up -d
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate
+```
+
+The app is then served at `http://localhost:8080` (nginx + php-fpm, same shape
+as production). `docker compose exec app php artisan ...` and
+`docker compose exec app composer ...` both run against the live, bind-mounted
+source — no rebuild needed for a code change.
+
+The `db` service is Postgres 16; `DB_HOST` in `.env.example` is already set to
+`db`, the compose service name, not `localhost`.
+
+Production builds from the same `Dockerfile`'s `production` target
+(`docker build --target production -t esavods .`) — nginx and php-fpm in one
+image, no Composer binary, no dev dependencies, no mounted source. It expects
+`artisan migrate --force` to run at container start, which the image's
+entrypoint already does.
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">

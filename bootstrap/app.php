@@ -18,6 +18,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         ]);
+
+        // TLS terminates at Cloudflare; the origin only ever sees the tunnel.
+        // Without this, Laravel builds absolute URLs from the request it
+        // actually receives (http, tunnel IP) instead of X-Forwarded-*.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
