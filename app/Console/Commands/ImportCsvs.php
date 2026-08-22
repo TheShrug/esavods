@@ -67,7 +67,7 @@ class ImportCsvs extends Command
 	    	preg_match('#\[(.*?)\]#', $runRow['Game'], $nameMatches);
 
 		    $runGame = (isset($nameMatches[1])) ? $nameMatches[1] : $runRow['Game'];
-				$runDate = ($runRow['Scheduled']) ? Date('Y:m:d H:i:s', strtotime($runRow['Scheduled'])) : null;
+				$runDate = ($runRow['Scheduled']) ? Date('Y-m-d H:i:s', strtotime($runRow['Scheduled'])) : null;
 				$runPlatform = ($runRow['Platform']) ? $runRow['Platform'] : null;
 				$runEvent = ($runRow['Event']) ? $runRow['Event'] : null;
 				$runCategory = ($runRow['Category']) ? $runRow['Category'] : null;
