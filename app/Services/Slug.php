@@ -39,7 +39,7 @@ class Slug
 	protected static function findSimilarSlugs($slug, Model $model)
 	{
 		$query = $model::query();
-		return $query->select('slug')->where('slug', 'like', $slug.'%')
+		return $query->select('slug')->where('slug', 'ilike', $slug.'%')
 		           ->where('id', '<>', $model->getQueueableId())
 		           ->get();
 	}

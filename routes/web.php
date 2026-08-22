@@ -77,7 +77,6 @@ Route::get('/platform/gbs-emu', function() {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about', [HomeController::class, 'about'])->name('about');
 
-Route::get('/run/{id}', [RunController::class, 'run']);
 Route::post('/run/{id}', [RunController::class, 'watchedRun']);
 
 Route::get('/event/', [EventController::class, 'index'])->name('events');
