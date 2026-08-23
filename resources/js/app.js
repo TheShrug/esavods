@@ -1,6 +1,16 @@
-require('./bootstrap');
-require('datatables.net-bs4');
-require('datatables.net-responsive-bs4');
+import '../sass/app.scss';
+import $ from './bootstrap';
+import 'bootstrap';
+import dataTablesBootstrap4 from 'datatables.net-bs4';
+import responsiveBootstrap4 from 'datatables.net-responsive-bs4';
+
+/*
+ | DataTables 1.10's UMD wrapper exports a factory from its CommonJS branch
+ | instead of registering itself. webpack took the AMD branch and got the
+ | registration for free; Rollup takes the CommonJS one, so call the factories.
+ */
+dataTablesBootstrap4(window, $);
+responsiveBootstrap4(window, $);
 
 $.ajaxSetup({
     headers: {
