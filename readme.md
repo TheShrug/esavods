@@ -24,6 +24,23 @@ way for a one-off that shouldn't attach to the running container.
 The `db` service is Postgres 16; `DB_HOST` in `.env.example` is already set to
 `db`, the compose service name, not `localhost`.
 
+## Front-end assets
+
+`public/js/app.js` and `public/css/app.css` are built by Vite and **committed**,
+so nothing about serving the site needs Node. Building them does. The app
+container is PHP-only by design, so use a Node 24 image against the checkout:
+
+```sh
+docker run --rm -v "$PWD":/app -w /app node:24-alpine sh -c "npm ci && npm run build"
+```
+
+`npm run dev` is the same build with `--watch`.
+
+The two filenames are deliberately unhashed — the Blade layout links them with
+plain `asset()` helpers and the origin caches them `max-age=86400` without
+`immutable` for exactly that reason. Don't add a manifest and fingerprinting
+without changing the caching rule to match.
+
 Production builds from the same `Dockerfile`'s `production` target
 (`docker build --target production -t esavods .`) — nginx and php-fpm in one
 image, no Composer binary, no dev dependencies, no mounted source. Its
