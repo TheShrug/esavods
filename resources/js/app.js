@@ -174,6 +174,6 @@ function format (d, vodSite) {
 function watchedRun(id){
     $.ajax({
         type: "POST",
-        url: /run/ + id
+        url: "/run/" + id
     });
 }
