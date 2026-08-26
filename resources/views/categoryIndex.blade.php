@@ -32,8 +32,12 @@
 				            <?php /* @var $event \App\Category */ ?>
                             <tr data-id="{{ $category->id }}">
                                 <td nowrap>
-                                    @if(isset($category->name) && isset($category->slug))
-                                        <a href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a>
+                                    @if(isset($category->name))
+                                        @if(filled($category->slug))
+                                            <a href="{{ route('category.show', $category->slug) }}">{{ $category->name }}</a>
+                                        @else
+                                            {{ $category->name }}
+                                        @endif
                                     @endif
                                 </td>
                                 <td>

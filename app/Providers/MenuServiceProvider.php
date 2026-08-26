@@ -51,7 +51,7 @@ class MenuServiceProvider extends ServiceProvider
      */
     protected function menu(): array
     {
-        return Cache::get('menu', function() {
+        $menu = Cache::get('menu', function() {
             $menuArray = [];
             $menuArray['events'] = Event::orderBy('year', 'desc')->orderBy('order', 'asc')->get()->sortByDesc('year')->groupBy('year');
             $menuArray['platforms'] = Platform::orderBy('name', 'asc')->get();
@@ -62,5 +62,23 @@ class MenuServiceProvider extends ServiceProvider
             Cache::put('menu', $menuArray, 60 * 60 * 24);
             return $menuArray;
         });
+
+        // A blank slug makes route('*.show') throw. This menu renders in the shared
+        // layout, so one bad row 500s every page (#25, the 2026-08-25 outage).
+        // Filtered on read, not inside the closure: the cache lives in Postgres and
+        // survives deploys, so a cache warmed before this fix still holds bad rows.
+        $menu['categories'] = collect($menu['categories'])
+            ->filter(fn ($c) => filled($c->slug))->values();
+
+        $menu['platforms'] = collect($menu['platforms'])
+            ->filter(fn ($p) => filled($p->slug))->values();
+
+        // events is grouped by year and each group has ->chunk(2) called on it in the
+        // layout, so each group must stay a Collection. Drop groups left empty.
+        $menu['events'] = collect($menu['events'])
+            ->map(fn ($group) => collect($group)->filter(fn ($e) => filled($e->slug))->values())
+            ->reject(fn ($group) => $group->isEmpty());
+
+        return $menu;
     }
 }
