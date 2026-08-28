@@ -1,0 +1,23 @@
+{
+  "name": "esavods",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "shutdownAction": "stopCompose",
+  // App on 8001, Postgres on 55401 — assigned in the fleet port table so this
+  // and esavods can be up at the same time.
+  "forwardPorts": [8001, 55401],
+  "portsAttributes": {
+    "8001": { "label": "esavods (http)" },
+    "55401": { "label": "esavods (postgres)" }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": ["anthropic.claude-code", "bmewburn.vscode-intelephense-client"]
+    }
+  }
+}
