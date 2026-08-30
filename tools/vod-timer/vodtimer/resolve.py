@@ -22,6 +22,10 @@ UA = "esavods-vod-timer/0.1 (+https://github.com/TheShrug/esavods)"
 
 MD_LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
 
+# ESA titles a per-run VOD "Game [Category] by Runner - #tag". The bracketed
+# part is the only thing separating two runs of the same game in one event.
+TITLE_CATEGORY = re.compile(r"\[([^\]]+)\]")
+
 UUID_RE = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-")
 
 
@@ -123,16 +127,24 @@ def match(row: dict, tag: str, limit: int = 6) -> dict:
         delta = abs(dur - slot) if (dur and slot) else None
         ntitle = norm(title)
         runner_hit = any(norm(w) and norm(w) in ntitle for w in who)
+        # Without a timing sheet there is no slot length to tell two runs of
+        # the same game apart, and the game name scores identically for both.
+        # The category in the title is what distinguishes them.
+        tcat = TITLE_CATEGORY.search(title)
+        cscore = difflib.SequenceMatcher(
+            None, norm(row.get("CategoryName") or ""),
+            norm(tcat.group(1)) if tcat else "").ratio()
         scored.append({
             "video_id": h["video_id"], "title": title, "duration": dur,
             "tagged": tagged, "gscore": round(gscore, 3), "delta": delta,
-            "runner": runner_hit,
+            "runner": runner_hit, "cscore": round(cscore, 3),
         })
 
     # Slot-length agreement outranks everything; the tag outranks title fuzz.
     def rank(c):
         exact = c["delta"] is not None and c["delta"] <= 5
-        return (exact, c["tagged"], c["runner"], c["gscore"],
+        return (exact, c["tagged"], c["runner"], round(c["gscore"], 1),
+                c["cscore"], c["gscore"],
                 -(c["delta"] if c["delta"] is not None else 1e9))
 
     scored.sort(key=rank, reverse=True)
