@@ -110,7 +110,28 @@ class ImportCsvs extends Command
 
 		    $game = Game::FirstOrCreateUniqueSlug(['name' => $runGame]);
 		    $event = Event::FirstOrCreateUniqueSlug(['name' => $runEvent]);
-		    $run = Run::firstOrNew(['game_id' => $game->id, 'category' => $runCategory, 'event_id' => $event->id, 'time' => $runSeconds]);
+		    // A run is identified by its slot on the schedule, not by how long it
+		    // took. The time is the measured value and gets corrected as VODs are
+		    // checked, so keying on it would make every correction create a second
+		    // run beside the wrong one instead of updating it.
+		    //
+		    // Game, category and event alone are not enough either: four events
+		    // legitimately hold two runs of the same game and category, and two of
+		    // those pairs even share a time. The scheduled slot is what tells them
+		    // apart.
+		    $runKey = [
+		    	'game_id' => $game->id,
+		    	'category' => $runCategory,
+		    	'event_id' => $event->id,
+		    ];
+		    if($runDate) {
+		    	$runKey['run_date'] = $runDate;
+		    } else {
+		    	// Nothing to tell two slots apart, so keep the previous behaviour
+		    	// rather than folding unrelated runs into one.
+		    	$runKey['time'] = $runSeconds;
+		    }
+		    $run = Run::firstOrNew($runKey);
 		    $run->game()->associate($game);
 		    $run->event()->associate($event);
 
