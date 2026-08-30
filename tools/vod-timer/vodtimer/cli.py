@@ -85,19 +85,34 @@ def cmd_batch(args) -> int:
     # end. A whole-marathon batch takes hours; a crash three hours in must not
     # throw away three hours of answers, and --resume reads this same file back.
     done: set[str] = set()
+    kept: list[dict] = []
     if args.out and args.resume and Path(args.out).exists():
         with open(args.out, encoding="utf8") as fh:
-            done = {r["video_id"] for r in csv.DictReader(fh) if r.get("video_id")}
-        print(f"resuming: {len(done)} already done")
+            previous = [r for r in csv.DictReader(fh) if r.get("video_id")]
+
+        # Done means "produced a time", not "has a row". A failure is recorded
+        # as a row too, so keying resume on the video_id alone makes a failure
+        # indistinguishable from a success and permanently unretryable: when
+        # YouTube's bot wall blocked 53 runs of ESA Winter 2026, every later
+        # --resume skipped exactly the runs that still needed reading.
+        kept = [r for r in previous if (r.get("final_time") or "").strip()]
+        done = {r["video_id"] for r in kept}
+        retry = len(previous) - len(kept)
+        print(f"resuming: {len(done)} already done"
+              + (f", {retry} failed and will be re-read" if retry else ""))
 
     sink = writer = None
     if args.out:
-        appending = bool(done)
-        sink = open(args.out, "a" if appending else "w", newline="", encoding="utf8")
-        writer = csv.DictWriter(sink, fieldnames=fields)
-        if not appending:
-            writer.writeheader()
-            sink.flush()
+        # Rewritten from `kept`, never appended to. The failed rows have to come
+        # out of the file, or re-reading one leaves two rows for the same video
+        # and whichever the merge sees last wins.
+        sink = open(args.out, "w", newline="", encoding="utf8")
+        writer = csv.DictWriter(sink, fieldnames=fields, extrasaction="ignore",
+                                restval="")
+        writer.writeheader()
+        for previous_row in kept:
+            writer.writerow(previous_row)
+        sink.flush()
 
     shard_i, shard_n = 0, 1
     if args.shard:
@@ -281,7 +296,7 @@ def cmd_export(args) -> int:
     rows = _read_csv(args.results)
     meta = {r["video_id"]: r for r in _read_csv(args.resolved) if r.get("video_id")}
 
-    written = skipped = 0
+    written = skipped = impossible = 0
     with open(args.out, "w", newline="", encoding="utf8") as fh:
         w = csv.writer(fh, delimiter=";")
         w.writerow(["Scheduled", "Game", "Players", "Platform", "Category",
@@ -291,6 +306,21 @@ def cmd_export(args) -> int:
             if not time or time.count(":") != 2:
                 skipped += 1
                 continue
+
+            # A run cannot be longer than the video it was read from, so this
+            # is not a doubtful time - it is a wrong one, and a 19:35:00 run
+            # out of a 37-minute video is worse on the site than the run being
+            # absent. Left out on the same principle as a run with no time at
+            # all; the review list still carries it for a human to supply.
+            try:
+                secs = float(r.get("final_seconds") or 0)
+                dur = float(r.get("duration") or 0)
+            except (TypeError, ValueError):
+                secs = dur = 0.0
+            if dur and secs > dur:
+                impossible += 1
+                continue
+
             vid = r.get("video_id", "")
             m = meta.get(vid, {})
             w.writerow([
@@ -307,9 +337,11 @@ def cmd_export(args) -> int:
             ])
             written += 1
 
-    print(f"wrote {args.out}: {written} runs" + (f", {skipped} with no time" if skipped else ""))
-    if skipped:
-        print("runs with no time are left out entirely rather than imported as 0:00:00")
+    print(f"wrote {args.out}: {written} runs"
+          + (f", {skipped} with no time" if skipped else "")
+          + (f", {impossible} longer than their own video" if impossible else ""))
+    if skipped or impossible:
+        print("those are left out entirely rather than imported as a wrong time")
     return 0
 
 
