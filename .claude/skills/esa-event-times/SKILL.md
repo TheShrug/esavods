@@ -50,9 +50,15 @@ of whether the read will be any good:
 | `weak(s)` / `no-hits` | nothing agreed | almost certainly wrong |
 
 For the six missing years there is no ESA timing sheet, so `slot-exact` is
-unavailable and matching leans on three-way title agreement. That is weaker.
-Expect more human review than the Summer 2022 validation needed, and say so
-when you present the list.
+unavailable and matching leans on three-way title agreement. That is weaker in
+principle, but measured on ESA Winter 2021 it holds up well: 129
+`tag-game-runner`, 9 `tag-game`, 3 `weak`, 1 `no-hits` across 142 runs, with a
+video found for 141 and no video used twice. Treat that as the expected shape
+and investigate if a new event comes back much worse.
+
+Check for duplicate video ids before reading anything. Two runs pointing at one
+VOD means at least one is wrong, and it is far cheaper to catch here than after
+two hours of downloads.
 
 If a large share come back `weak`, stop and check the hashtag - a wrong tag
 looks exactly like this.
