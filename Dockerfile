@@ -8,9 +8,15 @@
 ########################################################################
 FROM php:8.3-fpm-alpine AS base
 
+# postgresql16-client is PINNED to the server's major version, not the floating
+# `postgresql-client`. pg_restore reconstructs the dump's SQL preamble using the
+# CLIENT's version, so an 18.x client emits `SET transaction_timeout`, which the
+# 16.x server rejects - every restore then reports an error it can do nothing
+# about, and pg_restore exits non-zero over it. Matches speedrunwr, which
+# already pinned this.
 RUN apk add --no-cache \
         nginx \
-        postgresql-client \
+        postgresql16-client \
         icu-libs \
         libpq \
         libzip \
@@ -53,7 +59,19 @@ WORKDIR /var/www/html
 ########################################################################
 FROM base AS dev
 
-RUN apk add --no-cache git unzip bash
+RUN apk add --no-cache git unzip bash curl
+
+# rclone for `make database download`, pinned and taken from upstream rather
+# than the distro package. The version racknerd's backup installer pins, for the
+# same reason: 1.60 fails its first attempt against R2 with 501 NotImplemented
+# and only succeeds on retry.
+ARG RCLONE_VERSION=v1.75.0
+RUN curl -fsSL -o /tmp/rclone.zip \
+      "https://downloads.rclone.org/${RCLONE_VERSION}/rclone-${RCLONE_VERSION}-linux-amd64.zip" \
+ && unzip -oq /tmp/rclone.zip -d /tmp \
+ && install -m 755 "/tmp/rclone-${RCLONE_VERSION}-linux-amd64/rclone" /usr/local/bin/rclone \
+ && rm -rf /tmp/rclone.zip "/tmp/rclone-${RCLONE_VERSION}-linux-amd64"
+
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 COPY docker/entrypoint-dev.sh /usr/local/bin/entrypoint-dev.sh

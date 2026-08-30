@@ -14,8 +14,12 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    # DB_HOST_PORT, deliberately NOT DB_PORT. Compose substitutes from this
+    # repo's .env, where Laravel's DB_PORT=5432 is the port the app uses to reach
+    # the db service INTERNALLY — so ${DB_PORT:-55401} would publish Postgres on
+    # 5432 and collide with speedrunwr. Assigned in the fleet port table.
     ports:
-      - "5432:5432"
+      - "${DB_HOST_PORT:-55401}:5432"
 
   app:
     build:
@@ -25,11 +29,76 @@ services:
       - .:/var/www/html
     env_file:
       - .env
+    # Moved off 8080 by TheShrug/homelab#39.
     ports:
-      - "8080:80"
+      - "${PORT:-8001}:80"
     depends_on:
       db:
         condition: service_healthy
+
+  # `make test` runs HERE, not on `app`, and the difference is load-bearing.
+  #
+  # `app` carries `env_file: .env`, which puts DB_* into the container's real OS
+  # environment. Laravel's env() reads $_SERVER; phpunit.xml's
+  # <env name="DB_CONNECTION" value="sqlite"/> only sets $_ENV/putenv() and does
+  # not win - force="true" included, verified. RefreshDatabase then migrates and
+  # truncates whatever the container points at. That is #22.
+  #
+  # So this service has NO env_file. Configuration comes from the explicit block
+  # below and nowhere else, mirroring .github/workflows/ci.yml.
+  test:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/var/www/html
+    environment:
+      APP_ENV: testing
+      APP_DEBUG: "true"
+      # A throwaway key, committed on purpose. It encrypts nothing that outlives
+      # the run and it is not production's. CI generates a fresh one per job
+      # (ci.yml "Generate a throwaway APP_KEY"); a fixed one here keeps `make
+      # test` from depending on openssl being on whatever host invoked it.
+      # Without it the suite dies on MissingAppKeyException, because this
+      # service deliberately has no env_file to inherit APP_KEY from.
+      APP_KEY: "base64:ITo1xE3Y/E9S3MIk+1Wu39nqPugtcXVdY6ljzsKSsVk="
+      DB_CONNECTION: pgsql
+      DB_HOST: test-db
+      DB_PORT: "5432"
+      DB_DATABASE: testing
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      SESSION_DRIVER: array
+      CACHE_STORE: array
+      QUEUE_CONNECTION: sync
+      MAIL_MAILER: array
+      # stderr, not the default single-file channel. This service runs as root
+      # and shares the bind mount with `app`, so a file log leaves a root-owned
+      # storage/logs/laravel.log that php-fpm (www-data) then cannot write —
+      # `make run` starts 500ing after `make test`, and the cause is nowhere
+      # near the symptom. CI logs to stderr for the same reason.
+      LOG_CHANNEL: stderr
+    depends_on:
+      test-db:
+        condition: service_healthy
+    profiles: ["test"]
+
+  # Throwaway by construction: tmpfs, no named volume, and NOT the `db` service
+  # that `make run` seeds from a production dump.
+  test-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: testing
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    profiles: ["test"]
 
 volumes:
   esavods-db-data:

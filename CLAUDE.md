@@ -6,6 +6,46 @@ repository.
 esavods.com — a Laravel 12 app (PHP `^8.3`) deployed to production via Coolify, on push to
 `master`.
 
+## Local dev interface
+
+`make` is the interface, and it lives **inside the devcontainer** — PHP and `make` are neither of
+them on the Windows host. The fleet-wide table and reasoning live in the `homelab` vault at
+`Conventions/Local Dev Interface.md`; restated here because that vault is private.
+
+| | |
+| --- | --- |
+| `make` | List the targets. `.DEFAULT_GOAL := help` |
+| `make build` | Build the dev image |
+| `make test` | The suite, against a throwaway Postgres — see the warning below |
+| `make run` | Serve on **8001**, Postgres on **55401**, URL printed last |
+| `make database download restore migrate` | Newest R2 dump → local database → schema forward |
+
+**Ports 8001 / 55401 are assigned, not defaulted.** `PORT=` and **`DB_HOST_PORT=`** override. This
+repo moved off 8080, and its Postgres off 5432 — which speedrunwr also publishes, so they could not
+previously run at the same time.
+
+`DB_HOST_PORT`, not `DB_PORT`: compose substitutes from this repo's `.env`, where Laravel's
+`DB_PORT=5432` is the *internal* connection port.
+
+> [!CAUTION]
+> **Never run the suite through the `app` service.** `docker compose run app php artisan test` can
+> wipe a real database. `env_file: .env` puts `DB_*` into the container's real OS environment;
+> Laravel's `env()` reads `$_SERVER` while PHPUnit's `<env name="DB_CONNECTION" value="sqlite"/>`
+> only sets `$_ENV`/`putenv()`, so `phpunit.xml` never wins — `force="true"` included. That is #22.
+>
+> `make test` uses the separate `test` service: no `env_file`, an explicit environment block, and a
+> **tmpfs** `test-db`. It also logs to stderr, because it runs as root over the shared bind mount
+> and a file log leaves a root-owned `storage/logs/laravel.log` that php-fpm cannot write —
+> `make run` then 500s and the cause is nowhere near the symptom.
+
+`make database download` reads the nightly backup from R2, not a live `pg_dump` over SSH. It wants
+the **read-only** fleet R2 token at `~/.config/homelab/backups.env` — not this repo's `.env`.
+`backups/` is gitignored: those dumps are production data.
+
+The postgres client is pinned to **`postgresql16-client`**, matching the server. `pg_restore`
+rebuilds the dump's SQL preamble from the *client's* version, so a floating 18.x client emits
+`SET transaction_timeout` that the 16.x server rejects.
+
 ## Work queue
 
 Work lives in this repo's **GitHub Issues**, one issue per item, with exactly one `type:` label
