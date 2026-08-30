@@ -1,0 +1,8 @@
+# Ground truth from esamarathon/estimate-accuracy-model,
+# data/run-timings/esa-summer-2022.csv. "actual" is TimerEnd - TimerStart as
+# recorded live by nodecg-speedcontrol, so it is the number the on-screen
+# clock was showing when it stopped.
+video_id,game,runner,estimate,actual
+a3jEHrE17fU,The Stanley Parable: Ultra Deluxe,Nikoheart,00:45:00,0:44:42
+gVQwyeAsfvY,Shantae and the Pirate's Curse,AEtienne,00:55:00,0:46:50
+ibhSvIq7k5M,Trek to Yomi,Aeshmah_,01:30:00,1:10:20

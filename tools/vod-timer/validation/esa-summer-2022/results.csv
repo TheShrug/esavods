@@ -1,0 +1,134 @@
+video_id,game,actual,final_time,final_seconds,confidence,duration,estimate,notes
+a3jEHrE17fU,The Stanley Parable: Ultra Deluxe,0:44:42,0:44:42,2682.0,high,3038,00:45:00,"15 frames hold at 0:44:42, and 30 pre-finish frames independently predict 0:44:34-0:44:50"
+6-V6xZitAeI,Super Mario Bros. 2,0:22:41,0:22:40,1360.0,high,1474,00:25:00,"7 frames hold at 0:22:40, and 43 pre-finish frames independently predict 0:22:35-0:22:51"
+VdgMSpH85iE,Cyberpunk 2077,2:58:57,2:58:58,10738.0,high,10819,02:55:00,"7 frames hold at 2:58:58, and 38 pre-finish frames independently predict 2:58:48-2:59:04"
+Gj_mix_1LWg,TrackMania 2: Canyon,0:25:53,0:25:53,1553.0,high,1747,00:27:00,"8 frames hold at 0:25:53, and 39 pre-finish frames independently predict 0:25:48-0:26:04"
+eq1CfiKTjVA,GITADORA,0:27:55,0:27:54,1674.0,high,1800,00:30:00,"5 frames hold at 0:27:54, and 40 pre-finish frames independently predict 0:27:40-0:27:56"
+NdyHqzh0Zpk,Skylar & Plux: Adventure on Clover Island,0:35:23,0:35:22,2122.0,high,2311,00:45:00,"11 frames hold at 0:35:22, and 18 pre-finish frames independently predict 0:35:11-0:35:27"
+H91IpOlSxJs,Sonic Mania,2:00:05,2:00:04,7204.0,high,7420,02:00:00,"9 frames hold at 2:00:04, and 37 pre-finish frames independently predict 1:59:55-2:00:11"
+hl4TuCVxaXA,DuckTales 2,0:09:51,0:09:50,590.0,high,649,00:13:00,"3 frames hold at 0:09:50, and 47 pre-finish frames independently predict 0:09:42-0:09:58"
+h3Qhv4XEgRk,Drakengard (Mobile),0:10:43,0:10:42,642.0,high,735,00:16:00,"5 frames hold at 0:10:42, and 45 pre-finish frames independently predict 0:10:38-0:10:54"
+5OzX9ABrcY8,Super Smash TV,0:50:01,0:50:00,3000.0,high,3095,00:50:00,"5 frames hold at 0:50:00, and 45 pre-finish frames independently predict 0:49:48-0:50:04"
+l63Cxa3jUn4,Smarties: Meltdown,0:11:27,0:11:26,686.0,high,863,00:10:00,"6 frames hold at 0:11:26, and 44 pre-finish frames independently predict 0:11:19-0:11:35"
+i5n8-M5zI_8,DOOM (2016),0:40:09,0:40:08,2408.0,high,2587,00:30:00,"6 frames hold at 0:40:08, and 6 pre-finish frames independently predict 0:40:01-0:40:17"
+bXdOlrLJS04,Pokémon XD: Gale of Darkness,4:41:31,4:41:30,16890.0,high,17064,04:50:00,"12 frames hold at 4:41:30, and 38 pre-finish frames independently predict 4:41:27-4:41:43"
+AadcRp3CKLM,Hitman: Blood Money,0:40:04,0:40:03,2403.0,high,2592,00:47:00,"11 frames hold at 0:40:03, and 18 pre-finish frames independently predict 0:39:58-0:40:14"
+XGBojArkEZ4,Grand Theft Auto V,6:15:24,6:15:23,22523.0,high,22673,06:05:00,"8 frames hold at 6:15:23, and 37 pre-finish frames independently predict 6:15:19-6:15:35"
+_mKHHRoUuDg,Distance,0:49:32,0:49:31,2971.0,high,3150,00:50:00,"9 frames hold at 0:49:31, and 39 pre-finish frames independently predict 0:49:21-0:49:37"
+OPIhAjPhczY,Duke Nukem 3D,0:09:12,0:09:12,552.0,high,716,00:10:00,"10 frames hold at 0:09:12, and 40 pre-finish frames independently predict 0:09:02-0:09:18"
+zaI8xNpnLwE,TUNIC,0:26:39,0:26:39,1599.0,high,1714,00:35:00,"8 frames hold at 0:26:39, and 41 pre-finish frames independently predict 0:26:31-0:26:47"
+TvmTjoekrHE,Pode,0:14:57,0:14:57,897.0,high,963,00:15:00,"4 frames hold at 0:14:57, and 42 pre-finish frames independently predict 0:14:53-0:15:09"
+hF0pc9fUg9w,Tom Clancy's Splinter Cell: Chaos Theory,0:48:12,0:48:12,2892.0,high,3058,00:55:00,"8 frames hold at 0:48:12, and 38 pre-finish frames independently predict 0:47:59-0:48:15"
+mu9Y9XyAQO0,Crash Team Racing,0:55:52,0:55:52,3352.0,high,3657,01:00:00,"10 frames hold at 0:55:52, and 40 pre-finish frames independently predict 0:55:48-0:56:04"
+5x8vcCPyaFo,Stepmania,0:43:09,0:43:07,2587.0,high,2777,00:40:00,"12 frames hold at 0:43:07, and 32 pre-finish frames independently predict 0:42:56-0:43:12"
+7eu-A1tbeKk,Closing Speech,0:00:02,3:53:09,13989.0,reject,2147,00:15:00,no stable plateau; fell back to the largest reading; reading 3:53:09 exceeds the video's own 0:35:47; reading is 15.54x the 0:15:00 estimate
+gVQwyeAsfvY,Shantae and the Pirate's Curse,0:46:50,0:46:49,2809.0,high,3000,00:55:00,"11 frames hold at 0:46:49, and 36 pre-finish frames independently predict 0:46:35-0:46:51"
+09g98Wjj5Ew,Jubeat,0:47:59,0:47:58,2878.0,high,3054,00:50:00,"4 frames hold at 0:47:58, and 42 pre-finish frames independently predict 0:47:47-0:48:03"
+4CuljAVp_CU,Uncharted: The Lost Legacy,1:51:58,1:51:58,6718.0,high,6889,01:52:00,"9 frames hold at 1:51:58, and 41 pre-finish frames independently predict 1:51:50-1:52:06"
+sKYExYhEwpQ,Mario Kart: Double Dash!!,0:34:53,0:34:52,2092.0,high,2216,00:36:00,"6 frames hold at 0:34:52, and 44 pre-finish frames independently predict 0:34:45-0:35:01"
+BRR6MmSADlY,Elden Ring,1:47:27,1:47:26,6446.0,high,6828,01:55:00,"25 frames hold at 1:47:26, and 19 pre-finish frames independently predict 1:47:22-1:47:38"
+8yO5c1xLJY0,Prince of Persia: The Forgotten Sands,1:29:51,1:29:49,5389.0,high,5526,01:25:00,"9 frames hold at 1:29:49, and 36 pre-finish frames independently predict 1:29:40-1:29:56"
+A2eUeTXJHT0,Astro Boy: Omega Factor,0:26:41,0:26:40,1600.0,high,1738,00:30:00,"9 frames hold at 0:26:40, and 37 pre-finish frames independently predict 0:26:32-0:26:48"
+Bhfn2or4eGI,Trojan,0:07:10,0:07:09,429.0,high,500,00:08:00,"3 frames hold at 0:07:09, and 36 pre-finish frames independently predict 0:07:04-0:07:20"
+TLMc3M-bgtY,Dark SASI,0:08:56,0:08:56,536.0,high,639,00:15:00,"5 frames hold at 0:08:56, and 45 pre-finish frames independently predict 0:08:47-0:09:03"
+BLi8QXWxqv4,Mad Panic Coaster,0:39:47,0:39:46,2386.0,high,2535,00:40:00,"11 frames hold at 0:39:46, and 39 pre-finish frames independently predict 0:39:38-0:39:54"
+k-n8Qpb4puw,Subnautica: Below Zero,0:45:03,0:45:02,2702.0,high,2800,00:40:00,"6 frames hold at 0:45:02, and 33 pre-finish frames independently predict 0:44:52-0:45:08"
+_Z2CArVDV5A,BattleBlock Theater,0:20:58,0:20:57,1257.0,high,1441,00:25:00,"9 frames hold at 0:20:57, and 40 pre-finish frames independently predict 0:20:49-0:21:05"
+ySkcjlRHIdA,Illusion of Gaia,2:07:35,2:07:34,7654.0,high,7849,02:05:00,"12 frames hold at 2:07:34, and 38 pre-finish frames independently predict 2:07:27-2:07:43"
+Fgbb9UZbQBo,Titanfall 2,1:24:04,1:24:04,5044.0,high,5336,01:32:00,"18 frames hold at 1:24:04, and 31 pre-finish frames independently predict 1:23:57-1:24:13"
+UR3eqpSxjII,The Legend of Zelda: Breath of the Wild,2:30:16,2:50:15,10215.0,reject,9141,02:30:00,no stable plateau; fell back to the largest reading; reading 2:50:15 exceeds the video's own 2:32:21
+que5xv5Ee8Y,Dishonored,1:13:44,1:15:44,4544.0,medium,4608,01:20:00,only one of the two checks passed; worth a human glance
+1qCIxWu6DvU,Crash: Mind Over Mutant,0:38:08,0:38:08,2288.0,high,2485,00:40:00,"10 frames hold at 0:38:08, and 18 pre-finish frames independently predict 0:38:05-0:38:21"
+8z7v8_3rm6c,Chicken ~Boiled Egg~,0:07:32,0:07:51,471.0,low,568,00:15:00,no stable plateau; fell back to the largest reading; neither a stable plateau nor a consistent ramp
+9gmQ3HQIBuU,Hyper Light Drifter,0:34:29,0:54:21,3261.0,reject,2122,00:35:00,no stable plateau; fell back to the largest reading; reading 0:54:21 exceeds the video's own 0:35:22
+oP7mNcyoP1g,Sly 3: Honor Among Thieves,1:08:08,1:08:07,4087.0,high,4304,01:15:00,"14 frames hold at 1:08:07, and 35 pre-finish frames independently predict 1:08:01-1:08:17"
+_M7kpN9JMjU,Half-Life,0:30:05,0:30:04,1804.0,high,1980,00:30:00,"9 frames hold at 0:30:04, and 41 pre-finish frames independently predict 0:29:55-0:30:11"
+jBEtsLN1YZw,Super Mario 64,1:50:22,1:50:22,6622.0,high,6867,02:00:00,"12 frames hold at 1:50:22, and 38 pre-finish frames independently predict 1:50:13-1:50:29"
+ibhSvIq7k5M,Trek to Yomi,1:10:20,1:10:19,4219.0,high,4845,01:30:00,"29 frames hold at 1:10:19, and 20 pre-finish frames independently predict 1:10:10-1:10:26"
+DG1zMXNfGlY,Castlevania: Circle of the Moon,0:31:32,0:51:32,3092.0,reject,2010,00:36:00,no stable plateau; fell back to the largest reading; reading 0:51:32 exceeds the video's own 0:33:30
+RnOUM94I7ow,Command & Conquer: Red Alert 2,0:57:53,0:57:52,3472.0,high,3561,01:05:00,"4 frames hold at 0:57:52, and 43 pre-finish frames independently predict 0:57:41-0:57:57"
+2o5pb14albE,Neon Drive,0:15:53,0:15:52,952.0,high,1091,00:20:00,"5 frames hold at 0:15:52, and 42 pre-finish frames independently predict 0:15:42-0:15:58"
+8KzqIigjkR0,Sekiro: Shadows Die Twice,1:43:50,1:59:18,7158.0,reject,6530,02:15:00,no stable plateau; fell back to the largest reading; reading 1:59:18 exceeds the video's own 1:48:50
+Qxyca6mVtzI,Duke Nukem: Manhattan Project,1:31:10,1:31:09,5469.0,high,5583,01:30:00,"6 frames hold at 1:31:09, and 44 pre-finish frames independently predict 1:30:59-1:31:15"
+ZzwzTUS8Q_Q,Super Mario Land 2: 6 Golden Coins,0:28:37,0:30:00,1800.0,medium,2352,00:30:00,only one of the two checks passed; worth a human glance
+92rtQrlEOOU,Goof Troop,0:22:43,0:22:43,1363.0,high,1479,00:25:00,"4 frames hold at 0:22:43, and 46 pre-finish frames independently predict 0:22:39-0:22:55"
+arh4ItlKnXA,Hotline Miami,0:25:09,0:25:08,1508.0,high,1689,00:30:00,"12 frames hold at 0:25:08, and 33 pre-finish frames independently predict 0:25:04-0:25:20"
+kSYxIepeBLk,Alien: Isolation,2:48:11,2:48:09,10089.0,high,10337,02:50:00,"8 frames hold at 2:48:09, and 40 pre-finish frames independently predict 2:48:03-2:48:19"
+7CwCS6b5TKE,The Binding of Isaac: Repentance,1:06:53,1:06:52,4012.0,high,4173,01:15:00,"9 frames hold at 1:06:52, and 41 pre-finish frames independently predict 1:06:47-1:07:03"
+zDpNQKsMqIU,Quake,0:18:57,0:18:57,1137.0,high,1398,00:20:00,"7 frames hold at 0:18:57, and 43 pre-finish frames independently predict 0:18:48-0:19:04"
+K4RK7Rf1NTc,Golden Sun,0:00:41,0:15:00,900.0,reject,524,00:15:00,reading 0:15:00 exceeds the video's own 0:08:44
+B7TbMKpYGmE,GhostWire: Tokyo,1:13:59,1:15:59,4559.0,medium,4587,01:25:00,only one of the two checks passed; worth a human glance
+9WLX4a3QWbs,Yooka-Laylee,0:31:38,0:31:37,1897.0,high,2037,00:30:00,"7 frames hold at 0:31:37, and 34 pre-finish frames independently predict 0:31:26-0:31:42"
+zAC-nV5RXOQ,Dishonored,0:11:49,0:11:49,709.0,high,874,00:15:00,"7 frames hold at 0:11:49, and 42 pre-finish frames independently predict 0:11:46-0:12:02"
+3pElA869CA8,Mary-Kate & Ashley: Sweet 16 - Licensed To Drive,0:20:04,0:20:03,1203.0,high,1346,00:25:00,"8 frames hold at 0:20:03, and 42 pre-finish frames independently predict 0:19:50-0:20:06"
+LEdzoX5CNXg,Road Trip,0:24:04,0:24:03,1443.0,high,1527,00:35:00,"6 frames hold at 0:24:03, and 44 pre-finish frames independently predict 0:23:53-0:24:09"
+Ln0YuAfJV18,Pokémon Legends: Arceus,4:05:25,4:05:24,14724.0,high,15024,04:20:00,"22 frames hold at 4:05:24, and 27 pre-finish frames independently predict 4:05:17-4:05:33"
+7ZhLkBg1VUM,Lithium City,0:33:25,0:35:24,2124.0,medium,2224,00:45:00,only one of the two checks passed; worth a human glance
+G2_CxOZRYVY,Goosebumps: Dead of Night,0:14:39,0:14:38,878.0,high,1139,00:15:00,"12 frames hold at 0:14:38, and 32 pre-finish frames independently predict 0:14:24-0:14:40"
+ZUlsdjyubUo,Ratchet & Clank,0:50:57,0:50:56,3056.0,high,3407,01:00:00,"20 frames hold at 0:50:56, and 29 pre-finish frames independently predict 0:50:45-0:51:01"
+LwW-YXKypjw,Star Fox 64,0:46:28,0:46:27,2787.0,high,3042,00:50:00,"18 frames hold at 0:46:27, and 32 pre-finish frames independently predict 0:46:18-0:46:34"
+_k65Yv-UHAY,Dark Souls II: Scholar of the First Sin,0:58:28,0:58:27,3507.0,high,3633,01:10:00,"3 frames hold at 0:58:27, and 45 pre-finish frames independently predict 0:58:23-0:58:39"
+2WGWF80B6No,Crash Bandicoot,1:14:04,1:14:03,4443.0,high,4582,01:20:00,"10 frames hold at 1:14:03, and 40 pre-finish frames independently predict 1:13:56-1:14:12"
+Smoq9rxQrRU,Shadow Warrior 3,0:50:55,0:50:55,3055.0,high,3265,01:00:00,"10 frames hold at 0:50:55, and 38 pre-finish frames independently predict 0:50:42-0:50:58"
+8v-KWJiwJKI,The Legend of Zelda: The Minish Cap,1:37:05,1:37:04,5824.0,high,5980,01:40:00,"10 frames hold at 1:37:04, and 40 pre-finish frames independently predict 1:36:54-1:37:10"
+6t_C4pEES7k,Mega Man Unlimited,0:38:57,0:38:56,2336.0,high,2651,00:42:00,"22 frames hold at 0:38:56, and 28 pre-finish frames independently predict 0:38:51-0:39:07"
+_jO-1gMuY_I,Chip 'n Dale Rescue Rangers,0:12:58,0:12:57,777.0,high,868,00:11:00,"4 frames hold at 0:12:57, and 46 pre-finish frames independently predict 0:12:53-0:13:09"
+S70_opEyZjU,The Legend of Zelda: A Link to the Past,0:33:49,0:33:49,2029.0,high,2210,00:50:00,"9 frames hold at 0:33:49, and 41 pre-finish frames independently predict 0:33:36-0:33:52"
+IVHTQXsuFCo,Batman: Arkham Asylum,1:01:48,1:08:54,4134.0,reject,3880,01:08:00,reading 1:08:54 exceeds the video's own 1:04:40
+60GHKXLQduY,Kirby and the Forgotten Land,1:52:05,1:52:05,6725.0,high,6858,01:55:00,"7 frames hold at 1:52:05, and 41 pre-finish frames independently predict 1:52:01-1:52:17"
+1LrZsh7OAFY,Mario Kart DS,0:56:29,0:56:29,3389.0,high,3516,01:00:00,"7 frames hold at 0:56:29, and 40 pre-finish frames independently predict 0:56:20-0:56:36"
+_Gye8EnSr24,Obama,0:29:33,0:29:33,1773.0,high,2098,00:25:00,"13 frames hold at 0:29:33, and 36 pre-finish frames independently predict 0:29:28-0:29:44"
+qpthrpXHvdY,Final Fantasy VIII,6:09:15,6:09:13,22153.0,high,22264,07:00:00,"7 frames hold at 6:09:13, and 41 pre-finish frames independently predict 6:09:04-6:09:20"
+tyO-vRA6F4A,Mafia,2:54:45,2:54:44,10484.0,high,10596,02:55:00,"7 frames hold at 2:54:44, and 43 pre-finish frames independently predict 2:54:32-2:54:48"
+sEWXhveTDo0,Disney/Pixar A Bug's Life,0:25:05,0:25:04,1504.0,high,1673,00:29:00,"9 frames hold at 0:25:04, and 41 pre-finish frames independently predict 0:24:56-0:25:12"
+EoEuDWq3b-o,Dark Souls,0:36:58,0:36:57,2217.0,high,2376,00:30:00,"3 frames hold at 0:36:57, and 26 pre-finish frames independently predict 0:36:57-0:37:13"
+IRvUuILQChw,Batman: Arkham Knight,2:26:42,2:26:40,8800.0,high,9005,02:40:00,"8 frames hold at 2:26:40, and 32 pre-finish frames independently predict 2:26:34-2:26:50"
+E-niJYt0HO8,BCV: Battle Construction Vehicles,0:48:07,0:48:06,2886.0,high,3180,00:50:00,"12 frames hold at 0:48:06, and 38 pre-finish frames independently predict 0:47:52-0:48:08"
+ljos49f88rg,Super Mario 64,2:35:28,2:55:46,10546.0,reject,9559,02:30:00,no stable plateau; fell back to the largest reading; reading 2:55:46 exceeds the video's own 2:39:19
+tDa3a_EbI5I,Disney-Pixar Brave,1:25:46,1:25:46,5146.0,high,5315,01:30:00,"6 frames hold at 1:25:46, and 38 pre-finish frames independently predict 1:25:43-1:25:59"
+LzsZZTcUDac,Disney/Pixar A Bug's Life,0:28:18,0:28:17,1697.0,high,1883,00:29:00,"10 frames hold at 0:28:17, and 36 pre-finish frames independently predict 0:28:06-0:28:22"
+H9ZJMrzhugE,Jak 3,0:42:21,0:42:20,2540.0,high,2827,00:50:00,"18 frames hold at 0:42:20, and 32 pre-finish frames independently predict 0:42:12-0:42:28"
+2k5xFhInjao,GeoGuessr,0:45:21,0:10:39,639.0,reject,2530,00:35:00,reading is 0.30x the 0:35:00 estimate
+f1O-YFmHneM,Sly Cooper and the Thievius Raccoonus,1:25:57,1:25:57,5157.0,high,5325,01:35:00,"12 frames hold at 1:25:57, and 34 pre-finish frames independently predict 1:25:51-1:26:07"
+exfz3AACdCI,Lightning Returns: Final Fantasy XIII,2:17:05,2:17:04,8224.0,high,8394,02:10:00,"9 frames hold at 2:17:04, and 41 pre-finish frames independently predict 2:16:52-2:17:08"
+q5w1z_S77Jc,Grand Theft Auto: Vice City,2:31:09,2:51:08,10268.0,reject,9274,02:30:00,no stable plateau; fell back to the largest reading; reading 2:51:08 exceeds the video's own 2:34:34
+CpLWD58AxlY,Touhou Gouyoku Ibun ~ Suibotsushita Chinshuu Jigoku,1:04:24,1:04:23,3863.0,high,4018,01:15:00,"9 frames hold at 1:04:23, and 41 pre-finish frames independently predict 1:04:15-1:04:31"
+DKUiMlPM-yg,Metroid: Spooky Mission,0:35:37,0:55:56,3356.0,reject,2498,00:40:00,no stable plateau; fell back to the largest reading; reading 0:55:56 exceeds the video's own 0:41:38
+s_VnIMLbBJI,Tom and Jerry,0:12:30,0:12:29,749.0,high,825,00:13:00,"4 frames hold at 0:12:29, and 46 pre-finish frames independently predict 0:12:22-0:12:38"
+xbK9EuDxguk,James Pond 2: Codename: RoboCod,0:33:12,0:30:43,1843.0,medium,2106,00:30:00,no stable plateau; fell back to the largest reading; only one of the two checks passed; worth a human glance
+JFFSe16w45g,Deus Ex,1:27:40,1:27:39,5259.0,high,5535,01:30:00,"12 frames hold at 1:27:39, and 30 pre-finish frames independently predict 1:27:34-1:27:50"
+JFgzwKmDs2U,Octopath Traveler,4:04:24,4:04:23,14663.0,high,14858,04:00:00,"6 frames hold at 4:04:23, and 35 pre-finish frames independently predict 4:04:12-4:04:28"
+upkA1dPcSWA,Euro Truck Simulator 2,2:04:34,2:05:52,7552.0,low,8002,02:00:00,no stable plateau; fell back to the largest reading; neither a stable plateau nor a consistent ramp
+WKg3xiIvaOo,Silent Hill 4,1:26:19,1:26:18,5178.0,high,5577,01:20:00,"13 frames hold at 1:26:18, and 34 pre-finish frames independently predict 1:26:14-1:26:30"
+wlU9dCbL99U,Mega Man 8,1:53:25,1:45:06,6306.0,high,7067,01:45:00,"17 frames hold at 1:45:06, and 33 pre-finish frames independently predict 1:44:52-1:45:08"
+1H50nUIWrFk,Fable: The Lost Chapters,3:00:51,5:00:51,18051.0,reject,10976,03:10:00,no stable plateau; fell back to the largest reading; reading 5:00:51 exceeds the video's own 3:02:56
+Jwi41_QQmE0,Turbo Force,0:19:37,0:19:36,1176.0,high,1306,00:25:00,"8 frames hold at 0:19:36, and 39 pre-finish frames independently predict 0:19:27-0:19:43"
+OtzJl65pY50,Dark Messiah of Might & Magic,0:25:30,0:25:29,1529.0,high,1610,00:25:00,"3 frames hold at 0:25:29, and 43 pre-finish frames independently predict 0:25:20-0:25:36"
+wn1IaGiIdpk,Inspector Gadget: MAD Robots Invasion,0:50:17,0:50:16,3016.0,high,3169,01:00:00,"11 frames hold at 0:50:16, and 39 pre-finish frames independently predict 0:50:12-0:50:28"
+8uMDnKlt-8Y,Casper Scare School,0:13:11,0:13:11,791.0,high,995,00:17:00,"12 frames hold at 0:13:11, and 38 pre-finish frames independently predict 0:13:06-0:13:22"
+Ky8sKY7Bwro,Phantom Abyss,0:16:29,0:16:28,988.0,high,1064,00:17:00,"4 frames hold at 0:16:28, and 44 pre-finish frames independently predict 0:16:22-0:16:38"
+DGii5BTJcTk,The Legend of Zelda: Majora's Mask,1:44:49,1:44:48,6288.0,high,6547,02:05:00,"18 frames hold at 1:44:48, and 32 pre-finish frames independently predict 1:44:40-1:44:56"
+7z3ZyONBnDM,OoT ACE Showcase,0:56:49,0:56:48,3408.0,high,3564,01:00:00,"4 frames hold at 0:56:48, and 42 pre-finish frames independently predict 0:56:42-0:56:58"
+TIEGfVdp6w8,Super Mario Odyssey,1:02:21,1:02:20,3740.0,high,3975,01:02:00,"14 frames hold at 1:02:20, and 36 pre-finish frames independently predict 1:02:14-1:02:30"
+TNinerc_WNU,Home Alone,0:19:59,0:19:58,1198.0,high,1310,00:25:00,"7 frames hold at 0:19:58, and 43 pre-finish frames independently predict 0:19:49-0:20:05"
+T0NAxtDNOVg,Sonic Lost World,1:22:17,1:22:16,4936.0,high,5064,01:30:00,"6 frames hold at 1:22:16, and 41 pre-finish frames independently predict 1:22:05-1:22:21"
+lORZYJ9fOjo,Xenoblade Chronicles: Future Connected,0:35:50,0:55:58,3358.0,reject,2258,00:45:00,no stable plateau; fell back to the largest reading; reading 0:55:58 exceeds the video's own 0:37:38
+hBs7D0qh52o,Hades,0:46:16,0:46:16,2776.0,high,3300,00:50:00,"12 frames hold at 0:46:16, and 15 pre-finish frames independently predict 0:46:09-0:46:25"
+3jVqQ2N8aGE,Worms Armageddon,1:13:29,1:13:28,4408.0,high,4620,01:25:00,"5 frames hold at 1:13:28, and 45 pre-finish frames independently predict 1:13:17-1:13:33"
+1W96igZRIlI,Metroid Dread,0:28:57,0:40:00,2400.0,medium,2576,00:40:00,only one of the two checks passed; worth a human glance
+iZjDX0kji2s,Snake Rattle N Roll,0:07:16,0:07:16,436.0,high,532,00:12:00,"4 frames hold at 0:07:16, and 36 pre-finish frames independently predict 0:07:02-0:07:18"
+jcx5h-Iwq3E,McDonald's Treasure Land Adventure,0:24:06,0:24:05,1445.0,medium,1576,00:25:00,no stable plateau; fell back to the largest reading; only one of the two checks passed; worth a human glance
+MEaESfYj97o,Half-Life 2,0:51:48,0:51:48,3108.0,high,3329,01:00:00,"11 frames hold at 0:51:48, and 39 pre-finish frames independently predict 0:51:39-0:51:55"
+3Jdqx6RrX8o,EyeToy: Play 2,1:15:59,1:15:58,4558.0,high,4677,01:15:00,"4 frames hold at 1:15:58, and 46 pre-finish frames independently predict 1:15:46-1:16:02"
+HvS-MZ8Ratw,Mirror's Edge,0:47:46,0:47:46,2866.0,high,3368,00:45:00,"7 frames hold at 0:47:46, and 42 pre-finish frames independently predict 0:47:37-0:47:53"
+SGksyauYX3I,NieR Replicant ver.1.22474487139...,1:15:45,1:15:44,4544.0,high,4669,01:25:00,"7 frames hold at 1:15:44, and 39 pre-finish frames independently predict 1:15:31-1:15:47"
+HoYiqz5CcwA,Ratchet & Clank: Into The Nexus,0:23:34,0:23:54,1434.0,medium,1640,00:25:00,only one of the two checks passed; worth a human glance
+9yr9vd546oE,Shadow of the Tomb Raider,1:20:08,1:20:07,4807.0,high,4980,01:25:00,"13 frames hold at 1:20:07, and 30 pre-finish frames independently predict 1:20:04-1:20:20"
+87Of9xa_8EQ,Trackmania,0:41:23,0:41:23,2483.0,high,2726,00:40:00,"11 frames hold at 0:41:23, and 17 pre-finish frames independently predict 0:41:14-0:41:30"
+YFSkUsXJf2U,Quake,0:15:38,0:15:37,937.0,high,1055,00:20:00,"7 frames hold at 0:15:37, and 43 pre-finish frames independently predict 0:15:24-0:15:40"
+Z4JVIFcXotw,Robo Vacuum Simulator,1:33:03,1:55:02,6902.0,reject,5677,01:30:00,no stable plateau; fell back to the largest reading; reading 1:55:02 exceeds the video's own 1:34:37
+6AVgH6X0SN8,Awful Relay,0:58:42,0:58:41,3521.0,reject,3510,01:00:00,reading 0:58:41 exceeds the video's own 0:58:30
+WUb6L7RVvqI,Halo: Combat Evolved,1:20:51,1:20:51,4851.0,high,4997,01:30:00,"6 frames hold at 1:20:51, and 40 pre-finish frames independently predict 1:20:47-1:21:03"
+smtJZZ82iHY,Timesplitters: Future Perfect,0:06:10,0:06:09,369.0,high,519,00:10:00,"8 frames hold at 0:06:09, and 31 pre-finish frames independently predict 0:06:06-0:06:22"
+pi6dJJwPUZk,Clone Hero,0:40:39,0:40:39,2439.0,high,2634,00:40:00,"12 frames hold at 0:40:39, and 17 pre-finish frames independently predict 0:40:35-0:40:51"
+8EgCmvUf79g,Cuphead DLC,2:28:50,2:28:49,8929.0,high,9068,02:30:00,"9 frames hold at 2:28:49, and 34 pre-finish frames independently predict 2:28:36-2:28:52"

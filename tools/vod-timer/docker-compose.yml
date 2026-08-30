@@ -1,0 +1,13 @@
+services:
+  vodtimer:
+    build: .
+    image: esavods/vod-timer:latest
+    volumes:
+      - vodtimer-cache:/cache
+      - ./out:/out
+    # Pass cookies through if YouTube starts asking for them:
+    #   - ${HOME}/cookies.txt:/cookies.txt:ro
+    # then add: --ytdlp-arg --cookies --ytdlp-arg /cookies.txt
+
+volumes:
+  vodtimer-cache:
