@@ -76,8 +76,6 @@ class ImportCsvs extends Command
 		    $runTwitch = ($runRow['Twitch']) ? $runRow['Twitch'] : null;
 		    $runYoutube = (isset($runRow['Youtube']) && !empty($runRow['Youtube'])) ? $runRow['Youtube'] : null;
 
-		    var_dump($runGame);
-
 		    $runRow['Time'] = str_replace('"', '', $runRow['Time']);
 		    $runTimeExplode = explode(':', $runRow['Time']);
 		    $runSeconds = 0;
