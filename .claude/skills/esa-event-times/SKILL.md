@@ -129,72 +129,61 @@ Ship what you have. A run listed with an imperfect time is more useful than a
 run missing entirely, provided the uncertain ones are written down (step 6) so
 they can be corrected.
 
-Export one CSV per Horaro schedule, because the app models each stream as its
-own event. Use the exact event name the site should show:
+One script does the whole deploy, driven by a small manifest per event:
 
 ```sh
-docker run --rm -v "$(pwd -W)/out:/out" esavods/vod-timer:latest   export /out/<event>/final.csv --resolved /out/<event>/resolved.csv   --event-name "ESA 2026 Summer (One)"   --out /out/<event>/esa-2026-summer-one.csv
+Build/release-event.sh tools/vod-timer/events/<event>.conf --dry-run   # look first
+Build/release-event.sh tools/vod-timer/events/<event>.conf
+```
+
+The manifest names one horaro schedule per line, because the app models each
+stream as its own event:
+
+```sh
+SCHEDULES="
+winter-2026-s1 | ESA 2026 Winter (One)
+winter-2026-s2 | ESA 2026 Winter (Two)
+"
 ```
 
 Match the naming already in the database - `ESA 2020 Winter (One)`,
-`ESA 2018 Summer (Two)`, `ESA 2016`. A new spelling silently creates a second
-event rather than filling in the one people expect. Check first:
+`ESA 2018 Summer (Two)`, `ESA 2016`. A new spelling does not fail; it silently
+creates a second event beside the one people expect. Check before writing a
+manifest for an event that is not there yet:
 
 ```sh
-docker exec esavods-db-1 sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB"   -c "select name from events order by id;"'
+docker compose exec -T db psql -U esavods -d esavods -c 'select name from events order by id;'
 ```
 
-Then put the CSV where every other event's data lives and import:
+The script applies the human answers, exports one CSV per schedule, prints what
+it is about to publish by confidence tier, stages the CSVs into
+`storage/app/csv/`, imports, and then *asks the table* what actually landed -
+failing on any run at 0s or over six hours, warning when two runs share a VOD.
+A CSV that reads perfectly can still import into the wrong event or fold two
+runs together, so the check worth having is the one after the import.
 
-```sh
-cp tools/vod-timer/out/<event>/esa-*.csv storage/app/csv/
-docker exec esavods-app-1 php artisan runCsv:import
-```
+It also writes `out/release/unvouched.md`: every run that shipped on a reading
+no person confirmed. That list is what makes shipping a guess safe rather than
+merely fast - post it on the event's issue (step 6).
 
 `runCsv:import` reads *every* file in `storage/app/csv`, not just the new one.
 That is safe - unchanged rows resolve to the existing run - but it is not fast.
-
-Verify before opening a PR:
-
-```sh
-docker exec esavods-db-1 sh -c 'psql -U "$POSTGRES_USER" -d "$POSTGRES_DB" -c   "select e.name, count(*), min(r.time), max(r.time) from runs r
-     join events e on e.id = r.event_id group by e.name order by e.name;"'
-```
-
-A `min(time)` of 0 or a `max(time)` far past the longest estimate means bad
-rows got in. Fix the CSV and re-import rather than patching the database.
 
 The CSV is the artifact of record: commit it to `storage/app/csv/` on the
 event's branch and merge the PR. Merging deploys, then run `runCsv:import`
 against production.
 
-### Correcting a time later - read this before shipping guesses
+### Correcting a time later
 
-`ImportCsvs.php:113` looks a run up by game, category, event **and time**:
+Since #55 the importer keys a run on game + category + event + **scheduled
+slot**, not on its time. A correction is therefore just a re-import: edit the
+time in `storage/app/csv/<event>.csv` and run the release script again, and the
+existing run updates in place.
 
-```php
-$run = Run::firstOrNew(['game_id' => ..., 'category' => ..., 'event_id' => ..., 'time' => $runSeconds]);
-```
-
-Because the time is part of the identity, re-importing a corrected time does
-not fix the run - it creates a **second** run for the same game and category,
-and the wrong one stays on the site. So:
-
-- **Never** correct a time by editing the CSV and re-importing, unless you also
-  delete the superseded run.
-- Correct in place instead, keyed on the run you are replacing:
-
-  ```sh
-  docker exec esavods-app-1 php artisan tinker --execute="
-    \$r = App\Run::where('event_id', <id>)->where('game_id', <id>)->where('time', <old>)->first();
-    \$r->time = <new>; \$r->save();"
-  ```
-
-  and update the CSV in the same commit so the two do not drift.
-
-Making the importer key on game+category+event and set the time afterwards
-would remove this trap entirely. That is a change to app behaviour, so it wants
-its own issue and PR - propose it, do not slip it into a backfill.
+That is what makes shipping an unconfirmed time reasonable rather than reckless
+- a wrong value is replaceable, not permanent. Correct the CSV, never the
+database directly: production re-imports from the CSV, so a row patched only in
+Postgres reverts on the next import.
 
 ## Step 6 - evaluate the run, then stop
 
