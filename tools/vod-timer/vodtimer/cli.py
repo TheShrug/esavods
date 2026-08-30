@@ -161,7 +161,8 @@ def cmd_resolve(args) -> int:
     print(f"{len(rows)} runs from {source}")
     print("")
     fields = ["uuid", "game", "category", "runner", "estimate", "actual",
-              "video_id", "how", "slot", "vod_duration", "delta", "title", "note"]
+              "video_id", "how", "slot", "vod_duration", "delta", "title",
+              "scheduled", "platform", "players_md", "note"]
     counts: Counter = Counter()
     with open(args.out, "w", newline="", encoding="utf8") as fh:
         w = csv.DictWriter(fh, fieldnames=fields)
@@ -177,6 +178,9 @@ def cmd_resolve(args) -> int:
                 "video_id": m.get("video_id", ""), "how": m.get("how", ""),
                 "slot": m.get("slot", ""), "vod_duration": m.get("vod_duration", ""),
                 "delta": m.get("delta", ""), "title": m.get("title", ""),
+                "scheduled": row.get("_scheduled", ""),
+                "platform": row.get("_platform", ""),
+                "players_md": row.get("_players_md", ""),
                 "note": m.get("note", ""),
             }
             w.writerow(rec)
@@ -264,6 +268,48 @@ def cmd_apply(args) -> int:
     print(f"applied {applied}, skipped {skipped}")
     print(f"{usable}/{len(rows)} runs now have a time")
     print(f"wrote {args.out}")
+    return 0
+
+
+def cmd_export(args) -> int:
+    """Write the app importer's CSV: Scheduled;Game;Players;...;Time;Event;Youtube.
+
+    The importer splits Time on ':' and expects three parts, treats Players as
+    pipe-separated markdown, and reads the YouTube id straight out of the last
+    column. Everything here exists to hand it exactly that.
+    """
+    rows = _read_csv(args.results)
+    meta = {r["video_id"]: r for r in _read_csv(args.resolved) if r.get("video_id")}
+
+    written = skipped = 0
+    with open(args.out, "w", newline="", encoding="utf8") as fh:
+        w = csv.writer(fh, delimiter=";")
+        w.writerow(["Scheduled", "Game", "Players", "Platform", "Category",
+                    "Categories", "Twitch", "Time", "Event", "Youtube"])
+        for r in rows:
+            time = (r.get("final_time") or "").strip()
+            if not time or time.count(":") != 2:
+                skipped += 1
+                continue
+            vid = r.get("video_id", "")
+            m = meta.get(vid, {})
+            w.writerow([
+                m.get("scheduled", ""),
+                r.get("game") or m.get("game", ""),
+                m.get("players_md", ""),
+                m.get("platform", ""),
+                m.get("category", ""),
+                "",
+                "",
+                time,
+                args.event_name,
+                vid,
+            ])
+            written += 1
+
+    print(f"wrote {args.out}: {written} runs" + (f", {skipped} with no time" if skipped else ""))
+    if skipped:
+        print("runs with no time are left out entirely rather than imported as 0:00:00")
     return 0
 
 
@@ -356,6 +402,14 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--answers", required=True, help="file of 'N H:MM:SS' lines")
     p.add_argument("--out", required=True)
     p.set_defaults(func=cmd_apply)
+
+    p = sub.add_parser("export", help="write a CSV the app's runCsv:import can read")
+    p.add_argument("results", help="final.csv from apply, or results.csv from batch")
+    p.add_argument("--resolved", required=True, help="the resolve --out CSV")
+    p.add_argument("--event-name", required=True,
+                   help='exact event name for the app, e.g. "ESA 2026 Summer (One)"')
+    p.add_argument("--out", required=True)
+    p.set_defaults(func=cmd_export)
 
     p = sub.add_parser("search", help="find a VOD by title via yt-dlp's ytsearch")
     p.add_argument("query", nargs="+")

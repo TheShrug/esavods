@@ -76,6 +76,10 @@ def horaro_rows(slug: str) -> list[dict]:
             "_slot": None,
             "_scheduled": item.get("scheduled") or "",
             "_layout": cells.get("layout") or "",
+            # kept verbatim: the importer wants players as pipe-separated
+            # markdown, which is the shape horaro already stores them in.
+            "_players_md": (cells.get("player(s)") or "").replace(", ", "|"),
+            "_platform": cells.get("platform") or "",
         })
     return rows
 
