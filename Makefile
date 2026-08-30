@@ -23,7 +23,7 @@ DB_ACTIONS := download restore migrate
 HOMELAB_BACKUP_ENV ?= $(HOME)/.config/homelab/backups.env
 
 .DEFAULT_GOAL := help
-.PHONY: help build test run database $(DB_ACTIONS)
+.PHONY: help build test run release database $(DB_ACTIONS)
 
 help: ## Show this help
 	@echo "esavods — make targets:"
@@ -65,6 +65,18 @@ run: .env ## Serve the app on 8001 (override PORT=); prints the URL last
 	@$(COMPOSE) exec -T app php artisan migrate --force >/dev/null 2>&1 || true
 	@echo
 	@echo "  esavods serving on http://localhost:$(PORT)/  (postgres on $(DB_HOST_PORT))"
+
+# Needs the stack up: it imports through `compose exec app`, then checks the
+# result in the database, because a CSV that reads correctly can still land in
+# the wrong event. ARGS=--dry-run stops after the export, before anything is
+# staged. See .claude/skills/esa-event-times, step 5.
+release: ## Release a recovered event, e.g. `make release EVENT=tools/vod-timer/events/esa-winter-2026.conf`
+	@[ -n "$(EVENT)" ] || { \
+	  echo "usage: make release EVENT=tools/vod-timer/events/<event>.conf [ARGS=--dry-run]" >&2; \
+	  echo "available:" >&2; \
+	  ls tools/vod-timer/events/*.conf 2>/dev/null | sed 's/^/  /' >&2; \
+	  exit 1; }
+	./Build/release-event.sh "$(EVENT)" $(ARGS)
 
 # `download` runs INSIDE the dev container, because that is where rclone is.
 # The credential is sourced on the host and passed through with bare `-e NAME`:

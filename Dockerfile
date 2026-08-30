@@ -110,7 +110,12 @@ RUN chmod +x /usr/local/bin/entrypoint.sh \
     && php artisan package:discover --ansi \
     && chown -R www-data:www-data storage bootstrap/cache
 
-HEALTHCHECK --interval=30s --timeout=3s --start-period=20s \
+# start-period covers everything the entrypoint does before nginx accepts a
+# connection, and that now includes runCsv:import — ~13s for the twelve events
+# present today, growing as the backfill lands the remaining eleven. At the
+# previous 20s a slow Postgres plus the import would have started failing
+# probes mid-deploy, so this is sized for the import roughly tripling.
+HEALTHCHECK --interval=30s --timeout=3s --start-period=180s \
     CMD wget -qO- http://127.0.0.1/up || exit 1
 
 EXPOSE 80
