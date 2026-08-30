@@ -5,7 +5,7 @@
   "workspaceFolder": "/var/www/html",
   "shutdownAction": "stopCompose",
   // App on 8001, Postgres on 55401 — assigned in the fleet port table so this
-  // and esavods can be up at the same time.
+  // and speedrunwr can be up at the same time.
   "forwardPorts": [8001, 55401],
   "portsAttributes": {
     "8001": { "label": "esavods (http)" },

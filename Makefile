@@ -47,7 +47,7 @@ build: ## Build the dev image
 # NOT `docker compose run app php artisan test`. The `app` service carries
 # env_file: .env, which puts DB_* into the container's real OS environment;
 # Laravel's env() reads $_SERVER and phpunit.xml's <env> does not win, so
-# RefreshDatabase truncates whatever `app` points at. That is #14. The `test`
+# RefreshDatabase truncates whatever `app` points at. That is #22. The `test`
 # service has an explicit environment block and its own tmpfs Postgres.
 #
 # --fail-on-warning is not optional: CI's first green run reported success with
@@ -55,7 +55,7 @@ build: ## Build the dev image
 test: ## Run the suite against a throwaway Postgres — never the dev database
 	$(TEST_COMPOSE) run --rm -T test php artisan test --fail-on-warning
 
-run: .env ## Serve the app on 8002 (override PORT=); prints the URL last
+run: .env ## Serve the app on 8001 (override PORT=); prints the URL last
 	@$(COMPOSE) up -d
 	@printf '==> waiting for http://localhost:$(PORT)/ '
 	@for _ in $$(seq 1 60); do \
