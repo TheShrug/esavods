@@ -185,12 +185,17 @@ for spec in specs:
         if vid not in shipped:
             conf = "NOT SHIPPED (no time)"
         tiers[conf] = tiers.get(conf, 0) + 1
-        # A run cannot be longer than the video it was read from. This is the
-        # real form of "that time is impossible" — an absolute ceiling is not,
-        # because ESA runs six-hour games and a long run is not a wrong one.
-        # `batch` rejects these already, so one arriving here means a hand-edited
-        # CSV or a mistyped answer.
-        if vid in shipped:
+        # An OCR read longer than the video it came from is the real form of
+        # "that time is impossible" — an absolute ceiling is not, because ESA
+        # runs six-hour games and a long run is not a wrong one. `batch` rejects
+        # these already, so one arriving here means a hand-edited CSV.
+        #
+        # A human answer is exempt, for the reason cmd_export is: ESA splits a
+        # long run over several VODs and the timer shows the cumulative total,
+        # so Skies of Arcadia 100% Part 5/6 really does read 20:30:31 inside a
+        # four-hour video. Failing the release over a time a person read off the
+        # screen would make the reviewer's answer unshippable.
+        if vid in shipped and (r.get("source") or "ocr") == "ocr":
             dur = float(r.get("duration") or 0)
             secs = float(r.get("final_seconds") or 0)
             if dur and secs > dur:
@@ -312,6 +317,7 @@ dupes="$(psql_ -tAc "select count(*) from (select r.youtube_vod_id from runs r
 [ "${dupes:-0}" -eq 0 ] || echo "!! $dupes VOD(s) are used by more than one run — check the resolve step" >&2
 
 echo
-echo "==> released locally. Commit the CSVs in storage/app/csv/ on this branch;"
-echo "    merging the PR deploys, and production still needs its own"
-echo "    'php artisan runCsv:import' afterwards."
+echo "==> released locally. Commit the CSVs in storage/app/csv/ on this branch."
+echo "    Merging the PR deploys, and the container's entrypoint runs"
+echo "    'php artisan runCsv:import' itself on boot (#43), so production"
+echo "    needs no manual step."

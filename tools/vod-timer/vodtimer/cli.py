@@ -307,19 +307,27 @@ def cmd_export(args) -> int:
                 skipped += 1
                 continue
 
-            # A run cannot be longer than the video it was read from, so this
-            # is not a doubtful time - it is a wrong one, and a 19:35:00 run
-            # out of a 37-minute video is worse on the site than the run being
-            # absent. Left out on the same principle as a run with no time at
-            # all; the review list still carries it for a human to supply.
-            try:
-                secs = float(r.get("final_seconds") or 0)
-                dur = float(r.get("duration") or 0)
-            except (TypeError, ValueError):
-                secs = dur = 0.0
-            if dur and secs > dur:
-                impossible += 1
-                continue
+            # An OCR read longer than the video it came from is not a doubtful
+            # time, it is a wrong one - a 19:35:00 run out of a 37-minute video
+            # is worse on the site than the run being absent. Left out on the
+            # same principle as a run with no time at all; the review list still
+            # carries it for a human to supply.
+            #
+            # Never applied to a human answer. ESA splits a long run across
+            # several VODs and the timer carries the cumulative total, so Part
+            # 5/6 of the Skies of Arcadia 100% legitimately reads 20:30:31
+            # inside a four-hour video. A person read that off the screen; this
+            # check exists to catch the tool's own digit misreads, and it has no
+            # business overruling the human it was written to defer to.
+            if (r.get("source") or "ocr") == "ocr":
+                try:
+                    secs = float(r.get("final_seconds") or 0)
+                    dur = float(r.get("duration") or 0)
+                except (TypeError, ValueError):
+                    secs = dur = 0.0
+                if dur and secs > dur:
+                    impossible += 1
+                    continue
 
             vid = r.get("video_id", "")
             m = meta.get(vid, {})
