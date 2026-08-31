@@ -49,20 +49,103 @@ class Result:
         return asdict(self)
 
 
-def _plateau(valid: list[Reading], min_frames: int):
-    """Largest value that holds steady over the tail of the series."""
+def _modal_offset(valid: list[Reading]) -> float | None:
+    """The start-offset the pre-finish frames agree on, found *before* an answer
+    has been chosen.
+
+    A frame at position p reading v implies the timer started at offset v - p.
+    Every honest pre-finish frame shares that one offset. A frame after the
+    finish does not, because the clock is frozen while p keeps advancing, so
+    each of those contributes a distinct offset and none of them repeats. The
+    offset that does repeat is therefore the ramp's, whichever side of the
+    finish most of the sampled window falls on.
+
+    Computing it here rather than inside _ramp() is the point of the change: the
+    ramp can then *arbitrate* which value is the answer, instead of merely
+    checking the answer `max` had already picked.
+    """
+    counts = Counter(round(r.value - r.position) for r in valid)
+    offset, seen = counts.most_common(1)[0]
+    # Three agreeing frames is the bar the ramp check already uses to call
+    # itself good. Below that there is no ramp to speak of, and nothing that
+    # should be overruling a plateau.
+    return float(offset) if seen >= 3 else None
+
+
+def _ramp_end(valid: list[Reading], plateau_start: float, offset: float | None):
+    """Position of the last frame still *on* the ramp.
+
+    Not simply the last frame before the plateau. Those differ whenever a
+    misread sits between the ramp and the plateau, and taking the misread's
+    position drags the low edge of the predicted band past the true value -
+    rejecting the very answer the band exists to protect.
+    """
+    if offset is None:
+        on_ramp = [r.position for r in valid if r.position < plateau_start]
+    else:
+        on_ramp = [r.position for r in valid
+                   if r.position < plateau_start
+                   and abs(r.value - (offset + r.position)) <= SLOPE_TOLERANCE]
+    return max(on_ramp, default=plateau_start)
+
+
+def _band_for(valid: list[Reading], value: float, offset: float):
+    """The window a run whose plateau is `value` would have had to finish in."""
+    plateau_start = next(r.position for r in valid if r.value == value)
+    return (offset + _ramp_end(valid, plateau_start, offset) - SLOPE_TOLERANCE,
+            offset + plateau_start + SLOPE_TOLERANCE)
+
+
+def _plateau(valid: list[Reading], min_frames: int, offset: float | None = None):
+    """The value that holds steady over the tail - preferring one the ramp predicts.
+
+    Taking the *largest* steady value is what made a single misread digit
+    authoritative. A `3` read as a `5` is always larger than the truth, so `max`
+    selected it by construction: all seven Summer 2022 +20:00 failures and eight
+    of the ten Winter 2021 corrections had exactly this shape.
+    """
     counts = Counter(r.value for r in valid)
-    candidates = [v for v, n in counts.items() if n >= min_frames]
+    candidates = sorted((v for v, n in counts.items() if n >= min_frames),
+                        reverse=True)
     if not candidates:
-        return None, []
-    value = max(candidates)
+        return None, [], False
+
+    overruled = False
+    if offset is not None:
+        agreeing = []
+        for v in candidates:
+            low, high = _band_for(valid, v, offset)
+            if low <= v <= high:
+                agreeing.append(v)
+        if not agreeing:
+            # Nothing that holds steady is consistent with the clock the ramp
+            # describes. Report no plateau and let the caller fall back to the
+            # largest *plausible* reading, rather than certify a misread as a
+            # confident answer. This is the Castlevania shape: the true value
+            # was read only twice, under min_plateau, so it is not a candidate
+            # here at all and only the fallback can find it.
+            return None, [], False
+        overruled = agreeing[0] != candidates[0]
+        candidates = agreeing
+
+    value = candidates[0]
     members = [r for r in valid if r.value == value]
     first = members[0].index
     trailing = [r for r in valid if r.index >= first]
+
+    noise = [r for r in trailing if r.value != value]
+    if offset is not None:
+        # A stopped clock cannot climb past the value it stopped at, so a
+        # trailing reading *above* `value` is a misread digit and not a
+        # disagreement about when the run ended. Counting those as dissent is
+        # what let a five-frame 0:51:32 outvote a two-frame 0:31:32 on
+        # Castlevania: Circle of the Moon.
+        noise = [r for r in noise if r.value < value]
+
     # Allow a stray misread inside the plateau, but not a wholesale disagreement.
-    if sum(1 for r in trailing if r.value != value) > max(1, len(trailing) // 5):
-        return None, []
-    return value, members
+    if len(noise) > max(1, len(trailing) // 5):
+        return None, [], False
+    return value, members, overruled
 
 
 def _ramp(valid: list[Reading], value: float, ramp_end: float, plateau_start: float):
@@ -104,21 +187,35 @@ def resolve(
         res.reasons.append("no frame produced a readable timer")
         return res
 
-    value, members = _plateau(valid, min_plateau)
+    offset = _modal_offset(valid)
+    value, members, overruled = _plateau(valid, min_plateau, offset)
     if value is None:
         # The video may simply end on the finish with no outro to hold the
-        # frozen clock. Fall back to the largest reading, but say so.
-        value = max(r.value for r in valid)
+        # frozen clock. Fall back to the largest reading - but only among those
+        # the clock could actually have shown by the frame they appear on. A
+        # reading claiming more elapsed time than has passed is a misread, and
+        # a bare max() is precisely how the inflated one used to win.
+        pool = valid
+        if offset is not None:
+            plausible = [r for r in valid
+                         if r.value <= offset + r.position + SLOPE_TOLERANCE]
+            if plausible:
+                pool = plausible
+        value = max(r.value for r in pool)
         members = [r for r in valid if r.value == value]
         res.reasons.append("no stable plateau; fell back to the largest reading")
+    elif overruled:
+        res.reasons.append(
+            "a larger value held more frames, but the ramp does not predict it; "
+            "took the value the ramp agrees with"
+        )
 
     res.plateau_frames = len(members)
     res.plateau_starts_at = members[0].position
     res.final_seconds = value
     res.final_time = fmt(value)
 
-    ramp_end = max((r.position for r in valid if r.position < members[0].position),
-                   default=members[0].position)
+    ramp_end = _ramp_end(valid, members[0].position, offset)
     res.ramp_frames, res.ramp_error, band = _ramp(
         valid, value, ramp_end, members[0].position)
     if band:
