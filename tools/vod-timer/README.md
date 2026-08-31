@@ -80,12 +80,36 @@ The failures cluster, and they cluster informatively:
 
   Note that swapping the fallback from `max` to the mode does **not** fix this.
   On Castlevania: Circle of the Moon the frozen clock reads `0:51:32` five
-  times against `0:31:32` twice, so the mode is wrong too. What does fix it is
-  already being computed and is currently only used as a check: the ramp. Its
-  frames are clean and evenly spaced (`0:30:26, 0:30:38 ... 0:31:26`) and
-  extrapolate to `0:31:32`, the true answer. **Plateau candidates should be
-  restricted to values inside the ramp band**, which rejects `0:51:32` and
-  selects `0:31:32`. That is the fix worth making before any backfill.
+  times against `0:31:32` twice, so the mode is wrong too.
+
+  **Fixed in #62** by restricting the answer to values the ramp independently
+  predicts. The ramp's frames are clean and evenly spaced
+  (`0:30:26, 0:30:38 ... 0:31:26`) and extrapolate to `0:31:32`, the truth, so
+  the offset they share is now computed *before* any value is chosen and used to
+  arbitrate rather than merely to check afterwards.
+
+  Measured by re-reading real VODs against published truth:
+
+  | set | n | correct before | after |
+  |---|---|---|---|
+  | Summer 2022, every non-`high` run | 25 | 2 | **12** |
+  | Summer 2022, `high` sample (regression check) | 25 | 24 | **24** |
+  | Winter 2021, the runs a human had to correct | 10 | 0 | **4** |
+
+  No run that already read `high` changed its answer. Two runs did move, and
+  neither was the resolver: both came back on a **truncated download** - 11 and
+  14 frames against the usual 50 - so the finish was never in the sampled
+  window at all. That is its own bug (#63), and it is worth knowing that a short
+  clip still passes silently.
+
+  **What this does not fix:** a misread in a low-order digit. The predicted band
+  is about `step + 2 * SLOPE_TOLERANCE` wide - roughly 16s at the standard
+  settings - so a `+2s` or `+20s` inflation sits *inside* it and cannot be
+  discriminated. That is exactly the Winter 2021 residue: of the six still
+  wrong, two are `+2s`, one is `+20s`, one is `+2:00`, one is a truncated
+  download, and one is a multi-part VOD whose timer is cumulative. Catching the
+  rest needs a narrower band, which needs a finer `--step`, which costs read
+  time.
 - **Short runs lose to the estimate.** When a run is brief next to its slot,
   too few frames show a ticking clock, and the static estimate wins
   calibration. Golden Sun (a 41-second run in an 8:44 slot) read `0:15:00`,
