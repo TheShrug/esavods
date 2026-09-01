@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import re
 import sys
 from importlib.resources import files
 from pathlib import Path
@@ -15,6 +16,19 @@ from .pipeline import analyse, parse_duration
 
 GREEN, RED, YELLOW, DIM, RESET = "\033[32m", "\033[31m", "\033[33m", "\033[2m", "\033[0m"
 COLOUR = {"high": GREEN, "medium": YELLOW, "low": YELLOW, "reject": RED, "none": RED}
+
+# yt-dlp's wording for "this IP is rate-limited", in the forms it actually
+# emits. Matched on "not a bot" rather than the whole sentence because the
+# real message contains a curly apostrophe in "you're".
+BOT_WALL = re.compile(r"not a bot|sign in to confirm|HTTP Error 429|too many requests",
+                      re.I)
+# Exit code for "stopped early, nothing wrong with the input" - distinct from
+# 1, which means the batch finished and some runs were unreadable.
+EX_BLOCKED = 75
+
+
+def _bot_walled(r: dict) -> bool:
+    return bool(BOT_WALL.search(r.get("error") or ""))
 
 
 def _common(p: argparse.ArgumentParser) -> None:
@@ -78,8 +92,14 @@ def cmd_batch(args) -> int:
         if not line.startswith("#")
     ))
 
+    # `crop` is the rectangle calibration settled on, in 480p-frame pixels.
+    # Recorded because it is the only positional evidence a read produces, and
+    # ESA moves the timer per layout - `16x9-1p` and `4x3-7p` cannot put it in
+    # the same place. Collected across an event it says where each layout keeps
+    # its clock, which is what a --crop fast path would need. Without this the
+    # information is computed for every run and then thrown away.
     fields = ["video_id", "game", "actual", "final_time", "final_seconds",
-              "confidence", "duration", "estimate", "check_at", "notes"]
+              "confidence", "duration", "estimate", "check_at", "crop", "notes"]
 
     # Results are written and flushed per run, not collected and dumped at the
     # end. A whole-marathon batch takes hours; a crash three hours in must not
@@ -121,6 +141,16 @@ def cmd_batch(args) -> int:
         print(f"shard {shard_i}/{shard_n}: {len(rows)} of this event's runs")
 
     results = []
+    # Consecutive bot-wall failures. Once YouTube starts refusing this IP it
+    # refuses every subsequent request, and the batch's own error handling is
+    # what hides that: each failure is caught, recorded and stepped over, so a
+    # run that has stopped reading anything looks exactly like a run in
+    # progress. ESA Summer 2025 spent about half of a two-hour batch failing
+    # this way, and those ~92 doomed requests are themselves more load on an
+    # IP that is already being throttled - so continuing does not merely waste
+    # the wall time, it plausibly lengthens the block.
+    consecutive_wall = 0
+    blocked = False
     for i, row in enumerate(rows, 1):
         vid = row.get("video_id") or row.get("youtube_vod_id")
         if not vid or vid in done:
@@ -144,17 +174,38 @@ def cmd_batch(args) -> int:
                 "confidence": r.get("confidence"), "duration": r.get("duration", ""),
                 "estimate": r.get("estimate", ""),
                 "check_at": r.get("plateau_starts_at") or "",
+                "crop": ",".join(str(v) for v in r["crop"]) if r.get("crop") else "",
                 "notes": "; ".join(r.get("reasons", [])) or r.get("error", ""),
             })
             sink.flush()
         if args.discard_clips:
             video.forget_clips(vid)
 
+        # Reset on anything that is not the wall, a non-wall error included: a
+        # clip that downloaded and then failed in ffmpeg is proof YouTube is
+        # still answering us, which is exactly what the counter is asking.
+        if _bot_walled(r):
+            consecutive_wall += 1
+            if args.bot_wall_limit and consecutive_wall >= args.bot_wall_limit:
+                blocked = True
+                break
+        else:
+            consecutive_wall = 0
+
     if sink is not None:
         sink.close()
         print(f"wrote {args.out}")
     ok = sum(1 for r in results if r.get("confidence") in ("high", "medium"))
     print(f"{ok}/{len(results)} usable")
+    if blocked:
+        print(f"\n{RED}stopped: {consecutive_wall} consecutive runs refused "
+              f"by YouTube's bot wall.{RESET}", file=sys.stderr)
+        print("  Nothing is lost - only runs that produced a time were written,"
+              "\n  so --resume re-reads everything this batch did not finish."
+              "\n  Wait for the block to lift, or mount cookies and pass"
+              "\n  --ytdlp-arg --cookies --ytdlp-arg /cookies.txt",
+              file=sys.stderr)
+        return EX_BLOCKED
     return 0 if ok == len(results) else 1
 
 
@@ -411,6 +462,9 @@ def main(argv: list[str] | None = None) -> int:
                    help="skip video ids already present in --out")
     p.add_argument("--discard-clips", action="store_true",
                    help="delete each downloaded clip once read (saves disk on long runs)")
+    p.add_argument("--bot-wall-limit", type=int, default=5, metavar="N",
+                   help="give up after N consecutive runs refused by YouTube's "
+                        "bot wall (default: 5; 0 disables). Exits %d." % 75)
     p.add_argument("--shard", metavar="I/N",
                    help="process only every Nth row starting at I, for running "
                         "several containers at once (YouTube throttles per "

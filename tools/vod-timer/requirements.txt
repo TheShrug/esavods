@@ -1,3 +1,7 @@
 yt-dlp>=2025.1.1
 pytesseract==0.3.13
 Pillow>=10.4
+
+# The EJS challenge-solver scripts deno runs. Needed alongside the runtime;
+# a runtime with no solver distribution fails exactly as if it were absent.
+yt-dlp-ejs
