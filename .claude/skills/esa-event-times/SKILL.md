@@ -25,6 +25,31 @@ the two confirmations behind a `high` verdict actually are.
 Ask the user for both if they gave only one, and confirm the hashtag against a
 real search result before committing two hours to it.
 
+### Check whether the schedule already names the VODs
+
+From **ESA Summer 2025 on**, the horaro schedule links each run to its own video
+from the Game cell. That is the organisers naming their own upload, so it is not
+a match to be scored - it is the answer.
+
+```sh
+curl -sL "https://horaro.net/esa/<slug>.json" | grep -c 'youtube.com/watch'
+```
+
+If that comes back non-zero, `resolve` uses the links automatically and reports
+`how = horaro-link`. On Summer 2025 that was **170 of 170 with no duplicates**,
+against Winter 2021's 129 `tag-game-runner` / 9 `tag-game` / 3 `weak` / 1
+`no-hits`. It removes the resolver-error class outright - a confident time read
+off the *wrong* video, which no artefact the tool produces can detect - so every
+later anomaly is a reading problem and can be diagnosed as one.
+
+A `horaro-link-dead` means ESA's own link is gone; that is worth reporting, not
+working around.
+
+**Drop the filler rows before reading.** Schedules carry `End of Day N` and
+closing cards, which have no category. They are not runs, and one of them
+title-matched onto a real run's VOD on Summer 2025 - `cmd_export` keys metadata
+by `video_id`, so it would have overwritten that run's platform and category.
+
 ### Check for an ESA timing sheet first
 
 ESA publishes run timings for *some* events at
@@ -75,13 +100,19 @@ of whether the read will be any good:
 
 | `how` | meaning | trust |
 |---|---|---|
+| `horaro-link` | ESA's own link, off their own schedule | certain |
 | `slot-exact` | VOD length equals the slot from ESA's timing sheet | near-certain |
 | `tag-game-runner(s)` | hashtag, game and runner all agree | good |
 | `tag-game(s)` | hashtag and game agree, runner not found | check it |
 | `weak(s)` / `no-hits` | nothing agreed | almost certainly wrong |
+| `horaro-link-dead` | ESA's link is gone; report it, don't route around it | broken |
 
-For the six missing years there is no ESA timing sheet, so `slot-exact` is
-unavailable and matching leans on three-way title agreement. That is weaker in
+`horaro-link` is not a match at all - it is the organisers naming their own
+upload - so where an event carries links there is nothing to check. Summer 2025
+came back 170 of 170. Everything below it is guesswork by comparison.
+
+For the older missing years there is no ESA timing sheet **and** no links, so
+`slot-exact` is unavailable and matching leans on three-way title agreement. That is weaker in
 principle, but measured on ESA Winter 2021 it holds up well: 129
 `tag-game-runner`, 9 `tag-game`, 3 `weak`, 1 `no-hits` across 142 runs, with a
 video found for 141 and no video used twice. Treat that as the expected shape
@@ -114,6 +145,49 @@ done
 `--height 480 --tail 600 --step 12` is validated: it produced identical answers
 to 720p on the ground-truth cases at a fraction of the bandwidth. Do not raise
 the quality without a reason.
+
+**Batches now stop themselves when YouTube's bot wall goes up**
+(`--bot-wall-limit`, default 5 consecutive refusals, **exit 75**). Treat 75 as
+"blocked, nothing wrong with the input" - back off and resume - and 1 as "the
+batch finished, some runs were unreadable". Do not push on through the remaining
+shards on a 75: those requests can only fail, and they plausibly deepen the block.
+
+### When the wall goes up
+
+It went up twice on Summer 2025, so plan for it rather than being surprised.
+
+- **Waiting works.** The block cleared in about 2.5 hours. `--resume` retries a
+  row that failed, so a resumed pass costs only what is left.
+- **Cookies bypass it, but only a *fresh* export.** Have the user export
+  Netscape-format cookies **from a private window, closed without logging out** -
+  a session still in use gets rotated out from under the copy, and yt-dlp then
+  says `The provided YouTube account cookies are no longer valid`.
+- **Mount a per-shard *copy*, never `~/cookies.txt` itself.** yt-dlp rewrites the
+  jar on exit, so shards race on it and the original export is destroyed. Use the
+  `=` form; the space-separated one trips argparse:
+
+  ```sh
+  cp ~/cookies.txt /tmp/ck-$i.txt
+  -v "$(cygpath -w /tmp/ck-$i.txt)":/cookies.txt
+  ... --ytdlp-arg=--cookies --ytdlp-arg=/cookies.txt
+  ```
+- **Cookies do NOT clear the IP block.** Tested directly: an authenticated
+  request succeeded and an unauthenticated one immediately after was still
+  refused. If unauthenticated access starts working after you try cookies, that
+  is the block expiring, not the cookies fixing it.
+- **These are the user's real Google credentials.** Say so, keep concurrency
+  modest, and delete the copies afterwards.
+
+**`The page needs to be reloaded` is not a session problem.** It means yt-dlp
+could not solve YouTube's `n` challenge, and cookies push the request down the
+path that requires solving it. The image ships deno plus `yt-dlp-ejs` for this.
+If it recurs, check the version - an outdated deno presents exactly like no deno
+at all unless you look at `-v`:
+
+```
+[debug] JS runtimes: deno-2.1.4 (unsupported)      <- silently useless
+[debug] JS runtimes: deno-2.9.6                    <- works
+```
 
 **Expect about two hours for a ~130 run event.** Wait on it with a single
 blocking check rather than polling:
@@ -150,6 +224,41 @@ Doing this before review is safe, and it is safe for exactly one reason: since
 corrections in step 5 update those same rows in place instead of adding a second
 run beside each one. Before #55 this order would have doubled the event.
 
+## Step 3b - resolve the flagged runs yourself, from crops
+
+Do this **before** handing the user a list. On Summer 2025 it turned 19 flagged
+runs into 17 answers and left the user one genuine judgement call.
+
+For each flagged run, download a few seconds near the end, crop the bottom
+strip, and read the timer directly:
+
+```sh
+yt-dlp --cookies /cookies.txt -f "bv*[height<=720][ext=mp4][protocol^=http]"   --download-sections "*$((dur-14))-$((dur-2))" --no-warnings --no-playlist   --no-part -o "/tmp/f.%(ext)s" "https://www.youtube.com/watch?v=$vid"
+ffmpeg -ss 2 -i /tmp/f.mp4 -vframes 1 -vf "crop=iw:ih/5:0:ih*4/5" /out/frames/r$n.png
+```
+
+Then read the PNG. Three rules, each learned the hard way:
+
+- **Check the colour before the digits.** The timer is **orange while running,
+  green once stopped**. Reading an orange frame gives you a mid-run value that
+  looks exactly like an answer. Four runs were misread this way on the first
+  pass before the pattern was spotted.
+- **A tail can hold the wrong run's clock.** ESA runs bonus runs and donation
+  incentives in the same slot and resets the timer for them, so the end of the
+  VOD may show a *different* run. Super Mario Bros. 3 read `0:04:11` (a bonus
+  run) against a true `0:57:08`. If the value is wildly under the estimate, or
+  the ticker names a bonus/incentive, walk backwards through the video until you
+  find the green frozen clock.
+- **A read that equals the estimate exactly is the estimate.** With no ticking
+  clock in the window, calibration cannot tell the timer from the estimate, and
+  the estimate OCRs more cleanly. Three of Summer 2025's five corrections were
+  this. The frame shows both side by side, so it is obvious once you look.
+
+Some runs genuinely cannot be recovered: Micro Mages' VOD ends with the clock
+still running, so no finish exists on camera. Ship the largest reading as a
+**lower bound**, say so plainly, and leave it on the unvouched list rather than
+guessing.
+
 ## Step 4 - have the user review in the app, not from a list of links
 
 Give them the page:
@@ -176,7 +285,15 @@ Say plainly how many were accepted without review and how many need a person.
 
 The user replies with lines like `3 1:12:04`, or `skip`. Write those to
 `out/answers.txt`, add `ANSWERS="answers.txt"` to the manifest, and run the same
-script again. It applies the answers, re-exports, and re-imports - updating the
+script again.
+
+> [!CAUTION]
+> **Never answer `skip` for a run you want left off the site.** `skip` sets
+> `source=human-skip`, and every guard that drops a bad time - including the
+> longer-than-its-own-video check - applies to `source=ocr` only. Skipping
+> therefore *publishes* the bad value it was dropping. Leave the run out of the
+> answers file entirely and let the guard do its job. Summer 2025's Closing
+> Speech is the case: `0:34:40` read out of a `0:21:45` video. It applies the answers, re-exports, and re-imports - updating the
 runs that changed and leaving the rest untouched.
 
 ```sh
@@ -282,7 +399,12 @@ that is the important finding - write it down specifically.
 Then propose at most a couple of concrete improvements and stop. Do not start
 the next event.
 
-## Known defects, as of ESA Winter 2021
+**Open already, from Summer 2025** - check these before filing a duplicate:
+#65 (reject a read equal to the estimate), #66 (drop the estimate-ratio guard),
+#67 (height fallback picks an uncuttable 240p), #69 (spike: last-frame fast path
+with pinned crops).
+
+## Known defects, as of ESA Summer 2025
 
 Full numbers are in the tool's README and in `tools/vod-timer/runs/`. Carry these
 into how you read a result:
@@ -310,10 +432,37 @@ into how you read a result:
   fallback to the mode does not work and has been tested.** Until that lands,
   treat any rejected or low-tier read as more likely to be a slightly-inflated
   version of the truth than a wild miss.
-- **The estimate-ratio guard has never once been right.** It has gone 0 for 12
-  across Winter 2026 and Winter 2021: every run it rejected on implausibility
-  against the estimate alone turned out to be correct. It is pure reviewer cost
-  and should be dropped from the reject criteria.
+- **The estimate-ratio guard has never once been right - now 0 for 13.**
+  Every run it rejected on implausibility against the estimate alone turned out
+  to be correct, across Winter 2026, Winter 2021 and Summer 2025, where Ghoul
+  School's `0:07:02` was rejected for being 0.35x its estimate and the screen
+  showed exactly `00:07:02`. It is pure reviewer cost and should be dropped from
+  the reject criteria (#66).
+
+- **The OCR reading the *estimate* is the biggest single failure now.** Three of
+  Summer 2025's five corrections were this, which makes it more frequent than
+  the `3`/`5` glyph confusion on that event. When a run finishes well before its
+  VOD ends, no frame in the sampled window shows a ticking clock, so calibration
+  cannot rank the timer above the estimate - and the estimate OCRs more cleanly.
+  A read that *exactly* equals the estimate is not a result. Until #65 lands,
+  check for it by hand: the estimate is right there in `resolved.csv`.
+
+- **A tail can hold a different run's timer.** ESA runs bonus runs and incentives
+  inside a slot and resets the clock. Summer 2025's Super Mario Bros. 3 read
+  `0:04:11` from the bonus run against a true `0:57:08`, and Pokemon Sapphire's
+  tail held two later segments. Nothing in the tail betrays this - only looking
+  further back does.
+
+- **A long run split across VODs may or may not carry a cumulative timer.** Final
+  Fantasy IX ran one run over three videos with the clock running throughout
+  (`24:05:51`, read off Part 3). Metaphor: ReFantazio was two schedule rows and
+  the clock **reset** between them. Check rather than assume; the parts chain
+  arithmetically if it is cumulative.
+
+- **`--height 480` silently becomes 240p when there is no 480p rendition**, and
+  240p DASH cannot be range-cut, so the run fails with `moov atom not found` on
+  every attempt. Retry at `--height 720`. A corrupt clip also caches if it clears
+  `MIN_CLIP_BYTES`, so clear the cache entry or the failure repeats (#67).
 - **Short runs lose calibration to the estimate.** Too few frames show a ticking
   clock, so the static estimate wins. A read that exactly equals a round
   estimate is a red flag, not a result.

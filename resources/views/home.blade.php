@@ -78,7 +78,7 @@
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ gmdate('H:i:s', $run->time) }}</td>
+                                        <td>{{ $run->formatted_time }}</td>
                                         {{--<td>--}}
                                             {{--@foreach($run->genres as $key => $genre)--}}
                                                 {{--@if(isset($genre->name) && isset($genre->slug))--}}

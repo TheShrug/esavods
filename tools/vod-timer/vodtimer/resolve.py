@@ -22,6 +22,11 @@ UA = "esavods-vod-timer/0.1 (+https://github.com/TheShrug/esavods)"
 
 MD_LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
 
+# From ESA Summer 2025 on, the schedule links each run to its own VOD from
+# the Game cell. That is ESA naming the video themselves, so it beats any
+# title search we could run against it - see match().
+YT_LINK = re.compile(r"youtu(?:\.be/|be\.com/watch\?v=)([\w-]{11})")
+
 # ESA titles a per-run VOD "Game [Category] by Runner - #tag". The bracketed
 # part is the only thing separating two runs of the same game in one event.
 TITLE_CATEGORY = re.compile(r"\[([^\]]+)\]")
@@ -66,9 +71,11 @@ def horaro_rows(slug: str) -> list[dict]:
     rows = []
     for idx, item in enumerate(sched["items"]):
         cells = dict(zip(cols, item.get("data") or []))
-        game = _plain(cells.get("game", ""))
+        raw_game = cells.get("game", "")
+        game = _plain(raw_game)
         if not game:
             continue
+        linked = YT_LINK.search(raw_game or "")
         players = [_plain(p) for p in (cells.get("player(s)") or "").split(",")]
         rows.append({
             "UUID": cells.get("id") or f"{slug}-{idx}",
@@ -84,6 +91,7 @@ def horaro_rows(slug: str) -> list[dict]:
             # markdown, which is the shape horaro already stores them in.
             "_players_md": (cells.get("player(s)") or "").replace(", ", "|"),
             "_platform": cells.get("platform") or "",
+            "_vod": linked.group(1) if linked else "",
         })
     return rows
 
@@ -111,6 +119,22 @@ def match(row: dict, tag: str, limit: int = 6) -> dict:
     who = players(row.get("PlayerNamesTwitch", ""))
     slot = row.get("_slot")
     query = " ".join([game] + who[:2] + ["#" + tag])
+
+    # ESA's own link, when the schedule carries one, is not a match at all -
+    # it is the answer. Searching anyway would only give us a chance to
+    # disagree with the organisers about which video is theirs. We still probe
+    # it, because that is what tells us a link is dead rather than merely
+    # wrong, and because a stale link is the one failure this path can have.
+    linked = row.get("_vod")
+    if linked:
+        try:
+            meta = video.probe(linked)
+        except Exception as exc:
+            return {"video_id": linked, "how": "horaro-link-dead",
+                    "slot": slot, "note": str(exc)[:120]}
+        return {"video_id": linked, "how": "horaro-link", "title": meta.title,
+                "vod_duration": meta.duration, "slot": slot,
+                "delta": abs(meta.duration - slot) if slot else None, "note": ""}
 
     try:
         hits = video.search(query, limit)
