@@ -1,0 +1,135 @@
+# What resolve picks for every row of horaro's 2024-summer out of
+# esa-summer-2024-vods.csv. Checked by eye against the titles when it was
+# written, for issue #75 (event backfilled in #45).
+uuid,game,category,video_id,tier,title
+2384ba2e-ae42-4087-b816-355c2365ea8e,The Worlds Hardest Game,Any% (Flash),JttkrJBP-k4,tag-game-runner,The Worlds Hardest Game [Any% (Flash)] by hsblue - #ESASummer24
+c02f15db-f889-43dc-8eda-6b549709a1d2,Ratchet & Clank: Into The Nexus,NG+,J6KShJ5Iofs,tag-game-runner,Ratchet & Clank: Into The Nexus [NG+] by synn1_ - #ESASummer24
+bf38d306-0363-4bc7-ba3f-40a8b3cc36e1,Ratchet & Clank,All Gold Bolts,udq4sqL17p0,tag-game-runner,Ratchet & Clank [All Gold Bolts] by SNEEPYY and xem92 - #ESASummer24
+675c449e-b7d6-449b-b3ea-466b09c1815c,Prince of  Persia: The Sands of Time,Any% Zipless,IaoJse_EWuU,tag-game-runner,Prince of  Persia: The Sands of Time [Any% Zipless] by epicdudeguy - #ESASummer24
+68edae89-6eb6-455e-83fc-d185df8b0abb,Prodeus,Any% (no zips/boosts),QqOH-_qIjNs,weak,Golden Sun [Any% No Save & Quit] by Plexa - #ESASummer24
+cd811b96-c1e0-4c3b-a9ff-03db15fffe3d,Metal Gear Rising: Revengeance,Any% (NG+),Txgn4AMNmhc,tag-game-runner,Metal Gear Rising: Revengeance [Any% (NG+)] by Diagongdx - #ESASummer24
+4feaf049-93f7-4f82-94b0-0742b5940ee9,Super Mario Odyssey,World Peace,CWIA7Zp13yA,weak,Super Mario 64 [70 star 70 player relay] - #ESASummer24
+7ce950da-2b97-4e27-8876-2cbdc20b59a9,Pokémon Platinum,Any%,6EhGNLR7izI,tag-game,Pokémon Platinum [Any%] by linewashere and Rubentus - #ESASummer24
+bc3c8523-a96b-4de1-903e-264e16ac6ec7,End of day 1,,ihKfreAoBso,weak,Mega Man 2 Relay Race (any%) - #ESASummer24
+118a910c-4c84-4662-8289-ba32bfbdd9b3,Rosenkreuzstilette Freudenstachel,Any%,19KZySThS6c,tag-game-runner,Rosenkreuzstilette Freudenstachel [Any%] by Hypah - #ESASummer24
+2d8b93b0-cf0a-475a-b0ed-7c904f2c27b6,Hitman: Blood Money,Showcase,ALKx55LTaxg,tag-game-runner,Hitman: Blood Money [Showcase] by TheKotti - #ESASummer24
+8b0e322b-5904-4b21-b1f7-61212a9e280a,"King's Quest VI: Heir Today, Gone Tomorrow",Any%,DqfHsgqB_2o,tag-game,"King's Quest VI: Heir Today, Gone Tomorrow [Any%] by Joka - #ESASummer24"
+9a5aa182-547d-4fb9-9d3e-9e402cda9d3e,Rod Land,Any% Co-op,KNzg5Ie1cxA,tag-game-runner,Rod Land [Any% Co-op] by Niss3 and JkL0ser - #ESASummer24
+67fa2a34-841f-4fe1-b5c8-c0f9b0162565,Space Quest II: Vohaul's Revenge,Any% No Cheat,DyRIgbQIpgA,tag-game,Space Quest II: Vohaul's Revenge [Any% No Cheat] by Joka - #ESASummer24
+054bf11a-a0c1-4c60-a251-f8898aff6e11,Vice: Project Doom,any%,36HYPJ7oDj0,weak,Sonic Robo Blast 2 [Sonic Any%] by Lemin and Refrag - #ESASummer24
+510a0975-1220-4172-9210-05721ff47488,Kabuki Quantum Fighter,any%,VgcIqsAj8dw,tag-game-runner,Kabuki Quantum Fighter [any%] by bassguy4 - #ESASummer24
+ee10f2e6-8cba-4835-92ee-f14ca71d68d9,Snake Rattle n Roll,Any% (2 Player),OsEOd1lIBo8,weak,Quake: Arcane Dimensions [Easy Run (Top Floor)] by Sphere - #ESASummer24
+7098e7f9-4dcc-42e5-9e70-b1b7bd6a9758,Streemerz,any%,0ZP4RO2YRpg,tag-game-runner,Streemerz [any%] by bassguy4 - #ESASummer24
+96659abe-2436-4a32-b2cc-5810352b6067,Super C,Any%,hFt8yFEIrqY,tag-game-runner,Super C [Any%] by TypicalFantasyX - #ESASummer24
+911888e9-970d-43ae-b007-5d7a9f52e3fe,Super Mario Bros. 2,All Powerup Mushrooms,rvjz_C22tBo,tag-game-runner,Super Mario Bros. 2 [All Powerup Mushrooms] by Lui - #ESASummer24
+85c338b5-468b-4c90-bf36-3a3938b7ff1d,Slightly Magic,Complete the Game (Single Run),XWBusbTNss8,tag-game-runner,Slightly Magic [Complete the game] by tinytim78 - #ESASummer24
+891e36ca-495f-494b-989d-0c0e109cf2ee,Streets of Rage 4,"Arcade (Cherry, Easy)",F6ZCStZNGsA,weak,Street Boyz [NG+ All Stages] by RebelDragon95 - #ESASummer24
+32bd157c-0ecb-40f3-847c-6ca3999fc3f5,Mega Man 5,Any%,oP6PwIF6MVA,tag-game-runner,Mega Man 5 [Any%] by prisiii3 - #ESASummer24
+f1de7db9-2d35-409f-8f00-11cd7b1e635e,Super Pitfall,Any%,hFt8yFEIrqY,weak,Super C [Any%] by TypicalFantasyX - #ESASummer24
+e4c2061f-29c3-4b82-b6a9-2e1598de1ca2,NHL '94,10 Goals,62U92N8WDDc,weak,Half-Life 1 [WON Scriptless] by HuthTV - #ESASummer24
+7bec98d8-1102-4ade-b075-753231c60c42,Sonic Robo Blast 2,Sonic Any%,36HYPJ7oDj0,tag-game-runner,Sonic Robo Blast 2 [Sonic Any%] by Lemin and Refrag - #ESASummer24
+a6ec9ce5-04de-4476-9196-b08bf767e5b2,LEGO Harry Potter: The Battle for Hogwarts,Any%,mYy4lj0h64A,tag-game-runner,LEGO Harry Potter: The Battle for Hogwarts [Any%] by Oggyerino - #ESASummer24
+3586de42-cdf2-412f-865c-12f877475e5b,SCED-02417 Demo Disc,All Games,_Bfr5vF-4DY,tag-game-runner,SCED-02417 Demo Disc [All Games] by ThaRixer - #ESASummer24
+4c1b7987-5b8c-456b-aa93-1afea7557009,Dissidia Final Fantasy,Any% Controller Swap,h1i2PucdP7k,tag-game-runner,Dissidia Final Fantasy [Any%] by Mizzow and staratar - #ESASummer24
+8f79e28f-9a59-4841-8cce-0b023238ab20,Darkest Dungeon,Crowd Control,iIBqEzFNjHI,tag-game-runner,Darkest Dungeon [Crowd Control] by Aeshmah_ - #ESASummer24
+ca180cb1-469f-467d-bfee-e9f6acea8887,Jak and Daxter: The Precursor Legacy (TeamRuns),Co-op No LTS (Same Level),97oPRXB93n4,tag-game,Jak and Daxter: The Precursor Legacy (TeamRuns) [Co-op No LTS (Same Level)] - #ESASummer24
+7db41172-a31e-493f-b194-272b9a6034ec,Old School Runescape,OSRS Bingo,AhbNMAJbpK8,tag-game-runner,Old School Runescape [OSRS Bingo] by GiantClam and DaanSmoki - #ESASummer24
+2834d5ff-a52b-4c7a-a8ec-9d4438843015,End of day 2,,AbTU-SkUW_A,weak,Unreal: Return to Na Pali [Any%] by Myths - #ESASummer24
+66d06777-dc9b-4361-a23b-14a1639c5552,Kingdom Hearts Birth by Sleep Final Mix HD,Ventus Critical Level 1 Any%,BGKq1ZuuYe0,tag-game,Kingdom Hearts Birth by Sleep Final Mix HD [Ventus Critical Level 1 Any%] - #ESASummer24
+50f842c5-dbd4-41b6-b5b2-063dc1d7100d,Pseudoregalia,All Abilities (No OOB) Full Gold Patch,ge0PS_9BjAo,weak,Soul of the Samurai [Any% True Ending] by vojtas131 and Aeshmah_ - #ESASummer24
+c2602cf6-a5d9-46fa-a489-0a6b8c42073b,ICEY,NG+ Judas Ending,tZwzq66luvA,tag-game-runner,ICEY [NG+ Judas Ending] by AEtienne - #ESASummer24
+c3812253-13ab-46ca-a79a-7e054b414173,South Park: Snow Day!,All Chapters,68GEfP2Cm4g,tag-game-runner,"South Park: Snow Day! [All Chapters] by texan_red_wolf, SweedOla and Streetbackguy - #ESASummer24"
+dfd3d535-9b37-4c5d-8a62-7a07591b6901,Star Wars Battlefront II (Classic 2005),Any% with bonuses,AelbzXvpEio,tag-game-runner,Star Wars Battlefront II (Classic 2005) [Any% with bonuses] by CaptainEmu - #ESASummer24
+b59e278b-a243-4bb7-9760-c9c176139cb3,Paris Marseille Racing,2P1C,aQBrWgR0_RQ,tag-game-runner,Paris Marseille Racing [2P1C] by Shigan_ and linkboss - #ESASummer24
+f2378d43-59b0-4a70-a7a5-bc99c5a0aa76,Diddy Kong Racing,Any%,AzE0N0kRDGY,tag-game-runner,Diddy Kong Racing [Any%] by MrPonytale - #ESASummer24
+cf0de08e-7590-4cd5-a8a9-fa499907aa82,Tom Clancy's Splinter Cell: Pandora Tomorrow,Any%,Uc6G3ZEFZvo,tag-game-runner,Tom Clancy's Splinter Cell: Pandora Tomorrow [Any%] by DirectorMusic - #ESASummer24
+ac974107-3c6c-454b-b1cf-ac989dbf2cc4,Star Wars Jedi: Survivor,Any% Restricted NG+,AelbzXvpEio,weak,Star Wars Battlefront II (Classic 2005) [Any% with bonuses] by CaptainEmu - #ESASummer24
+4dea92c2-ec42-4639-b562-a732f957469c,Super Mario Bros. 3,100% Coop,rhTqDa2sSWY,tag-game-runner,Super Mario Bros. 3 [100% Coop] by Lui and AliceHK8 - #ESASummer24
+3b788e68-e890-41f7-88d4-c04138292d85,NES Shuffler Race,Donation Shuffler,tC8InjrMkyc,tag-game,NES Shuffler Race [Donation Shuffler] - #ESASummer24
+083e5efd-2aaa-4f00-bbcc-b9701fe4c62a,Golden Sun,Any% No Save & Quit,QqOH-_qIjNs,tag-game-runner,Golden Sun [Any% No Save & Quit] by Plexa - #ESASummer24
+42781e1b-031c-4cdd-b108-1f3a04c75b45,Spider-Man (2000),Any% (Easy),mIovER1AOCo,tag-game-runner,Spider-Man (2000) [Any% (Easy)] by Shemp - #ESASummer24
+2c5fab83-cf4c-4c03-859e-783dde5541c8,Spyro the Dragon,Any%,y2TubEju-PA,tag-game-runner,Spyro the Dragon [Any%] by lumilaura - #ESASummer24
+3a8add59-9064-4f14-8b52-b30911ef0612,Spyro 2: Ripto's Rage,14 Talisman,PvxfQqpG8oA,tag-game-runner,Spyro 2: Ripto's Rage [14 Talisman] by DylanJayFox - #ESASummer24
+e4cf8957-64f4-4174-9895-893d242d0732,End of day 3,,ihKfreAoBso,weak,Mega Man 2 Relay Race (any%) - #ESASummer24
+ade80595-7b98-4a1c-97d7-5043bb97ca2a,Bad Guys at School,All Missions,CTdEp3i3p2k,tag-game-runner,Bad Guys at School [All Missions] by lurven_ - #ESASummer24
+b31a8e8c-1aeb-4533-88f4-0b9488296bb8,Street Boyz,NG+ All Stages,F6ZCStZNGsA,tag-game-runner,Street Boyz [NG+ All Stages] by RebelDragon95 - #ESASummer24
+bebc4203-ac98-42fc-84cc-4d0eab7c0ada,Skull Island: Rise of Kong,All bosses,ZZrr7M3RSYA,tag-game-runner,Skull Island: Rise of Kong [All bosses] by SweedOla - #ESASummer24
+6cf3e2cb-1ab9-41bb-83d2-f0909015911d,Shadow Warrior 3,Any%,Bn9VOnpMEO8,tag-game-runner,Shadow Warrior 3 [Any%] by 83kY - #ESASummer24
+af77c1c8-7ad2-4839-8991-f2beacc94647,Oni,any% easy,m7e-DVQSe1Q,tag-game-runner,Oni [Any% Easy] by Original_Baum - #ESASummer24
+f423c312-c44d-4091-a5e4-593effb31388,Pokémon Crystal,Manipless,ilvQH_T5oNw,tag-game-runner,Pokémon Crystal [Manipless] by AEtienne - #ESASummer24
+8bede08b-a73b-4c81-874c-bd0588ad993c,Quake: Arcane Dimensions,Easy Run (Top Floor),OsEOd1lIBo8,tag-game-runner,Quake: Arcane Dimensions [Easy Run (Top Floor)] by Sphere - #ESASummer24
+52855026-3e41-4dde-80ee-49077ddb3f3f,Flash Game Gauntlet,Any%?,ZFohcJPMJag,tag-game,Flash Game Gauntlet [Any%?] - #ESASummer24
+db4d7843-77ee-445d-af5e-12f1687ebc7f,The Neverhood,Cutscene%,y2TubEju-PA,weak,Spyro the Dragon [Any%] by lumilaura - #ESASummer24
+6b2ae4a9-e303-41bc-a904-a252720701e3,Ocarina of Time in Minecraft 1.0.1,any%,MV-2HflPXKs,weak,The Legend of Zelda Ocarina of Time Beta Quest [Battleship Bingo] by BaalNocturno - #ESASummer24
+0e81493a-7117-4979-a21e-bf5e473740f9,The Legend of Zelda Ocarina of Time Beta Quest,Battleship Bingo,MV-2HflPXKs,tag-game-runner,The Legend of Zelda Ocarina of Time Beta Quest [Battleship Bingo] by BaalNocturno - #ESASummer24
+e125a214-3c77-4ce8-b5a7-34570c9b43e8,Elden Ring,2 Player 1 Controller Any% Randomizer,aCz27Ql7scA,tag-game-runner,Elden Ring [2 Player 1 Controller Any% Randomizer] by catalystz and Puppery - #ESASummer24
+53ab1de3-7250-4cbd-87c6-bd8e7e20703f,End of day 4,,ihKfreAoBso,weak,Mega Man 2 Relay Race (any%) - #ESASummer24
+33bde7e7-0b67-4eb2-8094-8533db51908f,Colin McRae Rally 2.0,"Championship (Novice, Standard Cars)",XV1yWa1kyFw,tag-game-runner,"Colin McRae Rally 2.0 [Championship (Novice, Standard Cars)] by Cousin - #ESASummer24"
+76867f84-8352-4564-aa96-8370eca9cded,ActRaiser,Any%,UcWK7zUHlsY,tag-game-runner,ActRaiser [Any%] by sYn - #ESASummer24
+488017e9-8d3e-49c2-b1ff-8b4b162d50bc,Bishoujo senshi sailor moon,Easy,fUA3GRdFjHw,tag-game-runner,Bishoujo senshi sailor moon [Easy] by JkL0ser - #ESASummer24
+5a1718fc-0f7c-4e2b-af8f-a11372b3dec5,Touhouvania 2,Hard,ioM5SHPQajM,tag-game-runner,Touhouvania 2 [Hard] by Shadax - #ESASummer24
+5f497b32-d468-4ba7-89f5-075afa6b200b,Halo 3,Easy,LHoVA_JNLT0,weak,Home Alone 2 [Any%] by ScarfaceNico - #ESASummer24
+b5f810ea-4a87-476e-bc06-e66c5313b165,Unreal: Return to Na Pali,Any%,AbTU-SkUW_A,tag-game-runner,Unreal: Return to Na Pali [Any%] by Myths - #ESASummer24
+97dafe8f-6dd4-4b0c-bfa0-74c8ecd020b7,Lemma,any%,SOwgfdpgASo,tag-game-runner,Lemma [any%] by Drunkenshoe - #ESASummer24
+37182fcc-d7fe-4665-b75a-5d15dec85e07,Clustertruck,twitch%,wBSqpNxtfLk,tag-game-runner,Clustertruck [Twitch%] by Heinki - #ESASummer24
+704aede3-51d9-4de4-af15-57cb49b4dfef,The Lord of the Rings: The Third Age,Full Game Any% Glitchless,S6scrO1v61Q,tag-game-runner,The Lord of the Rings: The Third Age [Full Game Any% Glitchless] by Deano95HD - #ESASummer24
+b6894a74-481a-4d51-a33c-3df55f0925b4,Sly Cooper and the Thievius Raccoonus,Any%,vs1ZMebVkH4,weak,Grand Theft Auto: San Andreas [Any% No Major Glitches] by Joshimuz - #ESASummer24
+e34659d8-9017-4104-99d9-d53b1c6b10b7,The Legend of Zelda: A Link to the Past Randomizer,Pilot Spoiler Keysanity,L5ls7utzD-Y,tag-game,The Legend of Zelda: A Link to the Past Randomizer [Pilot Spoiler Keysanity] - #ESASummer24
+8f9d987e-cfe0-4531-8145-e427256cd04a,Hades,Seeded AnyHeat (Routed),kURMZ-lbT-U,tag-game-runner,Hades [Seeded AnyHeat (Routed)] by SatanIsAChillGuy - #ESASummer24
+2fde64e1-7db6-443b-a30f-796a6dbdc684,Super Mario Sunshine,1vs.1 Lockout Bingo,2irX30c1vi4,tag-game-runner,Super Mario Sunshine [1vs.1 Lockout Bingo] by peaches and RSW - #ESASummer24
+70ef970a-9d60-4fdd-802d-2258a26311d0,End of day 5,,ihKfreAoBso,weak,Mega Man 2 Relay Race (any%) - #ESASummer24
+db08b00e-dbfa-4178-8d04-126d6bf54f5e,Sonic Suggests,Any% Tutorial,ZRtK-a6O3CQ,tag-game-runner,Sonic Suggests [Any% Tutorial] by ChZdk and DreeGon - #ESASummer24
+84463617-8662-4d4f-8a63-5e1ed31144b2,Sonic Adventure DX: Director's Cut,Sonic's Story,C2-04i_zt9k,tag-game-runner,Sonic Adventure DX: Director's Cut [Sonic's Story] by DreeGon - #ESASummer24
+88028f97-ef2f-4b0d-a8f6-9a82f441e0cf,Sonic Adventure DX: Director's Cut,Amy's Story,yjTySRhIQz0,tag-game-runner,Sonic Adventure DX: Director's Cut [Amy's Story] by ChZdk - #ESASummer24
+ae25eeaa-2ae8-462b-bd70-4e35a14af09d,Hotline Miami 2: Wrong Number,Hard Mode,Un2dIscpNcw,tag-game-runner,Hotline Miami 2: Wrong Number [Hard Mode] by jackyrite - #ESASummer24
+381cc6bd-6ead-4b51-a1e4-6ec884f86037,Kubinashi Recollection,All Puzzle Pieces (New Game+),MIyzXCgrg3o,tag-game-runner,Kubinashi Recollection [All Puzzle Pieces (New Game+)] by naro - #ESASummer24
+46c9a8b5-99ae-420e-a203-a8c34a5e29e5,Obama,All Bosses,-YbT0ml0gjA,tag-game-runner,Obama [All Bosses] by CodeNameMeteor - #ESASummer24
+ac7eea95-ca8f-4672-9807-795b2313206a,Stranger of Paradise: Final Fantasy Origins,NG Co-Op,gx-2Af2psNY,weak,Anger Foot (itch.io) [NG+] by sajiki - #ESASummer24
+f649cfef-0b6f-43e3-9668-d8ab07d6779e,Mirror's Edge,Any%,50oQHWo2MK8,tag-game,Mirror's Edge [Any%] - #ESASummer24
+03dde1f4-1ab5-417d-9369-394e8ea487a9,Teenage Mutant Ninja Turtles,Any%,49Upou1Rttg,tag-game-runner,Teenage Mutant Ninja Turtles [Any%] by NilssonAlex92 - #ESASummer24
+5b58a2a3-52fa-40df-ad37-56db3b3b0995,Ducktales 2,any% (easy),NG6G91AUZPk,tag-game-runner,Ducktales 2 [Any% (easy)] by nintendonatalie - #ESASummer24
+4f9f4147-6235-413a-9db7-24f1eea1a4ca,Ghosts 'n Goblins,any% NES (2 loops),uUGMgyW9db0,tag-game-runner,Ghosts 'n Goblins [Any% NES (2 loops)] by Laxxus - #ESASummer24
+7610b2fb-4704-43d7-909f-fc97a44e6526,Karnov,Any%,2vc5vZRpqDU,tag-game-runner,Karnov [Any%] by hirexen - #ESASummer24
+cac75d1e-f37f-4344-8439-614410a8b02b,Yume Penguin Monogatari,Any%,o7ODdU-3mzM,tag-game-runner,Yume Penguin Monogatari [Any%] by CartinaCow and EndySWE - #ESASummer24
+71f1438b-deb8-4088-b013-46a7a00edf89,Chip 'N Dale: Rescue Rangers,Any%,YqGEcWyd-R4,tag-game-runner,Chip 'N Dale: Rescue Rangers [Any%] by hirexen and EndySWE - #ESASummer24
+1402306c-7347-4bce-a587-2b7a8fbf4b58,Panic Restaurant,Any%,qFgLRgbAfwc,tag-game-runner,Panic Restaurant [Any%] by Laxxus and hirexen - #ESASummer24
+a9085c4c-74a8-4a8c-970e-4104873f69b8,Monster in My Pocket,Any%,GfgeBR5zoEo,tag-game-runner,Monster in My Pocket [Any%] by hirexen - #ESASummer24
+031588b6-9ee7-4257-983a-e35bbd58ebc9,Nova the Squirrel,Any%,jlEPGj-t0Ug,tag-game-runner,Nova the Squirrel [Any%] by Polari - #ESASummer24
+79f8d2ea-c74d-45f9-8886-07949a7c8ef6,Little Nemo: The Dream Master,English,tK4Kt8Kudnc,tag-game-runner,Little Nemo: The Dream Master [English] by thebagler5 - #ESASummer24
+e5771435-e20d-4801-b181-9236f02ac495,Home Alone 2,Any%,LHoVA_JNLT0,tag-game-runner,Home Alone 2 [Any%] by ScarfaceNico - #ESASummer24
+9fbc6897-c601-4c16-864b-f3fdd6a98bd8,The Rescue of Princess Blobette,Any%,GlLCALsOZJs,tag-game-runner,The Rescue of Princess Blobette [Any%] by Oh_DeeR - #ESASummer24
+d93dded2-e9f0-49f7-9785-1298ad648abf,Takeshi's Challenge,Any%,Iwr48SYp85g,tag-game-runner,Takeshi's Challenge [Any%] by lucha_gym - #ESASummer24
+7b0c476e-0c02-43fe-a3c2-224b8632d672,Pieces,Easy-Hard (Controller),I4_IU7RAh2k,tag-game-runner,Pieces [Easy-Hard (Controller)] by Apollo22237 - #ESASummer24
+2baff27e-13b6-4f67-a000-fecafa43351e,Super Mario 63,No Major Skips,CWIA7Zp13yA,weak,Super Mario 64 [70 star 70 player relay] - #ESASummer24
+36a86f23-b08e-49b9-b635-f3b830c60cb7,Mega Man X1,100%,I67m66Xc54s,tag-game-runner,Mega Man X1 [100%] by StahlbolzenSC2 - #ESASummer24
+ed58cf09-1c6d-4339-b122-033cc84c4010,Mega Man 2,Any% (Normal),ihKfreAoBso,tag-game,Mega Man 2 Relay Race (any%) - #ESASummer24
+7b7b0b04-75c7-41c6-a335-ac7dfaa84202,Metroid Deep Freeze,100%,3NN2EI1H_70,tag-game-runner,Metroid Deep Freeze [100%] by Xoneris - #ESASummer24
+203f6f69-246b-4e36-88aa-7152476c3d5c,Crash Bandicoot 2: Cortex Strikes Back,any% powermod,rRthcTIjeec,tag-game-runner,Crash Bandicoot 2: Cortex Strikes Back [Any% Powermod] by Alaapo - #ESASummer24
+e14ed53f-69c7-4e99-b842-f47d9de0f17a,Crash Team Racing,Any% (No Major Glitches),XjpgguNJfyU,tag-game-runner,Crash Team Racing [Any% (No Major Glitches)] by hypnoshark - #ESASummer24
+1a0e1a65-1eae-48b2-bf45-1a72a2528680,End of day 6,,ihKfreAoBso,weak,Mega Man 2 Relay Race (any%) - #ESASummer24
+823224d1-79db-4849-a62f-131ffce7534b,Soul of the Samurai,Any% True Ending,ge0PS_9BjAo,tag-game-runner,Soul of the Samurai [Any% True Ending] by vojtas131 and Aeshmah_ - #ESASummer24
+4d8fd4b8-7bd3-4ff2-bc2b-430bb6395643,Viewfinder,Any% (2 Players 1 M&K),daLO__ACCAQ,tag-game-runner,Viewfinder [Any% (2 Players 1 M&K)] by Monojira and Cropax - #ESASummer24
+3c4bb102-0cf5-40eb-a672-996c412674f9,Bug Fables: The Everlasting Sapling,Any% (Unrestricted),ebbaGqr1Wdw,tag-game-runner,Bug Fables: The Everlasting Sapling [Any% (Unrestricted)] by Shigan_ - #ESASummer24
+48b7a022-7f33-4998-906c-f89b77e0f726,Beep's Escape,Complete the Game,5hNPNBd6phQ,tag-game-runner,Beep's Escape [Complete the Game] by TinyTim78 - #ESASummer24
+2024-summer-109,Chuckie Egg,Complete Level 16,TWawIXJQ1yk,tag-game-runner,Chuckie Egg [Complete Level 16] by TinyTim78 - #ESASummer24
+c9bf5369-fb98-4e54-b543-d537cdf8c870,Half-Life 1,WON Scriptless ,62U92N8WDDc,tag-game-runner,Half-Life 1 [WON Scriptless] by HuthTV - #ESASummer24
+c189df53-0eae-487f-bebb-55757d10b4a6,Baldur's Gate 3,Any% All Acts,6qPWdJKtOtU,tag-game-runner,Baldur's Gate 3 [Any% All Acts] by Chronos - #ESASummer24
+46d5230b-5a90-4770-962d-ec20f283862b,Cuphead,DLC + Base Game Any%,2KbjjWjNc5g,tag-game-runner,Cuphead [DLC + Base Game Any%] by Kirthar - #ESASummer24
+7063fac5-17f3-4da3-aa44-8aea056ad078,Lara Croft and the Guardian of Light,Any% NG+,8d8N6L_WsIo,tag-game-runner,Lara Croft and the Guardian of Light [Any% NG+] by RandomPinkBunny - #ESASummer24
+cfc52dfe-bb54-4d0b-a4bb-66583dbbb85e,Tomb Raider: The Last Revelation,Any%,1b7tEq3yMIg,tag-game-runner,Tomb Raider: The Last Revelation [Any%] by Cadarev - #ESASummer24
+2e8213a0-97bb-4e5f-b2d1-17312929ee0a,Umihara Kawase,Longest Path,Hyq9nQofrLc,tag-game-runner,Umihara Kawase [Longest Path] by NitrozSR - #ESASummer24
+ae2fd94e-8bf1-424d-8521-e2306d0e2bfb,I wanna be the Boshy,"Average-Mode any% (Dark Boshy, No Wrong Warp)",1KfnO5PfCiw,tag-game-runner,"I wanna be the Boshy [Average-Mode any% (Dark Boshy, No Wrong Warp)] by BBF - #ESASummer24"
+2b32cdc9-3926-43eb-9597-6a9d47cf5dc7,Vengeful Guardian: Moonrider,Beat the game,2fzHC0r_YyU,tag-game-runner,Vengeful Guardian: Moonrider [Beat the game] by Kirthar - #ESASummer24
+a23c4baf-8e53-497e-96ac-4a15d67fe77e,Star Wars Jedi Knight II: Jedi Outcast,Any%,AelbzXvpEio,weak,Star Wars Battlefront II (Classic 2005) [Any% with bonuses] by CaptainEmu - #ESASummer24
+11cabf4b-1769-4cb9-a5a1-dee1894546b3,Bluey: The Videogame,Any%,lMR8VCla1PQ,tag-game-runner,Bluey: The Videogame [Any%] by hsblue - #ESASummer24
+96a73e6a-c047-42d6-b2df-028628f67b5e,The Legend of Zelda: Ocarina of Time,100%,QqZu_WZ0v3o,tag-game-runner,The Legend of Zelda: Ocarina of Time [100%] by axellarsen - #ESASummer24
+a63ea5d4-d383-4eeb-b427-64b3fdd89822,Super Mario 64 Archipelago,Ability Randomizer,Fs5p73JWopI,tag-game-runner,Super Mario 64 Archipelago [Ability Randomizer] by 360Chrism - #ESASummer24
+08eb32a0-badb-470d-a08d-13580f9e58f4,Sea of Thieves,Heart of Fire Gauntlet,seiv3mbKPwo,tag-game,Sea of Thieves [Heart of Fire Gauntlet] by micromads - #ESASummer24
+cb274075-e221-44b9-adc1-dd9db955d5c7,End of day 7,,ihKfreAoBso,weak,Mega Man 2 Relay Race (any%) - #ESASummer24
+33efc8a6-b1a4-4c98-839f-2d0061555399,Grand Theft Auto: San Andreas,Any% No Major Glitches,vs1ZMebVkH4,tag-game-runner,Grand Theft Auto: San Andreas [Any% No Major Glitches] by Joshimuz - #ESASummer24
+5e0e373f-538c-440d-aff9-b1a41801b159,Portal 2,AMC (Coop),NG6G91AUZPk,weak,Ducktales 2 [Any% (easy)] by nintendonatalie - #ESASummer24
+2d7cfd76-f9f8-477f-bf7b-3a7684400e87,Grand Poo World 3 (Super Mario Kaizo Hack),Any%,liDQNyuxsxQ,tag-game-runner,Grand Poo World 3 (Super Mario Kaizo Hack) [Any%] by leys3r - #ESASummer24
+003c5812-7a56-4612-8ef7-7e6f477a1b19,Super Metroid and A Link to the Past Combo Randomizer,Co-op Randomizer,Ml2skfp6fuM,tag-game,Super Metroid and A Link to the Past Combo Randomizer [Co-op Randomizer] - #ESASummer24
+650b5221-aa2a-46c8-a376-65da1c7d221d,Yooka-Laylee and the Impossible Lair,24 Bees,xsS26z5ouo0,tag-game-runner,Yooka-Laylee and the Impossible Lair [24 Bees] by hedweg - #ESASummer24
+b79ef332-405d-4d1f-a940-7da0b5d7a394,Anger Foot (itch.io),NG+,gx-2Af2psNY,tag-game-runner,Anger Foot (itch.io) [NG+] by sajiki - #ESASummer24
+ea739165-25b3-4b7c-85d3-9c62bf4e8525,Super Mario 64,70 star 70 player relay,CWIA7Zp13yA,tag-game,Super Mario 64 [70 star 70 player relay] - #ESASummer24

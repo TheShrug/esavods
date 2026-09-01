@@ -41,6 +41,21 @@ class ExtractsTheId(unittest.TestCase):
                 "[Part 2](https://www.youtube.com/watch?v=BBBBBBBBBBB)")
         self.assertEqual(self.id_in(cell), "AAAAAAAAAAA")
 
+    def test_a_second_stream_is_not_part_of_the_game_name(self):
+        """ESA links both halves of a split run from the one Game cell.
+
+        Keeping every link text made the game name `The Legend of Zelda
+        Ocarina of Time Beta Quest + Stream 2`, which matched no VOD at all.
+        """
+        cell = ("[The Legend of Zelda Ocarina of Time Beta Quest]"
+                "(https://www.twitch.tv/videos/2205517572) + "
+                "[Stream 2](https://www.twitch.tv/videos/2205520740)")
+        self.assertEqual(_plain(cell),
+                         "The Legend of Zelda Ocarina of Time Beta Quest")
+
+    def test_a_cell_with_no_link_is_its_own_text(self):
+        self.assertEqual(_plain("Super Metroid"), "Super Metroid")
+
     def test_no_link_is_no_id(self):
         """Every schedule before Summer 2025 looks like this."""
         self.assertIsNone(self.id_in("Super Metroid"))
