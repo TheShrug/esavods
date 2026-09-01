@@ -73,9 +73,9 @@ def _names(cell: str) -> list[str]:
     links - `[snee](oengus) vs. [xem92](oengus)` - so the comma alone leaves
     both runners in one string, `snee vs. xem92`, which appears in no VOD
     title. The links are the names and the `vs.` between them is not, so each
-    link is its own runner and both get to confirm a match. Eighteen races
-    across ESA Summer 2024 and Winter 2021 are shaped like that, and ESA
-    publishes a video per runner for them.
+    link is its own runner and both get to confirm a match. Seventeen races
+    across ESA Summer 2024 and Winter 2021 are shaped like that - ten and
+    seven - and ESA publishes a video per runner for them.
 
     A part carrying no link is a name typed in plain - `Halo 3 Relay Team`,
     `Team 1 vs. Team 2` - and is kept whole. There is nothing to split it on
