@@ -114,6 +114,12 @@ The failures cluster, and they cluster informatively:
   too few frames show a ticking clock, and the static estimate wins
   calibration. Golden Sun (a 41-second run in an 8:44 slot) read `0:15:00`,
   its estimate exactly.
+
+  **Named outright since #65**, rather than left to the tiering to catch by
+  accident: a read equal to the estimate can no longer be `high`, and says so
+  in `reasons`. Four of this event's runs read their estimate exactly and three
+  were wrong; on ESA Summer 2025 all three of the event's estimate-reads were
+  among its five corrections.
 - **A bad VOD match shows up as a bad reading.** GeoGuessr was the one run
   whose VOD length disagreed with the slot; it read 0:10:39 against a truth of
   0:45:21 and was rejected on the estimate-ratio guard.
@@ -174,6 +180,12 @@ outside 0.4x-2.0x the scheduled estimate is returned as `reject`. Confidence is
 `high` only when both checks pass; `medium` when one does. Batch mode writes
 the confidence into the CSV so a human reviews the thin ones instead of all of
 them.
+
+A reading that lands *exactly* on the scheduled estimate is capped at `medium`
+however well the two confirmations went, because that is what a crop locked
+onto the estimate produces. It is demoted rather than rejected: a run really
+can finish on a round number - ESA Summer 2022's Super Smash TV read `0:50:00`
+against a true `0:50:01` - so the value is kept and a person confirms it.
 
 ## Commands
 

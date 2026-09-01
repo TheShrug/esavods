@@ -173,6 +173,30 @@ def _ramp(valid: list[Reading], value: float, ramp_end: float, plateau_start: fl
     return len(agree), miss, (low, high)
 
 
+def equals_estimate(value: float | None, estimate_seconds: float | None) -> bool:
+    """Did the read land exactly on the run's scheduled estimate?
+
+    A value that lands exactly on the estimate is not an answer. The layout
+    shows the estimate next to the timer, in the same font, and it OCRs more
+    cleanly because it never moves. Calibration separates the two by which one
+    *ticks* - and when a run finishes well before its VOD ends, no frame in the
+    sampled window shows a ticking clock at all. Both candidates then score
+    zero, the tie-break is `hits`, and the estimate wins it. Three of ESA
+    Summer 2025's five corrections were exactly this, which made it a more
+    frequent fault on that event than the 3/5 glyph confusion.
+
+    Compared at whole-second resolution because an estimate is always a whole
+    number of seconds; a read carrying a stray tenth inside the same second is
+    the same suspicion, not a different one. Nothing wider than that: on Summer
+    2025 the nearest honest read sat 3s off its estimate (Ocarina of Time,
+    1:25:03 against 1:25:00) and was right, so a tolerance would start costing
+    correct answers almost immediately.
+    """
+    if not estimate_seconds or value is None:
+        return False
+    return round(value) == round(estimate_seconds)
+
+
 def resolve(
     readings: list[Reading],
     duration: int,
@@ -234,6 +258,8 @@ def resolve(
             res.reasons.append(f"reading is {ratio:.2f}x the {fmt(estimate_seconds)} estimate")
             ok = False
 
+    matches_estimate = equals_estimate(value, estimate_seconds)
+
     ramp_good = res.ramp_frames >= 3 and res.ramp_error == 0.0
     plateau_good = res.plateau_frames >= min_plateau and not any(
         "fell back" in r for r in res.reasons
@@ -254,5 +280,19 @@ def resolve(
     else:
         res.confidence = "low"
         res.reasons.append("neither a stable plateau nor a consistent ramp")
+
+    if matches_estimate:
+        # Demoted, never rejected. A run really can finish on a round number,
+        # and this read may be that run - so it goes in front of a person
+        # instead of being certified or thrown away. Anything below `high`
+        # already reaches the review list, so only `high` needs moving; the
+        # tier's own reason is left in place, because "both checks passed *and*
+        # it equals the estimate" is what tells the reviewer how hard to look.
+        if res.confidence == "high":
+            res.confidence = "medium"
+        # First in the list: `review.describe` truncates the notes column at 110
+        # characters, and this is the one sentence the reviewer needs.
+        res.reasons.insert(0, f"reading is exactly the {fmt(estimate_seconds)} "
+                              "estimate; calibration may have read that, not the timer")
 
     return res
