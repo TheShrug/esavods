@@ -194,7 +194,7 @@ for this event, which is a first.
    obvious. Search game + tag, then use the runner to *rank* rather than to
    *filter* — ESA's `[Category]` bracket already separates two runs of one game,
    which is the job the runner was doing. Confined to `resolve.match()`, and the
-   highest-value change on the list.
+   highest-value change on the list. Filed as #75.
 2. **Flag a calibrated crop much smaller than the event's modal crop.** Five of
    six corrections here share one unmistakable fingerprint, and unlike
    `equals_estimate` this catches the case where the OCR reads the estimate but
