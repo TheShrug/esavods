@@ -166,6 +166,30 @@ class Run extends Model
 		return parent::delete();
 	}
 
+	/**
+	 * The run time as H:MM:SS, with hours that keep counting past 24.
+	 *
+	 * Not gmdate('H:i:s', $time), which every view used to call: gmdate formats
+	 * an instant, not a duration, so its `H` is an hour-of-day and wraps at 24.
+	 * ESA Summer 2025's Final Fantasy IX Vivi% ran 24:05:51 and displayed as
+	 * 00:05:51 — a five-minute run, on a page whose whole purpose is run times.
+	 *
+	 * Hours are padded to two digits so the column still lines up for the
+	 * ordinary sub-ten-hour run, and left unpadded above 99 rather than
+	 * truncated.
+	 *
+	 * @return string
+	 */
+	public function getFormattedTimeAttribute() {
+		$seconds = (int) $this->time;
+
+		return sprintf('%02d:%02d:%02d',
+			intdiv($seconds, 3600),
+			intdiv($seconds % 3600, 60),
+			$seconds % 60
+		);
+	}
+
 	protected $fillable = ['time', 'twitch_vod_id', 'youtube_vod_id', 'event_id', 'platform_id', 'game_id'];
 
 }

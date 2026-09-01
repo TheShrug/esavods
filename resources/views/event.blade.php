@@ -69,7 +69,7 @@
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td>{{ gmdate('H:i:s', $run->time) }}</td>
+                                    <td>{{ $run->formatted_time }}</td>
                                     <td class="video-links" nowrap>
                                         @if(isset($run->youtube_vod_id))
                                             <a class="youtube" href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>
