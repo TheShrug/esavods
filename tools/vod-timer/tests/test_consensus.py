@@ -10,6 +10,7 @@ Run with:  python -m unittest discover -s tools/vod-timer/tests
 import unittest
 
 from vodtimer.consensus import Reading, resolve
+from vodtimer.review import describe, flagged
 
 STEP = 12.0
 OFFSET = 1792.0          # 0:29:52 elapsed when the sampled window opens
@@ -89,6 +90,69 @@ class WithoutARampNothingChanges(unittest.TestCase):
                     for i in range(8)]
         r = resolve(readings, duration=2000)
         self.assertEqual(r.final_seconds, TRUTH)
+
+
+class AReadEqualToTheEstimateIsNeverHigh(unittest.TestCase):
+    """#65. The layout carries the estimate as well as the timer, and when
+    nothing in the sampled window ticks, calibration cannot tell them apart -
+    so it locks onto the estimate, which renders more cleanly. Three of ESA
+    Summer 2025's five corrections were this."""
+
+    def test_a_perfect_read_is_still_demoted_when_it_equals_the_estimate(self):
+        """Both confirmations pass, so this would otherwise ship unreviewed."""
+        clean = resolve(series([TRUTH] * 7), duration=2000)
+        self.assertEqual(clean.confidence, "high")
+
+        r = resolve(series([TRUTH] * 7), duration=2000, estimate_seconds=TRUTH)
+        self.assertEqual(r.confidence, "medium")
+
+    def test_the_reason_names_the_estimate_in_words(self):
+        r = resolve(series([TRUTH] * 7), duration=2000, estimate_seconds=TRUTH)
+        self.assertIn("exactly the 0:31:32 estimate", r.reasons[0])
+
+    def test_the_reason_leads_so_it_survives_the_review_list_truncation(self):
+        """`review.describe` cuts notes at 110 characters; this is the sentence
+        the reviewer needs, so it cannot be the one that gets cut."""
+        r = resolve(series([TRUTH] * 7), duration=2000, estimate_seconds=TRUTH)
+        self.assertLess(len(r.reasons[0]), 110)
+        self.assertIn("estimate", describe({
+            "final_time": r.final_time, "confidence": r.confidence,
+            "notes": "; ".join(r.reasons)}))
+
+    def test_a_true_time_that_is_the_round_estimate_reaches_a_human(self):
+        """Demote, do not discard: the value survives and lands on the list."""
+        r = resolve(series([TRUTH] * 7), duration=2000, estimate_seconds=TRUTH)
+        self.assertEqual(r.final_seconds, TRUTH)
+        row = {"video_id": "vid", "game": "Some Game",
+               "final_time": r.final_time, "confidence": r.confidence,
+               "notes": "; ".join(r.reasons)}
+        self.assertEqual(flagged([row], {"high"}), [row])
+
+    def test_the_static_estimate_shape_is_named_rather_than_merely_doubted(self):
+        """What the three real failures looked like: calibration locked onto the
+        estimate, so every frame reads the same value and there is no ramp at
+        all. That was already non-high - by accident. Now it says why."""
+        readings = [Reading(index=i, position=100.0 + i * STEP, value=TRUTH)
+                    for i in range(8)]
+        r = resolve(readings, duration=2000, estimate_seconds=TRUTH)
+        self.assertNotEqual(r.confidence, "high")
+        self.assertIn("exactly the 0:31:32 estimate", r.reasons[0])
+
+    def test_a_read_near_the_estimate_is_left_alone(self):
+        """Summer 2025's closest honest call: Ocarina of Time read 1:25:03
+        against a 1:25:00 estimate and was right. Only exact equality counts."""
+        r = resolve(series([TRUTH] * 7), duration=2000, estimate_seconds=TRUTH - 3)
+        self.assertEqual(r.confidence, "high")
+        self.assertFalse(any("exactly the" in x for x in r.reasons))
+
+    def test_no_estimate_means_no_check(self):
+        r = resolve(series([TRUTH] * 7), duration=2000, estimate_seconds=None)
+        self.assertEqual(r.confidence, "high")
+
+    def test_an_already_rejected_read_is_not_promoted_by_the_check(self):
+        """The estimate check only ever caps a tier; it never lifts one."""
+        r = resolve(series([TRUTH] * 7), duration=1000, estimate_seconds=TRUTH)
+        self.assertEqual(r.confidence, "reject")
 
 
 if __name__ == "__main__":

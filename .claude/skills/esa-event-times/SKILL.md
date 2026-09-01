@@ -444,8 +444,11 @@ into how you read a result:
   the `3`/`5` glyph confusion on that event. When a run finishes well before its
   VOD ends, no frame in the sampled window shows a ticking clock, so calibration
   cannot rank the timer above the estimate - and the estimate OCRs more cleanly.
-  A read that *exactly* equals the estimate is not a result. Until #65 lands,
-  check for it by hand: the estimate is right there in `resolved.csv`.
+  A read that *exactly* equals the estimate is not a result. Since #65 the tool
+  checks this itself: such a read is never `high`, and its `notes` open with
+  `reading is exactly the H:MM:SS estimate`. It is demoted, not dropped - a run
+  can genuinely finish on a round number - so confirm it, do not assume it is
+  wrong.
 
 - **A tail can hold a different run's timer.** ESA runs bonus runs and incentives
   inside a slot and resets the clock. Summer 2025's Super Mario Bros. 3 read
@@ -465,6 +468,7 @@ into how you read a result:
   `MIN_CLIP_BYTES`, so clear the cache entry or the failure repeats (#67).
 - **Short runs lose calibration to the estimate.** Too few frames show a ticking
   clock, so the static estimate wins. A read that exactly equals a round
-  estimate is a red flag, not a result.
+  estimate is a red flag, not a result - and since #65 the tool flags it itself
+  rather than leaving it to you.
 - **Races read one clock.** A 2p layout has a timer per runner; only one is
   read. Route races to the human.
