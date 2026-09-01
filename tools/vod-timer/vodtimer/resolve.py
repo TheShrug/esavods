@@ -66,6 +66,27 @@ def _plain(text: str) -> str:
     return (m.group(1) if m else (text or "")).strip()
 
 
+def _names(cell: str) -> list[str]:
+    """Every runner a Player(s) cell names.
+
+    The cell is comma-separated, but a race is one comma-part holding two
+    links - `[snee](oengus) vs. [xem92](oengus)` - so the comma alone leaves
+    both runners in one string, `snee vs. xem92`, which appears in no VOD
+    title. The links are the names and the `vs.` between them is not, so each
+    link is its own runner and both get to confirm a match. Eighteen races
+    across ESA Summer 2024 and Winter 2021 are shaped like that, and ESA
+    publishes a video per runner for them.
+
+    A part carrying no link is a name typed in plain - `Halo 3 Relay Team`,
+    `Team 1 vs. Team 2` - and is kept whole. There is nothing to split it on
+    that would not be a guess.
+    """
+    names = []
+    for part in (cell or "").split(","):
+        names.extend(MD_LINK.findall(part) or [part])
+    return [n.strip() for n in names if n.strip()]
+
+
 def title_fields(title: str) -> tuple[str, str]:
     """Split a VOD title into the part naming the game and the category.
 
@@ -111,12 +132,12 @@ def schedule_rows(payload: dict, slug: str) -> list[dict]:
         if not game:
             continue
         linked = YT_LINK.search(raw_game or "")
-        players = [_plain(p) for p in (cells.get("player(s)") or "").split(",")]
+        who = _names(cells.get("player(s)"))
         rows.append({
             "UUID": cells.get("id") or f"{slug}-{idx}",
             "GameName": game,
             "CategoryName": cells.get("category") or "",
-            "PlayerNamesTwitch": json.dumps({p: p for p in players if p}),
+            "PlayerNamesTwitch": json.dumps({p: p for p in who}),
             "Estimate": hms(int(item.get("length_t") or 0)),
             "Actual Time": "",
             "_slot": None,

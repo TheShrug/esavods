@@ -170,5 +170,57 @@ class TwoRunsOfOneGameStaySeparate(unittest.TestCase):
                                      want[row["CategoryName"]])
 
 
+class BothRunnersOfARaceReachTheRanker(unittest.TestCase):
+    """Real `A vs. B` rows out of the two schedules.
+
+    ESA publishes one video per runner for a race, so which of the two the row
+    ends up on turns on both names being available to rank with. Splitting the
+    Player(s) cell on its comma alone left them as the single string
+    `snee vs. xem92`, which confirms nothing.
+    """
+
+    RACES = [("esa-summer-2024", "Ratchet & Clank", ["snee", "xem92"]),
+             ("esa-summer-2024", "The Legend of Zelda Ocarina of Time Beta Quest",
+              ["Baal", "Runnerguy2489"]),
+             ("esa-summer-2024", "Pokémon Platinum", ["marchspec", "Rubentus"]),
+             ("esa-winter-2021", "The Legend of Zelda: Link's Awakening (2019)",
+              ["Strackel", "Miniretin"]),
+             ("esa-winter-2021", "SegaSonic the Hedgehog",
+              ["Hibnotix", "STwoLive"])]
+
+    def test_every_name_is_its_own_runner(self):
+        for event, game, want in self.RACES:
+            row = next(r for r in rows_of(event) if r["GameName"] == game)
+            with self.subTest(event=event, game=game):
+                self.assertEqual(resolve.players(row["PlayerNamesTwitch"]), want)
+
+    def test_the_second_name_is_the_one_that_confirms_the_match(self):
+        """Pokémon Platinum's title names `linewashere and Rubentus`.
+
+        The schedule's first runner is `marchspec`, who is in no title on the
+        event. Keeping only the first name left this a `tag-game` match.
+        """
+        event, game = "esa-summer-2024", "Pokémon Platinum"
+        row = next(r for r in rows_of(event) if r["GameName"] == game)
+        best = resolve.best_of(row, EVENTS[event][1], vods_of(event))
+        self.assertTrue(best["runner"])
+        self.assertTrue(resolve.verdict(best).startswith("tag-game-runner("))
+
+    def test_a_race_with_a_video_each_still_lands_where_it_shipped(self):
+        """One schedule row, two runners, and ESA published a VOD for each.
+
+        #45 flagged which of the two the row should carry as a call for a
+        person; the row names both runners, so both videos now confirm on the
+        runner and neither name breaks the tie. This pins the choice against
+        the one that shipped rather than claiming the tool made it.
+        """
+        event = "esa-summer-2024"
+        row = next(r for r in rows_of(event)
+                   if r["GameName"] == "The Legend of Zelda Ocarina of Time Beta Quest")
+        best = resolve.best_of(row, EVENTS[event][1], vods_of(event))
+        self.assertIn("BaalNocturno", best["title"])
+        self.assertEqual(best["video_id"], "MV-2HflPXKs")
+
+
 if __name__ == "__main__":
     unittest.main()
