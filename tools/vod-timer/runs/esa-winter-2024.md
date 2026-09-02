@@ -5,11 +5,12 @@ Issue #46. Two Horaro schedules (`2024-winter1`, `2024-winter2`), tag
 
 - **Settings**: `--height 480 --tail 600 --step 12`, six shards per schedule,
   run one schedule at a time.
-- **Outcome**: **148 of 155 scheduled runs live with a time.** 107 read `high`,
-  26 were resolved from frames by hand, 15 ship on an unconfirmed reading.
-- **Stopped early.** YouTube's bot wall went up before the Stream Two review
-  frames were pulled, so 13 of those 15 are unchecked rather than unresolvable.
-  See "The wall" below.
+- **Outcome**: **151 of 155 scheduled runs live with a time.** 110 read `high`,
+  39 were resolved from frames by hand, and only **2** ship on an unconfirmed
+  reading — both lower bounds on runs whose VOD ends mid-run.
+- **The bot wall interrupted this event** at roughly 460 yt-dlp invocations,
+  with the Stream Two review pass unstarted. It cleared in under a day and the
+  review was finished on a second sitting. See "The wall" below.
 
 ## Resolution — the first event to run on #75, and it holds
 
@@ -82,258 +83,306 @@ happily hand a real run someone else's video.
 
 | tier | n | outcome |
 |---|---|---|
-| high | 107 | shipped unreviewed |
-| medium | 25 | 11 checked, 14 unchecked (wall) |
+| high | 110 | shipped unreviewed |
+| medium | 25 | all checked against frames |
 | low | 5 | all checked against frames |
-| reject | 13 | 8 checked, 5 unchecked or unshippable |
-| none | 4 | 1 recovered at 720p, 3 blocked by #67 |
+| reject | 13 | 11 checked; 2 are rows with no timer at all |
+| none | 1 | Taskmaster II, which has no overlay |
 
-**107 of 154 accepted without review — 69%**, well below Summer 2024's 87% and
+**110 of 154 accepted without review — 71%**, well below Summer 2024's 87% and
 Summer 2022's 81%. The shortfall is not mysterious: **22 runs report `no stable
 plateau; fell back to the largest reading`**, and on this event that fallback is
 usually a `3` misread as a `5`.
 
-Of the 26 runs I resolved from frames, **11 confirmed the OCR exactly and 15
-were corrected.**
+Of the 39 runs resolved from frames, **12 confirmed the OCR exactly and 27 were
+corrected.** That is a far worse hit rate than Summer 2024's 10-of-16, and it is
+the headline fact about this event: **once a run on Winter 2024 falls out of
+`high`, the reading is wrong about 70% of the time.** The `high` tier itself
+showed no sign of trouble.
 
-### The layout has no colour change, so one frame proves nothing
+### The clock is yellow while running and white once stopped
 
-Summer 2024 and Summer 2025 both had an orange-while-running,
-green-once-stopped clock, and both write-ups record that this is what made
-frame review cheap. **Winter 2024's timer is yellow throughout** — running and
-stopped look identical.
+Summer 2024 and Summer 2025 had an orange-while-running, green-once-stopped
+clock. Winter 2024's layout is subtler but has the same tell: **the running
+clock is yellow, and the moment it stops it renders in white/grey.** It is easy
+to miss — I initially recorded this event as having no colour change at all —
+but once seen it is unambiguous, and it is visible on every stopped frame in
+this event including the ones where the digits alone look plausible.
 
-Every check here therefore needs **two frames far enough apart to prove the
-clock did not move**, and the review method that worked was a tiled montage:
-one `yt-dlp` window, N frames evenly spaced, cropped to the bottom 30% and
-stacked into a single PNG. A frozen clock is then obvious as a repeated value
-down the strip, and the ramp above it confirms the crop is the timer and not
-the estimate.
+The review method that worked was a tiled montage: one `yt-dlp` window, N frames
+evenly spaced, cropped to the bottom 30% of the frame and stacked into a single
+PNG. A stop then shows up twice over — a repeated value down the strip, and a
+colour change at the same row — and the ramp above it confirms the crop is the
+timer rather than the estimate.
 
-**Frame spacing has to match what is being asked.** Six frames over the last
-five minutes answered "did this run finish long ago", but it wrongly suggested
-five runs had no finish on camera: their clocks were still ticking in every
-sampled frame. Re-probing the **last 40 seconds at 4-second spacing** found a
-clean plateau in all five. Only one run in the event genuinely ends with the
-clock still running.
+**Frame spacing has to match the question being asked**, and getting this wrong
+cost a whole pass. Six frames over the last five minutes answered "did this run
+finish long ago", but it wrongly suggested five runs had no finish on camera:
+their clocks were still ticking in every sampled frame. Re-probing the **last 40
+seconds at 4-second spacing** found a clean plateau in all five. The general
+shape that worked for a first look is **12 frames over the last 240 seconds**;
+tighten to a 40–100 second window to pin an exact value, and widen to a
+mid-VOD window when the tail holds a different clock.
 
-### Corrections — 15 of 26
+One layout note: Ratatouille calibrated to `64,255,167,50`, a timer at 53% of
+frame height rather than in the lower third. A bottom-30% strip misses it
+entirely, so a per-run crop fraction is needed rather than one constant.
 
-| run | OCR read | actual | cause |
-|---|---|---|---|
-| Devil May Cry 4: SE — NG (Devil Hunter) | `1:18:54` | `1:18:34` | `3`→`5`, tens of seconds |
-| Alan Wake 2 — Glitchless | `3:12:55` | `3:12:35` | `3`→`5`, tens of seconds |
-| TMNT: Shredder's Revenge — Any% | `1:24:55` | `1:24:35` | `3`→`5`, tens of seconds |
-| Sonic Superstars — Story Mode (NG+, Trip) | `0:38:52` | `0:38:32` | `3`→`5`, tens of seconds |
-| ibb & obb — Any% (Local, Highwayless) | `0:31:52` | `0:31:32` | `3`→`5`, tens of seconds |
-| Super Mario Odyssey — Talkatoo% | `1:46:52` | `1:46:32` | `3`→`5`, tens of seconds |
-| LEGO Pirates of the Caribbean — Any% (NOCUT5) | `1:19:51` | `1:19:31` | `3`→`5`, tens of seconds |
-| Grand Theft Auto III — Tightened Thrice | `1:43:05` | `1:43:03` | `3`→`5`, units of seconds |
-| Final Fantasy VII — Any% | `17:20:00` | `7:19:32` | read the **estimate** |
-| Final Fantasy IX — Memoria Boss Rush (Level 1) | `1:05:00` | `0:56:26` | read the **estimate** |
-| Classic Sonic Trilogy — Any% (65 Player Relay) | `3:00:00` | `2:20:50` | read the **estimate** |
-| Bowser's Fury — Any% | `10:40:00` | `0:32:33` | read the **estimate** |
-| Super Princess Peach — Any% | `0:11:07` | `1:35:42` | tail holds a **reset** clock |
-| Splatoon 2 — Any% | `0:12:17` | `1:32:32` | tail holds a **reset** clock |
-| Resident Evil 5 — No Merchant (Normal) | `0:11:20` | `2:11:32` | tail holds a **reset** clock |
+### Corrections — 27 of 39
 
-**Eight of fifteen corrections are the `3`/`5` glyph confusion.** That is worth
-stating plainly, because Summer 2024 recorded that it "did not appear once" and
-concluded the estimate-read had displaced it as the dominant fault. It has not:
-it is dominant again here, and it behaves exactly as the README describes —
-never a clean plateau, so the resolver falls back to the largest reading, which
-is the inflated one by construction. Seven of the eight are worth precisely
+**The `3`/`5` glyph confusion — 8 runs.** Summer 2024 recorded that this "did
+not appear once" and concluded the estimate-read had displaced it. It has not:
+it is the single largest cause here, and it behaves exactly as the README
+describes — never a clean plateau, so the resolver falls back to the largest
+reading, which is the inflated one by construction. Seven are worth precisely
 `+20s`; the eighth is `+2s`.
 
-### The tail-reset class is bigger here than anywhere
+| run | OCR read | actual |
+|---|---|---|
+| Devil May Cry 4: SE — NG (Devil Hunter) | `1:18:54` | `1:18:34` |
+| Alan Wake 2 — Glitchless | `3:12:55` | `3:12:35` |
+| TMNT: Shredder's Revenge — Any% | `1:24:55` | `1:24:35` |
+| Sonic Superstars — Story Mode (NG+, Trip) | `0:38:52` | `0:38:32` |
+| ibb & obb — Any% (Local, Highwayless) | `0:31:52` | `0:31:32` |
+| Super Mario Odyssey — Talkatoo% | `1:46:52` | `1:46:32` |
+| LEGO Pirates of the Caribbean — Any% (NOCUT5) | `1:19:51` | `1:19:31` |
+| Grand Theft Auto III — Tightened Thrice | `1:43:05` | `1:43:03` |
 
-Three runs read a small, confident, completely wrong value because the crew
+**Read the estimate instead of the timer — 7 runs.** Every one calibrated to a
+crop under 100px wide; see #71 below.
+
+| run | OCR read | actual |
+|---|---|---|
+| Final Fantasy VII — Any% | `17:20:00` | `7:19:32` |
+| Final Fantasy IX — Memoria Boss Rush (Level 1) | `1:05:00` | `0:56:26` |
+| Classic Sonic Trilogy — Any% (65 Player Relay) | `3:00:00` | `2:20:50` |
+| Bowser's Fury — Any% | `10:40:00` | `0:32:33` |
+| Tobari and the Night of the Curious Moon — Any% (Normal Ending) | `1:00:00` | `0:52:30` |
+| Kingdom Hearts 2 Final Mix — Any% (Critical, Modded) | `2:45:00` | `2:50:48` |
+| Super Mario Galaxy 2 — Green Stars | `3:10:00` | `3:09:29` |
+
+**The tail holds a reset clock — 6 runs.** See below.
+
+| run | OCR read | actual |
+|---|---|---|
+| Resident Evil 5 — No Merchant (Normal) | `0:11:20` | `2:11:32` |
+| Super Princess Peach — Any% | `0:11:07` | `1:35:42` |
+| Splatoon 2 — Any% | `0:12:17` | `1:32:32` |
+| Deus Ex: Mankind Divided — Any% | `0:09:00` | `0:43:08` |
+| The Legend of Zelda: Link's Awakening — Warpless | `0:10:01` | `0:43:26` |
+| Captain Toad: Treasure Tracker — All Gems | `1:53:38` | `1:53:44` |
+
+**The remaining six** are ordinary short-of-the-finish misses where the largest
+sampled reading landed before the plateau: System Shock (Remake) `0:27:21` →
+`0:33:28`, The Guardian Legend `1:03:01` → `1:03:34`, Contrast `0:12:29` →
+`0:15:29`, Garfield Lasagna Party `1:43:42` → `1:48:23`, Zortch `0:09:56` →
+`0:12:52`, Splatoon `0:33:38` → `0:33:41`.
+
+### The tail-reset class is far bigger here than anywhere
+
+Six runs read a small, confident, completely wrong value because the crew
 **reset the timer** for a bonus segment before the VOD ended. Summer 2025 saw
-this once (Super Mario Bros. 3), Summer 2024 once in its mildest form (Paris
-Marseille, a 3-second near miss). Here it costs three runs and the errors are
+this once (Super Mario Bros. 3); Summer 2024 once in its mildest form (Paris
+Marseille, a 3-second near miss). Here it costs six runs and the errors are
 enormous — `0:11:20` against a true `2:11:32`.
 
-The fix in each case was to probe a window two-thirds of the way through the
-VOD and watch the first segment's clock run past the estimate and freeze. On
-Resident Evil 5 the montage shows the run clock ticking `01:59:20 → 02:11:32`
-and then holding, followed later by a fresh `00:11:20` segment. Nothing in the
-tail betrays this, which is exactly what the skill warns.
+The fix in each case was to probe a window earlier in the same VOD and watch the
+first segment's clock run past the estimate and freeze. On Resident Evil 5 the
+montage shows the run clock ticking `01:59:20 → 02:11:32` and holding, followed
+much later by a fresh `00:11:20` segment. Captain Toad is the subtlest of the
+six and the most instructive: its tail holds a **different game entirely**
+(`Suika game / Showcase%`), and the OCR's `1:53:38` is only six seconds under
+the true `1:53:44`, so nothing about the number looks wrong.
 
-A fourth run in this class, **The Legend of Zelda: Link's Awakening**, was not
-recovered: the wall went up before its mid-VOD probe ran. It ships on
-`0:10:01`, which is **known to be wrong** — that value is the reset segment, not
-the run. It is the one run in this event shipping a time I can positively say
-is incorrect.
+Captain Toad also shows the crew **editing the estimate live** — the layout
+reads `01:28:00`, then `01:45:00`, then `01:50:00` as the run overran. Anything
+that reasons about a run against "its estimate" is reasoning against a value
+that was not constant.
 
-## ESA's VODs are cut to the run, and one cut lands short
+## ESA's VODs are cut to the run, and two cuts land short
 
-Worth recording because it changes how a mid-run tail should be read. **Every
-Winter 2024 VOD begins with the run's own timer at `00:00:00` and ticking** —
-verified on three consecutive next-run VODs (Deus Ex, LEGO Batman, Tomb Raider
-III). A run's finish is therefore never in the following video, and the gap
-between two videos is simply unpublished.
+**Every Winter 2024 VOD begins with the run's own timer at `00:00:00` and
+ticking** — verified on four next-run VODs (Deus Ex, LEGO Batman, Tomb Raider
+III, Bowser's Fury). A run's finish is therefore never in the following video,
+and the gap between two videos is simply unpublished.
 
 That makes "the clock is still moving when the VOD ends" a terminal condition,
-not something to chase into the next upload. It happens exactly once:
-**The Lost Vikings — Any% (Coop)**, whose clock reads `01:06:53` four seconds
-before the video ends and is still counting. `1:06:53` ships as a **lower
-bound**, not a finish.
+not something to chase into the next upload. It happens twice:
 
-## #65 (`equals_estimate`) — 6 of 154, and the crop tells you which are wrong
+- **The Lost Vikings — Any% (Coop)**, clock at `01:06:53` four seconds before
+  the video ends, still counting.
+- **Golden Sun 3: Dark Dawn — Any%**, clock at `05:01:58` in the final frame,
+  still counting.
 
-It fired on **six runs**, the same count as Summer 2024:
+Both ship as **lower bounds**, and both are the only two runs on the unvouched
+list.
+
+## #65 (`equals_estimate`) — 6 of 154, and all six now checked
 
 | run | read | crop | verdict |
 |---|---|---|---|
 | Final Fantasy IX | `1:05:00` | `60x22` | wrong — actual `0:56:26` |
 | Classic Sonic Trilogy | `3:00:00` | `63x21` | wrong — actual `2:20:50` |
-| Sonic Spinball | `1:00:00` | `168x50` | **right** — a Crowd Control Showcase, capped at the hour |
-| Tobari and the Night of the Curious Moon | `1:00:00` | `61x22` | unchecked (wall) |
-| Kingdom Hearts 2 Final Mix | `2:45:00` | `63x22` | unchecked (wall) |
-| Super Mario Galaxy 2 | `3:10:00` | `60x22` | unchecked (wall) |
+| Tobari and the Night of the Curious Moon | `1:00:00` | `61x22` | wrong — actual `0:52:30` |
+| Kingdom Hearts 2 Final Mix | `2:45:00` | `63x22` | wrong — actual `2:50:48` |
+| Super Mario Galaxy 2 | `3:10:00` | `60x22` | wrong — actual `3:09:29` |
+| Sonic Spinball | `1:00:00` | `168x50` | **right** — a Crowd Control showcase, capped at the hour |
 
 Sonic Spinball is this event's Battleship Bingo: a **time-capped showcase** that
 genuinely ends on a round number. The montage shows the clock ticking
-`00:57:16 → 00:59:41 → 01:00:00` and stopping, so rejecting on this rule rather
-than demoting would again have thrown away a correct time. Two events, two
-saves — the demotion-not-rejection decision keeps looking right.
+`00:57:16 → 00:59:41 → 01:00:00` and stopping. Two events running, the
+demotion-not-rejection decision has saved a correct time.
 
-**The sharper finding is the crop.** Five of the six hits calibrated to a crop
-around `60x22`; the sixth — the correct one — calibrated to the modal `168x50`
-timer box. `equals_estimate` cannot tell a locked-on-the-estimate read from a
-genuine round finish. **The crop size can, and did, on both cases I could
-check.**
+**The crop separates the six perfectly.** All five wrong reads calibrated to a
+~`60x22` box; the one correct read calibrated to the modal `168x50` timer.
+`equals_estimate` cannot tell a locked-on-the-estimate read from a genuine round
+finish — the crop can, and did, 6 for 6.
 
-## #71 — crop size is now 9 for 9 across two events
+Super Mario Galaxy 2 is the case that makes this concrete: its true time is
+`3:09:29` against a `3:10:00` estimate, **31 seconds apart**. A rule that only
+compared values would have called that agreement close enough to be suspicious
+of nothing at all.
 
-`batch` records the calibrated crop, and on this event it separates the fault
-as cleanly as it did on Summer 2024:
+## #71 — crop size is now 14 for 14 across two events
 
 | crop size | runs | estimate-reads |
 |---|---|---|
-| 164–199 px wide (the timer) | 141 | **0** |
+| 164–199 px wide (the timer) | 144 | **0** |
 | 46–63 px wide (the `EST.` field) | 9 | **9** |
 
-The nine tiny crops are Closing Speech `57x21`, Bowser's Fury `63x22`, Wendy
-`46x16`, Final Fantasy VII `48x17`, Final Fantasy IX `60x22`, Classic Sonic
-Trilogy `63x21`, Tobari `61x22`, Kingdom Hearts 2 `63x22`, Super Mario Galaxy 2
-`60x22`. **Six were checked against frames and all six were the estimate
-field**; the other three each read exactly their estimate, which is the same
-signature. No crop of normal size was an estimate-read.
+All nine tiny crops were checked against frames this time, and all nine were the
+estimate field: Closing Speech `57x21`, Bowser's Fury `63x22`, Wendy `46x16`,
+Final Fantasy VII `48x17`, Final Fantasy IX `60x22`, Classic Sonic Trilogy
+`63x21`, Tobari `61x22`, Kingdom Hearts 2 `63x22`, Super Mario Galaxy 2 `60x22`.
+No crop of normal size was ever an estimate-read.
 
-Combined with Summer 2024's 5-for-5 against 118 normal crops, that is
-**14 tiny crops across two events, 14 estimate-reads, and zero false positives
-across 259 normally-sized ones.** This is a cheap, already-recorded, and so far
-perfect discriminator, and unlike `equals_estimate` it does not depend on the
-run's true time differing from its estimate.
+With Summer 2024's 5-for-5 against 118 normal crops, that is **14 tiny crops
+across two events, 14 estimate-reads, and zero false positives across 262
+normally-sized ones.** It is cheap, already recorded by `batch`, and unlike
+`equals_estimate` it does not depend on the run's true time differing from its
+estimate.
 
 ## Known bugs, re-confirmed
 
 - **#66 — the estimate-ratio guard was right, for the first time ever, and it
-  was right four times.** This reverses the recommendation the last five events
+  was right five times.** This reverses the recommendation the last five events
   built up, so it is worth being precise. Eight runs were rejected on the ratio
-  alone. Seven were checked:
+  alone, and all eight have now been checked:
 
   | run | read | ratio | verdict on the *reading* |
   |---|---|---|---|
+  | Resident Evil 5 | `0:11:20` | 0.08x | **wrong** — true `2:11:32` |
   | Super Princess Peach | `0:11:07` | 0.12x | **wrong** — true `1:35:42` |
   | Splatoon 2 | `0:12:17` | 0.13x | **wrong** — true `1:32:32` |
-  | Resident Evil 5 | `0:11:20` | 0.08x | **wrong** — true `2:11:32` |
-  | Link's Awakening | `0:10:01` | 0.21x | **wrong** — reset segment |
+  | Deus Ex: Mankind Divided | `0:09:00` | 0.14x | **wrong** — true `0:43:08` |
+  | Link's Awakening | `0:10:01` | 0.21x | **wrong** — true `0:43:26` |
   | Sonic Frontiers | `0:24:19` | 0.24x | right |
   | Zool | `0:06:55` | 0.29x | right |
   | Anodyne | `0:12:16` | 0.35x | right |
 
-  **Four of seven rejections were correct**, and the guard is the only thing
-  that caught them: each is a tail-reset artefact, and without it those four
-  would have shipped as plausible-looking `medium` times that are out by up to
-  two hours.
+  **Five of eight rejections were correct**, and the guard is the only thing
+  that caught them: each is a tail-reset artefact, and without it those five
+  would have shipped as plausible-looking times out by up to two hours.
 
-  The split is clean and mechanical. The four correct rejections are all
-  **below 0.22x**; the three wrong ones are all **above 0.23x**, and all three
-  are "Showcase" categories that genuinely run a fraction of their slot. That
-  is not a coincidence — the guard's failure mode is a genuinely short run,
-  while its success mode is a reset clock reading a few minutes against an
-  estimate of hours.
+  The split is clean and mechanical. Every correct rejection is **at or below
+  0.21x**; every false alarm is **at or above 0.24x**, and all three false
+  alarms are "Showcase" or tutorial categories that genuinely run a fraction of
+  their slot. That is not a coincidence: the guard's failure mode is a genuinely
+  short run, while its success mode is a reset clock reading a few minutes
+  against an estimate of hours.
 
   So #66 should **not** simply be dropped, and this event is the counterexample
-  the issue's comments were missing. Every prior event that made the 0-for-N
-  case lacked this event's tail-reset class. Narrowing the lower bound from
-  0.4x to about 0.22x would have kept all four catches and dropped all three
-  false alarms here; that is one event's evidence, but it is the first evidence
-  the rule has any true positives at all.
-- **#67 fired, and hard.** Four Stream Two runs failed outright with
-  `ffmpeg failed (183): moov atom not found` — Kalimba, M&Ms Shell Shocked,
-  Deus Ex: Human Revolution, Okami — as did three of my frame grabs. Re-running
-  at `--height 720` fixed the frame grabs immediately and recovered **M&Ms Shell
-  Shocked at `high` (`0:56:52`)**. The other three were still queued when the
-  wall went up and are unread. Note that the corrupt clip re-caches under a new
-  parameter hash, so clearing `<id>.*.mp4` before the retry is required and was
-  not sufficient for Kalimba, which failed again at 720.
+  its comments were missing. Every prior event that made the 0-for-N case lacked
+  this event's tail-reset class. Narrowing the lower bound from 0.4x to about
+  0.22x would have kept all five catches and dropped all three false alarms
+  here.
+
+- **#67 fired, and its stated cause is not the whole story.** Four Stream Two
+  runs failed outright with `ffmpeg failed (183): moov atom not found` —
+  Kalimba, M&Ms Shell Shocked, Deus Ex: Human Revolution, Okami — as did four
+  frame grabs. The issue describes this as the height fallback picking an
+  uncuttable 240p when no 480p exists. **On Ratatouille a 480p rendition exists
+  and the failure still happened**: the selector picked format `398`, which is
+  **AV1**, and a `--download-sections` cut of AV1 produces a file ffmpeg cannot
+  open. Pinning the AVC itags (`-f 135/134/136/133`) fixed it immediately.
+
+  All four batch failures re-read cleanly at `--height 720`, every one at
+  `high`: Kalimba `1:17:21`, M&Ms Shell Shocked `0:56:52`, Deus Ex: Human
+  Revolution `1:10:07`, Okami `8:54:43`. Note also that the corrupt clip
+  re-caches under a *new* parameter hash, so clearing `<id>.*.mp4` is required
+  before any retry or the failure simply repeats.
+
 - **#63 did not visibly fire**, which as ever is not a claim the artefacts can
   support.
+
 - **#69, crop stability per layout.** `Layout` is hidden on both schedules here
   (`hidden:Layout`) where it was visible on Summer 2024; `horaro_rows` reads it
   either way because it lowercases column names. The modal crop is `168x50` at
   x≈428 (64 runs) with `167x50` close behind (47), so x is stable and y moves
-  with the layout's lower third — the same picture as Summer 2024, and the nine
-  tiny crops are what a pinned crop would have prevented.
+  with the layout's lower third — the same picture as Summer 2024. The nine tiny
+  crops are what a pinned crop would have prevented, and Ratatouille's
+  `64,255,167,50` is what a *per-layout* pin would have to accommodate.
 
 ## The wall
 
 It went up at roughly **460 yt-dlp invocations**, the most of any event so far
 and well past the ~250 where Summer 2025 hit it twice. The budget was
-underestimated at the outset: the review helper makes **two** invocations per
-frame grab (a `--print duration` probe and the download), so 66 grabs cost 132
-requests, not 66.
+underestimated at the outset because the review helper makes **two** invocations
+per frame grab — a `--print duration` probe and the download — so 66 grabs cost
+132 requests, not 66.
 
-The failure is unambiguous — `Sign in to confirm you're not a bot` — and
-everything was stopped rather than retried, per the skill. Nothing was retried
-into the block and no cookies were used.
-
-Left unfinished by it:
-
-- 13 Stream Two runs never had review frames pulled. They ship on their OCR
-  readings and are on the unvouched list.
-- Link's Awakening's mid-VOD probe, described above.
-- Kalimba, Deus Ex: Human Revolution and Okami never re-read at 720p, so those
-  three runs ship with **no time at all**.
+The failure is unambiguous (`Sign in to confirm you're not a bot`) and
+everything was stopped rather than retried; no cookies were used. **It cleared
+in under a day**, consistent with Summer 2025's ~2.5 hours, and the remaining 17
+items were finished on a second sitting at concurrency 2 with no further
+refusals. Waiting continues to be the correct response.
 
 ## Runs that need a second pair of eyes
 
-Full list in the comment on #46. The ones that are not merely unconfirmed:
+Only two runs ship on a time nobody has confirmed, and both are known lower
+bounds rather than doubtful readings:
 
-- **The Legend of Zelda: Link's Awakening — Warpless.** Ships `0:10:01`, known
-  wrong; the true time is in its own VOD before the timer reset.
-- **The Lost Vikings — Any% (Coop).** `1:06:53` is a lower bound; the VOD ends
-  mid-run and no finish exists on camera.
-- **Wendy: Every Witch Way — Any%.** No ESA VOD exists; the only candidate is a
-  third-party restream. Not shipped.
-- **Closing Speech** and **Taskmaster II** carry no on-screen timer at all —
-  Taskmaster II is a stage segment with no overlay. Neither ships a time.
-- **Afterparty** has no VOD. Not shipped.
-- **Kalimba**, **Deus Ex: Human Revolution — Director's Cut**, **Okami**: unread
-  (#67 plus the wall). Not shipped.
+- **The Lost Vikings — Any% (Coop)** — `1:06:53`, VOD ends mid-run.
+- **Golden Sun 3: Dark Dawn — Any%** — `5:01:59`, VOD ends mid-run.
+
+Four scheduled rows ship with **no time**, none of them recoverable:
+
+- **Afterparty** — 🎉🎉🎉🎉. ESA published no VOD.
+- **Closing Speech** — the layout carries no timer, only the estimate.
+- **Taskmaster II** — a stage segment with no overlay at all.
+- **Wendy: Every Witch Way** — no ESA VOD exists; see the restream note above.
+
+One run is worth a glance for a different reason: **Okami — Top Dog** at
+`8:54:43` trips the release script's over-eight-hours warning. It is a real
+8h55m run inside an 8h59m video, backed by an 11-frame plateau and 39 ramp
+frames.
 
 ## Improvements worth making
 
 1. **Flag a calibrated crop much smaller than the event's modal crop (#71).**
    Summer 2024 proposed this at 5-for-5; this event takes it to 14-for-14 with
-   zero false positives across 259 normal crops, and adds the case that makes it
-   strictly better than `equals_estimate`: it is the *only* signal that
-   separated Sonic Spinball's genuine `1:00:00` from Final Fantasy IX's spurious
-   one. It needs no new data — `batch` already records the crop.
-2. **Require the hashtag to be a hashtag.** `tagged` currently strips
-   punctuation before testing, so a title containing the words "ESA Winter 24"
-   passes a test meant for `#ESAWinter24`, which is how a French restream won a
-   run at `tag-game-runner(0.909)`. Matching `#` + tag against the unnormalised
-   title would cost nothing on the 155 runs here and would have caught it.
-3. **Reconsider #66 rather than closing it as agreed.** Five events built a
+   zero false positives across 262 normal crops, and adds the case that makes it
+   strictly better than `equals_estimate`: it is the only signal that separated
+   Sonic Spinball's genuine `1:00:00` from five spurious ones, including Super
+   Mario Galaxy 2's `3:10:00` whose true time is 31 seconds away. It needs no
+   new data — `batch` already records the crop.
+2. **Reconsider #66 rather than closing it as agreed.** Five events built a
    0-for-N case for deleting the estimate-ratio guard; this event is the first
-   where it has true positives, and it has four of them. The evidence now points
-   at *narrowing* the lower bound to roughly 0.22x, not removing it. Anyone
-   about to action #66 should read this event first.
-4. Smaller, but it cost real requests: **the review helper should reuse the
+   where it has true positives, and it has five of them, cleanly separated from
+   its three false alarms at 0.22x. The evidence now points at *narrowing* the
+   bound, not removing the rule. Anyone about to action #66 should read this
+   event first.
+3. **Detect the tail-reset directly.** Six runs here, one on Summer 2025, one on
+   Summer 2024. The signature is cheap: the sampled window contains a value that
+   *decreases*. `batch` already reads every frame in order, so a note saying
+   "the clock resets inside the sampled window — the run's finish is earlier"
+   would have flagged all six without a single extra request, and would turn the
+   most expensive review case in this event into a one-line hint.
+4. **Pin the AVC itags in the downloader (#67).** `-f 135/134/136/133` ahead of
+   the height-based selector avoids AV1 renditions, which are what actually
+   break `--download-sections`. Also clear cached clips on retry: they re-cache
+   under a new parameter hash.
+5. Smaller, but it cost real requests: **the review helper should reuse the
    duration already in `resolved.csv`** instead of probing for it. That halves
    the request cost of a review pass, which is exactly the pass that runs when
    the request budget is most nearly spent.
