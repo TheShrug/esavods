@@ -17,6 +17,30 @@ This reproduced the distribution recorded in the skill exactly, which is worth
 noting on its own: resolution against title agreement is repeatable, and the
 numbers in the docs are not a one-off.
 
+### Re-resolved after #75
+
+This event was the control for #75 — it is the one that must not get worse when
+the runner comes out of the search query. It got better. Nothing was
+re-imported; the same `resolve --horaro 2021-winter --tag ESAWinter21` now
+returns:
+
+| how | first pass | after #75 |
+|---|---|---|
+| `tag-game-runner` | 129 | **138** |
+| `tag-game` | 9 | 3 |
+| `weak` | 3 | **1** |
+| `no-hits` | 1 | **0** |
+
+*Metal Gear Ghost Babel*, the one run that found no video at all, had a video
+the whole time: `g2p1L9okYaQ`, titled `Metal Gear Ghost Babel [Any% (Easy)] by
+CDOSKEZ`. The schedule spells that runner `C\_DOS\_KEZ`, markdown escapes and
+all, and that string in the query was enough for YouTube to return nothing.
+
+141 of the 142 rows land on a title carrying every word of their game name. The
+exception is the Opening Speech, which takes the Closing Speech's video at
+`weak` — the only duplicate video id in the event, and both speeches are the
+two runs with no timer on screen and no time to ship.
+
 ## Reads
 
 | tier | n | shipped |

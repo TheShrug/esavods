@@ -65,6 +65,32 @@ title-matched onto South Park: Snow Day's VOD, and `cmd_export` keys metadata by
 `video_id`, so it would have overwritten a real run's platform and category —
 the same trap Summer 2025 recorded.
 
+### Re-resolved after #75
+
+The fix landed in #75 and this event is what it was measured against. Nothing
+was re-imported — the times shipped here are unchanged — but the same
+`resolve --horaro 2024-summer --tag ESASummer24` now returns, for the 124 real
+runs:
+
+| how | first pass | after #75 |
+|---|---|---|
+| `tag-game-runner` | 89 | **108** |
+| `tag-game` | 16 | 15 |
+| `weak` | 4 | **0** |
+| `no-hits` | 14 | **0** |
+| `horaro-link` | 1 | 1 |
+
+124 distinct video ids, and every one of the 124 titles carries **every word**
+of its row's game name. The second pass and the one hand-assignment this
+backfill needed are both gone: Mega Man 2 lands on `Mega Man 2 Relay Race
+(any%)` by itself, and the two-stream Ocarina of Time cell no longer asks for a
+game called `... Beta Quest + Stream 2`.
+
+The filler rows come back 6 `no-hits` and 1 `weak` instead of matching real
+VODs, which is the right answer for a row with no video — but they still have to
+be dropped before reading, because `weak` is a match as far as `cmd_export` is
+concerned.
+
 ## Reads
 
 | tier | n | outcome |
@@ -189,12 +215,12 @@ for this event, which is a first.
 
 ## Improvements worth making
 
-1. **Stop putting the runner in the search query as a hard term.** It cost 14
-   runs here and would have cost the event outright if the fallback had not been
-   obvious. Search game + tag, then use the runner to *rank* rather than to
-   *filter* — ESA's `[Category]` bracket already separates two runs of one game,
-   which is the job the runner was doing. Confined to `resolve.match()`, and the
-   highest-value change on the list. Filed as #75.
+1. ~~**Stop putting the runner in the search query as a hard term.**~~ Done in
+   #75. It cost 14 runs here and would have cost the event outright if the
+   fallback had not been obvious. Search game + tag, then use the runner to
+   *rank* rather than to *filter* — ESA's `[Category]` bracket already separates
+   two runs of one game, which is the job the runner was doing. Confined to
+   `resolve.match()`, and the highest-value change on the list. Filed as #75.
 2. **Flag a calibrated crop much smaller than the event's modal crop.** Five of
    six corrections here share one unmistakable fingerprint, and unlike
    `equals_estimate` this catches the case where the OCR reads the estimate but

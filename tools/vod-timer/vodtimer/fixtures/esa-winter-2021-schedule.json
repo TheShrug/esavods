@@ -1,0 +1,2147 @@
+{
+ "schedule": {
+  "columns": [
+   "Game",
+   "Player(s)",
+   "Platform",
+   "Category",
+   "Note",
+   "Layout",
+   "Intermission",
+   "Info",
+   "ID"
+  ],
+  "items": [
+   {
+    "data": [
+     "[Skies of Arcadia: Legends (PRE-SHOW)](https://www.twitch.tv/videos/912755660)",
+     "[Pengyy](https://www.twitch.tv/pengyy)",
+     "Gamecube",
+     "100%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz6,James Pond 2 - Codename Robocod,vselite1,alz5,Bayonetta - Broken Sky Skip,nioh1,alz4,Portal - Save Glitch,vselite2,alz3,Grand Theft Auto San Andreas - Monster Truck Glitch,nioh2,alz2,Super Smash Bros for Wii U - Data Glitch,alz1,winterbumper",
+     null,
+     "d2b738a25f9785e02664f95b"
+    ],
+    "length_t": 72000,
+    "scheduled": "2021-02-12T16:00:00+01:00"
+   },
+   {
+    "data": [
+     "Opening Speech",
+     "Edenal",
+     null,
+     null,
+     null,
+     null,
+     "winterbumper",
+     null,
+     "hiOromityouredoingagreatjobdontletanybodytellyouotherwise"
+    ],
+    "length_t": 600,
+    "scheduled": "2021-02-13T14:00:00+01:00"
+   },
+   {
+    "data": [
+     "[Dark Souls Remastered](https://www.twitch.tv/videos/912769843)",
+     "[catalystz](https://www.twitch.tv/catalystz)",
+     "PC",
+     "All Bosses",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Portal - Save Glitch,winterbumper",
+     null,
+     "a682045f329159479ffc8550"
+    ],
+    "length_t": 5700,
+    "scheduled": "2021-02-13T14:10:00+01:00"
+   },
+   {
+    "data": [
+     "[Teenage Mutant Ninja Turtles: Out of the Shadows](https://www.twitch.tv/videos/912770949)",
+     "[havrd](https://www.twitch.tv/havrd), [epicdudeguy](https://www.twitch.tv/epicdudeguy), [Timopy](https://www.twitch.tv/Timopy), [Kainalo](https://www.twitch.tv/Kainalo)",
+     "PC",
+     "NG+ (Co-op)",
+     "Co-op",
+     "16x9-2p",
+     "winterbumper,alz1,vselite2,winterbumper",
+     null,
+     "fcb79b101239d0cf8e5aabaf"
+    ],
+    "length_t": 3300,
+    "scheduled": "2021-02-13T15:50:00+01:00"
+   },
+   {
+    "data": [
+     "[Minecraft](https://www.twitch.tv/videos/912772063)",
+     "[Juh0rse](https://www.twitch.tv/Juh0rse)",
+     "PC",
+     "Any% (1.16, Random Seed, Glitchless)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,The Talos Principle - Cube Snake,winterbumper",
+     null,
+     "f01e769dbd747b160428330a"
+    ],
+    "length_t": 5400,
+    "scheduled": "2021-02-13T16:50:00+01:00"
+   },
+   {
+    "data": [
+     "[Hyper Light Drifter](https://www.twitch.tv/videos/912773011)",
+     "[Covert_Muffin](https://www.twitch.tv/Covert_Muffin)",
+     "PC",
+     "Any% (NMG, Alt)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Hollow Knight - Wind Storage,winterbumper",
+     null,
+     "4db57f8a9e940d00505d8e4f"
+    ],
+    "length_t": 1980,
+    "scheduled": "2021-02-13T18:25:00+01:00"
+   },
+   {
+    "data": [
+     "[I Wanna Be The Boshy](https://www.twitch.tv/videos/912775085)",
+     "[BBF_](https://www.twitch.tv/BBF_)",
+     "PC",
+     "Any% (Average, Dark Boshy, No Wrong Warp)",
+     null,
+     "4x3-1p",
+     "winterbumper,alz2,nioh3,winterbumper",
+     null,
+     "e23bec75f0ec88e5f7c793d5"
+    ],
+    "length_t": 2100,
+    "scheduled": "2021-02-13T19:03:00+01:00"
+   },
+   {
+    "data": [
+     "[Sonic 4: Episode 2](https://www.twitch.tv/videos/912843931)",
+     "[Argick](https://www.twitch.tv/Argick)",
+     "PC",
+     "Beat The Game",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Freedom Planet - Collision Breaking,winterbumper",
+     null,
+     "3e0d43479f2149e29cb4b349"
+    ],
+    "length_t": 3300,
+    "scheduled": "2021-02-13T19:43:00+01:00"
+   },
+   {
+    "data": [
+     "[Mega Man: The Wily Wars](https://www.twitch.tv/videos/912909107)",
+     "[TheBlacktastic](https://www.twitch.tv/TheBlacktastic)",
+     "Genesis",
+     "Mega Man 1 (Any%)",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,James Pond 2 - Codename Robocod,winterbumper",
+     null,
+     "e0dee897a1470df672792a7b"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-13T20:45:00+01:00"
+   },
+   {
+    "data": [
+     "[Mega Man X](https://www.twitch.tv/videos/913036519)",
+     "[Clipper](https://www.twitch.tv/Clipper)",
+     "SNES",
+     "100%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz3,vselite1,winterbumper",
+     null,
+     "4afeb4ce9cefd2c3b110806e"
+    ],
+    "length_t": 2400,
+    "scheduled": "2021-02-13T21:17:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Mario 64](https://www.twitch.tv/videos/913038168)",
+     "[Bubzia](https://www.twitch.tv/Bubzia)",
+     "Wii VC",
+     "16 Star (Blindfolded)",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh2,Super Smash Bros for Wii U - Data Glitch,winterbumper",
+     null,
+     "18438477de9c4430cc4637b8"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-13T22:04:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Mario 64](https://www.twitch.tv/videos/913094673)",
+     "[PeekingBoo](https://www.twitch.tv/PeekingBoo)",
+     "N64",
+     "16 Star (Dance Pad)",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Youyou Kengeki Musou - Time Stop Glitch,winterbumper",
+     null,
+     "ad212c01049a4dc8b4df2295"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-13T23:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Hades](https://www.twitch.tv/videos/913188971)",
+     "[MedicCasts](https://www.twitch.tv/MedicCasts)",
+     "PC",
+     "3 Weapons",
+     null,
+     "16x9-1p",
+     "winterbumper,alz4,nioh3,winterbumper",
+     null,
+     "cc8ffaa35349494d8bf860b5"
+    ],
+    "length_t": 3900,
+    "scheduled": "2021-02-13T23:33:00+01:00"
+   },
+   {
+    "data": [
+     "[Crash Team Racing](https://www.twitch.tv/videos/913271769)",
+     "[hypnoshark](https://www.twitch.tv/hypnoshark)",
+     "PS2",
+     "Any% Warpless",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Kingdom Hearts Dream Drop Distance HD - SoS OOB,winterbumper",
+     null,
+     "f4bfb5b444bdc8a07f599e38"
+    ],
+    "length_t": 3300,
+    "scheduled": "2021-02-14T00:45:00+01:00"
+   },
+   {
+    "data": [
+     "[The Legend of Zelda: Oracle of Ages](https://www.twitch.tv/videos/913384348)",
+     "[NitrozSR](https://www.twitch.tv/NitrozSR)",
+     "GBC",
+     "Any%",
+     null,
+     "GB-1p",
+     "winterbumper,nioh1,The Legend of Zelda Ocarina of Time - 37th Heart Piece,winterbumper",
+     null,
+     "a994b7b5bf2b0e39e12a9e55"
+    ],
+    "length_t": 6000,
+    "scheduled": "2021-02-14T01:47:00+01:00"
+   },
+   {
+    "data": [
+     "[Control](https://www.twitch.tv/videos/913875994)",
+     "[DemonicRobots](https://www.twitch.tv/DemonicRobots)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz5,vselite2,winterbumper",
+     null,
+     "53f6180ca9b99a8f5791cdf6"
+    ],
+    "length_t": 4800,
+    "scheduled": "2021-02-14T03:34:00+01:00"
+   },
+   {
+    "data": [
+     "[Metal Gear Solid: Peace Walker](https://www.twitch.tv/videos/913879167)",
+     "[Jaguar_King](https://www.twitch.tv/Jaguar_King)",
+     "Xbox One",
+     "First Ending (S-Rank)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Grand Theft Auto San Andreas - OoBs,winterbumper",
+     null,
+     "92ce2b03977793800a6ecc59"
+    ],
+    "length_t": 7200,
+    "scheduled": "2021-02-14T05:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Grand Theft Auto 2](https://www.twitch.tv/videos/913880333)",
+     "[Tezur0](https://www.twitch.tv/Tezur0)",
+     "PC",
+     "All Missions",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,GTA 2 - EE Glitch,winterbumper",
+     null,
+     "a527fc5f6f4bad241d819c1a"
+    ],
+    "length_t": 12000,
+    "scheduled": "2021-02-14T07:08:00+01:00"
+   },
+   {
+    "data": [
+     "[Wizkid: The Story of Wizball II](https://www.twitch.tv/videos/913884308)",
+     "[Robo_Sparkle](https://www.twitch.tv/Robo_Sparkle)",
+     "Amiga",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz6,nioh3,winterbumper",
+     null,
+     "3cea1084efe6198df3905300"
+    ],
+    "length_t": 2700,
+    "scheduled": "2021-02-14T10:58:00+01:00"
+   },
+   {
+    "data": [
+     "[Harlequin](https://www.twitch.tv/videos/913884840)",
+     "[Robo_Sparkle](https://www.twitch.tv/Robo_Sparkle)",
+     "Amiga",
+     "Any% (Credits Warp)",
+     null,
+     "4x3-1p",
+     null,
+     null,
+     "76ce89fb2e4b88f14c8c1b4b"
+    ],
+    "length_t": 300,
+    "scheduled": "2021-02-14T11:50:00+01:00"
+   },
+   {
+    "data": [
+     "[Yazzie](https://www.twitch.tv/videos/913885418)",
+     "[RuffledBricks](https://www.twitch.tv/RuffledBricks)",
+     "ZX Spectrum",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,King's Quest - Goat Glitch,winterbumper",
+     null,
+     "2cb620684337883e95196861"
+    ],
+    "length_t": 1020,
+    "scheduled": "2021-02-14T11:55:00+01:00"
+   },
+   {
+    "data": [
+     "[Jet Set Willy](https://www.twitch.tv/videos/913885932)",
+     "[RuffledBricks](https://www.twitch.tv/RuffledBricks)",
+     "ZX Spectrum",
+     "WRITETYPER",
+     null,
+     "4x3-1p",
+     null,
+     null,
+     "cf208ed58338da4ba1417450"
+    ],
+    "length_t": 240,
+    "scheduled": "2021-02-14T12:12:00+01:00"
+   },
+   {
+    "data": [
+     "[Dizzy: Prince of the Yolkfolk](https://www.twitch.tv/videos/913886524)",
+     "[TinyTim78](https://www.twitch.tv/TinyTim78)",
+     "ZX Spectrum",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,Kwik Snax - Blue Banana,winterbumper",
+     null,
+     "d7e0568383b184c846769092"
+    ],
+    "length_t": 1200,
+    "scheduled": "2021-02-14T12:16:00+01:00"
+   },
+   {
+    "data": [
+     "[Taz-Mania](https://www.twitch.tv/videos/913887057)",
+     "[Grumpmeister](https://www.twitch.tv/Grumpmeister)",
+     "Game Gear",
+     "Any%",
+     null,
+     "GB-1p",
+     "winterbumper,alz1,vselite1,winterbumper",
+     null,
+     "36c8639afb3295cde2f48498"
+    ],
+    "length_t": 660,
+    "scheduled": "2021-02-14T12:43:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Valis IV](https://www.twitch.tv/videos/913887867)",
+     "[Tinnue](https://www.twitch.tv/Tinnue)",
+     "SNES",
+     "Normal (JP)",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh2,Ys The Vanished Omens - Pim's Pawn Shop Mirror Glitch,winterbumper",
+     null,
+     "faffed73d4775471bba9f9ea"
+    ],
+    "length_t": 1560,
+    "scheduled": "2021-02-14T13:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Rolan's Curse](https://www.twitch.tv/videos/913889030)",
+     "[JkL87](https://www.twitch.tv/JkL87)",
+     "GB",
+     "Any% (Glitchless)",
+     null,
+     "GB-1p",
+     "winterbumper,vselite2,Rygar - Tone Farm,winterbumper",
+     null,
+     "4c63f84d3079236a114bb76b"
+    ],
+    "length_t": 1620,
+    "scheduled": "2021-02-14T13:34:00+01:00"
+   },
+   {
+    "data": [
+     "[Dark Castle](https://www.twitch.tv/videos/913889588)",
+     "[JkL87](https://www.twitch.tv/JkL87)",
+     "Genesis",
+     "Any%",
+     null,
+     "4x3-1p",
+     null,
+     null,
+     "026dce79b01b176276105bca"
+    ],
+    "length_t": 300,
+    "scheduled": "2021-02-14T14:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Ninja Gaiden Shadow](https://www.twitch.tv/videos/913890184)",
+     "[ShuriBear](https://www.twitch.tv/ShuriBear)",
+     "GB",
+     "Any%",
+     null,
+     "GB-1p",
+     "winterbumper,alz2,nioh3,winterbumper",
+     null,
+     "3ef079655d5a8f8e996f77b8"
+    ],
+    "length_t": 900,
+    "scheduled": "2021-02-14T14:06:00+01:00"
+   },
+   {
+    "data": [
+     "[Maui Mallard in Cold Shadow](https://www.twitch.tv/videos/913890604)",
+     "[Kirthar](https://www.twitch.tv/Kirthar)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Land of Illusion - Skinny Dipping Glitch,winterbumper",
+     null,
+     "8b377e0fc7e4e72e68dcc2de"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-14T14:28:00+01:00"
+   },
+   {
+    "data": [
+     "[Knuckles' Chaotix](https://www.twitch.tv/videos/913900136)",
+     "[Hibnotix](https://www.twitch.tv/Hibnotix)",
+     "Genesis",
+     "Beat The Game",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,Kirby's Adventure - Final Boss Softlock,winterbumper",
+     null,
+     "1c35e867082133d13fa8e214"
+    ],
+    "length_t": 3120,
+    "scheduled": "2021-02-14T15:00:00+01:00"
+   },
+   {
+    "data": [
+     "[Sonic CD (2011)](https://www.twitch.tv/videos/914126637)",
+     "[flying_fox](https://www.twitch.tv/flying_fox)",
+     "PC",
+     "Tails: All Good Futures",
+     null,
+     "16x9-1p",
+     "winterbumper,alz3,vselite2,winterbumper",
+     null,
+     "f864b3fc173f0f06b952e1a5"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-14T15:59:00+01:00"
+   },
+   {
+    "data": [
+     "[Luigi's Mansion](https://www.twitch.tv/videos/914127349)",
+     "[PabloBliep10](https://www.twitch.tv/PabloBliep10)",
+     "Wii",
+     "No OoB ",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh2,Spyro Orange - Hyperboost,winterbumper",
+     null,
+     "6d4c8a8b1ebfde274af5c9b2"
+    ],
+    "length_t": 3600,
+    "scheduled": "2021-02-14T16:36:00+01:00"
+   },
+   {
+    "data": [
+     "[Spyro Reignited Trilogy - Spyro 2: Ripto's Rage!](https://www.twitch.tv/videos/914128453)",
+     "[Zic3](https://www.twitch.tv/Zic3)",
+     "PC",
+     "40 Orb",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Spyro Year of the Dragon - Secret Area,winterbumper",
+     null,
+     "5cf6eb2424a9c47d8f5d64a3"
+    ],
+    "length_t": 4200,
+    "scheduled": "2021-02-14T17:43:00+01:00"
+   },
+   {
+    "data": [
+     "[Spyro Reignited Trilogy - Spyro: Year of the Dragon](https://www.twitch.tv/videos/914191312)",
+     "[NostTW](https://www.twitch.tv/NostTW)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz4,nioh3,winterbumper",
+     null,
+     "94226c726156ac79f3e2f26d"
+    ],
+    "length_t": 3900,
+    "scheduled": "2021-02-14T19:00:00+01:00"
+   },
+   {
+    "data": [
+     "[The Legend of Zelda: Link's Awakening (2019)](https://www.twitch.tv/videos/914465693)",
+     "[Strackel](https://www.twitch.tv/Strackel) vs. [Miniretin](https://www.twitch.tv/Miniretin)",
+     "Switch",
+     "Any%",
+     "Race",
+     "16x9-2p",
+     "winterbumper,vselite2,Bayonetta - Motor Bike Skip,winterbumper",
+     null,
+     "99f319e991a2a2e582bc5921"
+    ],
+    "length_t": 4680,
+    "scheduled": "2021-02-14T20:12:00+01:00"
+   },
+   {
+    "data": [
+     "[Blazing Beaks](https://www.twitch.tv/videos/914466472)",
+     "[LoveBot](https://www.twitch.tv/LoveBot)",
+     "PC",
+     "Any% (Set Seed)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Featherfall - Any Percent,winterbumper",
+     null,
+     "a48ebc13790120e613014435"
+    ],
+    "length_t": 600,
+    "scheduled": "2021-02-14T21:44:00+01:00"
+   },
+   {
+    "data": [
+     "[Furi](https://www.twitch.tv/videos/914467044)",
+     "[chocbob](https://www.twitch.tv/chocbob) vs. [SombraCakes](https://www.twitch.tv/SombraCakes)",
+     "PC",
+     "Speedrun Mode",
+     "Race",
+     "16x9-2p",
+     "winterbumper,alz5,vselite1,winterbumper",
+     null,
+     "6f0f6e31708789fe20bd5cc9"
+    ],
+    "length_t": 2340,
+    "scheduled": "2021-02-14T22:09:00+01:00"
+   },
+   {
+    "data": [
+     "[Ori and the Blind Forest](https://www.twitch.tv/videos/914467589)",
+     "[Covert_Muffin](https://www.twitch.tv/Covert_Muffin)",
+     "PC",
+     "Randomizer (All Skill Locations)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Hollow Knight - Wind Storage,winterbumper",
+     null,
+     "eb2b507bb50c6d41391caaf3"
+    ],
+    "length_t": 3300,
+    "scheduled": "2021-02-14T23:03:00+01:00"
+   },
+   {
+    "data": [
+     "[The Messenger](https://www.twitch.tv/videos/914540058)",
+     "[Grondious](https://www.twitch.tv/Grondious)",
+     "PC",
+     "NG+ (No OoB, Linear)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Knytt Stories - Glitch,winterbumper",
+     null,
+     "6696f4b6d19acb8ab8beee0f"
+    ],
+    "length_t": 2280,
+    "scheduled": "2021-02-15T00:05:00+01:00"
+   },
+   {
+    "data": [
+     "[Katana ZERO](https://www.twitch.tv/videos/914540694)",
+     "[Xerclipse](https://www.twitch.tv/Xerclipse)",
+     "PC",
+     "All Stages",
+     null,
+     "16x9-1p",
+     "winterbumper,alz6,nioh3,winterbumper",
+     null,
+     "b9af7003906b28c2f5bae052"
+    ],
+    "length_t": 1260,
+    "scheduled": "2021-02-15T00:50:00+01:00"
+   },
+   {
+    "data": [
+     "[Bloodstained: Curse of the Moon 2](https://www.twitch.tv/videos/914612779)",
+     "[TheBlacktastic](https://www.twitch.tv/TheBlacktastic)",
+     "PC",
+     "Episode 1 (Ultimate)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,La Mulana - Graphics Corruption,winterbumper",
+     null,
+     "7fe827808fc10a99f16fcae8"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-15T01:18:00+01:00"
+   },
+   {
+    "data": [
+     "[Castlevania: Dawn of Sorrow](https://www.twitch.tv/videos/915095935)",
+     "[Diagongdx](https://www.twitch.tv/Diagongdx)",
+     "Nintendo 3DS",
+     "All Bosses (No Memory Corruption)",
+     null,
+     "3DS-1p",
+     "winterbumper,nioh1,Horizon Zero Dawn - Zen Riding Lessons,winterbumper",
+     null,
+     "d9f04ad307a327f6fb62336e"
+    ],
+    "length_t": 2880,
+    "scheduled": "2021-02-15T01:55:00+01:00"
+   },
+   {
+    "data": [
+     "[Dark Souls II: Scholar of the First Sin](https://www.twitch.tv/videos/915096622)",
+     "[Nyk_Style](https://www.twitch.tv/Nyk_Style) vs. [JeffTheBigLizard](https://www.twitch.tv/JeffTheBigLizard)",
+     "PC",
+     "Any%",
+     "Race",
+     "16x9-2p",
+     "winterbumper,alz1,vselite2,winterbumper",
+     null,
+     "3de60787d65c9ef1bbcf60d6"
+    ],
+    "length_t": 4200,
+    "scheduled": "2021-02-15T02:50:00+01:00"
+   },
+   {
+    "data": [
+     "[Pokémon Soul Silver](https://www.twitch.tv/videos/915097242)",
+     "[JTMagicman](https://www.twitch.tv/JTMagicman)",
+     "Nintendo DS",
+     "Any% (Glitchless, Manipless)",
+     null,
+     "DS-1p",
+     "winterbumper,nioh2,Pokémon Red - Mewtwo with Item Underflow,winterbumper",
+     null,
+     "67b1545a9fab8efbeccb9f4d"
+    ],
+    "length_t": 15300,
+    "scheduled": "2021-02-15T04:07:00+01:00"
+   },
+   {
+    "data": [
+     "[Crash Bash](https://www.twitch.tv/videos/915097691)",
+     "[Pie](https://www.twitch.tv/pie)",
+     "PS2",
+     "Any% (No Memory Manipulation)",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Life is Strange - Pool Skip,winterbumper",
+     null,
+     "b491315be48f59dab8ccb4be"
+    ],
+    "length_t": 8400,
+    "scheduled": "2021-02-15T08:29:00+01:00"
+   },
+   {
+    "data": [
+     "[Clubhouse Games: 51 Worldwide Classics](https://www.twitch.tv/videos/915098528)",
+     "[360Chrism](https://www.twitch.tv/360Chrism)",
+     "Switch",
+     "Win All Games",
+     null,
+     "16x9-1p",
+     "winterbumper,alz2,nioh3,winterbumper",
+     null,
+     "00e59c07bce9b1652547e82d"
+    ],
+    "length_t": 7200,
+    "scheduled": "2021-02-15T11:06:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Cable Boy](https://www.twitch.tv/videos/915098938)",
+     "[BoneyC](https://www.twitch.tv/BoneyC)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Saint Hazels Horsepital,winterbumper",
+     null,
+     "49780c23beb6bafbdb834e7b"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-15T13:23:00+01:00"
+   },
+   {
+    "data": [
+     "[Pikuniku](https://www.twitch.tv/videos/915099267)",
+     "[GreenSnowDog](https://www.twitch.tv/GreenSnowDog)",
+     "PC",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,Carto - Chapter 7 OoB,winterbumper",
+     null,
+     "a971770fd25270b01664e839"
+    ],
+    "length_t": 2700,
+    "scheduled": "2021-02-15T14:23:00+01:00"
+   },
+   {
+    "data": [
+     "[WARP](https://www.twitch.tv/videos/915099689)",
+     "[SeductiveSpatula](https://www.twitch.tv/SeductiveSpatula)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz3,vselite1,winterbumper",
+     null,
+     "dc1081c427c67bd36a5eff89"
+    ],
+    "length_t": 1320,
+    "scheduled": "2021-02-15T15:15:00+01:00"
+   },
+   {
+    "data": [
+     "[Sheepo](https://www.twitch.tv/videos/915189261)",
+     "[CutierooSR](https://www.twitch.tv/cutieroosr)",
+     "PC",
+     "All Bosses",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Tomb Raider Legend - Bug Jumps,winterbumper",
+     null,
+     "2d56a6b718044f9c0d0143c7"
+    ],
+    "length_t": 2520,
+    "scheduled": "2021-02-15T15:44:00+01:00"
+   },
+   {
+    "data": [
+     "[Tomb Raider: Legend](https://www.twitch.tv/videos/915189846)",
+     "[Senydro](https://www.twitch.tv/Senydro)",
+     "PC",
+     "Any% (No Bug Jump)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Mirrors Edge - Beamers,winterbumper",
+     null,
+     "22d85152e78f6f4e72709d21"
+    ],
+    "length_t": 2520,
+    "scheduled": "2021-02-15T16:33:00+01:00"
+   },
+   {
+    "data": [
+     "[Mirror's Edge](https://www.twitch.tv/videos/915318096)",
+     "[Meteos_Probably](https://www.twitch.tv/Meteos_Probably) vs. [BINGOBONGOS](https://www.twitch.tv/BINGOBONGOS)",
+     "PC",
+     "Any% (Inbounds)",
+     "Race",
+     "16x9-2p",
+     "winterbumper,alz4,nioh3,winterbumper",
+     null,
+     "7d7508a711dd4fd251e87fe4"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-15T17:22:00+01:00"
+   },
+   {
+    "data": [
+     "[Ghostrunner](https://www.twitch.tv/videos/915325853)",
+     "[7rayD](https://www.twitch.tv/7rayD)",
+     "PC",
+     "Any% (Inbounds)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Portal - Save Glitch,winterbumper",
+     null,
+     "eb8bcf7a0bd2080e83517b11"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-15T18:19:00+01:00"
+   },
+   {
+    "data": [
+     "[Resident Evil 2 (2019)](https://www.twitch.tv/videos/915605342)",
+     "[MattRPD](https://www.twitch.tv/MattRPD)",
+     "PC",
+     "Claire B",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Max Payne 3 - Physics Glitch,winterbumper",
+     null,
+     "a51882efb9ca688d4bcc9778"
+    ],
+    "length_t": 3600,
+    "scheduled": "2021-02-15T19:16:00+01:00"
+   },
+   {
+    "data": [
+     "[Fallout: New Vegas](https://www.twitch.tv/videos/915605918)",
+     "[Akarion__](https://www.twitch.tv/Akarion__)",
+     "PC",
+     "Glitchless",
+     null,
+     "16x9-1p",
+     "winterbumper,alz5,vselite2,winterbumper",
+     null,
+     "fe9a16ef3cb1a65466eb170f"
+    ],
+    "length_t": 2100,
+    "scheduled": "2021-02-15T20:23:00+01:00"
+   },
+   {
+    "data": [
+     "[Serious Sam 4](https://www.twitch.tv/videos/915606797)",
+     "[Tezur0](https://www.twitch.tv/Tezur0)",
+     "PC",
+     "All Levels",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,GTA III - Megajump,winterbumper",
+     null,
+     "9f6b44c3525b7140229ab2f1"
+    ],
+    "length_t": 4500,
+    "scheduled": "2021-02-15T21:05:00+01:00"
+   },
+   {
+    "data": [
+     "[Halo 3: ODST](https://www.twitch.tv/videos/915711187)",
+     "[XeroHR](https://www.twitch.tv/XeroHR)",
+     "PC",
+     "Easy",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Quake - e1m1,winterbumper",
+     null,
+     "8c8265994f152f0073378982"
+    ],
+    "length_t": 4800,
+    "scheduled": "2021-02-15T22:27:00+01:00"
+   },
+   {
+    "data": [
+     "[Dishonored 2](https://www.twitch.tv/videos/915754560)",
+     "[DemonicRobots](https://www.twitch.tv/DemonicRobots)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz6,nioh3,winterbumper",
+     null,
+     "09e710c581f07ebf49e1825b"
+    ],
+    "length_t": 2400,
+    "scheduled": "2021-02-15T23:54:00+01:00"
+   },
+   {
+    "data": [
+     "[Shadow of the Colossus (2018)](https://www.twitch.tv/videos/915858144)",
+     "[Incep_Sean](https://www.twitch.tv/Incep_Sean)",
+     "PS4",
+     "Any% (Normal)",
+     null,
+     "16x9-1p¨",
+     "winterbumper,vselite2,Dark Messiah - Pause Launch,winterbumper",
+     null,
+     "42a425862b16b1969b8af82a"
+    ],
+    "length_t": 5700,
+    "scheduled": "2021-02-16T00:41:00+01:00"
+   },
+   {
+    "data": [
+     "[Darksiders](https://www.twitch.tv/videos/916207249)",
+     "[henyK](https://www.twitch.tv/henyK)",
+     "PC",
+     "All Chosen Bosses",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Sniper Elite V2 - The Warp Strat,winterbumper",
+     null,
+     "2ac799ec94a13e03c04406d8"
+    ],
+    "length_t": 5700,
+    "scheduled": "2021-02-16T02:23:00+01:00"
+   },
+   {
+    "data": [
+     "[Metal Gear Solid V: Ground Zeroes](https://www.twitch.tv/videos/916207684)",
+     "[OneCoolManXOF](https://www.twitch.tv/OneCoolManXOF)",
+     "PC",
+     "NG+ (Stealth & No Kills)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz1,vselite1,winterbumper",
+     null,
+     "7dde8fc095f4190806cdd960"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-16T04:05:00+01:00"
+   },
+   {
+    "data": [
+     "[Metal Gear Solid 2: HD Edition](https://www.twitch.tv/videos/916208371)",
+     "[Jaguar_King](https://www.twitch.tv/Jaguar_King) vs. [dlimes13](https://www.twitch.tv/dlimes13)",
+     "Xbox One",
+     "European Extreme",
+     "Race",
+     "16x9-2p",
+     "winterbumper,nioh2,Metal Gear Solid  Portable Ops - The Cardboard Box,winterbumper",
+     null,
+     "ce3f0129691f85e4719148ba"
+    ],
+    "length_t": 5100,
+    "scheduled": "2021-02-16T04:42:00+01:00"
+   },
+   {
+    "data": [
+     "[Futurama](https://www.twitch.tv/videos/916208681)",
+     "[stylonide](https://www.twitch.tv/stylonide)",
+     "Xbox",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Kingdom Hearts Birth by Sleep FM HD - Pause Flying,winterbumper",
+     null,
+     "90b517d4a91bbaa4aa4ea927"
+    ],
+    "length_t": 3600,
+    "scheduled": "2021-02-16T06:14:00+01:00"
+   },
+   {
+    "data": [
+     "[Sonic 3D Blast](https://www.twitch.tv/videos/916209007)",
+     "[KingRhodesTN](https://www.twitch.tv/KingRhodesTN)",
+     "Sega Saturn",
+     "Best Ending",
+     null,
+     "4x3-1p",
+     "winterbumper,alz2,nioh3,winterbumper",
+     null,
+     "acb120a63b8b9f7fa6dd6efa"
+    ],
+    "length_t": 3900,
+    "scheduled": "2021-02-16T07:21:00+01:00"
+   },
+   {
+    "data": [
+     "[Judgment](https://www.twitch.tv/videos/916310569)",
+     "[Froob](https://www.twitch.tv/Froob)",
+     "PS5",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Tempest - Reisen Boss,winterbumper",
+     null,
+     "71802d55f5698e32755a8426"
+    ],
+    "length_t": 20100,
+    "scheduled": "2021-02-16T08:26:00+01:00"
+   },
+   {
+    "data": [
+     "[Touhou: Scarlet Curiosity](https://www.twitch.tv/videos/916364350)",
+     "[Naro](https://www.twitch.tv/Naro)",
+     "PC",
+     "Remilia (True Ending)",
+     null,
+     "16x9-1p",
+     null,
+     null,
+     "d5e8af037c50ca1fd2edbf76"
+    ],
+    "length_t": 3900,
+    "scheduled": "2021-02-16T14:08:00+01:00"
+   },
+   {
+    "data": [
+     "[Tempest of the Heavens and Earth](https://www.twitch.tv/videos/916394979)",
+     "[Naro](https://www.twitch.tv/Naro)",
+     "PC",
+     "Boss Attack",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Youyou Kengeki Musou - Time Stop Glitch,winterbumper",
+     null,
+     null
+    ],
+    "length_t": 660,
+    "scheduled": "2021-02-16T15:13:00+01:00"
+   },
+   {
+    "data": [
+     "[Touhou 12.8: Great Fairy Wars](https://www.twitch.tv/videos/916460765)",
+     "[EeroKurkisuo](https://www.twitch.tv/EeroKurkisuo)",
+     "PC",
+     "A1L Score Attack",
+     null,
+     "4x3-1p",
+     "winterbumper,alz3,vselite2,winterbumper",
+     null,
+     "ffe7823b103909af996d9178"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-16T15:31:00+01:00"
+   },
+   {
+    "data": [
+     "[Devil May Cry 4: Special Edition](https://www.twitch.tv/videos/916518383)",
+     "[Mekarazium](https://www.twitch.tv/Mekarazium)",
+     "PC",
+     "NG (Nero / Dante, Devil Hunter)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Devil May Cry 5 - OoB,winterbumper",
+     null,
+     "28b451f2f5fe35f04d4dc952"
+    ],
+    "length_t": 5400,
+    "scheduled": "2021-02-16T16:04:00+01:00"
+   },
+   {
+    "data": [
+     "[Jak 3](https://www.twitch.tv/videos/916912495)",
+     "[ThaRixer](https://www.twitch.tv/ThaRixer)",
+     "PS2",
+     "100%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Horizon Zero Dawn - Frozen Wild Child,winterbumper",
+     null,
+     "35cf0368cf06e1e49bb9b13c"
+    ],
+    "length_t": 15300,
+    "scheduled": "2021-02-16T17:51:00+01:00"
+   },
+   {
+    "data": [
+     "[Pokémon X](https://www.twitch.tv/videos/917564841)",
+     "[wartab](https://www.twitch.tv/wartab)",
+     "Nintendo 3DS",
+     "Any%",
+     null,
+     "3DS-1p",
+     "winterbumper,alz4,nioh3,winterbumper",
+     null,
+     "408a0ee7c293a1e513640d02"
+    ],
+    "length_t": 14700,
+    "scheduled": "2021-02-16T22:23:00+01:00"
+   },
+   {
+    "data": [
+     "[Final Fantasy XV: Royal Edition](https://www.twitch.tv/videos/917565213)",
+     "[Kyoslilmonster](https://www.twitch.tv/Kyoslilmonster)",
+     "PS4",
+     "Any% (No Ring)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Bayonetta - Underground Bridge Skip,winterbumper",
+     null,
+     "245f0d3ba6f3d2428e293040"
+    ],
+    "length_t": 16500,
+    "scheduled": "2021-02-17T02:38:00+01:00"
+   },
+   {
+    "data": [
+     "[Nioh](https://www.twitch.tv/videos/917565547)",
+     "[Galasrinie](https://www.twitch.tv/Galasrinie)",
+     "PC",
+     "All Main Missions (Vanilla)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Mass Effect 2 - Skip,winterbumper",
+     null,
+     "7eec2bbd7672ad8711319915"
+    ],
+    "length_t": 6000,
+    "scheduled": "2021-02-17T07:15:00+01:00"
+   },
+   {
+    "data": [
+     "[Undertale](https://www.twitch.tv/videos/917566184)",
+     "[Drakodan](https://www.twitch.tv/Drakodan)",
+     "PC",
+     "Genocide",
+     null,
+     "4x3-1p",
+     "winterbumper,alz5,vselite1,winterbumper",
+     null,
+     "2658fdbd1a8ac4535e9a9075"
+    ],
+    "length_t": 4500,
+    "scheduled": "2021-02-17T08:55:00+01:00"
+   },
+   {
+    "data": [
+     "[Psi-Ops: The Mindgate Conspiracy](https://www.twitch.tv/videos/917566829)",
+     "[Kainalo](https://www.twitch.tv/Kainalo)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,The Talos Principle - Cube Snake,winterbumper",
+     null,
+     "df3b347e5c40034b089e5217"
+    ],
+    "length_t": 2100,
+    "scheduled": "2021-02-17T10:16:00+01:00"
+   },
+   {
+    "data": [
+     "[Squirm](https://www.twitch.tv/videos/917567122)",
+     "[Reicha7](https://www.twitch.tv/Reicha7)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Warriors Orochi 3 Ultimate - Angle Zips,winterbumper",
+     null,
+     "0e060194f6248693dabc5fb7"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-17T10:54:00+01:00"
+   },
+   {
+    "data": [
+     "[Shining Force II](https://www.twitch.tv/videos/917830158)",
+     "[BOWIEtheHERO](https://www.twitch.tv/BOWIEtheHERO)",
+     "Genesis",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz6,nioh3,winterbumper",
+     null,
+     "ed1724c341e44a3646f20117"
+    ],
+    "length_t": 21600,
+    "scheduled": "2021-02-17T11:26:00+01:00"
+   },
+   {
+    "data": [
+     "[Harry Potter and the Chamber of Secrets](https://www.twitch.tv/videos/917830839)",
+     "[Nixxo](https://www.twitch.tv/Nixxo)",
+     "PC",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Life is Strange - Barn Skip,winterbumper",
+     null,
+     "7e268ebb3ecfbf60ae8716ae"
+    ],
+    "length_t": 2400,
+    "scheduled": "2021-02-17T17:33:00+01:00"
+   },
+   {
+    "data": [
+     "[Harry Potter and the Prisoner of Azkaban](https://www.twitch.tv/videos/917980916)",
+     "[Cynaschism](https://www.twitch.tv/Cynaschism)",
+     "PC",
+     "100%",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,Cornerstone - Sheepflying,winterbumper",
+     null,
+     "3c62e02f74ff17dc8fe0d1e4"
+    ],
+    "length_t": 5580,
+    "scheduled": "2021-02-17T18:20:00+01:00"
+   },
+   {
+    "data": [
+     "[M&M's: Shell Shocked](https://www.twitch.tv/videos/918005078)",
+     "[KingRhodesTN](https://www.twitch.tv/KingRhodesTN)",
+     "PS1",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz1,vselite2,winterbumper",
+     null,
+     "168b6295e04447da92a7ae9a"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-17T20:00:00+01:00"
+   },
+   {
+    "data": [
+     "[Yogho! Yogho!](https://www.twitch.tv/videos/918024075)",
+     "[janglestorm](https://www.twitch.tv/janglestorm)",
+     "PC",
+     "Any%",
+     null,
+     "4x3-1p",
+     null,
+     null,
+     "838e1fc5661bc95cba62852f"
+    ],
+    "length_t": 780,
+    "scheduled": "2021-02-17T20:57:00+01:00"
+   },
+   {
+    "data": [
+     "[Skate or Die](https://www.twitch.tv/videos/918024850)",
+     "[janglestorm](https://www.twitch.tv/janglestorm)",
+     "NES",
+     "Compete All",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh2,Yo!Noid 2 - Text Storage,winterbumper",
+     null,
+     "354b0f661b43eb2ee6f3c24b"
+    ],
+    "length_t": 300,
+    "scheduled": "2021-02-17T21:10:00+01:00"
+   },
+   {
+    "data": [
+     "[911 Fire Rescue](https://www.twitch.tv/videos/918089049)",
+     "[Kainalo](https://www.twitch.tv/Kainalo)",
+     "PC",
+     "All Missions",
+     null,
+     "16x9-1p",
+     null,
+     null,
+     "8d7ce5b37a19ed327f764a78"
+    ],
+    "length_t": 2100,
+    "scheduled": "2021-02-17T21:22:00+01:00"
+   },
+   {
+    "data": [
+     "[Baby Shark VR Dancing](https://www.twitch.tv/videos/918124214)",
+     "[Kainalo](https://www.twitch.tv/Kainalo)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Jedi Knight Jedi Academy - Full Gofastie,winterbumper",
+     null,
+     "6ebce3dbdf98766fdc95d1f9"
+    ],
+    "length_t": 480,
+    "scheduled": "2021-02-17T21:57:00+01:00"
+   },
+   {
+    "data": [
+     "[Krum - Edge of Darkness](https://www.twitch.tv/videos/918174376)",
+     "[havrd](https://www.twitch.tv/havrd)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz2,nioh3,winterbumper",
+     null,
+     "f68a7d15617d884cc90672b8"
+    ],
+    "length_t": 2100,
+    "scheduled": "2021-02-17T22:12:00+01:00"
+   },
+   {
+    "data": [
+     "[Unearthed: Trail of Ibn Battuta](https://www.twitch.tv/videos/918195915)",
+     "[Hibnotix](https://www.twitch.tv/Hibnotix)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Half-Life - Fixed Camera,winterbumper",
+     null,
+     "bab4071d1d0e81fccf267fba"
+    ],
+    "length_t": 1560,
+    "scheduled": "2021-02-17T22:54:00+01:00"
+   },
+   {
+    "data": [
+     "[Prince of Persia](https://www.twitch.tv/videos/918231356)",
+     "[7eraser7](https://www.twitch.tv/7eraser7)",
+     "PC",
+     "Any% (DOS, Glitchless)",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,Grand Theft Auto San Andreas - Monster Truck Glitch,winterbumper",
+     null,
+     "7c4d6f6c7d3f2eaee8101d27"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-17T23:27:00+01:00"
+   },
+   {
+    "data": [
+     "[Yakuza 3](https://www.twitch.tv/videos/918429960)",
+     "[RebelDragon95](https://www.twitch.tv/RebelDragon95)",
+     "PS5",
+     "Any% (Easy, Remastered)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz3,vselite1,winterbumper",
+     null,
+     "6759d2b4aa3caabfde7f5659"
+    ],
+    "length_t": 9300,
+    "scheduled": "2021-02-18T00:04:00+01:00"
+   },
+   {
+    "data": [
+     "[SAW: The Game](https://www.twitch.tv/videos/918877725)",
+     "[Juh0rse](https://www.twitch.tv/Juh0rse)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     null,
+     null,
+     "48c225a1d07257c269730db0"
+    ],
+    "length_t": 4500,
+    "scheduled": "2021-02-18T02:46:00+01:00"
+   },
+   {
+    "data": [
+     "[Elmo's ABCs](https://www.twitch.tv/videos/918878135)",
+     "[Juh0rse](https://www.twitch.tv/Juh0rse)",
+     "GBA",
+     "Any%",
+     null,
+     "GB-1p",
+     "winterbumper,nioh2,The Last of Us - Death Glitch,winterbumper",
+     null,
+     "a7569bf70591ff4f46c49447"
+    ],
+    "length_t": 240,
+    "scheduled": "2021-02-18T04:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Resident Evil 5](https://www.twitch.tv/videos/918878534)",
+     "[Gidano](https://www.twitch.tv/Gidano), [ThatAccountBlaBlaBla](https://www.twitch.tv/ThatAccountBlaBlaBla)",
+     "PC",
+     "NG (Amateur, Co-op)",
+     "Co-op",
+     "16x9-2p",
+     "winterbumper,vselite2,Life is Strange - Breakfastest,winterbumper",
+     null,
+     "6486d6b172853c541728fa68"
+    ],
+    "length_t": 7200,
+    "scheduled": "2021-02-18T04:12:00+01:00"
+   },
+   {
+    "data": [
+     "[Grim Fandango: Remastered](https://www.twitch.tv/videos/918879149)",
+     "[KonceptioN2](https://www.twitch.tv/KonceptioN2)",
+     "PC",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz4,nioh3,winterbumper",
+     null,
+     "433a6908352d2d8de0828044"
+    ],
+    "length_t": 4500,
+    "scheduled": "2021-02-18T06:19:00+01:00"
+   },
+   {
+    "data": [
+     "[Crash Bandicoot 4: It's About Time](https://www.twitch.tv/videos/918879580)",
+     "[Damosk](https://www.twitch.tv/Damosk)",
+     "PS5",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Super Smash Bros for Wii U - Data Glitch,winterbumper",
+     null,
+     "06532522896710e5f10de3d4"
+    ],
+    "length_t": 6900,
+    "scheduled": "2021-02-18T07:41:00+01:00"
+   },
+   {
+    "data": [
+     "[Devil May Cry 2](https://www.twitch.tv/videos/918880433)",
+     "[LonerHero](https://www.twitch.tv/LonerHero)",
+     "PC",
+     "NG (Dante)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz5,vselite2,winterbumper",
+     null,
+     "00c71a38435720a99f5f9210"
+    ],
+    "length_t": 3240,
+    "scheduled": "2021-02-18T09:57:00+01:00"
+   },
+   {
+    "data": [
+     "[Crash: Mind Over Mutant](https://www.twitch.tv/videos/918880075)",
+     "[CDRomatron](https://www.twitch.tv/CDRomatron)",
+     "Xbox 360",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,DmC Devil May Cry - Frozen Dante,winterbumper",
+     null,
+     "5f9c8d8aac43de8953a7cb72"
+    ],
+    "length_t": 2700,
+    "scheduled": "2021-02-18T11:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Pikmin 3 Deluxe](https://www.twitch.tv/videos/918880875)",
+     "[RDVvsTheWorld](https://www.twitch.tv/RDVvsTheWorld)",
+     "Switch",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Jedi Knight Jedi Academy - Make Surprise Terrible,winterbumper",
+     null,
+     "0b9c16f7477e80a88f89c51f"
+    ],
+    "length_t": 2880,
+    "scheduled": "2021-02-18T11:56:00+01:00"
+   },
+   {
+    "data": [
+     "[Donkey Kong Country 2: Diddy's Kong Quest](https://www.twitch.tv/videos/918881243)",
+     "[Niakky](https://www.twitch.tv/Niakky)",
+     "Switch",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Metal Gear Solid  Portable Ops - The Cardboard Box,winterbumper",
+     null,
+     "0982449716908b0482d8b07a"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-18T12:54:00+01:00"
+   },
+   {
+    "data": [
+     "[Metal Gear Ghost Babel](https://www.twitch.tv/videos/918904687)",
+     "[C\\_DOS\\_KEZ](https://www.twitch.tv/C_DOS_KEZ)",
+     "GBC",
+     "Any% (Easy)",
+     null,
+     "GB-1p",
+     "winterbumper,alz6,nioh3,winterbumper",
+     null,
+     "fa221db34947ba2bec5fceec"
+    ],
+    "length_t": 5400,
+    "scheduled": "2021-02-18T13:51:00+01:00"
+   },
+   {
+    "data": [
+     "[Tail Concerto](https://www.twitch.tv/videos/918975257)",
+     "[Rom_Stein](https://www.twitch.tv/Rom_Stein)",
+     "PS1",
+     "Any% (NTSC-J)",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Blaster Master - Pause Glitch,winterbumper",
+     null,
+     "c23a247ea893d67a12907933"
+    ],
+    "length_t": 4800,
+    "scheduled": "2021-02-18T15:28:00+01:00"
+   },
+   {
+    "data": [
+     "[The Outer Worlds](https://www.twitch.tv/videos/919142051)",
+     "[LawyerBodoh](https://www.twitch.tv/LawyerBodoh)",
+     "PC",
+     "Max Quests",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Fallout 4 - Headcripple,winterbumper",
+     null,
+     "29e58360385f0a2535edd22f"
+    ],
+    "length_t": 7200,
+    "scheduled": "2021-02-18T16:55:00+01:00"
+   },
+   {
+    "data": [
+     "[Fallout 3](https://www.twitch.tv/videos/919608856)",
+     "[Jabo](https://www.twitch.tv/Jabo)",
+     "PC",
+     "All Quests (w/ DLC) & Bobbleheads",
+     null,
+     "16x9-1p",
+     "winterbumper,alz1,vselite1,winterbumper",
+     null,
+     "83dc0d2614ef5eae1fbed266"
+    ],
+    "length_t": 11400,
+    "scheduled": "2021-02-18T19:12:00+01:00"
+   },
+   {
+    "data": [
+     "[Fallout 3](https://www.twitch.tv/videos/919609376)",
+     "[bananapegasus](https://www.twitch.tv/bananapegasus)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,GTA III - Megajump,winterbumper",
+     null,
+     "d838a8f6b79f1110b7a5ea2c"
+    ],
+    "length_t": 1020,
+    "scheduled": "2021-02-18T22:39:00+01:00"
+   },
+   {
+    "data": [
+     "[Tetris: The Grand Master](https://www.twitch.tv/videos/919610433)",
+     "[FreyasSpirit](https://www.twitch.tv/FreyasSpirit)",
+     "Arcade",
+     "Master Mode",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Quake - Bunnyhopping Showcase,winterbumper",
+     null,
+     "8334d293bfa77445acbdeb75"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-18T23:13:00+01:00"
+   },
+   {
+    "data": [
+     "[Smash TV](https://www.twitch.tv/videos/919611422)",
+     "[CHX42](https://www.twitch.tv/CHX42)",
+     "NES",
+     "1 Player, 4 Controllers",
+     null,
+     null,
+     null,
+     null,
+     "a1e7276cf694615c8a32133c"
+    ],
+    "length_t": 3180,
+    "scheduled": "2021-02-18T23:45:00+01:00"
+   },
+   {
+    "data": [
+     "[Metroid](https://www.twitch.tv/videos/919612634)",
+     "[CHX42](https://www.twitch.tv/CHX42)",
+     "NES",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz2,nioh3,winterbumper",
+     null,
+     "ada953fb73e2a4032388db3d"
+    ],
+    "length_t": 720,
+    "scheduled": "2021-02-19T00:38:00+01:00"
+   },
+   {
+    "data": [
+     "[Mega Man Atari Demake](https://www.twitch.tv/videos/919657675)",
+     "[BigJon](https://www.twitch.tv/BigJon)",
+     "PC",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Freedom Planet - Collision Breaking,winterbumper",
+     null,
+     "c8d06b1b11e1d003c864b556"
+    ],
+    "length_t": 2400,
+    "scheduled": "2021-02-19T00:50:00+01:00"
+   },
+   {
+    "data": [
+     "[Splatterhouse](https://www.twitch.tv/videos/919689967)",
+     "[LattMackey](https://www.twitch.tv/LattMackey)",
+     "TurboGrafx-16",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz3,vselite2,winterbumper",
+     null,
+     "4b2bcd0126ba1d4f06df8681"
+    ],
+    "length_t": 1200,
+    "scheduled": "2021-02-19T02:14:00+01:00"
+   },
+   {
+    "data": [
+     "[Wizards & Warriors III: Kuros: Visions of Power](https://www.twitch.tv/videos/920164579)",
+     "[marquisdan](https://www.twitch.tv/marquisdan)",
+     "NES",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh2,James Pond 2 - Codename Robocod,winterbumper",
+     null,
+     "2cc5e44d7b08b80c78b98a45"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-19T02:41:00+01:00"
+   },
+   {
+    "data": [
+     "[Power Rangers: Lightspeed Rescue](https://www.twitch.tv/videos/920164989)",
+     "[Proto_Sonic](https://www.twitch.tv/Proto_Sonic)",
+     "PS1",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Hollow Knight - Wind Storage,winterbumper",
+     null,
+     "96ec9fc49e3cfe2bbcfb401c"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-19T03:13:00+01:00"
+   },
+   {
+    "data": [
+     "[Shovel Knight](https://www.twitch.tv/videos/920166121)",
+     "[Xerclipse](https://www.twitch.tv/Xerclipse)",
+     "PC",
+     "NG+ (Specter Knight)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz4,nioh3,winterbumper",
+     null,
+     "302270c8f880defa0ced3b69"
+    ],
+    "length_t": 2700,
+    "scheduled": "2021-02-19T03:45:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Metroid](https://www.twitch.tv/videos/920166697)",
+     "[kekumanshoyu](https://www.twitch.tv/kekumanshoyu)",
+     "SNES",
+     "GT Classic",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Unravel - Rodent Skip,winterbumper",
+     null,
+     "cc49d836b2130ac211901dfe"
+    ],
+    "length_t": 2400,
+    "scheduled": "2021-02-19T04:37:00+01:00"
+   },
+   {
+    "data": [
+     "[Unravel Two](https://www.twitch.tv/videos/920167752)",
+     "[ms_rey](https://www.twitch.tv/ms_rey), [ThisGuyAreSick](https://www.twitch.tv/ThisGuyAreSick)",
+     "PC",
+     "Any% (No Major Skips, Co-op)",
+     "Co-op",
+     "16x9-1p",
+     "winterbumper,nioh1,Simpsons Hit and Run - Pocket Protector,winterbumper",
+     null,
+     "eb6ba24e99f226f8352b6d0c"
+    ],
+    "length_t": 3900,
+    "scheduled": "2021-02-19T05:24:00+01:00"
+   },
+   {
+    "data": [
+     "[Bee Movie Game](https://www.twitch.tv/videos/920168348)",
+     "[BlackbeltGingaNinja](https://www.twitch.tv/BlackbeltGingaNinja)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz5,vselite1,winterbumper",
+     null,
+     "1768d8058a0b499c2b4a7dc5"
+    ],
+    "length_t": 8400,
+    "scheduled": "2021-02-19T06:36:00+01:00"
+   },
+   {
+    "data": [
+     "[Hylics 2](https://www.twitch.tv/videos/920168853)",
+     "[RJsmangit](https://www.twitch.tv/RJsmangit)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Half-Life - Fixed Camera,winterbumper",
+     null,
+     "147a0b4f5042026b15594819"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-19T09:03:00+01:00"
+   },
+   {
+    "data": [
+     "[Halo: Reach](https://www.twitch.tv/videos/920169257)",
+     "[Two_EEzy](https://www.twitch.tv/Two_EEzy)",
+     "PC",
+     "Legendary",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,The Talos Principle - Cube Snake,winterbumper",
+     null,
+     "c9ab57240cf1d53832ad8ade"
+    ],
+    "length_t": 5700,
+    "scheduled": "2021-02-19T10:00:00+01:00"
+   },
+   {
+    "data": [
+     "[The Legend of Zelda: A Link to the Past](https://www.twitch.tv/videos/920169690)",
+     "[Xita](https://www.twitch.tv/Xita), [Wiredwicky](https://www.twitch.tv/Wiredwicky)",
+     "SNES",
+     "Randomizer (Co-op)",
+     "Co-op",
+     "4x3-2p-extramiddlespace",
+     "winterbumper,alz6,nioh3,winterbumper",
+     null,
+     "c13ceb8151fa7728cc1bcb9e"
+    ],
+    "length_t": 4500,
+    "scheduled": "2021-02-19T11:42:00+01:00"
+   },
+   {
+    "data": [
+     "[Need for Speed: Most Wanted](https://www.twitch.tv/videos/920286543)",
+     "[KuruHS](https://www.twitch.tv/KuruHS)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite1,Bayonetta - Sea of Stars Skip,winterbumper",
+     null,
+     "fc879754fab0d977772623c9"
+    ],
+    "length_t": 13800,
+    "scheduled": "2021-02-19T13:04:00+01:00"
+   },
+   {
+    "data": [
+     "[Nioh 2 - The Complete Edition](https://www.twitch.tv/videos/920570091)",
+     "[AxelSanGo](https://www.twitch.tv/AxelSanGo)",
+     "PC",
+     "All Main Missions (w/ DLC, Featherless)",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Uncharted 2 - Journal Glitches,winterbumper",
+     null,
+     "7eec2bbd7672ad8711319916"
+    ],
+    "length_t": 10800,
+    "scheduled": "2021-02-19T17:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Final Fantasy VII Remake](https://www.twitch.tv/videos/920936841)",
+     "[Royzoga](https://www.twitch.tv/Royzoga)",
+     "PS4",
+     "Any% (Easy)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz1,vselite2,NiohInterviewHalf1_v1,winterbumper",
+     null,
+     "0a32da35a1adc9a5a1069d76"
+    ],
+    "length_t": 18900,
+    "scheduled": "2021-02-19T20:08:00+01:00"
+   },
+   {
+    "data": [
+     "[Cyberpunk 2077](https://www.twitch.tv/videos/921537813)",
+     "[nicnacnic](https://www.twitch.tv/nicnacnic)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh2,Assassins Creed - Flinging,winterbumper",
+     null,
+     "1e4b2830f449a726c83f8ded"
+    ],
+    "length_t": 12600,
+    "scheduled": "2021-02-20T01:30:00+01:00"
+   },
+   {
+    "data": [
+     "[Golden Sun: The Lost Age](https://www.twitch.tv/videos/921539475)",
+     "[TL_Plexa](https://www.twitch.tv/TL_Plexa)",
+     "Wii U VC",
+     "Any% (No S&Q)",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Die Hard - Low Percent Bad Ending,NiohInterviewHalf2_v1,winterbumper",
+     null,
+     "d7a7f9fe42ab7099b3f8e71e"
+    ],
+    "length_t": 22800,
+    "scheduled": "2021-02-20T05:00:00+01:00"
+   },
+   {
+    "data": [
+     "[Alien: Isolation](https://www.twitch.tv/videos/921540493)",
+     "[Nikoheart](https://www.twitch.tv/nikoheart)",
+     "PC",
+     "Any% (Nightmare, CC Only)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz3,vselite2,winterbumper",
+     null,
+     "d7a7f9fe42ab7099b3f8e71f"
+    ],
+    "length_t": 1800,
+    "scheduled": "2021-02-20T11:20:00+01:00"
+   },
+   {
+    "data": [
+     "[The Italian Job](https://www.twitch.tv/videos/921541329)",
+     "[Thebpg13](https://www.twitch.tv/Thebpg13)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,alz2,nioh3,NiohInterviewHalf1_v1,winterbumper",
+     null,
+     "5fa8a7e69cada1365dc59a2a"
+    ],
+    "length_t": 3300,
+    "scheduled": "2021-02-20T11:57:00+01:00"
+   },
+   {
+    "data": [
+     "[Be-Music Source](https://www.twitch.tv/videos/921551880)",
+     "[Chazoshtare](https://www.twitch.tv/Chazoshtare), [beachsidebunny](https://www.twitch.tv/beachsidebunny)",
+     "PC",
+     "Single & Double Play Exhibition",
+     "Co-op",
+     "16x9-1p",
+     "winterbumper,vselite2,Portal - Save Glitch,winterbumper",
+     null,
+     "99b5e07d24505d89b3f3cfb4"
+    ],
+    "length_t": 3600,
+    "scheduled": "2021-02-20T12:59:00+01:00"
+   },
+   {
+    "data": [
+     "[Bugsnax](https://www.twitch.tv/videos/921683584)",
+     "[Addio98](https://www.twitch.tv/Addio98)",
+     "PC",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,QUBE - Out of Bounds,winterbumper",
+     null,
+     "d5b9371871eac747178f9eaa"
+    ],
+    "length_t": 1200,
+    "scheduled": "2021-02-20T14:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Teslagrad](https://www.twitch.tv/videos/921684133)",
+     "[Codejinn](https://www.twitch.tv/Codejinn)",
+     "PC",
+     "36 Scrolls (100%)",
+     null,
+     "16x9-1p",
+     "winterbumper,alz3,vselite1,NiohInterviewHalf2_v1,winterbumper",
+     null,
+     "800616a65fdafc534f9bd5aa"
+    ],
+    "length_t": 1980,
+    "scheduled": "2021-02-20T14:28:00+01:00"
+   },
+   {
+    "data": [
+     "[Pokémon Emerald Randomizer](https://www.twitch.tv/videos/921781646)",
+     "[360Chrism](https://www.twitch.tv/360Chrism) vs. [SheNanagans_](https://www.twitch.tv/SheNanagans_)",
+     "PC",
+     "Pokédex Blackout",
+     "Race",
+     "16x9-2p",
+     "winterbumper,nioh2,Pokémon Red - Mewtwo with Item Underflow,winterbumper",
+     null,
+     "15548266df7a3aa05f29ba53"
+    ],
+    "length_t": 10800,
+    "scheduled": "2021-02-20T15:08:00+01:00"
+   },
+   {
+    "data": [
+     "[Deltarune](https://www.twitch.tv/videos/921911090)",
+     "[Bubzia](https://www.twitch.tv/Bubzia)",
+     "PC",
+     "Any% (NG+, Blindfolded)",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite2,Cornerstone - Sheepflying,winterbumper",
+     null,
+     "7782f280384592d1fa86bb03"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-20T18:15:00+01:00"
+   },
+   {
+    "data": [
+     "[Castlevania](https://www.twitch.tv/videos/921912440)",
+     "[2snek](https://www.twitch.tv/2snek)",
+     "NES",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz4,nioh3,NiohInterviewHalf1_v1,winterbumper",
+     null,
+     "d62b1e4b0f58f7d8ee46811b"
+    ],
+    "length_t": 780,
+    "scheduled": "2021-02-20T19:12:00+01:00"
+   },
+   {
+    "data": [
+     "[Castlevania: Rondo of Blood](https://www.twitch.tv/videos/921913025)",
+     "[LattMackey](https://www.twitch.tv/LattMackey)",
+     "TurboGrafx-16",
+     "Maria Only",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,Mirrors Edge - Beamers,winterbumper",
+     null,
+     "d52337a275d592455d09cbd7"
+    ],
+    "length_t": 1200,
+    "scheduled": "2021-02-20T19:32:00+01:00"
+   },
+   {
+    "data": [
+     "[Mega Man Ultra](https://www.twitch.tv/videos/921978251)",
+     "[Kuumba_](https://www.twitch.tv/Kuumba_)",
+     "NES",
+     "Any%",
+     null,
+     "4x3-1p",
+     null,
+     null,
+     "1effdc69cc1b781e7a1b8f80new"
+    ],
+    "length_t": 2220,
+    "scheduled": "2021-02-20T19:59:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Mario Sunshine (3D All-Stars)](https://www.twitch.tv/videos/922200509)",
+     "[Samura1man](https://www.twitch.tv/Samura1man)",
+     "Switch",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Super Smash Bros for Wii U - Data Glitch,winterbumper",
+     null,
+     "d89b52f5e17229489a606b5d"
+    ],
+    "length_t": 4800,
+    "scheduled": "2021-02-20T20:43:00+01:00"
+   },
+   {
+    "data": [
+     "[Super Mario All-Stars](https://www.twitch.tv/videos/922201184)",
+     "[BigJon](https://www.twitch.tv/BigJon)",
+     "SNES",
+     "Any% (All Four Games)",
+     null,
+     "4x3-1p",
+     "winterbumper,alz5,vselite2,NiohInterviewHalf1_v1,winterbumper",
+     null,
+     "ee70cb8777ae6c4a32b3f40b"
+    ],
+    "length_t": 2820,
+    "scheduled": "2021-02-20T22:10:00+01:00"
+   },
+   {
+    "data": [
+     "[The Wacky World of Miniature Golf](https://www.twitch.tv/videos/922272169)",
+     "[BigJon](https://www.twitch.tv/BigJon)",
+     "Philips CD-i",
+     "Cutscene%",
+     null,
+     "4x3-1p",
+     "winterbumper,nioh1,NiohInterviewHalf2_v1,winterbumper",
+     null,
+     "300956f6e850f28e71691ef8"
+    ],
+    "length_t": 1860,
+    "scheduled": "2021-02-20T23:00:00+01:00"
+   },
+   {
+    "data": [
+     "[SegaSonic the Hedgehog](https://www.twitch.tv/videos/922272686)",
+     "[Hibnotix](https://www.twitch.tv/Hibnotix) vs. [STwoLive](https://www.twitch.tv/STwoLive)",
+     "Arcade",
+     "Beat The Game",
+     "Race",
+     "4x3-2p",
+     "winterbumper,nioh2,The G G Shinobi 2 - Grapple Storage,winterbumper",
+     null,
+     "c08f6aa3eecf87fea7816796"
+    ],
+    "length_t": 900,
+    "scheduled": "2021-02-20T23:51:00+01:00"
+   },
+   {
+    "data": [
+     "[Sonic the Hedgehog (1991)](https://www.twitch.tv/videos/922296314)",
+     "[SuperSonic_](https://www.twitch.tv/SuperSonic_)",
+     "Genesis",
+     "Glitchless",
+     null,
+     "4x3-1p",
+     "winterbumper,vselite1,James Pond 2 - Codename Robocod,winterbumper",
+     null,
+     "8c50236025e0df0576b54f0e"
+    ],
+    "length_t": 1620,
+    "scheduled": "2021-02-21T00:13:00+01:00"
+   },
+   {
+    "data": [
+     "[Sonic Spinball](https://www.twitch.tv/videos/922404825)",
+     "[Argick](https://www.twitch.tv/Argick)",
+     "Genesis",
+     "Beat The Game",
+     null,
+     "4x3-1p",
+     "winterbumper,alz6,nioh3,NiohInterviewHalf2_v1,winterbumper",
+     null,
+     "bca0b570204553353f76ba42"
+    ],
+    "length_t": 1500,
+    "scheduled": "2021-02-21T00:47:00+01:00"
+   },
+   {
+    "data": [
+     "[Celeste](https://www.twitch.tv/videos/922405351)",
+     "[PeekingBoo](https://www.twitch.tv/PeekingBoo)",
+     "PC",
+     "Any% (Dance Pad)",
+     null,
+     "16x9-1p",
+     "winterbumper,vselite2,Grand Theft Auto San Andreas - Monster Truck Glitch,winterbumper",
+     null,
+     "51a9d02fbfc5f56fb0255bfa"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-21T01:19:00+01:00"
+   },
+   {
+    "data": [
+     "[Grand Theft Auto: Vice City Stories](https://www.twitch.tv/videos/922577085)",
+     "[Joshimuz](https://www.twitch.tv/Joshimuz)",
+     "PSTV",
+     "Any%",
+     null,
+     "16x9-1p",
+     null,
+     null,
+     "f319f6d88cb9d0d0ec8d91ff"
+    ],
+    "length_t": 9900,
+    "scheduled": "2021-02-21T02:16:00+01:00"
+   },
+   {
+    "data": [
+     "[Grand Theft Auto: Chinatown Wars](https://www.twitch.tv/videos/922587679)",
+     "[Joshimuz](https://www.twitch.tv/Joshimuz)",
+     "PSTV",
+     "Any%",
+     null,
+     "4x3-1p",
+     "winterbumper,alz1,winterbumper",
+     null,
+     "f319f6d88cb9d0d0ec8d91fg"
+    ],
+    "length_t": 300,
+    "scheduled": "2021-02-21T05:01:00+01:00"
+   },
+   {
+    "data": [
+     "[Closing Speech](https://www.twitch.tv/videos/922601238)",
+     "Fatzke",
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     "f319f6d88cb9d0d0ec8d91fh"
+    ],
+    "length_t": 600,
+    "scheduled": "2021-02-21T05:13:00+01:00"
+   },
+   {
+    "data": [
+     "[Bowser's Fury](https://www.twitch.tv/videos/922646307)",
+     "[Samura1man](https://www.twitch.tv/Samura1man)",
+     "Switch",
+     "Any%",
+     null,
+     "16x9-1p",
+     "winterbumper,nioh1,Half-Life - Fixed Camera,alz6,winterbumper",
+     null,
+     "finwn22sy6k9k0ragixjxl56"
+    ],
+    "length_t": 3000,
+    "scheduled": "2021-02-21T05:30:00+01:00"
+   }
+  ]
+ }
+}

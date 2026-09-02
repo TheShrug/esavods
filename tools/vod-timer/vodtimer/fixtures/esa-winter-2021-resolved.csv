@@ -1,0 +1,146 @@
+# What resolve picks for every row of horaro's 2021-winter out of
+# esa-winter-2021-vods.csv. Checked by eye against the titles when it was
+# written, for issue #75 (event backfilled in #52).
+uuid,game,category,video_id,tier,title
+d2b738a25f9785e02664f95b,Skies of Arcadia: Legends (PRE-SHOW),100%,XQYpLtXwpks,tag-game-runner,Skies of Arcadia: Legends (PRE-SHOW) [100%] by Pengyy - Part 3/6 - #ESAWinter21
+hiOromityouredoingagreatjobdontletanybodytellyouotherwise,Opening Speech,,3aIaCQaaCCM,weak,Closing Speech by Fatzke - #ESAWinter21
+a682045f329159479ffc8550,Dark Souls Remastered,All Bosses,k-nRn4vf6PI,tag-game-runner,Dark Souls Remastered [All Bosses] by catalystz - #ESAWinter21
+fcb79b101239d0cf8e5aabaf,Teenage Mutant Ninja Turtles: Out of the Shadows,NG+ (Co-op),8-nL77Ty-wE,tag-game,Teenage Mutant Ninja Turtles: Out of the Shadows [NG+ (Co-op)] - #ESAWinter21
+f01e769dbd747b160428330a,Minecraft,"Any% (1.16, Random Seed, Glitchless)",m2zxxMj3glk,tag-game-runner,"Minecraft [Any% (1.16, Random Seed, Glitchless)] by Juh0rse - #ESAWinter21"
+4db57f8a9e940d00505d8e4f,Hyper Light Drifter,"Any% (NMG, Alt)",BemQ5ft_XmI,tag-game-runner,"Hyper Light Drifter [Any% (NMG, Alt)] by Covert_Muffin - #ESAWinter21"
+e23bec75f0ec88e5f7c793d5,I Wanna Be The Boshy,"Any% (Average, Dark Boshy, No Wrong Warp)",1M2oIGoL8Mg,tag-game-runner,"I Wanna Be The Boshy [Any% (Average, Dark Boshy, No Wrong Warp)] by BBF_ - #ESAWinter21"
+3e0d43479f2149e29cb4b349,Sonic 4: Episode 2,Beat The Game,yf7vLTXg84A,tag-game-runner,Sonic 4: Episode 2 [Beat The Game] by Argick - #ESAWinter21
+e0dee897a1470df672792a7b,Mega Man: The Wily Wars,Mega Man 1 (Any%),_0t418brApw,tag-game-runner,Mega Man: The Wily Wars [Mega Man 1 (Any%)] by TheBlacktastic - #ESAWinter21
+4afeb4ce9cefd2c3b110806e,Mega Man X,100%,aaHUhwK3hqI,tag-game-runner,Mega Man X [100%] by Clipper - #ESAWinter21
+18438477de9c4430cc4637b8,Super Mario 64,16 Star (Blindfolded),jQMbfm75Uf4,tag-game-runner,Super Mario 64 [16 Star (Blindfolded)] by Bubzia - #ESAWinter21
+ad212c01049a4dc8b4df2295,Super Mario 64,16 Star (Dance Pad),4ks0kz4d7vc,tag-game-runner,Super Mario 64 [16 Star (Dance Pad)] by PeekingBoo - #ESAWinter21
+cc8ffaa35349494d8bf860b5,Hades,3 Weapons,T6paFuYeK7U,weak,Halo 3: ODST [Easy] by XeroHR - #ESAWinter21
+f4bfb5b444bdc8a07f599e38,Crash Team Racing,Any% Warpless,mdIokyu4jvA,tag-game-runner,Crash Team Racing [Any% Warpless] by hypnoshark - #ESAWinter21
+a994b7b5bf2b0e39e12a9e55,The Legend of Zelda: Oracle of Ages,Any%,i2AF9Oj3v8g,weak,The Legend of Zelda: Link's Awakening (2019) [Any%] by Strackel and Miniretin - #ESAWinter21
+53f6180ca9b99a8f5791cdf6,Control,Any%,JzhXQrjnCLk,tag-game-runner,Control [Any%] by DemonicRobots - #ESAWinter21
+92ce2b03977793800a6ecc59,Metal Gear Solid: Peace Walker,First Ending (S-Rank),NcDim0pV4ic,tag-game-runner,Metal Gear Solid: Peace Walker [First Ending (S-Rank)] by Jaguar_King - #ESAWinter21
+a527fc5f6f4bad241d819c1a,Grand Theft Auto 2,All Missions,pKdolxuMTdY,tag-game-runner,Grand Theft Auto 2 [All Missions] by Tezur0 - #ESAWinter21
+3cea1084efe6198df3905300,Wizkid: The Story of Wizball II,Any%,wkhqiZcxhoc,tag-game-runner,Wizkid: The Story of Wizball II [Any%] by Robo_Sparkle - #ESAWinter21
+76ce89fb2e4b88f14c8c1b4b,Harlequin,Any% (Credits Warp),-9S3ULVq4Z4,tag-game-runner,Harlequin [Any% Credits Warp] by Robo_Sparkle - #ESAWinter21
+2cb620684337883e95196861,Yazzie,Any%,LsF7tgZDcGU,tag-game-runner,Yazzie [Any%] by RuffledBricks - #ESAWinter21
+cf208ed58338da4ba1417450,Jet Set Willy,WRITETYPER,WnH6lNuZfZo,tag-game-runner,Jet Set Willy [WRITETYPER] by RuffledBricks - #ESAWinter21
+d7e0568383b184c846769092,Dizzy: Prince of the Yolkfolk,Any%,1jlztGKQbSQ,tag-game-runner,Dizzy: Prince of the Yolkfolk [Any%] by TinyTim78 - #ESAWinter21
+36c8639afb3295cde2f48498,Taz-Mania,Any%,GQpc6eBJXWo,tag-game-runner,Taz-Mania [Any%] by Grumpmeister - #ESAWinter21
+faffed73d4775471bba9f9ea,Super Valis IV,Normal (JP),igzIi-zw7Xg,tag-game-runner,Super Valis IV [Normal (JP)] by Tinnue - #ESAWinter21
+4c63f84d3079236a114bb76b,Rolan's Curse,Any% (Glitchless),KbLRC0qeMN4,tag-game-runner,Rolan's Curse [Any% (Glitchless)] by JkL87 - #ESAWinter21
+026dce79b01b176276105bca,Dark Castle,Any%,L00WGdwA9HY,tag-game-runner,Dark Castle [Any%] by JkL87 - #ESAWinter21
+3ef079655d5a8f8e996f77b8,Ninja Gaiden Shadow,Any%,7pUQx4g9miA,tag-game-runner,Ninja Gaiden Shadow [Any%] by ShuriBear - #ESAWinter21
+8b377e0fc7e4e72e68dcc2de,Maui Mallard in Cold Shadow,Any%,5fESfN4QVtY,tag-game-runner,Maui Mallard in Cold Shadow [Any%] by Kirthar - #ESAWinter21
+1c35e867082133d13fa8e214,Knuckles' Chaotix,Beat The Game,PltdG9cD6GA,tag-game-runner,Knuckles' Chaotix [Beat The Game] by Hibnotix - #ESAWinter21
+f864b3fc173f0f06b952e1a5,Sonic CD (2011),Tails: All Good Futures,fnjRr7hTTzk,tag-game-runner,Sonic CD (2011) [Tails: All Good Futures] by flying_fox - #ESAWinter21
+6d4c8a8b1ebfde274af5c9b2,Luigi's Mansion,No OoB ,AL18X2CNcjA,tag-game-runner,Luigi's Mansion [No OoB] by PabloBliep10 - #ESAWinter21
+5cf6eb2424a9c47d8f5d64a3,Spyro Reignited Trilogy - Spyro 2: Ripto's Rage!,40 Orb,KRPA79_lQ4A,tag-game-runner,Spyro Reignited Trilogy - Spyro 2: Ripto's Rage! [40 Orb] by Zic3 - #ESAWinter21
+94226c726156ac79f3e2f26d,Spyro Reignited Trilogy - Spyro: Year of the Dragon,Any%,3-jfwiWbD38,tag-game-runner,Spyro Reignited Trilogy - Spyro: Year of the Dragon [Any%] by NostTW - #ESAWinter21
+99f319e991a2a2e582bc5921,The Legend of Zelda: Link's Awakening (2019),Any%,i2AF9Oj3v8g,tag-game-runner,The Legend of Zelda: Link's Awakening (2019) [Any%] by Strackel and Miniretin - #ESAWinter21
+a48ebc13790120e613014435,Blazing Beaks,Any% (Set Seed),8NzdJEuVdSM,tag-game-runner,Blazing Beaks [Any% (Set Seed)] by LoveBot - #ESAWinter21
+6f0f6e31708789fe20bd5cc9,Furi,Speedrun Mode,VboYxvkz9wU,tag-game-runner,Furi [Speedrun Mode] by chocbob and SombraCakes - #ESAWinter21
+eb2b507bb50c6d41391caaf3,Ori and the Blind Forest,Randomizer (All Skill Locations),LfSsBxyXc14,tag-game-runner,Ori and the Blind Forest [Randomizer (All Skill Locations)] by Covert_Muffin - #ESAWinter21
+6696f4b6d19acb8ab8beee0f,The Messenger,"NG+ (No OoB, Linear)",O_dNHa7Vd3Y,tag-game-runner,"The Messenger [NG+ (No OoB, Linear)] by Grondious - #ESAWinter21"
+b9af7003906b28c2f5bae052,Katana ZERO,All Stages,oeDVHIt-TxA,tag-game-runner,Katana ZERO [All Stages] by Xerclipse - #ESAWinter21
+7fe827808fc10a99f16fcae8,Bloodstained: Curse of the Moon 2,Episode 1 (Ultimate),8I9V7_RHKM4,tag-game-runner,Bloodstained: Curse of the Moon 2 [Episode 1 (Ultimate)] by TheBlacktastic - #ESAWinter21
+d9f04ad307a327f6fb62336e,Castlevania: Dawn of Sorrow,All Bosses (No Memory Corruption),SeqdKQQSNuk,tag-game-runner,Castlevania: Dawn of Sorrow [All Bosses (No Memory Corruption)] by Diagongdx - #ESAWinter21
+3de60787d65c9ef1bbcf60d6,Dark Souls II: Scholar of the First Sin,Any%,u0OjaZZQNCQ,tag-game-runner,Dark Souls II: Scholar of the First Sin [Any%] by Nyk_Style and JeffTheBigLizard - #ESAWinter21
+67b1545a9fab8efbeccb9f4d,Pokémon Soul Silver,"Any% (Glitchless, Manipless)",JUL4k31338s,tag-game-runner,"Pokémon Soul Silver [Any% (Glitchless, Manipless)] by JTMagicman - #ESAWinter21"
+b491315be48f59dab8ccb4be,Crash Bash,Any% (No Memory Manipulation),RFtXd0TolBE,tag-game-runner,Crash Bash [Any% (No Memory Manipulation)] by Pie - #ESAWinter21
+00e59c07bce9b1652547e82d,Clubhouse Games: 51 Worldwide Classics,Win All Games,tdP43hdvl-M,tag-game-runner,Clubhouse Games: 51 Worldwide Classics [Win All Games] by 360Chrism - #ESAWinter21
+49780c23beb6bafbdb834e7b,Super Cable Boy,Any%,cwbC-HwZwwI,tag-game-runner,Super Cable Boy [Any%] by BoneyC - #ESAWinter21
+a971770fd25270b01664e839,Pikuniku,Any%,B6CfzgbPh7g,tag-game-runner,Pikuniku [Any%] by GreenSnowDog - #ESAWinter21
+dc1081c427c67bd36a5eff89,WARP,Any%,Igp8lEhfF80,tag-game-runner,WARP [Any%] by SeductiveSpatula - #ESAWinter21
+2d56a6b718044f9c0d0143c7,Sheepo,All Bosses,S1ZJBZZt0U8,weak,Super Metroid [GT Classic] by kekumanshoyu - #ESAWinter21
+22d85152e78f6f4e72709d21,Tomb Raider: Legend,Any% (No Bug Jump),aQNaaGJGCVM,tag-game-runner,Tomb Raider: Legend [Any% (No Bug Jump)] by Senydro - #ESAWinter21
+7d7508a711dd4fd251e87fe4,Mirror's Edge,Any% (Inbounds),6Awm0ppy17g,tag-game-runner,Mirror's Edge [Any% (Inbounds)] by Meteos_Probably and BINGOBONGOS - #ESAWinter21
+eb8bcf7a0bd2080e83517b11,Ghostrunner,Any% (Inbounds),9AhqfdQkYK0,tag-game-runner,Ghostrunner [Any% (Inbounds)] by 7rayD - #ESAWinter21
+a51882efb9ca688d4bcc9778,Resident Evil 2 (2019),Claire B,xb8wCvg_YyU,tag-game-runner,Resident Evil 2 (2019) [Claire B] by MattRPD - #ESAWinter21
+fe9a16ef3cb1a65466eb170f,Fallout: New Vegas,Glitchless,Ca-nBhpzfbQ,tag-game-runner,Fallout: New Vegas [Glitchless] by Akarion__ - #ESAWinter21
+9f6b44c3525b7140229ab2f1,Serious Sam 4,All Levels,J5tz9babC1U,weak,Super Mario All-Stars [Any% (All Four Games)] by BigJon - #ESAWinter21
+8c8265994f152f0073378982,Halo 3: ODST,Easy,T6paFuYeK7U,tag-game-runner,Halo 3: ODST [Easy] by XeroHR - #ESAWinter21
+09e710c581f07ebf49e1825b,Dishonored 2,Any%,rRfGIVvFd4k,tag-game-runner,Dishonored 2 [Any%] by DemonicRobots - #ESAWinter21
+42a425862b16b1969b8af82a,Shadow of the Colossus (2018),Any% (Normal),slwCEQokCNA,tag-game-runner,Shadow of the Colossus (2018) [Any% (Normal)] by Incep_Sean - #ESAWinter21
+2ac799ec94a13e03c04406d8,Darksiders,All Chosen Bosses,w_SrMlIurjA,tag-game-runner,Darksiders [All Chosen Bosses] by henyK - #ESAWinter21
+7dde8fc095f4190806cdd960,Metal Gear Solid V: Ground Zeroes,NG+ (Stealth & No Kills),45UoEPYOwo4,tag-game-runner,Metal Gear Solid V: Ground Zeroes [NG+ (Stealth & No Kills)] by OneCoolManXOF - #ESAWinter21
+ce3f0129691f85e4719148ba,Metal Gear Solid 2: HD Edition,European Extreme,KzjdWvapA0g,tag-game-runner,Metal Gear Solid 2: HD Edition [European Extreme] by Jaguar_King and dlimes13 - #ESAWinter21
+90b517d4a91bbaa4aa4ea927,Futurama,Any%,QlqJPMW6r4A,tag-game-runner,Futurama [Any%] by stylonide - #ESAWinter21
+acb120a63b8b9f7fa6dd6efa,Sonic 3D Blast,Best Ending,gz8y5y3EB7k,tag-game-runner,Sonic 3D Blast [Best Ending] by KingRhodesTN - #ESAWinter21
+71802d55f5698e32755a8426,Judgment,Any%,tCLVdb8hvZQ,tag-game-runner,Judgment [Any%] by Froob - #ESAWinter21
+d5e8af037c50ca1fd2edbf76,Touhou: Scarlet Curiosity,Remilia (True Ending),1A6uMIVAYFM,tag-game-runner,Touhou: Scarlet Curiosity [Remilia (True Ending)] by Naro - #ESAWinter21
+2021-winter-66,Tempest of the Heavens and Earth,Boss Attack,KdkqCR4XpZ0,tag-game-runner,Tempest of the Heavens and Earth [Boss Attack] by Naro - #ESAWinter21
+ffe7823b103909af996d9178,Touhou 12.8: Great Fairy Wars,A1L Score Attack,cLxvxvLrlL8,tag-game-runner,Touhou 12.8: Great Fairy Wars [A1L Score Attack] by EeroKurkisuo - #ESAWinter21
+28b451f2f5fe35f04d4dc952,Devil May Cry 4: Special Edition,"NG (Nero / Dante, Devil Hunter)",ZXes_wDMWN0,tag-game-runner,"Devil May Cry 4: Special Edition [NG (Nero / Dante, Devil Hunter)] by Mekarazium - #ESAWinter21"
+35cf0368cf06e1e49bb9b13c,Jak 3,100%,Tyi18dBgJ9c,tag-game-runner,Jak 3 [100%] by ThaRixer - #ESAWinter21
+408a0ee7c293a1e513640d02,Pokémon X,Any%,s-Ovo4qQb20,tag-game-runner,Pokémon X [Any%] by wartab - #ESAWinter21
+245f0d3ba6f3d2428e293040,Final Fantasy XV: Royal Edition,Any% (No Ring),WUy1WQaJW1Q,tag-game-runner,Final Fantasy XV: Royal Edition [Any% (No Ring)] by Kyoslilmonster - #ESAWinter21
+7eec2bbd7672ad8711319915,Nioh,All Main Missions (Vanilla),Cq-6MONu_CY,tag-game-runner,Nioh [All Main Missions (Vanilla)] by Galasrinie - #ESAWinter21
+2658fdbd1a8ac4535e9a9075,Undertale,Genocide,9sV5o0KfQ4c,tag-game-runner,Undertale [Genocide] by Drakodan - #ESAWinter21
+df3b347e5c40034b089e5217,Psi-Ops: The Mindgate Conspiracy,Any%,0Sy3Yu1E52M,tag-game-runner,Psi-Ops: The Mindgate Conspiracy [Any%] by Kainalo - #ESAWinter21
+0e060194f6248693dabc5fb7,Squirm,Any%,X8OcKqJMmNQ,tag-game-runner,Squirm [Any%] by Reicha7 - #ESAWinter21
+ed1724c341e44a3646f20117,Shining Force II,Any%,0EqXCCo4GrA,tag-game-runner,Shining Force II [Any%] by BOWIEtheHERO - #ESAWinter21
+7e268ebb3ecfbf60ae8716ae,Harry Potter and the Chamber of Secrets,Any%,uSWHwpAU5mI,tag-game-runner,Harry Potter and the Chamber of Secrets [Any%] by Nixxo - #ESAWinter21
+3c62e02f74ff17dc8fe0d1e4,Harry Potter and the Prisoner of Azkaban,100%,uSWHwpAU5mI,weak,Harry Potter and the Chamber of Secrets [Any%] by Nixxo - #ESAWinter21
+168b6295e04447da92a7ae9a,M&M's: Shell Shocked,Any%,fe51Qk7--lA,tag-game-runner,M&M's: Shell Shocked [Any%] by KingRhodesTN - #ESAWinter21
+838e1fc5661bc95cba62852f,Yogho! Yogho!,Any%,SboRvFiQ36E,tag-game-runner,Yogho! Yogho! [Any%] by janglestorm - #ESAWinter21
+354b0f661b43eb2ee6f3c24b,Skate or Die,Compete All,kyZItq3V5IM,tag-game-runner,Skate or Die [Compete All] by janglestorm - #ESAWinter21
+8d7ce5b37a19ed327f764a78,911 Fire Rescue,All Missions,7NLPMtROrJo,tag-game-runner,911 Fire Rescue [All Missions] by Kainalo - #ESAWinter21
+6ebce3dbdf98766fdc95d1f9,Baby Shark VR Dancing,Any%,rVJbJAxJE-c,tag-game-runner,Baby Shark VR Dancing [Any%] by Kainalo - #ESAWinter21
+f68a7d15617d884cc90672b8,Krum - Edge of Darkness,Any%,Vcdi5TxYtBM,tag-game-runner,Krum - Edge of Darkness [Any%] by havrd - #ESAWinter21
+bab4071d1d0e81fccf267fba,Unearthed: Trail of Ibn Battuta,Any%,-43XSRvGAlA,tag-game-runner,Unearthed: Trail of Ibn Battuta [Any%] by Hibnotix - #ESAWinter21
+7c4d6f6c7d3f2eaee8101d27,Prince of Persia,"Any% (DOS, Glitchless)",LM946N--mo8,tag-game-runner,"Prince of Persia [Any% (DOS, Glitchless)] by 7eraser7 - #ESAWinter21"
+6759d2b4aa3caabfde7f5659,Yakuza 3,"Any% (Easy, Remastered)",fxAUw5Y_r6g,tag-game-runner,"Yakuza 3 [Any% (Easy, Remastered)] by RebelDragon95 - #ESAWinter21"
+48c225a1d07257c269730db0,SAW: The Game,Any%,5Ke-F6_q7oI,tag-game-runner,SAW: The Game [Any%] by Juh0rse - #ESAWinter21
+a7569bf70591ff4f46c49447,Elmo's ABCs,Any%,4cj8O4OcZsE,tag-game-runner,Elmo's ABCs [Any%] by Juh0rse - #ESAWinter21
+6486d6b172853c541728fa68,Resident Evil 5,"NG (Amateur, Co-op)",biQzNID6RLE,tag-game-runner,"Resident Evil 5 [NG (Amateur, Co-op)] by Gidano and ThatAccountBlaBlaBla - #ESAWinter21"
+433a6908352d2d8de0828044,Grim Fandango: Remastered,Any%,LCs2iq9xd-s,tag-game-runner,Grim Fandango: Remastered [Any%] by KonceptioN2 - #ESAWinter21
+06532522896710e5f10de3d4,Crash Bandicoot 4: It's About Time,Any%,23dX0RPPO-c,tag-game-runner,Crash Bandicoot 4: It's About Time [Any%] by Damosk - #ESAWinter21
+00c71a38435720a99f5f9210,Devil May Cry 2,NG (Dante),5aWsNTjSAdw,tag-game-runner,Devil May Cry 2 [NG (Dante)] by LonerHero - #ESAWinter21
+5f9c8d8aac43de8953a7cb72,Crash: Mind Over Mutant,Any%,3rwsAvQbmOE,tag-game-runner,Crash: Mind Over Mutant [Any%] by CDRomatron - #ESAWinter21
+0b9c16f7477e80a88f89c51f,Pikmin 3 Deluxe,Any%,h14ld_ySar4,tag-game-runner,Pikmin 3 Deluxe [Any%] by RDVvsTheWorld - #ESAWinter21
+0982449716908b0482d8b07a,Donkey Kong Country 2: Diddy's Kong Quest,Any%,eRjyOPwxFOQ,tag-game-runner,Donkey Kong Country 2: Diddy's Kong Quest [Any%] by Niakky - #ESAWinter21
+fa221db34947ba2bec5fceec,Metal Gear Ghost Babel,Any% (Easy),g2p1L9okYaQ,tag-game,Metal Gear Ghost Babel [Any% (Easy)] by CDOSKEZ - #ESAWinter21
+c23a247ea893d67a12907933,Tail Concerto,Any% (NTSC-J),2QxrMYFY0HI,tag-game-runner,Tail Concerto [Any% (NTSC-J)] by Rom_Stein - #ESAWinter21
+29e58360385f0a2535edd22f,The Outer Worlds,Max Quests,kyZItq3V5IM,weak,Skate or Die [Compete All] by janglestorm - #ESAWinter21
+83dc0d2614ef5eae1fbed266,Fallout 3,All Quests (w/ DLC) & Bobbleheads,2ZckF5PXeIk,tag-game-runner,Fallout 3 [All Quests (w/ DLC) & Bobbleheads] by Jabo - #ESAWinter21
+d838a8f6b79f1110b7a5ea2c,Fallout 3,Any%,NCvgN4_hW9M,tag-game-runner,Fallout 3 [Any%] by bananapegasus - #ESAWinter21
+8334d293bfa77445acbdeb75,Tetris: The Grand Master,Master Mode,MpsRzhuuCSo,tag-game-runner,Tetris: The Grand Master [Master Mode] by FreyasSpirit - #ESAWinter21
+a1e7276cf694615c8a32133c,Smash TV,"1 Player, 4 Controllers",yFBOFv_GYro,tag-game-runner,"Smash TV [1 Player, 4 Controllers] by CHX42 - #ESAWinter21"
+ada953fb73e2a4032388db3d,Metroid,Any%,IqzkoJDaEAA,tag-game-runner,Metroid [Any%] by CHX42 - #ESAWinter21
+c8d06b1b11e1d003c864b556,Mega Man Atari Demake,Any%,QbrJfgl8htY,tag-game-runner,Mega Man Atari Demake [Any%] by BigJon - #ESAWinter21
+4b2bcd0126ba1d4f06df8681,Splatterhouse,Any%,kyZItq3V5IM,weak,Skate or Die [Compete All] by janglestorm - #ESAWinter21
+2cc5e44d7b08b80c78b98a45,Wizards & Warriors III: Kuros: Visions of Power,Any%,zSNiQhfWPDU,tag-game-runner,Wizards & Warriors III: Kuros: Visions of Power [Any%] by marquisdan - #ESAWinter21
+96ec9fc49e3cfe2bbcfb401c,Power Rangers: Lightspeed Rescue,Any%,u6oCJJfKy7I,tag-game-runner,Power Rangers: Lightspeed Rescue [Any%] by Proto_Sonic - #ESAWinter21
+302270c8f880defa0ced3b69,Shovel Knight,NG+ (Specter Knight),5E-jbA4RkkE,tag-game-runner,Shovel Knight [NG+ (Specter Knight)] by Xerclipse - #ESAWinter21
+cc49d836b2130ac211901dfe,Super Metroid,GT Classic,S1ZJBZZt0U8,tag-game-runner,Super Metroid [GT Classic] by kekumanshoyu - #ESAWinter21
+eb6ba24e99f226f8352b6d0c,Unravel Two,"Any% (No Major Skips, Co-op)",YwGM9OMQEXM,tag-game-runner,"Unravel Two [Any% (No Major Skips, Co-op)] by ms_rey and ThisGuyAreSick - #ESAWinter21"
+1768d8058a0b499c2b4a7dc5,Bee Movie Game,Any%,2kh198FciUA,tag-game-runner,Bee Movie Game [Any%] by BlackbeltGingaNinja - #ESAWinter21
+147a0b4f5042026b15594819,Hylics 2,Any%,9xowWkGTzeM,tag-game-runner,Hylics 2 [Any%] by RJsmangit - #ESAWinter21
+c9ab57240cf1d53832ad8ade,Halo: Reach,Legendary,euu7Sz85mzs,tag-game-runner,Halo: Reach [Legendary] by Two_EEzy - #ESAWinter21
+c13ceb8151fa7728cc1bcb9e,The Legend of Zelda: A Link to the Past,Randomizer (Co-op),zngqyAyuxos,tag-game-runner,The Legend of Zelda: A Link to the Past [Randomizer (Co-op)] by Xita and Wiredwicky - #ESAWinter21
+fc879754fab0d977772623c9,Need for Speed: Most Wanted,Any%,BIW2J6JaI3o,tag-game-runner,Need for Speed: Most Wanted [Any%] by KuruHS - #ESAWinter21
+7eec2bbd7672ad8711319916,Nioh 2 - The Complete Edition,"All Main Missions (w/ DLC, Featherless)",7dU2gM7xAxc,tag-game-runner,"Nioh 2 - The Complete Edition [All Main Missions (w/ DLC, Featherless)] by AxelSanGo - #ESAWinter21"
+0a32da35a1adc9a5a1069d76,Final Fantasy VII Remake,Any% (Easy),3xDgXqzz5mU,tag-game-runner,Final Fantasy VII Remake [Any% (Easy)] by Royzoga - #ESAWinter21
+1e4b2830f449a726c83f8ded,Cyberpunk 2077,Any%,B6CfzgbPh7g,weak,Pikuniku [Any%] by GreenSnowDog - #ESAWinter21
+d7a7f9fe42ab7099b3f8e71e,Golden Sun: The Lost Age,Any% (No S&Q),FxmPJdVtB5o,tag-game-runner,Golden Sun: The Lost Age [Any% (No S&Q)] by TL_Plexa - #ESAWinter21
+d7a7f9fe42ab7099b3f8e71f,Alien: Isolation,"Any% (Nightmare, CC Only)",v4Of6B8m3SA,tag-game-runner,Alien: Isolation [Any% (CC Only Nightmare)] by Nikoheart - #ESAWinter21
+5fa8a7e69cada1365dc59a2a,The Italian Job,Any%,H62xSNv2_Nc,tag-game,The Italian Job [Any%] by Viper - #ESAWinter21
+99b5e07d24505d89b3f3cfb4,Be-Music Source,Single & Double Play Exhibition,0yHSdx07WQw,tag-game-runner,Be-Music Source [Single & Double Play Exhibition] by beachsidebunny and chazoshtare - #ESAWinter21
+d5b9371871eac747178f9eaa,Bugsnax,Any%,n7253_TUgyg,tag-game-runner,Bugsnax [Any%] by Addio98 - #ESAWinter21
+800616a65fdafc534f9bd5aa,Teslagrad,36 Scrolls (100%),FJ5NBUl93U0,tag-game-runner,Teslagrad [36 Scrolls (100%)] by Codejinn - #ESAWinter21
+15548266df7a3aa05f29ba53,Pokémon Emerald Randomizer,Pokédex Blackout,x-oiURoPz_k,tag-game-runner,Pokémon Emerald Randomizer [Pokédex Blackout] by 360Chrism and SheNanagans_ - #ESAWinter21
+7782f280384592d1fa86bb03,Deltarune,"Any% (NG+, Blindfolded)",-vzFCPD1IIA,tag-game-runner,"Deltarune [Any% (NG+, Blindfolded)] by Bubzia - #ESAWinter21"
+d62b1e4b0f58f7d8ee46811b,Castlevania,Any%,G3mM1DhyItU,tag-game-runner,Castlevania [Any%] by 2snek - #ESAWinter21
+d52337a275d592455d09cbd7,Castlevania: Rondo of Blood,Maria Only,K9l8ZF9DOsY,tag-game-runner,Castlevania: Rondo of Blood [Maria Only] by LattMackey - #ESAWinter21
+1effdc69cc1b781e7a1b8f80new,Mega Man Ultra,Any%,clZj3XvouoE,tag-game-runner,Mega Man Ultra [Any%] by Kuumba_ - #ESAWinter21
+d89b52f5e17229489a606b5d,Super Mario Sunshine (3D All-Stars),Any%,J5tz9babC1U,weak,Super Mario All-Stars [Any% (All Four Games)] by BigJon - #ESAWinter21
+ee70cb8777ae6c4a32b3f40b,Super Mario All-Stars,Any% (All Four Games),J5tz9babC1U,tag-game-runner,Super Mario All-Stars [Any% (All Four Games)] by BigJon - #ESAWinter21
+300956f6e850f28e71691ef8,The Wacky World of Miniature Golf,Cutscene%,Ed7TyChPsZk,tag-game-runner,The Wacky World of Miniature Golf [Cutscene%] by BigJon - #ESAWinter21
+c08f6aa3eecf87fea7816796,SegaSonic the Hedgehog,Beat The Game,eISEAatkot8,tag-game-runner,SegaSonic the Hedgehog [Beat The Game] by Hibnotix and STwoLive - #ESAWinter21
+8c50236025e0df0576b54f0e,Sonic the Hedgehog (1991),Glitchless,v6mZ6XujLN4,tag-game-runner,Sonic the Hedgehog (1991) [Glitchless] by SuperSonic_ - #ESAWinter21
+bca0b570204553353f76ba42,Sonic Spinball,Beat The Game,Pe_yfV-6eJE,tag-game-runner,Sonic Spinball [Beat The Game] by Argick - #ESAWinter21
+51a9d02fbfc5f56fb0255bfa,Celeste,Any% (Dance Pad),kiI1t5vVl9U,tag-game-runner,Celeste [Any% (Dance Pad)] by PeekingBoo - #ESAWinter21
+f319f6d88cb9d0d0ec8d91ff,Grand Theft Auto: Vice City Stories,Any%,eXwuWJGu5yU,tag-game-runner,Grand Theft Auto: Vice City Stories [Any%] by Joshimuz - #ESAWinter21
+f319f6d88cb9d0d0ec8d91fg,Grand Theft Auto: Chinatown Wars,Any%,eXwuWJGu5yU,weak,Grand Theft Auto: Vice City Stories [Any%] by Joshimuz - #ESAWinter21
+f319f6d88cb9d0d0ec8d91fh,Closing Speech,,3aIaCQaaCCM,tag-game-runner,Closing Speech by Fatzke - #ESAWinter21
+finwn22sy6k9k0ragixjxl56,Bowser's Fury,Any%,E3tbL_iMz8Q,tag-game-runner,Bowser's Fury Speedrun by Samura1man - #ESAWinter21
