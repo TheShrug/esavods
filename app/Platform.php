@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\FirstOrCreateUniqueSlugTrait;
 
@@ -25,6 +26,7 @@ use App\Traits\FirstOrCreateUniqueSlugTrait;
  */
 class Platform extends Model
 {
+	use HasFactory;
 	use FirstOrCreateUniqueSlugTrait;
 	/**
 	 * Define Run one-to-many relationship.
