@@ -1,4 +1,5 @@
-# Run the test suite on every branch except master, and on every pull request.
+# Run the test suite, and the front-end build parity check, on every branch except master and
+# on every pull request.
 #
 # master is deliberately absent: deploy.yml will own it and run this same suite as the gate in
 # front of the deploy. Two workflows triggering on master would run the suite twice and tell you
@@ -78,6 +79,74 @@ jobs:
 
       - run: composer install --no-interaction --prefer-dist --no-progress
 
+      # Nothing reads it - every setting above comes from env: - but the framework warns on a
+      # missing one, and --fail-on-warning below turns that warning into a red branch.
+      # deploy.yml has carried this step since it was written; this file never had it. #79
+      # closed the gap.
+      - name: Create an empty .env so the framework stops warning
+        run: touch .env
+
       - run: php artisan migrate --force
 
-      - run: php artisan test
+      # --fail-on-warning is not optional: CI's first green run reported success with five
+      # Feature tests that never executed, which is why the Makefile's `test` target carries
+      # the flag too.
+      #
+      # deploy.yml has had it since it was written and this file has not, so until #79 the
+      # RELEASE gate was stricter than the branch gate - a warning would first surface at the
+      # moment it could block a deploy, which is the worst moment to meet one. The
+      # duplication between the two files is deliberate; this divergence was not.
+      - run: php artisan test --fail-on-warning
+
+  # The front end is built HERE and nowhere else in the pipeline, and that is the whole
+  # reason this job exists. public/js/app.js and public/css/app.css are TRACKED files: the
+  # app Dockerfile has no Node stage at all, so Coolify ships whatever is committed,
+  # verbatim.
+  #
+  # Without this job the following sequence passes every check we have: edit
+  # resources/js/app.js or resources/sass/app.scss, forget `npm run build`, merge. deploy.yml
+  # goes green INCLUDING its "Assert production is on this commit" step - production really
+  # is on that commit - and the site serves the old bundle. The source change is live in the
+  # repo and absent from the site, and nothing anywhere reports it.
+  #
+  # A hand-check cannot catch this, which is the asymmetry that makes it worth automating
+  # even though browser tests are deliberately out of scope. Rebuild locally, verify in
+  # `make run`, forget to commit the rebuilt public/ file: the browser you just tested in was
+  # serving the correct assets while the repo carries the old ones. It looks exactly like
+  # success.
+  #
+  # A `git diff` gate is only safe if the build is byte-reproducible, so that was verified by
+  # hand before this was written (#79): two builds from a clean node_modules, on the Node
+  # major in .nvmrc, reproduced the committed bytes exactly. If that ever stops holding, the
+  # fix is a Node stage in the Dockerfile and untracking public/js and public/css - NOT a
+  # fuzzier comparison here. A check that flaps is worse than no check, because it trains
+  # people to re-run until green.
+  build:
+    name: npm run build parity
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+
+      # node-version-file, not a literal version: .nvmrc is what a laptop reads too, so the
+      # version that PRODUCES the bundle is the version that checks it. A literal here would
+      # drift from .nvmrc silently, and the only symptom would be a diff nobody can reproduce
+      # locally.
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      # --exit-code makes the diff itself the failure, and prints it. `git status
+      # --porcelain` would not: it exits 0 whatever it printed, which is the same false-green
+      # shape as pg_restore exiting 0 on an empty restore.
+      - name: Assert the committed bundle matches the sources
+        run: |
+          if ! git diff --exit-code -- public/js/app.js public/css/app.css; then
+            echo "::error::public/js/app.js or public/css/app.css is stale - the diff above is what production is missing. Run 'npm run build' and commit the result; the Dockerfile has no Node stage, so these files are served verbatim."
+            exit 1
+          fi

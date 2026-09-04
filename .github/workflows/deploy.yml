@@ -4,8 +4,9 @@
 # then tells Coolify to pull and rebuild, then proves the result is actually serving. All the
 # deploy logic that could live on the host does live on the host: see the note on the SSH key.
 #
-# What stands between a merge and production is the `test` job below, which `deploy` needs. A red
-# suite never reaches the host.
+# What stands between a merge and production is the `test` and `build` jobs below, both of which
+# `deploy` needs. A red suite never reaches the host, and neither does a front-end bundle that
+# does not match the sources it was built from.
 #
 # Secrets this needs (Settings -> Secrets and variables -> Actions):
 #   DEPLOY_SSH_KEY     private half of a DEDICATED deploy key, not a personal one.
@@ -88,9 +89,40 @@ jobs:
       - run: php artisan migrate --force
       - run: php artisan test --fail-on-warning
 
+  # Also deliberately duplicated from ci.yml, for the same reason as `test` above: this copy
+  # is the one that can stop a release.
+  #
+  # public/js/app.js and public/css/app.css are tracked files and the app Dockerfile has no
+  # Node stage, so the image Coolify is about to build ships exactly the bytes in this
+  # commit. If they are stale, everything below this job still succeeds - the deploy runs,
+  # "Assert production is on this commit" passes because production really IS on this commit,
+  # and the site serves the old bundle with a green tick over it. That is the same shape as
+  # the 2026-08-23 false-green, one layer further in: the right commit carrying a stale
+  # artefact. See ci.yml for the full note and for what to do if the build stops being
+  # byte-reproducible.
+  build:
+    name: npm run build parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Assert the committed bundle matches the sources
+        run: |
+          if ! git diff --exit-code -- public/js/app.js public/css/app.css; then
+            echo "::error::public/js/app.js or public/css/app.css is stale - the diff above is what production would be missing. Run 'npm run build' and commit the result; the Dockerfile has no Node stage, so these files are served verbatim."
+            exit 1
+          fi
+
   deploy:
     name: Redeploy and verify
-    needs: test
+    # Both gates, not just the suite: a stale bundle deploys perfectly and serves the wrong
+    # site.
+    needs: [test, build]
     runs-on: ubuntu-latest
     environment:
       name: production
