@@ -95,6 +95,18 @@ docker run --rm -v vodtimer-cache:/cache -v "$(pwd -W)/out:/out" \
 
 Roughly 1.5s per run, so a few minutes for a full event.
 
+**Then seed the metadata cache from what `resolve` just learned**, before any
+batch. The bot wall is a request budget, not a bandwidth one, and without this
+every run costs two requests instead of one — `analyse` re-asks YouTube for the
+title and duration the search already returned. It saved ~200 on Summer 2023 and
+106 on Winter 2023's Stream One, against a wall that has arrived at ~250.
+
+```sh
+docker run --rm -v vodtimer-cache:/cache -v "$(pwd -W)/out":/out   esavods/vod-timer:latest seed /out/<event>/resolved.csv
+```
+
+Seed again after correcting a row by hand, so the new video is cached too.
+
 **Read the `how` column before going further.** It is the single best predictor
 of whether the read will be any good:
 

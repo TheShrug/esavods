@@ -192,6 +192,7 @@ against a true `0:50:01` - so the value is kept and a person confirms it.
 ```
 vodtimer read <video_id> [--estimate 00:45:00] [--json]
 vodtimer batch runs.csv --out times.csv      # CSV with a video_id column
+vodtimer seed resolved.csv                   # prime the cache; run before batch
 vodtimer search <words...>                   # find a VOD by title
 vodtimer selftest [--tolerance 1]            # check against ESA's own numbers
 ```
@@ -200,6 +201,20 @@ Useful flags: `--tail` (seconds of the end to inspect, default 780), `--step`
 (frame spacing, default 10), `--height` (download quality, default 720),
 `--crop X,Y,W,H` (skip calibration), `--debug-crops DIR` (dump every crop),
 `--ytdlp-arg` (passed straight through, repeatable).
+
+`seed` is not optional in practice. YouTube's bot wall is a **request**
+budget, not a bandwidth one — it went up at ~250 requests on ESA Summer 2025 and
+~275 on Summer 2023 — and without it every run costs two: one for `resolve`'s
+search and one for `analyse` re-asking for the title and duration that search
+already returned. Seeding writes the search's own answer into the cache, so the
+batch makes one request per run instead of two. It saved 106 on ESA Winter 2023's
+Stream One alone.
+
+The seeded duration is the search's, which for an ESA upload is the true length
+rounded **up** by exactly one second (measured across eight; a third-party
+re-upload over-reported by 58). Up is the safe direction: duration is only ever
+used as "where the end of the file is", and the tail window still runs to the
+real end.
 
 ## Known limits
 
