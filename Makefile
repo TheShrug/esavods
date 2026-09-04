@@ -50,9 +50,19 @@ build: ## Build the dev image
 # RefreshDatabase truncates whatever `app` points at. That is #22. The `test`
 # service has an explicit environment block and its own tmpfs Postgres.
 #
+# It depends on .env all the same, which reads like a contradiction — having no
+# env_file is the whole point of `test`. It isn't one: compose parses the WHOLE
+# file before it selects a service, so `app`'s env_file: .env is resolved even
+# when --profile test starts nothing but `test`. Miss it and the run aborts
+# during parsing — `open <repo>/.env`, exit 14 — before `test` or `test-db` is
+# ever created. Nothing reads the file (an empty one is enough), so this changes
+# neither which service the suite runs on nor where it points. That is #85; it
+# only ever bit a fresh clone, since anything that has run `make run` — or the
+# devcontainer's own setup.sh — already left a .env behind.
+#
 # --fail-on-warning is not optional: CI's first green run reported success with
 # five Feature tests that never executed.
-test: ## Run the suite against a throwaway Postgres — never the dev database
+test: .env ## Run the suite against a throwaway Postgres — never the dev database
 	$(TEST_COMPOSE) run --rm -T test php artisan test --fail-on-warning
 
 run: .env ## Serve the app on 8001 (override PORT=); prints the URL last
