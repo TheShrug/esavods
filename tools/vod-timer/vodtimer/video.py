@@ -76,6 +76,43 @@ def probe(video_id: str, ytdlp_args: list[str] | None = None) -> Meta:
     )
 
 
+def seed(video_id: str, title: str, duration: int, channel: str | None = None) -> bool:
+    """Write a cache entry from a search result, so `probe` never has to ask.
+
+    `resolve` already learns a video's title and duration from the same
+    `ytsearch` that found it, and then `analyse` spends a second YouTube
+    request re-asking for both. On a wall that is counted in requests rather
+    than bytes - it arrived at ~250 on ESA Summer 2025 and ~275 on Summer 2023
+    - that doubling is the difference between reading an event in one sitting
+    and three.
+
+    The search's duration is not the probe's: measured across eight ESA
+    uploads it is the true length rounded *up* by exactly one second, and a
+    third-party re-upload over-reported by 58. Up is the safe direction. Every
+    consumer treats duration as where the end of the file is - the tail window
+    is `duration - tail` to `duration`, and ffmpeg simply stops at EOF - so an
+    over-estimate costs nothing, where an under-estimate would cut the window
+    short of the finish and hide the very frames the read needs.
+
+    Returns False rather than overwriting an entry already in the cache: a
+    real probe knows the channel and the upload date, and this does not.
+    """
+    if not video_id or not duration:
+        return False
+    path = cache_dir() / f"{video_id}.meta.json"
+    if path.exists():
+        return False
+    path.write_text(json.dumps({
+        "id": video_id, "title": title or "", "duration": int(duration),
+        "channel": channel, "upload_date": None,
+        # Not read back by probe(); here so a cache entry can be told apart
+        # from one a real probe wrote, which is the only way to know whether
+        # the duration is exact or rounded up.
+        "seeded": True,
+    }))
+    return True
+
+
 def search(query: str, limit: int = 5, ytdlp_args: list[str] | None = None) -> list[dict]:
     """Thin wrapper over yt-dlp's own ytsearch, so no HTML scraping."""
     out = _run(

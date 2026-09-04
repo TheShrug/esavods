@@ -264,6 +264,35 @@ def _read_csv(path: str) -> list[dict]:
                                    if not l.startswith("#")))
 
 
+def cmd_seed(args) -> int:
+    """Prime the metadata cache from resolve's own search results.
+
+    Run between `resolve` and `batch`. Every row `resolve` matched already
+    carries the title and duration YouTube handed back, so re-asking for them
+    is a request spent on something already known - one per run, against a bot
+    wall counted in requests. ESA Summer 2023 spent about 200 that way.
+    """
+    seeded = present = skipped = 0
+    for row in _read_csv(args.resolved):
+        vid = (row.get("video_id") or "").strip()
+        try:
+            dur = int(float(row.get("vod_duration") or 0))
+        except (TypeError, ValueError):
+            dur = 0
+        if not vid or not dur:
+            skipped += 1
+            continue
+        if video.seed(vid, row.get("title") or "", dur):
+            seeded += 1
+        else:
+            present += 1
+    print(f"seeded {seeded}"
+          + (f", {present} already cached" if present else "")
+          + (f", {skipped} with no id or duration" if skipped else ""))
+    print(f"that is {seeded} yt-dlp request(s) the batch will not have to make")
+    return 0
+
+
 def cmd_review(args) -> int:
     """List the runs a person still has to check, worst first."""
     rows = _read_csv(args.results)
@@ -480,6 +509,10 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--tag", required=True, help="event hashtag in VOD titles, e.g. ESASummer22")
     p.add_argument("--out", required=True)
     p.set_defaults(func=cmd_resolve)
+
+    p = sub.add_parser("seed", help="prime the metadata cache from a resolve --out CSV")
+    p.add_argument("resolved", help="the resolve --out CSV")
+    p.set_defaults(func=cmd_seed)
 
     p = sub.add_parser("review", help="list the runs a person still has to check")
     p.add_argument("results", help="a batch --out CSV")
