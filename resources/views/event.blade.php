@@ -39,7 +39,7 @@
                                     <th>Platform</th>
                                     <th>Runners</th>
                                     <th>Time</th>
-                                    <th data-sortable="false" data-priority="1">Play</th>
+                                    <th data-sortable="false">Play</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -51,25 +51,25 @@
                                             {{ Date('D M jS, h:ia', strtotime($run->run_date)) }}
                                         @endif
                                     </td>
-                                    <td>
+                                    <td data-label="Game">
                                         @if(isset($run->game) && isset($run->game->slug))
                                             <a href="{{ route('game.show', $run->game->slug) }}" title="View all {{ $run->game->name }} runs at ESA">{{ $run->game->name }}</a>
                                         @endif
                                     </td>
-                                    <td>{{ $run->category }}</td>
-                                    <td>
+                                    <td data-label="Category">{{ $run->category }}</td>
+                                    <td data-label="Platform">
                                         @if(isset($run->platform->name) && isset($run->platform->slug))
                                             <a href="{{ route('platform.show', $run->platform->slug) }}" title="View all {{ $run->platform->name }} runs at ESA">{{ $run->platform->name }}</a>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td data-label="Runners">
                                         @foreach($run->runners as $key => $runner)
                                             @if(isset($runner->name) && isset($runner->slug))
                                                 <a href="{{ route('runner.show', $runner->slug) }}" title="View runs by {{ $runner->name }}">{{ $runner->name }}</a>
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td>{{ $run->formatted_time }}</td>
+                                    <td data-label="Time">{{ $run->formatted_time }}</td>
                                     <td class="video-links" nowrap>
                                         @if(isset($run->youtube_vod_id))
                                             <a class="youtube" href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>

@@ -48,7 +48,7 @@
                                 <th>Runners</th>
                                 <th>Time</th>
                                 {{--<th>Genres</th>--}}
-                                <th data-sortable="false" data-priority="1">Play</th>
+                                <th data-sortable="false">Play</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -60,25 +60,25 @@
                                                 <a href="{{ route('game.show', $run->game->slug) }}" title="View all {{ $run->game->name }} runs at ESA">{{ $run->game->name }}</a>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td data-label="Event">
                                             @if(isset($run->event->name) && isset($run->event->slug))
                                                 <a href="{{ route('event.show', $run->event->slug) }}" title="View all {{ $run->event->name }} runs">{{ $run->event->name }}</a>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td data-label="Platform">
                                             @if(isset($run->platform->name) && isset($run->platform->slug))
                                                 <a href="{{ route('platform.show', $run->platform->slug) }}" title="View all {{ $run->platform->name }} runs at ESA">{{ $run->platform->name }}</a>
                                             @endif
                                         </td>
-                                        <td>{{ $run->category }}</td>
-                                        <td>
+                                        <td data-label="Category">{{ $run->category }}</td>
+                                        <td data-label="Runners">
                                             @foreach($run->runners as $key => $runner)
                                                 @if(isset($runner->name) && isset($runner->slug))
                                                     <a href="{{ route('runner.show', $runner->slug) }}" title="View runs by {{ $runner->name }}">{{ $runner->name }}</a>
                                                 @endif
                                             @endforeach
                                         </td>
-                                        <td>{{ $run->formatted_time }}</td>
+                                        <td data-label="Time">{{ $run->formatted_time }}</td>
                                         {{--<td>--}}
                                             {{--@foreach($run->genres as $key => $genre)--}}
                                                 {{--@if(isset($genre->name) && isset($genre->slug))--}}

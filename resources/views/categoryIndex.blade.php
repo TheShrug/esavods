@@ -40,7 +40,7 @@
                                         @endif
                                     @endif
                                 </td>
-                                <td>
+                                <td data-label="Description">
                                     @if(isset($category->description))
                                         {!! $category->description !!}
                                     @endif

@@ -1,96 +1,321 @@
 import '../sass/app.scss';
-import $ from './bootstrap';
-import 'bootstrap';
-import dataTablesBootstrap4 from 'datatables.net-bs4';
-import responsiveBootstrap4 from 'datatables.net-responsive-bs4';
 
 /*
- | DataTables 1.10's UMD wrapper exports a factory from its CommonJS branch
- | instead of registering itself. webpack took the AMD branch and got the
- | registration for free; Rollup takes the CommonJS one, so call the factories.
+ |----------------------------------------------------------------------------
+ | esavods.com
+ |----------------------------------------------------------------------------
+ |
+ | jQuery, Bootstrap's JS, popper.js and DataTables were deleted in esavods#78
+ | and what they actually did for this site is below. The script tag is
+ | `defer`red, so the DOM is parsed by the time this runs and there is no
+ | ready-handler.
+ |
  */
-dataTablesBootstrap4(window, $);
-responsiveBootstrap4(window, $);
 
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-});
+const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
 
-let table;
+/*
+ | Navbar
+ |
+ | Two behaviours, both of them a class toggle: `data-toggle="collapse"` on the
+ | toggler and `data-toggle="dropdown"` on the three nav items. The CSS decides
+ | what `.show` looks like; below the breakpoint the menus are part of the
+ | stacked list, above it they are absolutely positioned overlays.
+ */
 
-$(document).ready(function() {
-    initializeDataTable();
-    $('#mainTable').on('order.dt', function() {
-        table.rows().eq(0).each(function(index) {
-           let row = table.row(index).node();
-           $(row).removeClass('shown');
-        });
+const toggler = document.querySelector('.navbar-toggler[data-toggle="collapse"]');
+const collapseTarget = toggler && document.querySelector(toggler.dataset.target);
 
-    });
-});
-
-function initializeDataTable() {
-    table = $('#mainTable').DataTable({
-        paging: false,
-        info: false,
-        responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                type: ''
-            }
-        },
-        language: {
-            search: "Search table:"
-        }
+if (toggler && collapseTarget) {
+    toggler.addEventListener('click', () => {
+        const open = collapseTarget.classList.toggle('show');
+        toggler.setAttribute('aria-expanded', String(open));
     });
 }
 
-$(document).on('click', '.video-links a', function (e) {
-    e.preventDefault();
-    let tr = $(this).closest('tr');
-    let vodSite = $(this).data('vod-site');
-    let vod = $(this).data('vod');
-    let row = table.row( tr );
-    let tbody = $(this).closest('tbody');
-    let trs = tbody.find('tr');
+const dropdownToggles = Array.from(
+    document.querySelectorAll('[data-toggle="dropdown"]')
+);
 
-    watchedRun($(tr).data('id'));
+function closeDropdowns(except) {
+    dropdownToggles.forEach((toggle) => {
+        if (toggle === except) {
+            return;
+        }
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.closest('.dropdown')?.classList.remove('show');
+        toggle.parentElement.querySelector('.dropdown-menu')?.classList.remove('show');
+    });
+}
 
-    if (row.child.isShown() && tr.hasClass('shown')) {
-        row.child.hide();
-        tr.removeClass('shown');
-        table.draw();
+dropdownToggles.forEach((toggle) => {
+    toggle.addEventListener('click', (event) => {
+        event.preventDefault();
+        closeDropdowns(toggle);
+
+        const menu = toggle.parentElement.querySelector('.dropdown-menu');
+        const open = menu.classList.toggle('show');
+        toggle.closest('.dropdown')?.classList.toggle('show', open);
+        toggle.setAttribute('aria-expanded', String(open));
+    });
+});
+
+// One listener closes whichever menu is open. A click inside a menu is a click
+// on one of its links, so it is left to navigate.
+document.addEventListener('click', (event) => {
+    if (!event.target.closest('[data-toggle="dropdown"]')) {
+        closeDropdowns();
     }
-    else if(row.child.isShown() && !tr.hasClass('shown')) {
-        trs.each(function() {
-           $(this).removeClass('shown');
-        });
-        table.draw();
-        $(row.child()).find('td').append(format(row.data(), vodSite));
-        tr.addClass('shown');
-        if(vodSite === 'youtube') {
-            initializeYoutubeVideo(vod)
-        } else if(vodSite === 'twitch') {
-            initializeTwitchVideo(vod)
+});
+
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+        closeDropdowns();
+    }
+});
+
+/*
+ | The table
+ |
+ | DataTables ran with `paging: false, info: false`, so what it was providing
+ | was sorting, one search box, striping, and the responsive collapse. The
+ | collapse is CSS now (see app.scss); the rest is here.
+ |
+ | The markup contract is unchanged, so the Blade templates keep saying what
+ | they said to DataTables:
+ |
+ |   table[data-order]      initial sort, e.g. [[0,"asc"]]; [] for none
+ |   th[data-sortable=false]
+ |   th[data-orderable=false]   column cannot be sorted
+ |   td[data-order]         sort on this value rather than the displayed text,
+ |                          which is what keeps Schedule Time chronological
+ */
+
+const table = document.getElementById('mainTable');
+
+if (table && table.tHead && table.tBodies.length) {
+    initTable(table);
+}
+
+function initTable(table) {
+    const headers = Array.from(table.tHead.rows[0].cells);
+    const body = table.tBodies[0];
+    const rows = Array.from(body.rows);
+    const sortState = { column: null, direction: 'asc' };
+    let filterTerms = [];
+
+    // Sort keys are read once. The tables are server-rendered and nothing
+    // rewrites a cell, so re-reading the DOM on every comparison would only
+    // buy a slower sort.
+    const keys = rows.map((row) =>
+        headers.map((header, index) => {
+            const cell = row.cells[index];
+            if (!cell) {
+                return '';
+            }
+            return (cell.dataset.order ?? cell.textContent).trim();
+        })
+    );
+
+    const searchText = rows.map((row) =>
+        row.textContent.replace(/\s+/g, ' ').trim().toLowerCase()
+    );
+
+    // A column sorts numerically only when every value in it is a number —
+    // "Number of Runs" and nothing else, at present. Mixed columns fall back to
+    // text, which is what DataTables' type detection did.
+    const numericColumns = headers.map((header, index) =>
+        keys.every((key) => key[index] === '' || !Number.isNaN(Number(key[index])))
+    );
+
+    function compare(a, b, column) {
+        const left = keys[a][column];
+        const right = keys[b][column];
+
+        if (numericColumns[column]) {
+            return (Number(left) || 0) - (Number(right) || 0);
         }
+
+        const l = left.toLowerCase();
+        const r = right.toLowerCase();
+        return l < r ? -1 : l > r ? 1 : 0;
     }
-    else {
-        trs.each(function() {
-            $(this).removeClass('shown');
-        });
-        table.draw();
-        row.child( format(row.data(), vodSite) ).show();
-        $(row.child()).addClass('child');
-        tr.addClass('shown');
-        if(vodSite === 'youtube') {
-            initializeYoutubeVideo(vod)
-        } else if(vodSite === 'twitch') {
-            initializeTwitchVideo(vod)
+
+    function render() {
+        closePlayer();
+
+        const order = rows.map((row, index) => index);
+
+        if (sortState.column !== null) {
+            const sign = sortState.direction === 'asc' ? 1 : -1;
+            // Index breaks ties, so equal values keep their document order in
+            // both directions rather than reversing among themselves.
+            order.sort(
+                (a, b) => sign * compare(a, b, sortState.column) || a - b
+            );
         }
+
+        let visible = 0;
+        const fragment = document.createDocumentFragment();
+
+        order.forEach((index) => {
+            const row = rows[index];
+            const matches = filterTerms.every((term) =>
+                searchText[index].includes(term)
+            );
+
+            row.hidden = !matches;
+            row.classList.toggle('odd', matches && visible++ % 2 === 0);
+            fragment.appendChild(row);
+        });
+
+        body.appendChild(fragment);
+
+        headers.forEach((header, index) => {
+            if (!header.hasAttribute('aria-sort')) {
+                return;
+            }
+            header.setAttribute(
+                'aria-sort',
+                index === sortState.column
+                    ? sortState.direction === 'asc'
+                        ? 'ascending'
+                        : 'descending'
+                    : 'none'
+            );
+        });
     }
-} );
+
+    headers.forEach((header, index) => {
+        if (header.dataset.sortable === 'false' || header.dataset.orderable === 'false') {
+            return;
+        }
+
+        // Set here rather than in the templates: without this script there is
+        // nothing to click, so there should be nothing that looks clickable.
+        header.setAttribute('aria-sort', 'none');
+        header.tabIndex = 0;
+
+        const sort = () => {
+            sortState.direction =
+                sortState.column === index && sortState.direction === 'asc'
+                    ? 'desc'
+                    : 'asc';
+            sortState.column = index;
+            render();
+        };
+
+        header.addEventListener('click', sort);
+        header.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                sort();
+            }
+        });
+    });
+
+    const filter = document.createElement('div');
+    filter.className = 'table-filter';
+    const label = document.createElement('label');
+    label.append('Search table:');
+    const input = document.createElement('input');
+    input.type = 'search';
+    input.setAttribute('aria-controls', table.id);
+    label.appendChild(input);
+    filter.appendChild(label);
+    table.parentNode.insertBefore(filter, table);
+
+    input.addEventListener('input', () => {
+        filterTerms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+        render();
+    });
+
+    try {
+        const initial = JSON.parse(table.dataset.order || '[]');
+        if (initial.length) {
+            sortState.column = initial[0][0];
+            sortState.direction = initial[0][1] === 'desc' ? 'desc' : 'asc';
+        }
+    } catch {
+        // A malformed data-order is not worth a broken table; leave it unsorted.
+    }
+
+    render();
+}
+
+/*
+ | The video player
+ |
+ | This was a DataTables child row. Without the plugin it is what it always
+ | was: a `<tr>` inserted after the run's own row, holding one player.
+ */
+
+document.addEventListener('click', (event) => {
+    const link = event.target.closest('.video-links a');
+
+    if (!link) {
+        return;
+    }
+
+    event.preventDefault();
+
+    const row = link.closest('tr');
+    const vodSite = link.dataset.vodSite;
+    const vod = link.dataset.vod;
+
+    watchedRun(row.dataset.id);
+
+    // Clicking anything in the cell while this row's player is open closes it,
+    // including the close control, which carries no vod of its own.
+    if (row.classList.contains('shown')) {
+        closePlayer();
+        return;
+    }
+
+    closePlayer();
+    openPlayer(row, vodSite, vod);
+});
+
+function openPlayer(row, vodSite, vod) {
+    const child = document.createElement('tr');
+    child.className = 'child';
+    const cell = document.createElement('td');
+    cell.colSpan = row.cells.length;
+    cell.innerHTML = playerMarkup(vodSite);
+    child.appendChild(cell);
+    row.parentNode.insertBefore(child, row.nextSibling);
+    row.classList.add('shown');
+
+    if (vodSite === 'youtube') {
+        initializeYoutubeVideo(vod);
+    } else if (vodSite === 'twitch') {
+        initializeTwitchVideo(vod);
+    }
+}
+
+function closePlayer() {
+    document.querySelectorAll('tr.shown').forEach((row) => {
+        row.classList.remove('shown');
+    });
+    document.querySelectorAll('tr.child').forEach((child) => {
+        child.remove();
+    });
+}
+
+/* Markup for the player row */
+function playerMarkup(vodSite) {
+    if (vodSite === 'youtube') {
+        return '<div class="embed-responsive embed-responsive-16by9">' +
+            '<div id="videoPlayer"></div>' +
+            '</div>';
+    }
+
+    if (vodSite === 'twitch') {
+        return '<div id="videoPlayer" class="embed-responsive embed-responsive-16by9"></div>';
+    }
+
+    return '<div id="videoPlayer"></div>';
+}
 
 function initializeYoutubeVideo(vod) {
     let time = vod.slice(vod.indexOf('?t=') + 3)
@@ -154,26 +379,16 @@ function twitchTimeStringToSeconds(time) {
     return (hours * 60 * 60) + (minutes * 60) + seconds;
 }
 
-/* Formatting function for row details */
-function format (d, vodSite) {
-    let format = '';
-
-    if(vodSite === 'youtube') {
-        format = '<div class="embed-responsive embed-responsive-16by9">'+
-            '<div id="videoPlayer"></div>'+
-            '</div>';
-    } else if (vodSite === 'twitch') {
-        format = '<div id="videoPlayer" class="embed-responsive embed-responsive-16by9"></div>';
-    } else {
-        format = '<div id="videoPlayer"></div>';
+function watchedRun(id) {
+    if (!id) {
+        return;
     }
 
-    return format;
-}
-
-function watchedRun(id){
-    $.ajax({
-        type: "POST",
-        url: "/run/" + id
+    fetch('/run/' + id, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest',
+        },
     });
 }

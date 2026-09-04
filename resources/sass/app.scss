@@ -1,39 +1,544 @@
+@use 'variables' as *;
 
-// Fonts
+// Fonts. Font Awesome is a separate CDN import and stays (esavods#78 scope);
+// the DataTables stylesheet that used to sit alongside it went with the plugin.
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
 @import url('https://use.fontawesome.com/releases/v5.5.0/css/all.css');
-@import url('https://cdn.datatables.net/v/bs4/dt-1.10.18/datatables.min.css');
 
-// Variables
-@import 'variables';
+/*
+ |----------------------------------------------------------------------------
+ | Reboot
+ |----------------------------------------------------------------------------
+ |
+ | The parts of Bootstrap's reboot the templates actually depend on. Everything
+ | below is hand-rolled per esavods#78: the site is a set of sortable tables and
+ | a navbar with three dropdowns, and it was carrying a whole framework for
+ | roughly fifteen primitives.
+ |
+ */
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-sans-serif;
+  font-size: $font-size-base;
+  font-weight: 400;
+  line-height: $line-height-base;
+  text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+// Bootstrap sized its headings off $font-size-base, so they are smaller here
+// than the bare rem figures suggest. Keeping the multipliers keeps the pages
+// looking the way they did.
+h1 { font-size: $font-size-base * 2.5; }
+h2 { font-size: $font-size-base * 2; }
+h3 { font-size: $font-size-base * 1.75; }
+h4 { font-size: $font-size-base * 1.5; }
+h5 { font-size: $font-size-base * 1.25; }
+h6 { font-size: $font-size-base; }
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  overflow: visible;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+ol, ul {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+  border-style: none;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  text-align: inherit;
+}
+
+button,
+input {
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+button {
+  overflow: visible;
+  text-transform: none;
+  -webkit-appearance: button;
+}
+
+[type="search"] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+
+/*
+ |----------------------------------------------------------------------------
+ | Layout
+ |----------------------------------------------------------------------------
+ |
+ | Bootstrap's grid, minus the 10 of 12 column widths and 4 of 5 breakpoints
+ | nothing referenced. The templates use container, container-fluid, row,
+ | col-md-12, col-md-6, col-6 and col-4 and nothing else.
+ |
+ */
+
+.container,
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container {
+  @media (min-width: 576px) { max-width: 540px; }
+  @media (min-width: $breakpoint-md) { max-width: 720px; }
+  @media (min-width: $breakpoint-lg) { max-width: 960px; }
+  @media (min-width: 1200px) { max-width: 1140px; }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.col-4,
+.col-6,
+.col-md-6,
+.col-md-12 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-4 { flex: 0 0 33.333333%; max-width: 33.333333%; }
+.col-6 { flex: 0 0 50%; max-width: 50%; }
+
+@media (min-width: $breakpoint-md) {
+  .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+  .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+}
+
+.justify-content-center { justify-content: center; }
+
+/*
+ |----------------------------------------------------------------------------
+ | Navbar and dropdowns
+ |----------------------------------------------------------------------------
+ |
+ | The whole of Bootstrap's JS surface here was two behaviours: `collapse` on
+ | the toggler and `dropdown` on three nav items. app.js toggles `.show`; these
+ | rules are what `.show` means.
+ |
+ */
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+
+  > .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: $font-size-base * 1.25;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  .nav-link {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  // Collapsed, the menus are part of the stacked list rather than an overlay.
+  // navbar-expand-md puts them back on top above the breakpoint.
+  .dropdown-menu {
+    position: static;
+    float: none;
+  }
+}
+
+.dropdown {
+  position: relative;
+}
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-collapse {
+  flex-basis: 100%;
+  flex-grow: 1;
+  align-items: center;
+}
+
+// `collapse` is the closed state; app.js adds `.show` to open it. Below the
+// breakpoint only — above it the navbar is never collapsed, so the toggler is
+// hidden and the menu is unconditionally visible.
+.collapse:not(.show) {
+  display: none;
+}
+
+.navbar-toggler {
+  padding: 0.25rem 0.75rem;
+  font-size: $font-size-base * 1.25;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  vertical-align: middle;
+  content: "";
+  background: no-repeat center center;
+  background-size: 100% 100%;
+}
+
+.navbar-dark {
+  .navbar-brand {
+    color: #fff;
+
+    &:hover,
+    &:focus { color: #fff; }
+  }
+
+  .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.5);
+
+    &:hover,
+    &:focus { color: rgba(255, 255, 255, 0.75); }
+  }
+
+  .navbar-nav .show > .nav-link,
+  .navbar-nav .active > .nav-link {
+    color: #fff;
+  }
+
+  .navbar-toggler {
+    color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .navbar-expand-md {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+
+    > .container {
+      flex-wrap: nowrap;
+    }
+
+    .navbar-nav {
+      flex-direction: row;
+
+      .nav-link {
+        padding-right: 0.5rem;
+        padding-left: 0.5rem;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+      }
+    }
+
+    .navbar-collapse {
+      display: flex !important;
+      flex-basis: auto;
+    }
+
+    .navbar-toggler {
+      display: none;
+    }
+  }
+}
+
+.dropdown-toggle::after {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  float: left;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0.125rem 0 0;
+  font-size: $font-size-base;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+
+  &.show {
+    display: block;
+  }
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+
+  &:hover,
+  &:focus {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+  }
+}
+
+// The header links carry both classes; this one wins, as it did when Bootstrap
+// declared it second.
+.dropdown-header {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0;
+  font-size: $font-size-base * 0.875;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+/*
+ |----------------------------------------------------------------------------
+ | Breadcrumb, jumbotron, embeds
+ |----------------------------------------------------------------------------
+ */
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: #e9ecef;
+  border-radius: 0.25rem;
+}
+
+.breadcrumb-item {
+  + .breadcrumb-item {
+    padding-left: 0.5rem;
+
+    &::before {
+      display: inline-block;
+      padding-right: 0.5rem;
+      color: #6c757d;
+      content: "/";
+    }
+  }
+
+  &.active {
+    color: #6c757d;
+  }
+}
+
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+
+  @media (min-width: 576px) {
+    padding: 4rem 2rem;
+  }
+}
+
+.embed-responsive {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+
+  &::before {
+    display: block;
+    content: "";
+  }
+
+  iframe,
+  embed,
+  object,
+  video {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}
+
+.embed-responsive-16by9::before {
+  padding-top: 56.25%;
+}
+
+/*
+ |----------------------------------------------------------------------------
+ | Utilities
+ |----------------------------------------------------------------------------
+ |
+ | Only the ones the class census in esavods#78 found in the 14 templates.
+ |
+ | These come after the components on purpose. The templates lean on a utility
+ | beating a component — `jumbotron py-5 mb-3`, `breadcrumb py-0 px-0` — which
+ | Bootstrap bought with !important on every utility. Source order buys the
+ | same thing here at equal specificity, so nothing in this file has to shout.
+ |
+ */
+
+.bg-primary { background-color: $primary; }
+.bg-secondary { background-color: $secondary; }
+
+.d-inline-block { display: inline-block; }
+.float-left { float: left; }
+.float-right { float: right; }
+.text-right { text-align: right; }
+
+.m-0 { margin: 0; }
+.mb-3 { margin-bottom: 1rem; }
+.mr-auto { margin-right: auto; }
+.my-4 { margin-top: 1.5rem; margin-bottom: 1.5rem; }
+
+.px-0 { padding-right: 0; padding-left: 0; }
+.py-0 { padding-top: 0; padding-bottom: 0; }
+.py-3 { padding-top: 1rem; padding-bottom: 1rem; }
+.py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+
+.lead {
+  font-size: $font-size-base * 1.25;
+  font-weight: 300;
+}
+
+/*
+ |----------------------------------------------------------------------------
+ | The site
+ |----------------------------------------------------------------------------
+ */
 
 body {
   color: #fff;
 }
 
 a {
-  color:$link;
+  color: $link;
+
   &:hover {
-    color:$link-hover;
+    color: $link-hover;
   }
 }
 
-.navbar {background-color:$primary;}
+.navbar { background-color: $primary; }
 
-main {background-color: $secondary;}
+main { background-color: $secondary; }
 
-.main {padding: 4rem 0;}
+.main { padding: 4rem 0; }
 
-hr {border-top:1px solid rgb(53, 67, 101);}
+hr { border-top: 1px solid $rule; }
 
 .navbar {
   hr {
     margin-top: 3px;
     margin-bottom: 3px;
-    border-top:1px solid #d2d2d2;
+    border-top: 1px solid #d2d2d2;
   }
   .dropdown-menu.double {
     min-width: 400px;
@@ -72,17 +577,46 @@ hr {border-top:1px solid rgb(53, 67, 101);}
   }
 }
 
-div.dataTables_wrapper div.dataTables_filter label {
+/*
+ |----------------------------------------------------------------------------
+ | Tables
+ |----------------------------------------------------------------------------
+ |
+ | The search box and the sort affordances are injected by app.js, because
+ | neither does anything without it. The narrow-width collapse is the opposite:
+ | it is pure CSS, so it is correct before the deferred script runs rather than
+ | reflowing once DataTables had measured.
+ |
+ */
+
+.table-filter {
   margin-bottom: 1rem;
+  text-align: right;
+
+  input {
+    padding: 0.25rem 0.5rem;
+    margin-left: 0.5rem;
+    font-size: $font-size-base * 0.875;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.2rem;
+
+    &:focus {
+      color: #495057;
+      border-color: #80bdff;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
 }
 
 table.esa-table {
-  width: 100% !important;
+  width: 100%;
   background-color: $primary;
   color:#fff;
   border-radius:5px;
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
   thead {
     tr {
       th {
@@ -92,30 +626,15 @@ table.esa-table {
     }
   }
   tr.odd {
-    background: #354365;
+    background: $stripe;
   }
   tr.odd + tr.child {
-    background: #354365;
+    background: $stripe;
   }
   td {
     padding: 10px 15px;
     font-size: 14px;
     line-height: 1.2;
-  }
-  td.child{
-    ul {
-      list-style:none;
-      padding: 0;
-      margin: 0;
-      li {
-        span.dtr-title {
-          font-weight: 700;
-        }
-      }
-    }
-    ul + * {
-      margin-top: 1rem;
-    }
   }
   td.video-links {
     padding: 0;
@@ -161,8 +680,136 @@ table.esa-table {
       }
     }
   }
+
+  // Filtered-out rows. `[hidden]` alone would lose to the `display` the
+  // narrow-width block below sets on every row.
+  tr[hidden] {
+    display: none !important;
+  }
+
+  // Sorting. app.js puts `aria-sort` on the columns it wired up, so the
+  // indicator and the screen reader read one attribute and neither appears
+  // before the deferred script has run.
+  th[aria-sort] {
+    position: relative;
+    padding-right: 2.25rem;
+    cursor: pointer;
+    user-select: none;
+
+    &::after {
+      position: absolute;
+      right: 15px;
+      font-weight: 400;
+      content: "\2191\2193";
+      opacity: 0.35;
+    }
+
+    &[aria-sort="ascending"]::after {
+      content: "\2191";
+      opacity: 1;
+    }
+
+    &[aria-sort="descending"]::after {
+      content: "\2193";
+      opacity: 1;
+    }
+  }
 }
 
+// Narrow widths: keep the first and last columns on one line and stack the rest
+// as labelled values, which is the shape DataTables' Responsive plugin produced
+// by measuring column widths one at a time.
+//
+// This is a breakpoint rather than a measurement, so it collapses all at once
+// instead of a column at a time — the trade for deleting the plugin, and for
+// the collapse being right on first paint rather than after a reflow.
+//
+// Two tiers, because one is provably not enough. The run listings carry up to
+// seven columns and a `nowrap` schedule time, and measured against the real
+// data the widest of them — an event page — does not fit a 720px container at
+// all; it needs the 960px one. The index tables are two or three columns and
+// fit well inside 720px. So the run listings stack below `lg`, and everything
+// stacks below `md`.
+@mixin collapsed-table {
+  display: block;
+
+  thead,
+  tbody {
+    display: block;
+  }
+
+  thead th:not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  tr:not(.child) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 15px;
+    padding: 10px 15px;
+  }
+
+  th,
+  td {
+    display: block;
+    padding: 0;
+  }
+
+  // The arrow sits beside its label rather than at the far edge of a column
+  // that is now most of the screen.
+  th[aria-sort] {
+    padding-right: 0;
+
+    &::after {
+      position: static;
+      margin-left: 0.5rem;
+    }
+  }
+
+  th:first-child,
+  td:first-child { grid-row: 1; grid-column: 1; }
+
+  th:last-child,
+  td:last-child { grid-row: 1; grid-column: 2; }
+
+  // Everything between the two: one labelled line each, full width, below.
+  td[data-label] {
+    grid-column: 1 / -1;
+
+    &::before {
+      font-weight: 700;
+      content: attr(data-label) " ";
+    }
+  }
+
+  td[data-label]:nth-child(2) {
+    margin-top: 1rem;
+  }
+
+  td.video-links {
+    width: 3.75rem;
+  }
+
+  tr.child {
+    display: block;
+    padding: 10px 15px;
+  }
+}
+
+// A run listing is a table with a Play column, and `:has()` is the whole reason
+// the tier can stay in CSS: it asks about the table's own shape, so no template
+// has to carry a class describing how wide it is.
+@media (max-width: $breakpoint-lg - 0.02px) {
+  table.esa-table:has(td.video-links) {
+    @include collapsed-table;
+  }
+}
+
+@media (max-width: $breakpoint-md - 0.02px) {
+  table.esa-table {
+    @include collapsed-table;
+  }
+}
 footer {
   text-align: left;
   ul {
@@ -181,4 +828,3 @@ footer {
     }
   }
 }
-

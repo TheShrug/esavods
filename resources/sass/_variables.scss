@@ -1,31 +1,30 @@
-
-// Body
-$body-bg: #f8fafc;
+// The site's own design tokens. Everything here used to do double duty as a
+// Bootstrap variable override; with Bootstrap gone (esavods#78) only the values
+// our own rules read are left. The Bootstrap-only palette ($blue … $cyan,
+// $body-bg) fed nothing we render and went with it.
 
 // Typography
 $font-family-sans-serif: "Nunito", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-
-
-// Colors
+// Colours
 $primary: #273453;
 $secondary: #080D1B;
 $link: #ffbd17;
 $link-hover: #8D700D;
 
-
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66D9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+// Row striping, and the rule beneath the navbar. Both were literals inline
+// before; they are the same colour and belong next to the palette that produced
+// them.
+$stripe: #354365;
+$rule: rgb(53, 67, 101);
 
 $twitch: #6441A4;
 $youtube: #db2828;
+
+// The navbar collapses at `md`, which is the breakpoint the templates already
+// asked for by name (`navbar-expand-md`). `lg` is the second one the tables
+// need — see the collapse mixin in app.scss for why one was not enough.
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;

@@ -36,7 +36,7 @@
                                             <a href="{{ route('event.show', $event->slug) }}">{{ $event->name }}</a>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td data-label="Description">
                                         @if(isset($event->description))
                                             {!! $event->description !!}
                                         @endif
