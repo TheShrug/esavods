@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\FirstOrCreateUniqueSlugTrait;
 
@@ -29,6 +30,7 @@ use App\Traits\FirstOrCreateUniqueSlugTrait;
  */
 class Runner extends Model
 {
+	use HasFactory;
 
 	use FirstOrCreateUniqueSlugTrait;
 
