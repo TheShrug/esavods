@@ -318,17 +318,43 @@ function playerMarkup(vodSite) {
 }
 
 function initializeYoutubeVideo(vod) {
-    let time = vod.slice(vod.indexOf('?t=') + 3)
+    vod = vod.toString();
+    let time = 0;
+    let videoId = vod;
+    let hasTime = false;
+
+    if(vod.indexOf('?t=') > -1) {
+        hasTime = true;
+    }
+
+    if(hasTime) {
+        // Unlike Twitch's `1h2m3s`, the two YouTube ids that carry a timestamp
+        // hold plain seconds, which is also what the IFrame API's `start`
+        // wants. Anything else is dropped rather than guessed at.
+        time = parseInt(vod.slice(vod.indexOf('?t=') + 3), 10);
+        videoId = vod.slice(0, vod.indexOf('?t='));
+        hasTime = Number.isFinite(time);
+    }
+
+    // No `start` key at all without a timestamp. `slice` on an id with no
+    // `?t=` used to hand YouTube the id minus its first two characters, and an
+    // explicit `start: 0` is still a claim the data does not make.
+    const playerVars = {};
+
+    if(hasTime) {
+        playerVars.start = time;
+    }
+
     let player = new YT.Player('videoPlayer', {
         height: '360',
         width: '640',
-        videoId: vod,
-        playerVars: {
-            start: time
-        },
+        videoId: videoId,
+        playerVars: playerVars,
         events: {
             'onReady': function(event) {
-                event.target.seekTo(time);
+                if(hasTime) {
+                    event.target.seekTo(time);
+                }
                 event.target.playVideo();
             }
         }
