@@ -54,8 +54,11 @@ class ContentRoutesTest extends TestCase
         'event' => 'title="View all ESA Winter 2026 runs"',
         'platform' => 'title="View all GameCube runs at ESA"',
         'runner' => 'title="View runs by claris"',
-        'category' => '<td>Any%</td>',
-        'time' => '<td>01:15:30</td>',
+        // data-label is what the narrow-width collapse reads (esavods#78): the
+        // stacked list gets its bold label from the attribute, so it is row
+        // markup in the same way the title="..." fragments are.
+        'category' => '<td data-label="Category">Any%</td>',
+        'time' => '<td data-label="Time">01:15:30</td>',
     ];
 
     protected function setUp(): void

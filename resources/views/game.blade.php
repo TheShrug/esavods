@@ -37,7 +37,7 @@
                             <th>Category</th>
                             <th>Runners</th>
                             <th>Time</th>
-                            <th data-sortable="false" data-priority="1">Play</th>
+                            <th data-sortable="false">Play</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -49,15 +49,15 @@
                                         <a href="{{ route('event.show', $run->event->slug) }}" title="View all {{ $run->event->name }} runs">{{ $run->event->name }}</a>
                                     @endif
                                 </td>
-                                <td>{{ $run->category }}</td>
-                                <td>
+                                <td data-label="Category">{{ $run->category }}</td>
+                                <td data-label="Runners">
                                     @foreach($run->runners as $key => $runner)
                                         @if(isset($runner->name) && isset($runner->slug))
                                             <a href="{{ route('runner.show', $runner->slug) }}" title="View runs by {{ $runner->name }}">{{ $runner->name }}</a>
                                         @endif
                                     @endforeach
                                 </td>
-                                <td>{{ $run->formatted_time }}</td>
+                                <td data-label="Time">{{ $run->formatted_time }}</td>
                                 <td class="video-links" nowrap>
                                     @if(isset($run->youtube_vod_id))
                                         <a class="youtube" href="https://youtube.com/watch?v={{ $run->youtube_vod_id }}" title="Youtube Link" data-vod-site="youtube" data-vod="{{ $run->youtube_vod_id }}"><i class="fab fa-youtube"></i></a>
