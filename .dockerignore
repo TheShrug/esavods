@@ -7,6 +7,14 @@ node_modules
 .env.*
 !.env.example
 tests
+
+# The vod-timer OCR pipeline. Run by hand out of its own image
+# (tools/vod-timer/Dockerfile) against a bind-mounted checkout, never by the app -
+# nothing in app/, config/, routes/, resources/ or database/ references it. Kept out
+# of the image so deploy.yml can paths-ignore it without production drifting from the
+# commit that built it.
+tools
+
 docker-compose*
 docker-compose
 readme.md
