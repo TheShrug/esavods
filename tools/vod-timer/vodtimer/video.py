@@ -20,6 +20,25 @@ YOUTUBE_WATCH = "https://www.youtube.com/watch?v={}"
 # Any real 13-minute clip is megabytes; anything smaller is a failed cut.
 MIN_CLIP_BYTES = 512 * 1024
 
+# How much shorter than the window it was asked for an *honest* clip may be.
+#
+# A byte-count cannot do this job: 50 seconds of 480p clears MIN_CLIP_BYTES
+# comfortably, so the two truncated Summer 2022 clips (11 and 14 frames where
+# 50 were expected) passed every check and read as confident times. The only
+# thing that distinguishes them is how many seconds of video came back.
+#
+# The slack covers the two ways a complete clip legitimately measures short:
+#   - a range cut lands on a keyframe, worth a second or two either way;
+#   - a duration from `seed()` is the search result's, rounded *up* - by one
+#     second across eight measured ESA uploads - so the last second of the
+#     requested window is past the real end of the file.
+# 5% of the default 780s tail is 39s, which swallows both with room to spare
+# and is still an order of magnitude below the ~670s and ~640s that actually
+# went missing. The floor keeps a short window (a VOD shorter than --tail
+# yields one) from being policed to the frame.
+CLIP_SLACK_SECONDS = 5.0
+CLIP_SLACK_FRACTION = 0.05
+
 
 class VideoError(RuntimeError):
     pass
@@ -129,6 +148,48 @@ def search(query: str, limit: int = 5, ytdlp_args: list[str] | None = None) -> l
     ]
 
 
+def clip_duration(path: Path) -> float:
+    """Seconds of video in `path`, per ffprobe.
+
+    ffprobe ships with the ffmpeg `extract_frames` already shells to, so this
+    costs a subprocess and no new dependency. Raises VideoError if the file
+    cannot be opened or carries no duration - which is the same answer we
+    want for it anyway: do not trust this clip.
+    """
+    out = _run(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=noprint_wrappers=1:nokey=1", str(path)],
+        timeout=120,
+    )
+    try:
+        return float(out.strip().splitlines()[0])
+    except (IndexError, ValueError):
+        raise VideoError(f"{path.name}: ffprobe found no duration in the clip")
+
+
+def _clip_fault(clip: Path, start: int, end: int) -> str | None:
+    """Why this clip cannot stand in for [start, end), or None if it can.
+
+    Compared against `end - start`, deliberately, and never against --tail:
+    `pipeline.analyse` computes `start = max(0, duration - tail)`, so a video
+    shorter than the tail asks for a window shorter than the tail and is
+    entirely well-formed when it comes back that size.
+    """
+    requested = end - start
+    try:
+        got = clip_duration(clip)
+    except VideoError as exc:
+        return f"clip will not open - {exc}"
+    if requested <= 0:
+        return None
+    slack = max(CLIP_SLACK_SECONDS, CLIP_SLACK_FRACTION * requested)
+    if got < requested - slack:
+        return (f"clip is only {got:.0f}s of the {requested}s window "
+                f"{start}-{end}s that was requested - the download stopped "
+                f"early, so the finish may never be on screen")
+    return None
+
+
 def download_window(
     video_id: str,
     start: int,
@@ -142,9 +203,18 @@ def download_window(
     for existing in cache_dir().glob(f"{stem.name}.*"):
         if existing.suffix == ".json":
             continue
-        if existing.stat().st_size >= MIN_CLIP_BYTES:
-            return existing
-        existing.unlink()          # a previous run cached a stub; don't trust it
+        if existing.stat().st_size < MIN_CLIP_BYTES:
+            existing.unlink()      # a previous run cached a stub; don't trust it
+            continue
+        # Size is not enough. A truncated range request produces a valid,
+        # playable, *short* file that clears MIN_CLIP_BYTES easily, and once
+        # one is in the cache every later run reuses it - --resume included,
+        # which is precisely the run meant to fix it. So measure it, and drop
+        # it if it is short or will not open at all.
+        if _clip_fault(existing, start, end):
+            existing.unlink()
+            continue
+        return existing
 
     # Download into a scratch dir and move the finished file into place. yt-dlp
     # writes its output incrementally, so a run killed mid-download would
@@ -178,6 +248,15 @@ def download_window(
                 f"{video_id}: yt-dlp exited 0 but wrote only {got.stat().st_size} "
                 f"bytes for {start}-{end}s (no seekable format?)"
             )
+        # Raised, not downgraded here: `analyse` propagates it, `cmd_batch`
+        # catches it and records `confidence: none` with this message in
+        # `notes`, and --resume keys "done" on a non-empty final_time, so the
+        # run is re-read next time instead of standing as an answer. The
+        # clip's length is a property of the clip, not of the readings, so
+        # nothing in consensus needs to know about it.
+        fault = _clip_fault(got, start, end)
+        if fault:
+            raise VideoError(f"{video_id}: {fault}")
         # NB: not stem.with_suffix() - the cache key is itself a dotted
         # suffix, and with_suffix() would replace it rather than append,
         # collapsing every window of a video onto one uncacheable name.
