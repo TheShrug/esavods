@@ -36,12 +36,35 @@ MIN_CLIP_BYTES = 512 * 1024
 # and is still an order of magnitude below the ~670s and ~640s that actually
 # went missing. The floor keeps a short window (a VOD shorter than --tail
 # yields one) from being policed to the frame.
+#
+# What the slack deliberately does *not* try to cover is a seeded duration
+# that is not merely rounded but wrong - one third-party re-upload
+# over-reported by 58. Widening the slack to swallow that would blunt the
+# check on exactly the reads that skipped a probe, so `pipeline.fetch_window`
+# handles it by asking for the real duration instead.
 CLIP_SLACK_SECONDS = 5.0
 CLIP_SLACK_FRACTION = 0.05
 
 
 class VideoError(RuntimeError):
     pass
+
+
+class ShortClipError(VideoError):
+    """The clip is materially shorter than the window that was asked for.
+
+    Its own class because there are two causes and only one of them is a
+    broken download: the window's end can also be past the real end of the
+    file, when it was computed from a duration `seed()` guessed. `.got` and
+    `.requested` are what `pipeline.fetch_window` needs to tell them apart
+    once it knows the true duration. Everything that merely catches
+    VideoError - `cmd_batch` included - is unaffected.
+    """
+
+    def __init__(self, message: str, got: float, requested: float):
+        super().__init__(message)
+        self.got = got
+        self.requested = requested
 
 
 @dataclass
@@ -67,9 +90,17 @@ def _run(cmd: list[str], timeout: int = 900) -> str:
     return proc.stdout
 
 
-def probe(video_id: str, ytdlp_args: list[str] | None = None) -> Meta:
+def probe(video_id: str, ytdlp_args: list[str] | None = None,
+          refresh: bool = False) -> Meta:
+    """Title and duration for a video, from the cache if it is there.
+
+    `refresh` spends the request anyway and overwrites what was cached. It
+    exists for one caller: a window computed from a `seed`ed duration that
+    came back short, where the seeded guess is the suspect and the exact
+    answer is the only thing that settles it.
+    """
     cached = cache_dir() / f"{video_id}.meta.json"
-    if cached.exists():
+    if cached.exists() and not refresh:
         d = json.loads(cached.read_text())
     else:
         out = _run(
@@ -107,11 +138,16 @@ def seed(video_id: str, title: str, duration: int, channel: str | None = None) -
 
     The search's duration is not the probe's: measured across eight ESA
     uploads it is the true length rounded *up* by exactly one second, and a
-    third-party re-upload over-reported by 58. Up is the safe direction. Every
-    consumer treats duration as where the end of the file is - the tail window
-    is `duration - tail` to `duration`, and ffmpeg simply stops at EOF - so an
-    over-estimate costs nothing, where an under-estimate would cut the window
-    short of the finish and hide the very frames the read needs.
+    third-party re-upload over-reported by 58. Up is still the right
+    direction, but it is no longer free. Every consumer treats duration as
+    where the end of the file is - the tail window is `duration - tail` to
+    `duration`, and ffmpeg simply stops at EOF - so an over-estimate now makes
+    the clip come back short of the window that was asked for, which is what
+    `download_window` refuses as a truncated download. `pipeline.fetch_window`
+    recovers by re-probing this entry once and reading the corrected window,
+    at the cost of the request this function saved. An under-estimate has no
+    such recovery: it cuts the window short of the finish, hides the very
+    frames the read needs, and looks in every artefact like a complete read.
 
     Returns False rather than overwriting an entry already in the cache: a
     real probe knows the channel and the upload date, and this does not.
@@ -130,6 +166,23 @@ def seed(video_id: str, title: str, duration: int, channel: str | None = None) -
         "seeded": True,
     }))
     return True
+
+
+def is_seeded(video_id: str) -> bool:
+    """Was this video's cached duration guessed by `seed`, or probed?
+
+    A probed duration is exact; a seeded one is a search result's, rounded up
+    and occasionally just wrong. `seed` records the difference for exactly
+    this question - it is the only way to know whether a window that came
+    back short is a truncated download or a duration that over-reported.
+    """
+    path = cache_dir() / f"{video_id}.meta.json"
+    if not path.exists():
+        return False
+    try:
+        return bool(json.loads(path.read_text()).get("seeded"))
+    except (OSError, ValueError):
+        return False
 
 
 def search(query: str, limit: int = 5, ytdlp_args: list[str] | None = None) -> list[dict]:
@@ -167,8 +220,22 @@ def clip_duration(path: Path) -> float:
         raise VideoError(f"{path.name}: ffprobe found no duration in the clip")
 
 
-def _clip_fault(clip: Path, start: int, end: int) -> str | None:
-    """Why this clip cannot stand in for [start, end), or None if it can.
+def clip_is_complete(got: float, requested: float) -> bool:
+    """Is `got` seconds of video enough for a `requested`-second window?
+
+    The one place the tolerance is defined. `pipeline.fetch_window` asks the
+    same question a second time, against the footage that actually existed
+    rather than the footage that was asked for, and it must ask it the same
+    way.
+    """
+    if requested <= 0:
+        return True
+    return got >= requested - max(CLIP_SLACK_SECONDS,
+                                  CLIP_SLACK_FRACTION * requested)
+
+
+def _clip_fault(video_id: str, clip: Path, start: int, end: int) -> VideoError | None:
+    """The error this clip deserves as a stand-in for [start, end), or None.
 
     Compared against `end - start`, deliberately, and never against --tail:
     `pipeline.analyse` computes `start = max(0, duration - tail)`, so a video
@@ -179,15 +246,15 @@ def _clip_fault(clip: Path, start: int, end: int) -> str | None:
     try:
         got = clip_duration(clip)
     except VideoError as exc:
-        return f"clip will not open - {exc}"
-    if requested <= 0:
+        return VideoError(f"{video_id}: clip will not open - {exc}")
+    if clip_is_complete(got, requested):
         return None
-    slack = max(CLIP_SLACK_SECONDS, CLIP_SLACK_FRACTION * requested)
-    if got < requested - slack:
-        return (f"clip is only {got:.0f}s of the {requested}s window "
-                f"{start}-{end}s that was requested - the download stopped "
-                f"early, so the finish may never be on screen")
-    return None
+    return ShortClipError(
+        f"{video_id}: clip is only {got:.0f}s of the {requested}s window "
+        f"{start}-{end}s that was requested - the download stopped early, or "
+        f"the video is shorter than its metadata says",
+        got=got, requested=requested,
+    )
 
 
 def download_window(
@@ -211,7 +278,7 @@ def download_window(
         # one is in the cache every later run reuses it - --resume included,
         # which is precisely the run meant to fix it. So measure it, and drop
         # it if it is short or will not open at all.
-        if _clip_fault(existing, start, end):
+        if _clip_fault(video_id, existing, start, end):
             existing.unlink()
             continue
         return existing
@@ -254,9 +321,13 @@ def download_window(
         # run is re-read next time instead of standing as an answer. The
         # clip's length is a property of the clip, not of the readings, so
         # nothing in consensus needs to know about it.
-        fault = _clip_fault(got, start, end)
+        #
+        # `pipeline.fetch_window` catches the ShortClipError first when the
+        # window was built from a seeded duration, since that duration is then
+        # as likely a suspect as the download.
+        fault = _clip_fault(video_id, got, start, end)
         if fault:
-            raise VideoError(f"{video_id}: {fault}")
+            raise fault
         # NB: not stem.with_suffix() - the cache key is itself a dotted
         # suffix, and with_suffix() would replace it rather than append,
         # collapsing every window of a video onto one uncacheable name.

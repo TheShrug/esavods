@@ -28,10 +28,10 @@ HAS_FFMPEG = bool(shutil.which("ffmpeg") and shutil.which("ffprobe"))
 NEEDS_FFMPEG = "needs ffmpeg/ffprobe - both are in the vod-timer image"
 
 
-def fault(seconds: float, start: int, end: int) -> str | None:
+def fault(seconds: float, start: int, end: int):
     """`_clip_fault` for a clip that measures `seconds`, without an ffprobe."""
     with mock.patch.object(video, "clip_duration", return_value=seconds):
-        return video._clip_fault(Path("clip.mp4"), start, end)
+        return video._clip_fault("aaaaaaaaaaa", Path("clip.mp4"), start, end)
 
 
 class MeasuringAClip(unittest.TestCase):
@@ -87,15 +87,44 @@ class DecidingWhetherAClipIsShort(unittest.TestCase):
     def test_a_clip_that_will_not_open_is_a_fault_too(self):
         with mock.patch.object(video, "clip_duration",
                                side_effect=video.VideoError("moov atom not found")):
-            self.assertIsNotNone(video._clip_fault(Path("clip.mp4"), 4000, 4780))
+            broken = video._clip_fault("aaaaaaaaaaa", Path("clip.mp4"), 4000, 4780)
+        self.assertIsNotNone(broken)
+        # Not a ShortClipError: re-probing the duration cannot mend a file
+        # ffprobe will not open, so that recovery must not fire for this.
+        self.assertNotIsInstance(broken, video.ShortClipError)
+
+    def test_a_short_clip_carries_what_it_got_and_what_it_wanted(self):
+        # pipeline.fetch_window re-asks the same question against the footage
+        # that really existed, and these are what it asks with.
+        short = fault(110.0, 4000, 4780)
+        self.assertIsInstance(short, video.ShortClipError)
+        self.assertEqual(short.got, 110.0)
+        self.assertEqual(short.requested, 780)
 
     def test_the_message_says_what_came_back_and_what_was_asked_for(self):
         # This string is what cmd_batch puts in the results CSV's `notes`, so
         # it is the whole of what a person sees when a read is refused.
-        msg = fault(110.0, 4000, 4780)
+        msg = str(fault(110.0, 4000, 4780))
         self.assertIn("110s", msg)
         self.assertIn("780s", msg)
         self.assertIn("4000-4780s", msg)
+
+
+class TheToleranceIsDefinedOnce(unittest.TestCase):
+    """`clip_is_complete` is asked twice - once about the window that was
+    requested, once by fetch_window about the footage that existed - and the
+    two must agree."""
+
+    def test_a_full_window_is_complete(self):
+        self.assertTrue(video.clip_is_complete(780.0, 780))
+
+    def test_a_truncated_window_is_not(self):
+        self.assertFalse(video.clip_is_complete(110.0, 780))
+
+    def test_a_window_of_nothing_is_vacuously_complete(self):
+        # fetch_window can ask about a negative window when a seeded duration
+        # over-reported by more than the whole tail.
+        self.assertTrue(video.clip_is_complete(0.0, -12))
 
 
 class DownloadWindowRefusesAShortClip(unittest.TestCase):
