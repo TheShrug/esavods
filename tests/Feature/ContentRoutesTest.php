@@ -71,8 +71,6 @@ class ContentRoutesTest extends TestCase
             'name' => 'ESA Winter 2026',
             'slug' => 'esa-winter-2026',
             'description' => 'The winter marathon.',
-            'year' => 2026,
-            'order' => 1,
         ]);
         $this->platform = Platform::factory()->create([
             'name' => 'GameCube',
