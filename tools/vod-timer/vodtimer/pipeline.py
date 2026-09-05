@@ -26,6 +26,62 @@ def parse_duration(text: str | None) -> float | None:
     return total
 
 
+def fetch_window(
+    video_id: str,
+    meta: video.Meta,
+    tail: int,
+    height: int,
+    ytdlp_args: list[str] | None = None,
+    log=None,
+) -> tuple[video.Meta, int, Path]:
+    """The tail window as a clip, plus the metadata and start it really used.
+
+    A duration from `video.seed` is a search result's, not a probe's: rounded
+    up by a second across eight measured ESA uploads, and over-reported by 58
+    for one third-party re-upload. The window's end *is* that duration, so an
+    over-estimate asks for footage past the end of the file and the clip comes
+    back short of what was requested - which, from the clip alone, is
+    indistinguishable from the truncated download #63 is about.
+
+    Left there, that is a permanent refusal: the read fails, --resume re-reads
+    it, and it fails identically forever, because nothing in the loop ever
+    revisits the duration. Widening the slack to swallow 58s would instead
+    blunt the check on exactly the reads that skipped a probe, which are the
+    ones with the least evidence behind them.
+
+    So when a *seeded* window comes back short, spend the request that seeding
+    saved and ask for the real duration. If it accounts for the shortfall, the
+    metadata was wrong rather than the download, and the corrected window is
+    read instead - a full tail, not the 722s the bad duration left. If it does
+    not, the download really was truncated and the error stands, at the cost
+    of one probe and no second download.
+
+    This settles a video once. `probe(refresh=True)` replaces the seeded entry
+    with an exact one, so every later run - and every other run of the same
+    VOD - starts from the true duration, and the recovery cannot recurse
+    because the replacement is not seeded.
+    """
+    log = log or (lambda msg: None)
+    start = max(0, meta.duration - tail)
+    try:
+        clip = video.download_window(video_id, start, meta.duration, height, ytdlp_args)
+        return meta, start, clip
+    except video.ShortClipError as short:
+        if not video.is_seeded(video_id):
+            raise
+        log(f"short clip from a seeded duration - re-probing {video_id}")
+        fresh = video.probe(video_id, ytdlp_args, refresh=True)
+        # The same question the clip already failed, asked against the footage
+        # that actually existed rather than the footage that was asked for.
+        if not video.clip_is_complete(short.got, fresh.duration - start):
+            raise
+        log(f"seeded duration {ocr.fmt(meta.duration)} was really "
+            f"{ocr.fmt(fresh.duration)}; re-reading the corrected window")
+        start = max(0, fresh.duration - tail)
+        clip = video.download_window(video_id, start, fresh.duration, height, ytdlp_args)
+        return fresh, start, clip
+
+
 def analyse(
     video_id: str,
     estimate: str | None = None,
@@ -45,8 +101,11 @@ def analyse(
     meta = video.probe(video_id, ytdlp_args)
     log(f"{meta.title!r} - {ocr.fmt(meta.duration)}")
 
-    start = max(0, meta.duration - tail)
-    clip = video.download_window(video_id, start, meta.duration, height, ytdlp_args)
+    # `meta` can come back corrected: a seeded duration that over-reported is
+    # only caught by the window it produces. Everything below - the frame
+    # positions, the resolve bound, the CSV's `duration` - wants the corrected
+    # one.
+    meta, start, clip = fetch_window(video_id, meta, tail, height, ytdlp_args, log)
     log(f"window {ocr.fmt(start)}-{ocr.fmt(meta.duration)} -> {clip.stat().st_size / 1e6:.1f} MB")
 
     with tempfile.TemporaryDirectory() as tmp:

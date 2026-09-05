@@ -98,8 +98,15 @@ def cmd_batch(args) -> int:
     # the same place. Collected across an event it says where each layout keeps
     # its clock, which is what a --crop fast path would need. Without this the
     # information is computed for every run and then thrown away.
+    #
+    # `frames_read`/`frames_total` are here because a short read is otherwise
+    # invisible outside the container logs: the two truncated Summer 2022
+    # clips read 11/11 and 14/14 frames where 50 were expected, and their rows
+    # carried a final_time, a confidence and notes that all looked ordinary.
+    # `_report` has always printed the pair; the CSV is what survives the run.
     fields = ["video_id", "game", "actual", "final_time", "final_seconds",
-              "confidence", "duration", "estimate", "check_at", "crop", "notes"]
+              "confidence", "frames_read", "frames_total", "duration",
+              "estimate", "check_at", "crop", "notes"]
 
     # Results are written and flushed per run, not collected and dumped at the
     # end. A whole-marathon batch takes hours; a crash three hours in must not
@@ -171,7 +178,10 @@ def cmd_batch(args) -> int:
                 "video_id": r.get("video_id"), "game": r.get("game", ""),
                 "actual": r.get("actual", ""), "final_time": r.get("final_time", ""),
                 "final_seconds": r.get("final_seconds", ""),
-                "confidence": r.get("confidence"), "duration": r.get("duration", ""),
+                "confidence": r.get("confidence"),
+                "frames_read": r.get("frames_read", ""),
+                "frames_total": r.get("frames_total", ""),
+                "duration": r.get("duration", ""),
                 "estimate": r.get("estimate", ""),
                 "check_at": r.get("plateau_starts_at") or "",
                 "crop": ",".join(str(v) for v in r["crop"]) if r.get("crop") else "",
