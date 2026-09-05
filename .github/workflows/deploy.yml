@@ -24,12 +24,20 @@ name: Deploy
 on:
   push:
     branches: [master]
-    # A docs-only commit does not need a cold image rebuild. Use the manual dispatch if one does.
+    # A commit that cannot change what production serves does not need a cold image rebuild.
+    # Use the manual dispatch if one somehow does.
+    #
+    # `tools/**` is here because tools/vod-timer is a local OCR pipeline, run by hand out of its
+    # own image against a bind-mounted checkout. Nothing the app serves references it - only
+    # Build/release-event.sh and the Makefile, both developer-side. It is also .dockerignore'd,
+    # which is what makes this entry honest: a path ignored here but still copied into the image
+    # would leave production carrying bytes from a commit it was never rebuilt for.
     paths-ignore:
       - 'docs/**'
       - '**/*.md'
       - '.gitignore'
       - '.github/ISSUE_TEMPLATE/**'
+      - 'tools/**'
   workflow_dispatch:
 
 # Deploys queue rather than cancel. cancel-in-progress would be actively harmful: killing this
