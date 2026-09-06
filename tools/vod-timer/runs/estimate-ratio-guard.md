@@ -6,8 +6,13 @@ record of **0 for 13**.
 
 This file is the count, reconstructed from the eight event write-ups in this
 directory rather than from the issue. **The record is not 0 for 13.** It is
-**13 correct out of 34 rejections**, and the issue's headline figure is not
+**17 correct out of 38 rejections**, and the issue's headline figure is not
 supported by the write-ups it cites.
+
+Updated at the close of epic #31, with the last three backfills added — and with
+a correction: ESA Winter 2022's 2-for-2 was missing from the table below, and
+ESA Summer 2021's write-up carried the total forward as "unchanged at 13 of 34"
+without noticing. The pre-#53 figure was therefore 15 of 36, not 13 of 34.
 
 ## Per event
 
@@ -24,11 +29,15 @@ accumulated. "Correct" means the rejection was right — the *reading* was wrong
 | ESA Summer 2023 | `esa-summer-2023.md` | 6 | 2 | 4 | — |
 | ESA Winter 2023 | `esa-winter-2023.md` | 6 | 3 | 2 | 1 |
 | ESA Summer 2022 | `esa-summer-2022.md` | 3 | 2 | 1 | — |
-| **total** | | **34** | **13** | **20** | **1** |
+| ESA Winter 2022 | `esa-winter-2022.md` | 2 | 2 | 0 | — |
+| ESA Summer 2021 | `esa-summer-2021.md` | 0 | 0 | 0 | — |
+| ESA Summer Online 2020 | `esa-summer-online-2020.md` | 2 | 2 | 0 | — |
+| **total** | | **38** | **17** | **20** | **1** |
 
-Five of the eight events produced true positives. The first four events read —
+Seven of the eleven events produced true positives. The first four events read —
 Winter 2026, Winter 2021, Summer 2025, Summer 2024 — produced none, which is
-where the "0 for N" record came from; every event read since has produced them.
+where the "0 for N" record came from; every event read since has produced them,
+and the last three backfills raised **no false alarm at all** between them.
 
 ## Where the issue's figures come from, and why they do not hold
 
