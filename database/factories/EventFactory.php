@@ -37,11 +37,9 @@ class EventFactory extends Factory
             'name' => Str::title($name),
             'slug' => Str::slug($name),
             'description' => fake()->sentence(),
-            // The menu orders by year desc then order asc, so both are set:
-            // a null year sorts unpredictably and makes the nav dropdown's
-            // groupBy('year') key on null.
-            'year' => fake()->numberBetween(2012, 2026),
-            'order' => fake()->numberBetween(1, 3),
+            // No year or order: the menu's ordering comes from MIN(run_date)
+            // over the event's runs (#98), so an event that needs a place in
+            // that order needs runs with dates, not a column set here.
         ];
     }
 }
