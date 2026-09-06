@@ -41,8 +41,24 @@ The five rows that do not ship, and why:
 | Resident Evil Village — Hardcore (Glitchless), 25 Jul | no ESA upload; see below |
 | Tetris Effect: Connected — Journey Mode (Normal) | no ESA upload |
 | Super Mario Maker 2 — 6 Levels Blindfolded (Endless, Easy) | no ESA upload |
-| Minecraft — Random Seed (Glitchless, 1.16+) | VOD is **age-gated**; yt-dlp refuses it without cookies |
+| Minecraft — Random Seed (Glitchless, 1.16+) | VOD is **age-gated**; yt-dlp refuses it without cookies. **Resolved by hand afterwards — see the addendum** |
 | Opening Speech | the layout carries no timer at all |
+
+> [!note] Addendum, 2026-09-06 — four of the five, not five (#104)
+> The Minecraft row now ships. The VOD is still age-gated and the tool still
+> cannot read it; Stewart opened it in a browser and read the on-screen timer
+> directly, giving `0:42:59`. That is the same standard as the sixteen rows the
+> event resolved from frames by hand, so it ships as a normal time.
+>
+> **The counts elsewhere in this file are left as they were.** They record what
+> the pipeline produced on the day, which is the thing this evaluation exists to
+> measure, and an age gate the tool cannot pass is a real result rather than a
+> gap to paper over. The site now carries **147 of 151**; the tool still read
+> 146.
+>
+> Worth keeping in view for future events: this is the first age-gated VOD in
+> twelve events, and the only fix available was a person watching it. If a second
+> one appears, a cookie export becomes worth building rather than working around.
 
 ## Resolution
 
