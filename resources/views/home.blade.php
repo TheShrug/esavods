@@ -37,7 +37,13 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    @if($runs)
+                    {{-- count(), not a bare truthiness test: $runs is an Eloquent
+                         Collection, and an empty Collection is still an object and so
+                         still truthy. `@if($runs)` therefore rendered the table's
+                         <thead> with no rows under it, which is not the same as showing
+                         nothing. After #107's reset that is the normal state until
+                         someone watches a run. --}}
+                    @if(count($runs))
                         <table class="esa-table" id="mainTable" data-order="[]">
                             <thead>
                             <tr>
