@@ -9,10 +9,17 @@ fi
 
 # The shared Postgres (homelab#29) can be slower to accept connections than
 # this container is to start; a fixed sleep would race it occasionally.
-until pg_isready -h "$DB_HOST" -p "${DB_PORT:-5432}" -U "$DB_USERNAME" -d "$DB_DATABASE" >/dev/null 2>&1; do
-    echo "Waiting for Postgres at $DB_HOST:${DB_PORT:-5432}..."
-    sleep 1
-done
+#
+# Guarded on DB_HOST, matching entrypoint-dev.sh and speedrunwr. Unguarded, an
+# unset DB_HOST waits on a host that will never answer and the container hangs
+# here forever instead of failing; with the guard it falls through to migrate,
+# which says what is actually wrong and exits.
+if [ -n "$DB_HOST" ]; then
+    until pg_isready -h "$DB_HOST" -p "${DB_PORT:-5432}" -U "$DB_USERNAME" -d "$DB_DATABASE" >/dev/null 2>&1; do
+        echo "Waiting for Postgres at $DB_HOST:${DB_PORT:-5432}..."
+        sleep 1
+    done
+fi
 
 # config:cache first so everything after it reads one consistent config;
 # migrate before serving so a schema failure kills the container first.
