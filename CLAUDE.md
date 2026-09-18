@@ -30,9 +30,10 @@ Fleet-wide, and restated in every app repo — the reasoning lives in the `homel
 
 ## Local dev interface
 
-`make` is the interface, and it lives **inside the devcontainer** — PHP and `make` are neither of
-them on the Windows host. The fleet-wide table and reasoning live in the `homelab` vault at
-`Conventions/Local Dev Interface.md`; restated here because that vault is private.
+`make` is the interface, but **it is on neither the Windows host nor this repo's dev image** —
+audited 2026-08-30. Read the Makefile and run a target's recipe verbatim from the repo root on the
+host; never reconstruct one from memory. The fleet-wide table and reasoning live in the `homelab`
+vault at `Conventions/Local Dev Interface.md`; restated here because that vault is private.
 
 | | |
 | --- | --- |
